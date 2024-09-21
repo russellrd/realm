@@ -1,7 +1,7 @@
 ---
 name: Lecture
 about: Track team details for lectures.
-title: 'Lecture - Date'
+title: 'Lecture - YYYY-MM-DD HH:MM-HH:MM'
 labels: 'meeting'
 assignees: ''
 
@@ -10,11 +10,13 @@ assignees: ''
 **Topic**
 
 **Date and Time**
+MONTH DD, YYYY
+HH:MMpm-HH:MMpm
 
 **Attendance**
 
 - [ ] Rafey
-- [ ] Russel
+- [ ] Russell
 - [ ] Avanish
 - [ ] Abdul
 
