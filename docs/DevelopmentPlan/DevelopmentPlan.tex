@@ -2,6 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage[table, x11names]{xcolor}
 
 \title{Development Plan\\\progname}
 
@@ -22,9 +23,12 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
+2024-09-16 & Russell Davidson & General ideas for Sections 4, 5, 6, 7, and 8\\
+2024-09-18 & Russell Davidson & Finished section 4\\
 2024-09-21 & Zulfiqar Abdul & Expected Technology, Coding Standard\\
+2024-09-21 & Russell Davidson & Finished sections 6, and 7\\
 2024-09-23 & Zulfiqar Abdul & Proof of Concept Demonstration Plan\\
-... & ... & ...\\
+2024-09-23 & Russell Davidson & Finished sections 3, 5, and 8\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -48,53 +52,201 @@ This project will not have any IP to protect.
 
 \section{Copyright License}
 
-\wss{What copyright license is your team adopting.  Point to the license in your
-repo.}
+The Apache License 2.0 will be adopted for this project. The license can be found in the repo \href{https://github.com/russellrd/realm/blob/main/LICENSE}{here}.
 
-\section{Team Meeting Plan}
+\section{Team Meeting Plan} \label{team_meeting_plan}
 
-\wss{How often will you meet? where?}
-
-\wss{If the meeting is a physical location (not virtual), out of an abundance of
-caution for safety reasons you shouldn't put the location online}
-
-\wss{How often will you meet with your industry advisor?  when?  where?}
-
-\wss{Will meetings be virtual?  At least some meetings should likely be
-in-person.}
-
-\wss{How will the meetings be structured?  There should be a chair for all meetings.  There should be an agenda for all meetings.}
-
-\section{Team Communication Plan}
-
-\wss{Issues on GitHub should be part of your communication plan.}
-
-\section{Team Member Roles}
-
-\wss{You should identify the types of roles you anticipate, like notetaker,
-leader, meeting chair, reviewer.  Assigning specific people to those roles is
-not necessary at this stage.  In a student team the role of the individuals will
-likely change throughout the year.}
-
-\section{Workflow Plan}
-
+Every week, there will be two in-person team meetings that can be extended in length if necessary:
 \begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
-	\item How will you be managing issues, including template issues, issue
-	classification, etc.?
-  \item Use of CI/CD
+    \item Mondays at 2:30pm-4:20pm
+    \item Wednesdays 4:30pm-5:30pm
 \end{itemize}
+
+Before deliverables are due, additional meetings may be held virtually. \\
+
+This team has no industry advisor so no meeting times are needed. If one is found in the future, meeting times will be scheduled according to their availability. \\
+
+All meetings will start with the progress review of all action items from the previous meeting. Then, each item in the agenda section of the GitHub issue for the current meeting will be discussed. Notes will be added to the GitHub issue as topics are being discussed and action items will be made for each task that should be done before the next meeting. Before ending the meeting, a new GitHub issue for the next scheduled meeting will be created with an agenda. \\
+
+Every meeting will have a chair starting with Rafey and rotating through members every week.
+
+\section{Team Communication Plan} \label{team_communication_plan}
+
+Discord will be used for online meetings and asynchronous discussions. All scheduled meetings will be conducted as described in the previous section (4 Team Meeting Plan). \\
+
+Communication with the TA will be done through MS Teams. \\
+
+GitHub issues will be created for the following purposes:
+
+\begin{enumerate}
+    \item \href{https://github.com/russellrd/realm/blob/main/.github/ISSUE_TEMPLATE/lect.md}{Lecture attendance}
+    \begin{itemize}
+        \item Each lecture will have a corresponding GitHub issue where the attendance of team members and relevant questions related to the lecture content is recorded.
+    \end{itemize}
+    \item \href{https://github.com/russellrd/realm/blob/main/.github/ISSUE_TEMPLATE/team_meet.md}{Team Meeting}
+    \begin{itemize}
+        \item Each team meeting will have a GitHub issue made in the previous meeting with attendance and a meeting agenda.
+    \end{itemize}
+    \item \href{https://github.com/russellrd/realm/blob/main/.github/ISSUE_TEMPLATE/ta_meet.md}{TA Meeting}
+    \begin{itemize}
+        \item All meetings with the TA will be recorded in a GitHub issue with both an agenda and questions to ask the TA.
+    \end{itemize}
+    \item \href{https://github.com/russellrd/realm/blob/main/.github/ISSUE_TEMPLATE/sup_meet.md}{Supervisor Meeting}
+    \begin{itemize}
+        \item If a supervisor for the team is found, meetings with them would be cataloged with this issue type. This will more likely be used for meetings with project stakeholders.
+    \end{itemize}
+    \item Project Tracking (\href{https://github.com/russellrd/realm/blob/main/.github/ISSUE_TEMPLATE/bug.md}{bugs} and \href{https://github.com/russellrd/realm/blob/main/.github/ISSUE_TEMPLATE/feature_or_doc.md}{features/documentation})
+    \begin{itemize}
+        \item Project bugs/features/docs are to be tracked using GitHub issues for each desired change.
+    \end{itemize}
+\end{enumerate}
+
+\section{Team Member Roles} \label{team_member_roles}
+
+The team will have the following roles:
+\begin{enumerate}
+    \item \textbf{Meeting Chair}
+    \begin{itemize}
+        \item Make a Github issue for meeting notes and the agenda for the next meeting.
+    \end{itemize}
+    \item \textbf{Reviewer}
+    \begin{itemize}
+        \item Look over GitHub pull requests to check changes are acceptable or suggest edits.
+    \end{itemize}
+    \item \textbf{Augmented Reality: Subject Matter Expert}
+    \begin{itemize}
+        \item Works on, and render assistance to, parts of the project related to augmented reality (AR).
+    \end{itemize}
+    \item \textbf{Unity: Subject Matter Expert}
+    \begin{itemize}
+        \item Works on, and render assistance to, parts of the project related to the Unity game engine.
+    \end{itemize}
+    \item \textbf{Team Liaison} \textit{(Russell)}
+    \begin{itemize}
+        \item Monitors email for team updates by course instructors and keeps the rest of the group up-to-date with the latest communications.
+    \end{itemize}
+\end{enumerate}
+
+The meeting chair and reviewer will rotate on a weekly basis in alphabetical order of last name. Other roles will be assigned to members by October 1, 2024.
+
+\section{Workflow Plan} \label{workflow_plan}
+
+The team will use git for version control and store the project files remotely on GitHub. All branches will have a prefix to signify what type of changes are being made followed by a descriptive name that can be linked to an issue in the \textit{GitHub Project}. When a change is finished, a new pull request will be created from a branch and contain a reference the \textit{GitHub Issue}(s) being addressed by the commits within the branch.\\
+
+The GitHub repo will have all the properties outlined below:
+\begin{itemize}
+    \item \textbf{Default branch:} \textit{dev}
+    \item \textbf{Main branch:} \textit{main}
+    \item \textbf{Branch Prefix Types:}
+    \begin{itemize}
+        \item \textit{feature/} (New features)
+        \item \textit{fix/} (Fixing bugs in already existing code)
+        \item \textit{release/} (Designated release)
+        \item \textit{docs/} (Changes to documentation)
+    \end{itemize}
+    \item \textbf{Pull Requests (PRs):}
+    \begin{itemize}
+        \item Use the PR template in repo
+        \item Requires at least 1 reviewer for merge
+        \item All members will be automatically added as a reviewer to all PRs
+    \end{itemize}
+    \item \textbf{Issues:}
+    \begin{itemize}
+        \item Will be created as described above in the \nameref{team_communication_plan}
+        \item PRs will reference the corresponding issue(s) being addressed
+    \end{itemize}
+    \item \textbf{Releases:}
+    \begin{itemize}
+        \item Commits for features that complete an epic will be tagged and made into a release
+    \end{itemize}
+\end{itemize}
+
+When not working directly with git, all work is to be added to the repo under one commit co-authored by all those who contributed. The work breakdown by each member will be described in the commit message. \\
+
+After every push to the remote repo, a GitHub action will be run to build the project for both iOS and Android devices. The artifacts created in this process will be available to download. Additionally, automated tests may be added in the build process to guard against app breaking changes. This will function as the continuous integration (CI) for the project. Continuous delivery (CD) is not necessary for this project since builds will be installed on devices manually and will not require automated deployment. 
 
 \section{Project Decomposition and Scheduling} \label{project_decomposition_and_scheduling}
 
-\begin{itemize}
-  \item How will you be using GitHub projects?
-  \item Include a link to your GitHub project
-\end{itemize}
+\textit{GitHub Projects} will be used to organize the sub-tasks needed to complete different milestones. These sub-tasks will be represented by \textit{GitHub Issues} within the repo. Milestones will represent less granular tasks such as a major feature in the POC where many \textit{GitHub Issues} could be attached to a single milestone. \textit{GitHub Issues} will follow the project tracking templates mentioned in the \nameref{team_communication_plan}. In the templates, there are checklists at the bottom for all the changes that need to be made. Once they are all checked off, a PR should be created using the PR template and linked to the corresponding issue. Three views will be used within the \textit{GitHub Projects} to see the tasks and as a table, timeline, and kanban board. \\
 
-\wss{How will the project be scheduled?  This is the big picture schedule, not
-details. You will need to reproduce information that is in the course outline
-for deadlines.}
+The \textit{GitHub Project} can be found \href{ https://github.com/users/russellrd/projects/2}{here}. \\
+
+This project will be scheduled with broad milestones representing major features that are interwoven with course deliverables. The planned milestone start and completion times are scheduled based on the deadlines of the course deliverables they directly contribute to. \\
+
+\definecolor{course-defined}{HTML}{d3d3d3}
+
+\begin{table}[hp]
+    \caption{Planned Milestone Scheduling}
+    \label{tab:milestone_table}
+    \centering
+    \begin{tabular}{cp{5cm}>{\centering\arraybackslash}p{1.75cm}>{\centering\arraybackslash}p{2.1cm}} 
+    \toprule
+         \textbf{Release}&  \textbf{Milestone}&  \textbf{Planned Start}& \textbf{Planned Completion}\\ 
+    \hline \hline
+ & Problem Statement, POC Plan, Development Plan& &2024-09-23\\ \hline
+         N/A&  Learn Unity, C\#, AR&  2024-09-14
+& 2024-10-01
+\\ \hline
+         0.0&  Setup Project Infrastructure&  2024-09-14
+& 2024-10-01
+\\ \hline
+\rowcolor{course-defined}
+ & Requirements Document [Rev 0]& &2024-10-09\\ \hline 
+\rowcolor{course-defined}
+ & Hazard Analysis [Rev 0]& &2024-10-23\\ \hline
+\rowcolor{course-defined}
+ & V\&V Plan [Rev 0]& &2024-11-01\\ \hline
+         0.1&  Implement AR object placement&  2024-10-01
+& 2024-11-11
+\\ \hline
+         0.2&  Implement 3D object scanning&  2024-10-01
+& 2024-11-11
+\\ \hline
+\rowcolor{course-defined}
+ & Proof of Concept& &2024-11-11\\ \hline
+         0.3&  Design AR object database&  2024-10-15
+& 2024-11-11
+\\ \hline
+         0.4&  Implement user account system with cloud storage&  2024-11-11
+& 2024-11-20
+\\ \hline
+ 0.5& Implement friends, groups, and object sharing& 2024-11-11
+&2024-12-01
+\\ \hline
+ 0.6& Implement tour system& 2025-01-01
+&2025-01-14
+\\ \hline
+ 1.0& Implement a variety of settings & 2025-01-01
+&2025-01-14
+\\ \hline
+\rowcolor{course-defined}
+ & Design Document [Rev 0]& &2025-01-15\\ \hline
+ 1.1& User Documentation& 2025-01-15
+&2025-02-01
+\\ \hline
+ 1.2& Usability Testing& 2025-01-15
+&2025-02-01
+\\ \hline
+\rowcolor{course-defined}
+ & Demonstration [Rev 0]& &2025-02-05\\ \hline
+ \rowcolor{course-defined}
+ & V\&V Report [Rev 0]& &2025-03-07\\ \hline
+ \rowcolor{course-defined}
+ & Final Demonstration [Rev 1]& &2025-03-24\\ \hline
+ \rowcolor{course-defined}
+ & EXPO Demonstration& &2025-04-01\\ \hline
+ \rowcolor{course-defined}
+ & Final Documentation [Rev 1]& &2025-04-01\\ \hline
+ 1.3& Implement 3D object generation via prompts& 2025-04-30
+&2025-12-31
+\\ \hline
+ 1.4& Implement desktop tour editor& 2025-04-30
+&2025-12-31
+\\ 
+    \bottomrule
+    \end{tabular}
+\end{table}
+Note: Course defined milestones have a \colorbox{course-defined}{grey colored background}
 
 \section{Proof of Concept Demonstration Plan}
 
