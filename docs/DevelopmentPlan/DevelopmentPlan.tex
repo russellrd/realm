@@ -2,6 +2,7 @@
 
 \usepackage{booktabs}
 \usepackage{tabularx}
+\usepackage{caption}
 \usepackage[table, x11names]{xcolor}
 
 \title{Development Plan\\\progname}
@@ -36,13 +37,6 @@
 
 \newpage{}
 
-\wss{Put your introductory blurb here.  Often the blurb is a brief roadmap of
-what is contained in the report.}
-
-\wss{Additional information on the development plan can be found in the
-\href{https://gitlab.cas.mcmaster.ca/courses/capstone/-/blob/main/Lectures/L02b_POCAndDevPlan/POCAndDevPlan.pdf?ref_type=heads}
-{lecture slides}.}
-
 \section{Confidential Information?}
 
 This project will not have any confidential information to protect.
@@ -70,6 +64,8 @@ This team has no industry advisor so no meeting times are needed. If one is foun
 All meetings will start with the progress review of all action items from the previous meeting. Then, each item in the agenda section of the GitHub issue for the current meeting will be discussed. Notes will be added to the GitHub issue as topics are being discussed and action items will be made for each task that should be done before the next meeting. Before ending the meeting, a new GitHub issue for the next scheduled meeting will be created with an agenda. \\
 
 Every meeting will have a chair starting with Rafey and rotating through members every week.
+
+\pagebreak
 
 \section{Team Communication Plan} \label{team_communication_plan}
 
@@ -102,6 +98,8 @@ GitHub issues will be created for the following purposes:
     \end{itemize}
 \end{enumerate}
 
+\pagebreak
+
 \section{Team Member Roles} \label{team_member_roles}
 
 The team will have the following roles:
@@ -130,14 +128,18 @@ The team will have the following roles:
 
 The meeting chair and reviewer will rotate on a weekly basis in alphabetical order of last name. Other roles will be assigned to members by October 1, 2024.
 
+\pagebreak
+
 \section{Workflow Plan} \label{workflow_plan}
 
 The team will use git for version control and store the project files remotely on GitHub. All branches will have a prefix to signify what type of changes are being made followed by a descriptive name that can be linked to an issue in the \textit{GitHub Project}. When a change is finished, a new pull request will be created from a branch and contain a reference the \textit{GitHub Issue}(s) being addressed by the commits within the branch.\\
 
-The GitHub repo will have all the properties outlined below:
+\begin{flushleft}
+  The GitHub repo will have all the properties outlined below:
+\end{flushleft}
+
 \begin{itemize}
-    \item \textbf{Default branch:} \textit{dev}
-    \item \textbf{Main branch:} \textit{main}
+    \item \textbf{Default branch:} \textit{main}
     \item \textbf{Branch Prefix Types:}
     \begin{itemize}
         \item \textit{feature/} (New features)
@@ -165,6 +167,8 @@ The GitHub repo will have all the properties outlined below:
 When not working directly with git, all work is to be added to the repo under one commit co-authored by all those who contributed. The work breakdown by each member will be described in the commit message. \\
 
 After every push to the remote repo, a GitHub action will be run to build the project for both iOS and Android devices. The artifacts created in this process will be available to download. Additionally, automated tests may be added in the build process to guard against app breaking changes. This will function as the continuous integration (CI) for the project. Continuous delivery (CD) is not necessary for this project since builds will be installed on devices manually and will not require automated deployment. 
+
+\pagebreak
 
 \section{Project Decomposition and Scheduling} \label{project_decomposition_and_scheduling}
 
@@ -246,8 +250,10 @@ This project will be scheduled with broad milestones representing major features
 \\ 
     \bottomrule
     \end{tabular}
+    \caption*{\textbf{Note:} Course defined milestones have a \colorbox{course-defined}{grey colored background}}
 \end{table}
-Note: Course defined milestones have a \colorbox{course-defined}{grey colored background}
+
+\pagebreak
 
 \section{Proof of Concept Demonstration Plan}
 
@@ -288,6 +294,8 @@ From our investigation into AR technologies, Unity with AR Foundation (an extens
 
 
 As will be using Unity, our primary programming language will be C\#.\\
+
+\pagebreak
 
 The best testing tool to use will be the NUnit based Unity Test Framework due to its integration with unity, 
 and NUnit's relative popularity and similarity to JUnit, 
@@ -350,7 +358,7 @@ In general we will follow \href{https://learn.microsoft.com/en-us/dotnet/csharp/
 
 \subsection*{External Goals}
 
-We want to create a fun, high quality product that people would be interested in using. This can potentially pivot into a startup in the future. Additionally, we want to learn a variety of new skills in project management, CI/CD, as well as technical skills in Unity and C#. We want to add the project on our resumes and talk about it in interviews.
+We want to create a fun, high quality product that people would be interested in using. This can potentially pivot into a startup in the future. Additionally, we want to learn a variety of new skills in project management, CI/CD, as well as technical skills in Unity and C\#. We want to add the project on our resumes and talk about it in interviews.
 
 \subsection*{Attendance}
 
@@ -369,6 +377,8 @@ All team members are expected to be available for the full scheduled duration of
 \subsubsection*{In Case of Emergency}
 
 If a team member is incapable of attending scheduled meetings or completing assigned work, they will let the rest of the team know \textbf{as soon as possible}. Records of meetings are kept through \textit{GitHub Issues} so the affected team member can look back to see what was discussed. An agreement will be made with the affected team member to divide their work among the other team members with the understanding that they will need to take on more work in future deliverables.
+
+\pagebreak
 
 \subsection*{Accountability and Teamwork}
 
@@ -398,7 +408,7 @@ The following will be the relative target metrics to meet for each team member:
     \item \textbf{Documentation}: Minimum contribution of 20\% (based on total number of sections across all documents)
     \item \textbf{Code}: Minimum contribution of 20\% (based on total number of issues resolved)
     \item \textbf{Issues authored}: Must have a minimum contribution of 15\%
-    \item \textbf{Lecture Attendance}: 80\% of all software & general lectures
+    \item \textbf{Lecture Attendance}: 80\% of all software \& general lectures
 \end{itemize}
 
 \subsubsection*{Team Building}
