@@ -25,7 +25,9 @@
 \midrule
 2024-09-16 & Russell Davidson & General ideas for Sections 4, 5, 6, 7, and 8\\
 2024-09-18 & Russell Davidson & Finished section 4\\
+2024-09-21 & Zulfiqar Abdul & Expected Technology, Coding Standard\\
 2024-09-21 & Russell Davidson & Finished sections 6, and 7\\
+2024-09-23 & Zulfiqar Abdul & Proof of Concept Demonstration Plan\\
 2024-09-23 & Russell Davidson & Finished sections 3, 5, and 8\\
 \bottomrule
 \end{tabularx}
@@ -42,17 +44,11 @@ what is contained in the report.}
 
 \section{Confidential Information?}
 
-\wss{State whether your project has confidential information from industry, or
-not.  If there is confidential information, point to the agreement you have in
-place.}
+This project will not have any confidential information to protect.
 
-\wss{For most teams this section will just state that there is no confidential
-information to protect.}
 \section{IP to Protect}
 
-\wss{State whether there is IP to protect.  If there is, point to the agreement.
-All students who are working on a project that requires an IP agreement are also
-required to sign the ``Intellectual Property Guide Acknowledgement.''}
+This project will not have any IP to protect.
 
 \section{Copyright License}
 
@@ -169,7 +165,7 @@ When not working directly with git, all work is to be added to the repo under on
 
 After every push to the remote repo, a GitHub action will be run to build the project for both iOS and Android devices. The artifacts created in this process will be available to download. Additionally, automated tests may be added in the build process to guard against app breaking changes. This will function as the continuous integration (CI) for the project. Continuous delivery (CD) is not necessary for this project since builds will be installed on devices manually and will not require automated deployment. 
 
-\section{Project Decomposition and Scheduling}
+\section{Project Decomposition and Scheduling} \label{project_decomposition_and_scheduling}
 
 \textit{GitHub Projects} will be used to organize the sub-tasks needed to complete different milestones. These sub-tasks will be represented by \textit{GitHub Issues} within the repo. Milestones will represent less granular tasks such as a major feature in the POC where many \textit{GitHub Issues} could be attached to a single milestone. \textit{GitHub Issues} will follow the project tracking templates mentioned in the \nameref{team_communication_plan}. In the templates, there are checklists at the bottom for all the changes that need to be made. Once they are all checked off, a PR should be created using the PR template and linked to the corresponding issue. Three views will be used within the \textit{GitHub Projects} to see the tasks and as a table, timeline, and kanban board. \\
 
@@ -254,47 +250,75 @@ Note: Course defined milestones have a \colorbox{course-defined}{grey colored ba
 
 \section{Proof of Concept Demonstration Plan}
 
-What is the main risk, or risks, for the success of your project?  What will you
-demonstrate during your proof of concept demonstration to convince yourself that
-you will be able to overcome this risk?
+One of the biggest uncertainties of the project is the achievability of 
+the precise spatial positioning of AR objects required by the user experience we envision for our product. 
+One of the core ideas of our product is to create context specific AR experiences; 
+this will not be possible if we cannot precisely recreate AR objects where they were originally placed.\\
+
+The other major uncertainty in this project is the feasibility of 
+allowing users to scan in their own 3D objects using only camera and sensor data available on a smartphone. 
+This feature will be an important avenue for user generated content on the platform, 
+without which, general users will primarily be limited to prebuilt 3D models provided by the platform.\\
+
+Our POC demonstration will require both of these features, 
+as well as the minimum UI required to implement the following user experience:\\
+
+\begin{enumerate}
+  \item User scans object, obtaining a 3D model they can place
+  \item User virtually places said object in their surroundings
+  \item User leaves the area, returns, and can see the object they placed in the correct position
+\end{enumerate}
+
 
 \section{Expected Technology}
 
-\wss{What programming language or languages do you expect to use?  What external
-libraries?  What frameworks?  What technologies.  Are there major components of
-the implementation that you expect you will implement, despite the existence of
-libraries that provide the required functionality.  For projects with machine
-learning, will you use pre-trained models, or be training your own model?  }
-
-\wss{The implementation decisions can, and likely will, change over the course
-of the project.  The initial documentation should be written in an abstract way;
-it should be agnostic of the implementation choices, unless the implementation
-choices are project constraints.  However, recording our initial thoughts on
-implementation helps understand the challenge level and feasibility of a
-project.  It may also help with early identification of areas where project
-members will need to augment their training.}
-
-Topics to discuss include the following:
-
+From our investigation into AR technologies, Unity with AR Foundation (an extension built on ARCore and ARKit) is the most promising option to meet the needs of our project. Those needs being:
 \begin{itemize}
-\item Specific programming language
-\item Specific libraries
-\item Pre-trained models
-\item Specific linter tool (if appropriate)
-\item Specific unit testing framework
-\item Investigation of code coverage measuring tools
-\item Specific plans for Continuous Integration (CI), or an explanation that CI
-  is not being done
-\item Specific performance measuring tools (like Valgrind), if
-  appropriate
-\item Tools you will likely be using?
+  \item Cross platform support
+  \item Visual UI editor
+  \item Integration with powerful AR libraries with capabilities such as
+  \begin{itemize}
+        \item Surface detection
+        \item Lighting detection
+        \item Motion tracking
+        \item Depth measurement
+      \end{itemize}
 \end{itemize}
 
-\wss{git, GitHub and GitHub projects should be part of your technology.}
+
+As will be using Unity, our primary programming language will be C\#.\\
+
+The best testing tool to use will be the NUnit based Unity Test Framework due to its integration with unity, 
+and NUnit's relative popularity and similarity to JUnit, 
+which will make finding learning resources easy. 
+This framework will provide both unit testing as well as code coverage metrics.\\
+
+Application profiling will be done using Unity's built in profiler whenever necessary\\
+
+Version control will be managed using git, 
+and the remote repository will be hosted on GitHub as it is the industry standard, 
+and has integration with CI and project management tools.\\
+
+Github Projects will be used for project management, 
+the details of which are outlined in \nameref{project_decomposition_and_scheduling}.\\
+
+Continuous integration will be done via GitHub actions. 
+Unity testing and builds will be achieved using the 
+\href{https://github.com/marketplace/actions/unity-builder}{Unity Builder} 
+and \href{https://github.com/marketplace/actions/unity-test-runner}{Unity Test Runner} 
+github actions provided by the GameCI open source project as a base. 
+CI builds will be triggered on pushes to the dev branch and PRs to the main branch 
+where changes have been made in the source code directory.\\
+
+The project will primarily be developed using the Unity Engine, 
+with VSCode / VS as the preferred code editor to enforce code standards. \\
+
 
 \section{Coding Standard}
 
-\wss{What coding standard will you adopt?}
+All code must be formatted by the Microsoft C\# formatter with default settings, 
+and all suggestions from the Microsoft C\# linter must be followed. 
+In general we will follow \href{https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions}{Microsoft C\# code standards.}
 
 \newpage{}
 
