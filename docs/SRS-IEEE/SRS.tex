@@ -4,6 +4,23 @@
 \usepackage{tabularx}
 \usepackage{caption}
 \usepackage{bookmark}
+\usepackage{enumitem}
+
+% From: https://tex.stackexchange.com/questions/438876/how-to-cross-reference-text-with-a-custom-label-reference-text
+\makeatletter
+\newcommand{\labeltext}[3][]{%
+    \@bsphack%
+    \csname phantomsection\endcsname% in case hyperref is used
+    \def\tst{#1}%
+    \def\labelmarkup{\emph}% How to markup the label itself
+    %\def\refmarkup{\labelmarkup}% How to markup the reference
+    \def\refmarkup{}%
+    \ifx\tst\empty\def\@currentlabel{\refmarkup{#2}}{\label{#3}}%
+    \else\def\@currentlabel{\refmarkup{#1}}{\label{#3}}\fi%
+    \@esphack%
+    \labelmarkup{#2}% visible printed text.
+}
+\makeatother
 
 \title{Software Requirements Specification: Realm\\\progname}
 
@@ -25,13 +42,19 @@
 \addcontentsline{toc}{section}{Revision History}
 \section*{Revision History}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-    \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}} \\
-    \midrule
-    yyyy-mm-dd               & 1.0                & Notes            \\
-    yyyy-mm-dd               & 1.1                & Notes            \\
-    \bottomrule
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+2024-10-07 & Russell Davidson & \nameref{sub:compliance}, \nameref{ssub:installation}, \nameref{ssub:distribution}, and \nameref{ssub:portability} \\
+2024-10-07 & Russell Davidson & \nameref{ssub:tutorial}, \nameref{ssub:tour_management}, and \nameref{ssub:touring} \\
+2024-10-08 & Russell Davidson & \ref{uc:1}, \ref{uc:2}, \ref{uc:3}, and \ref{uc:4} \\
+2024-10-10 & Russell Davidson & \ref{uc:26}, \ref{uc:27}, and \nameref{sub:use_cases} diagram\\
+\bottomrule
 \end{tabularx}
+\end{table}
 
 \section{Introduction}
 
@@ -45,10 +68,24 @@
 \wss{Identify the product whose software requirements are specified in this document, including the revision or release number. Explain what the product that is covered by this SRS will do, particularly if this SRS describes only part of the system or a single subsystem. Provide a short description of the software being specified and its purpose, including relevant benefits, objectives, and goals. Relate the software to corporate goals or business strategies. If a separate vision and scope document is available, refer to it rather than duplicating its contents here.}
 
 \subsection{Definitions, Acronyms and Abbreviations}
+\label{sub:def_acr_abb}
+
+\begin{itemize}
+    \item \labeltext{AR object}{def:ar_obj}: A 2D/3D projection of an entity.
+    \item \labeltext{Organization users}{def:org_user}: Users who belong to an organization that has the ability to create tours. They are affiliated with a particular approved organization who have the ability to modify tours within their organization’s domain.
+    \item \labeltext{General users}{def:gen_user}: Users that can access most of the app functionalities except creating tours.
+\end{itemize}
 
 \subsection{References}
+\label{sub:references}
 
 \wss{List any other documents or Web addresses to which this SRS refers. These may include user interface style guides, contracts, standards, system requirements specifications, use case documents, or a vision and scope document. Provide enough information so that the reader could access a copy of each reference, including title, author, version number, date, and source or location.}
+
+\begingroup
+\raggedright
+\bibliography{ref}
+\endgroup
+\bibliographystyle{ieeetr}
 
 \subsection{Document Overview}
 
@@ -135,8 +172,142 @@
 \wss{Describe the connections between this product and other specific software components (name and version), including databases, operating systems, tools, libraries, and integrated commercial components. Identify the data items or messages coming into the system and going out and describe the purpose of each. Describe the services needed and the nature of communications. Refer to documents that describe detailed application programming interface protocols. Identify data that will be shared across software components. If the data sharing mechanism must be implemented in a specific way (for example, use of a global data area in a multitasking operating system), specify this as an implementation constraint.}
 
 \subsection{Functional}
+\label{sub:functional}
 
 \wss{This section specifies the requirements of functional effects that the software-to-be is to have on its environment.}
+
+\subsubsection{Tutorial}
+\label{ssub:tutorial}
+
+\begin{enumerate}[align=left, label=\textbf{TU-FR\arabic*:}]
+    \item The app shall have a step-by-step interactive guide of how to use all major app features.
+    \item The app shall prompt the user to complete the app tutorial after they login for the first time.
+    \item The app shall allow the user to leave the tutorial at any time.
+    \item The tutorial shall be available at any time through the app's help page in the \textbf{Settings screen}.
+    \item The tutorial will involve user participation to directly use functionality in a sandbox environment.
+\end{enumerate}
+
+\begin{enumerate}[align=left, label=\textbf{TU-NFR\arabic*:}]
+    \item Each interaction step should not take the user more than 15 seconds to figure out.
+    \item The entire tutorial shall not take longer than 5 minutes to complete for 80\% of users.
+\end{enumerate}
+
+\subsubsection{Tour Management}
+\label{ssub:tour_management}
+
+\begin{enumerate}[align=left, label=\textbf{TM-FR\arabic*:}]
+    \item The tour management functionality within the app shall only be available to \ref{def:org_user}.
+    \item Tours within the app can be created as a “draft” to make it available to other \ref{def:org_user} but not released to the public.
+    \item Tours within the app can be published to the public from a “draft” or from directly after creation.
+    \item \ref{def:org_user} will be able to customize the following for each of their tours:
+    \begin{enumerate}
+        \item Name
+        \item Description
+        \item Route
+        \begin{enumerate}
+            \item Will be editable on a map of the tour area
+            \item Intended direction of travel can be set
+            \item Estimated time of completion that will be automatically determined by the distance if not set
+        \end{enumerate}
+        \item Objects
+        \begin{enumerate}
+            \item \ref{def:ar_obj} can be placed along the route at specific geographic locations along with description text for each of the \ref{def:ar_obj}
+            \item Historical information text popups can be placed along the route
+            \item All text will have an audio playback option with text-to-speech or pre-recorded audio (if available)
+        \end{enumerate}
+        \item Price
+        \begin{enumerate}
+            \item Can be free or
+            \item a price under \$10
+        \end{enumerate}
+        \item Relevant Web Link(s)
+    \end{enumerate}
+    \item \ref{def:org_user} will have the ability to preview the tours that belong to their organization.
+    \item \ref{def:org_user} will have the ability to edit tours that belong to their organization.
+\end{enumerate}
+
+\subsubsection{Touring}
+\label{ssub:touring}
+
+\begin{enumerate}[align=left, label=\textbf{TR-FR\arabic*:}]
+    \item The touring functionality within the app shall only be available to \ref{def:gen_user}.
+    \item The app will have three avenues for a user to find tours:
+    \begin{enumerate}[align=left, label=\textbf{TR-FR2.\arabic*:}]
+        \item The app will allow \ref{def:gen_user} to see a list of available tours through the \textbf{Tour List Interface}.
+        \begin{itemize}
+            \item The tours can be grouped in this page by organization or by location
+        \end{itemize}
+        \item The app will also have tours show up in a push notification (if configured by a user) when in close proximity to a tour area.
+        \item Locations can place QR codes at the starting location of the tour which can be scanned by a mobile camera that will open the tour preview in the app.
+    \end{enumerate}
+    \item Users will be able to preview a tour to see the following information:
+    \begin{enumerate}
+        \item Name
+        \item Description
+        \item Relevant web link(s)
+        \item Tour distance (auto-calculated from route)
+        \item Estimated time of completion
+        \item A map that will show the route and locations of \ref{def:ar_obj}s
+        \item Price
+    \end{enumerate}
+    \item Once a user starts a tour they will have two main views they can switch between:
+    \begin{enumerate}[align=left, label=\textbf{TR-FR4.\arabic*:}]
+        \item One of the tour views is a map
+        \begin{itemize}
+            \item The designated tour area will be outlined
+            \item The user’s current location will be shown
+            \item Intended route and direction will be overlaid
+            \item Location of \ref{def:ar_obj}s will be marked
+        \end{itemize}
+        \item One of the tour views is an AR view
+        \begin{itemize}
+            \item Will be very similar to the interface of the \textbf{Realm Interface}
+            \item Have an added indicator of the intended direction
+            \item Popups for historical information
+        \end{itemize}
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Use Cases}
+\label{sub:use_cases}
+
+\begin{enumerate}[label=\textbf{UC\arabic*}]
+    \item \label{uc:1} Complete the Tutorial \\
+    \textbf{Actor}: User \\
+    \textbf{Pre-condition:} User has opened the app \\
+
+    \textbf{Main Success Scenario:}
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        \item User creates an account (\ref{uc:23})
+        \item System prompts user to complete the tutorial
+        \item User indicates they would like to do the tutorial
+        \item System opens the \textbf{Tutorial Interface}
+        \item System provides directions to use a feature
+        \item User tries the feature
+        \item User goes to next feature when satisfied
+        \item Repeat steps \textbf{5}-\textbf{7} for all major app features
+        \item System prompts user to leave and end tutorial
+        \item User ends tutorial
+        \item System redirects to home interface
+    \end{enumerate}
+
+    \textbf{Secondary Scenarios:} 
+    \begin{itemize}
+        \item[{\bf 1.1:}] User already has an account
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User logs into account (\ref{uc:24})
+            \item User navigates to \textbf{Help Interface}
+            \item Go to step \textbf{2}
+        \end{enumerate}
+        \item[{\bf 10.1:}] User chooses to stay in sandbox environment
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item System closes prompt and allows user to use sandbox environment
+            \item User indicates they want to leave tutorial
+            \item Go to step \textbf{11}
+        \end{enumerate}
+    \end{itemize}
+\end{enumerate}
+
 \subsection{Quality of Service}
 
 \wss{This section states additional, quality-related property requirements that the functional effects of the software should present.}
@@ -157,6 +328,7 @@
 \wss{Specify the factors required to guarantee a defined availability level for the entire system such as checkpoint, recovery, and restart.}
 
 \subsection{Compliance}
+\label{sub:compliance}
 
 \wss{Specify the requirements derived from existing standards or regulations, including:
     \begin{itemize}
@@ -169,15 +341,46 @@
 
 \wss{For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database shall be recorded in a trace file with before and after values.}
 
+\begin{enumerate}[align=left, label=\textbf{CO\arabic*.}]
+    \item The project shall comply with the \emph{Personal Information and Electronic Documents Act} (PIPEDA).\\
+    {\bf Rationale:} The Government of Canada requires all companies to follow certain rules regarding the collection, use, and dissemination of personal user information \cite{PIPEDA}.
+    \item The project shall keep records of all in-app purchases and ad revenue for the purposes of yearly tax filing for the period of six years.\\
+    {\bf Rationale:} Corporate taxes must be filed every year and both streams of app income will need to be reported. Businesses must keep records going back six years in the event of an audit \cite{6Year}.
+    \item The app shall comply with the \emph{Google Play} developer policy.\\
+    {\bf Rationale:} All apps published through \emph{Google Play} must first be reviewed by Google for compliance with the developer policy published on their website \cite{GooglePlay}.
+    \item The app shall comply with \emph{App Store} review guidelines.\\
+    {\bf Rationale:} For an app to be approved for dissemination on the \emph{App Store}, the app must be reviewed and approved by Apple in accordance with the acceptance criteria published on their website \cite{AppStore}.
+\end{enumerate}
+
 \subsection{Design and Implementation}
 
 \subsubsection{Installation}
+\label{ssub:installation}
 
 \wss{Constraints to ensure that the software-to-be will run smoothly on the target implementation platform.}
 
+\begin{enumerate}[align=left, label=\textbf{DI-I\arabic*.}]
+    \item The app shall be installable on \emph{Android} and \emph{iOS} devices from their respective app stores.\\
+    {\bf Rationale:} Users are accustomed to downloading their apps from their device app store and should not be required to navigate to a 3rd party app store. They also should not have to change OS settings in order to download the app.
+    \item The app shall not require any additional installation steps beyond those required from within the target device app store.\\
+    {\bf Rationale:} Users may be dissuaded from downloading the app if the installation process is too cumbersome compared to other apps.
+\end{enumerate}
+
 \subsubsection{Distribution}
+\label{ssub:distribution}
 
 \wss{Constraints on software components to fit the geographically distributed structure of the host organization, the distribution of data to be processed, or the distribution of devices to be controlled.}
+
+\begin{enumerate}[align=left, label=\textbf{DI-D\arabic*.}]
+    \item The app shall be distributed on any mobile devices running iOS 16.0+ or Android 12+\\
+    {\bf Rationale:} The app should be available to as many people as possible while at the same time making the development easier by not having to keep old operating system versions supported. Versions should be supported for at least a couple years.
+    \item The app shall be available in Canada and the USA.\\
+    {\bf Rationale:} Due to legal considerations in different countries, the focus for this app should be the country this project is based out of, Canada, and the USA since they have a larger population with similar laws.
+    \item The app shall have a recommended age requirement of 16+.\\
+    {\bf Rationale:} Users may be exposed to content not suitable for really young kids so an age requirement should be recommended.
+    \item The system shall store all user data within North America.\\
+    {\bf Rationale:} Data should be located in a jurisdiction close to home and in a reputable country to reduce privacy concerns of foreign state actors viewing user data.
+\end{enumerate}
 
 \subsubsection{Maintainability}
 
@@ -186,8 +389,16 @@
 \subsubsection{Reusability}
 
 \subsubsection{Portability}
+\label{ssub:portability}
 
 \wss{Specify attributes of software that relate to the ease of porting the software to other host machines and/or operating systems.}
+
+\begin{enumerate}[align=left, label=\textbf{DI-P\arabic*.}]
+    \item The app shall be developed using a cross-platform mobile platform that can build iOS and Android applications\\
+    {\bf Rationale:} To reach as many potential users as possible, the app should be available on the two major mobile operating systems.
+    \item The app shall have a common codebase that only differs in configuration files for different target operating systems.\\
+    {\bf Rationale:} For ease of development on the different mobile operating systems, there should be no extra consideration for the differences between native app implementations that are not handled by the cross-platform framework.
+\end{enumerate}
 
 \subsubsection{Cost}
 
