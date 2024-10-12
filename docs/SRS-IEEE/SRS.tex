@@ -5,6 +5,8 @@
 \usepackage{caption}
 \usepackage{bookmark}
 \usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
 
 % From: https://tex.stackexchange.com/questions/438876/how-to-cross-reference-text-with-a-custom-label-reference-text
 \makeatletter
@@ -73,8 +75,10 @@
 
 \begin{itemize}
     \item \labeltext{AR object}{def:ar_obj}: A 2D/3D projection of an entity.
+    \item \labeltext{Users}{def:user}: A term for anyone who uses the app.
     \item \labeltext{Organization users}{def:org_user}: Users who belong to an organization that has the ability to create tours. They are affiliated with a particular approved organization who have the ability to modify tours within their organization’s domain.
     \item \labeltext{General users}{def:gen_user}: Users that can access most of the app functionalities except creating tours.
+    \item \labeltext{Admins}{def:admin}: People who have access to nothing else but the admin interface within the app.
 \end{itemize}
 
 \subsection{References}
@@ -182,7 +186,7 @@
 
 \begin{enumerate}[align=left, label=\textbf{TU-FR\arabic*:}]
     \item The app shall have a step-by-step interactive guide of how to use all major app features.
-    \item The app shall prompt the user to complete the app tutorial after they login for the first time.
+    \item The app shall prompt the user to complete the app tutorial after they create an account.
     \item The app shall allow the user to leave the tutorial at any time.
     \item The tutorial shall be available at any time through the app's help page in the \textbf{Settings screen}.
     \item The tutorial will involve user participation to directly use functionality in a sandbox environment.
@@ -269,44 +273,324 @@
     \end{enumerate}
 \end{enumerate}
 
+\subsubsection{Admin Interface}
+\label{ssub:admin_interface}
+
+\begin{enumerate}[align=left, label=\textbf{AI-FR\arabic*:}]
+    \item The admin interface within the app shall only be available to \ref{def:admin}.
+    \item The app shall provide an interface for \ref{def:admin} to carry-out their two special roles:
+    \begin{enumerate}[align=left, label=\textbf{AI-FR2.\arabic*:}]
+        \item The app shall permit \ref{def:admin} to act on user reports of an \ref{def:ar_obj} by either keeping or removing the \ref{def:ar_obj}.
+        \item The app shall permit \ref{def:admin} to review requests for \ref{def:org_user} accounts and either accept or deny the request.
+    \end{enumerate}
+\end{enumerate}
+
 \subsection{Use Cases}
 \label{sub:use_cases}
 
+\begin{center}
+    \includegraphics[scale=0.5]{use_cases.png}\\ 
+    \textbf{Figure 1: Use Cases}
+\end{center}
+
 \begin{enumerate}[label=\textbf{UC\arabic*}]
     \item \label{uc:1} Complete the Tutorial \\
-    \textbf{Actor}: User \\
-    \textbf{Pre-condition:} User has opened the app \\
-
-    \textbf{Main Success Scenario:}
-    \begin{enumerate}[label=\textbf{\arabic*.}]
-        \item User creates an account (\ref{uc:23})
-        \item System prompts user to complete the tutorial
-        \item User indicates they would like to do the tutorial
-        \item System opens the \textbf{Tutorial Interface}
-        \item System provides directions to use a feature
-        \item User tries the feature
-        \item User goes to next feature when satisfied
-        \item Repeat steps \textbf{5}-\textbf{7} for all major app features
-        \item System prompts user to leave and end tutorial
-        \item User ends tutorial
-        \item System redirects to home interface
-    \end{enumerate}
-
-    \textbf{Secondary Scenarios:} 
-    \begin{itemize}
-        \item[{\bf 1.1:}] User already has an account
+        \textbf{Actor}: \ref{def:user} \\
+        \textbf{Pre-condition:} User has opened the app \\
+    
+        \textbf{Main Success Scenario:}
         \begin{enumerate}[label=\textbf{\arabic*.}]
-            \item User logs into account (\ref{uc:24})
-            \item User navigates to \textbf{Help Interface}
-            \item Go to step \textbf{2}
+            \item User creates an account (\ref{uc:23})
+            \item System prompts user to complete the tutorial (\hyperref[ssub:tutorial]{TU-FR2})
+            \item User indicates they would like to do the tutorial
+            \item System opens the \textbf{Tutorial Interface}
+            \item System provides directions to use a feature
+            \item User tries the feature (\hyperref[ssub:tutorial]{TU-FR5})
+            \item User goes to next feature when satisfied
+            \item Repeat steps \textbf{5}-\textbf{7} for all major app features (\hyperref[ssub:tutorial]{TU-FR1})
+            \item System prompts user to leave and end tutorial
+            \item User ends tutorial (\hyperref[ssub:tutorial]{TU-FR3})
+            \item System redirects to \textbf{Home Interface}
         \end{enumerate}
-        \item[{\bf 10.1:}] User chooses to stay in sandbox environment
+    
+        \textbf{Secondary Scenarios:} 
+        \begin{itemize}
+            \item[{\bf 1.1:}] User already has an account
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item User logs into account (\ref{uc:24})
+                \item User navigates to \textbf{Help Interface} (\hyperref[ssub:tutorial]{TU-FR4})
+                \item Go to step \textbf{2}
+            \end{enumerate}
+            \item[{\bf 10.1:}] User chooses to stay in sandbox environment
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System closes prompt and allows user to use sandbox environment
+                \item User indicates they want to leave tutorial
+                \item Go to step \textbf{11}
+            \end{enumerate}
+        \end{itemize}
+        \textbf{Success Postcondition:} The user has a general idea of how all the app’s major features work.
+
+    \item \label{uc:2} Create a Tour \\
+        \textbf{Actor}: \ref{def:org_user} \\
+        \textbf{Pre-condition:} User is logged into the app \textbf{AND} User has navigated to the \textbf{Tour Management Interface} \\
+    
+        \textbf{Main Success Scenario:}
         \begin{enumerate}[label=\textbf{\arabic*.}]
-            \item System closes prompt and allows user to use sandbox environment
-            \item User indicates they want to leave tutorial
-            \item Go to step \textbf{11}
+            \item User selects the option to create a new tour
+            \item System opens up a form for the user to add the following information about the tour (\hyperref[ssub:tour_management]{TM-FR4[1,2,5,6]}):
+            \begin{enumerate}
+                \item Name
+                \item Description
+                \item Price
+                \item Relevant web link(s)
+            \end{enumerate}
+            \item User fills out the information
+            \item System identifies no blank fields
+            \item System gives the option to move on to the route configuration
+            \item User goes to the route configuration
+            \item System presents tour route configuration
+            \item User configures tour area, route, and direction (\hyperref[ssub:tour_management]{TM-FR4[3]})
+            \item System gives the option to move on to the inventory setup
+            \item User goes to the inventory setup (\hyperref[ssub:tour_management]{TM-FR4[4]})
+            \item System opens the \textbf{Inventory Interface}
+            \item User scans and uploads a new \ref{def:ar_obj} (\ref{uc:5})
+            \item User repeats step \textbf{12} until all desired \ref{def:ar_obj}s are uploaded
+            \item User indicates they would like to move on to object placement
+            \item System opens the \textbf{Realm Interface} and allows the user to place \ref{def:ar_obj}s and historical information popups in an isolated environment.
+            \item User places down \ref{def:ar_obj} using the \textbf{Realm Interface} (\ref{uc:7})
+            \item User repeats step \textbf{16} until all desired \ref{def:ar_obj}s are placed
+            \item User indicates they would like to finish tour creation
+            \item System gives the user the option create the tour as a draft or directly publish it (\hyperref[ssub:tour_management]{TM-FR2/TM-FR3})
+            \item User selects direct publish option
+            \item System uploads the tour data
+            \item System makes the tour available to \ref{def:gen_user}
         \end{enumerate}
-    \end{itemize}
+    
+        \textbf{Secondary Scenarios:} 
+        \begin{itemize}
+            \item[{\bf 4.1:}] System identifies some blank fields
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System validates input to ensure all required fields are not empty
+                \item System determines input passes validation
+                \item Go to step \textbf{5}
+            \end{enumerate}
+            \item[{\bf 4.1.2:}] System determines input fails validation
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Go to step \textbf{3}
+            \end{enumerate}
+            \item[{\bf 12.1:}] User does not have any \ref{def:ar_obj}s to scan
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Go to step \textbf{14}
+            \end{enumerate}
+            \item[{\bf 20.1:}] User selects draft option
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System uploads the tour data but does not make it available to \ref{def:gen_user}
+                \item User decides at a later time to publish the draft tour
+                \item Go to step \textbf{22}
+            \end{enumerate}
+        \end{itemize}
+        \textbf{Success Postcondition:} One of the \ref{def:org_user} has a new tour linked to their organization
+
+    \item \label{uc:3} Edit an existing Tour \\
+        \textbf{Actor}: \ref{def:org_user} \\
+        \textbf{Pre-condition:} User is logged into the app \textbf{AND} User has at least one tour connected to their organization \textbf{AND} User has navigated to the \textbf{Tour Management Interface} \\
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item System provides a list of all tours connected to the user’s organization
+            \item User selects one of the tours
+            \item System shows the preview of the tour (\hyperref[ssub:tour_management]{TM-FR5})
+            \item System provides the option to edit the tour (\hyperref[ssub:tour_management]{TM-FR6})
+            \item User decides to edit the tour
+            \item System opens up a form for the user to with the following information about the tour that may or not be populated (\hyperref[ssub:tour_management]{TM-FR4[1,2,5,6]}):
+            \begin{enumerate}
+                \item Name
+                \item Description
+                \item Price
+                \item Relevant web link(s)
+            \end{enumerate}
+            \item User edits information as desired
+            \item System identifies no blank fields
+            \item System gives the option to move on to the route configuration
+            \item User goes to the route configuration
+            \item System presents tour route configuration
+            \item User edits configuration of tour area, route, and direction as desired (\hyperref[ssub:tour_management]{TM-FR4[3]})
+            \item System gives the option to move on to the inventory setup
+            \item User goes to the inventory setup (\hyperref[ssub:tour_management]{TM-FR4[4]})
+            \item System opens the \textbf{Inventory Interface}
+            \item User scans and uploads a new \ref{def:ar_obj} (\ref{uc:5})
+            \item User repeats step \textbf{12} until all desired \ref{def:ar_obj}s are uploaded
+            \item User indicates they would like to move on to object placement
+            \item System opens the \textbf{Realm Interface} and allows the user to place/edit \ref{def:ar_obj}s and historical information popups in an isolated environment.
+            \item User edits \ref{def:ar_obj} using the \textbf{Realm Interface} (\ref{uc:7})
+            \item User repeats step \textbf{16} until all desired \ref{def:ar_obj}s are edited
+            \item User indicates they would like to finish tour editing
+            \item System gives the user the option to save the edited tour as a draft or directly publish it (\hyperref[ssub:tour_management]{TM-FR2/TM-FR3})
+            \item User selects direct publish option
+            \item System uploads the updated tour data
+            \item System makes the updated tour available to \ref{def:gen_user}
+        \end{enumerate}
+    
+        \textbf{Secondary Scenarios:} 
+        \begin{itemize}
+            \item[{\bf 5.1:}] User decides not to edit the tour
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System goes back to the \textbf{Tour Management Interface}
+            \end{enumerate}
+            \item[{\bf 8.1:}] System identifies some blank fields
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System validates input to ensure all required fields are not empty
+                \item System determines input passes validation
+                \item Go to step \textbf{9}
+            \end{enumerate}
+            \item[{\bf 16.1:}] User decides not to scan and upload any new \ref{def:ar_obj}s
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Go to step \textbf{18}
+            \end{enumerate}
+            \item[{\bf 20.1:}] User places down new \ref{def:ar_obj} using the \textbf{Realm Interface}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item User repeats step \textbf{20.1} until all desired \ref{def:ar_obj}s are placed
+            \end{enumerate}
+            \item[{\bf 24.1:}] User selects draft option
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System uploads the updated tour data but does not make it available to \ref{def:gen_user}
+                \item User decides at a later time to publish the draft of the updated tour
+                \item Go to step \textbf{26}
+            \end{enumerate}
+        \end{itemize}
+        \textbf{Success Postcondition:} One of the \ref{def:org_user} has edited an existing tour linked to their organization
+
+    \item \label{uc:4} Go on a tour \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Pre-condition:} User is logged into the app \\
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to the \textbf{Tour Interface}
+            \item System displays a list of all tours
+            \item User selects a tour (\hyperref[ssub:touring]{TR-FR2.1})
+            \item System opens up the preview of the selected tour (\hyperref[ssub:touring]{TR-FR3})
+            \item System also provides the option to take the tour
+            \item User reviews details of the tour
+            \item User decides to go on the tour
+            \item System opens a modified version of the \textbf{Realm Interface} in an isolated environment that does not allow them to place any objects or modify existing objects (\hyperref[ssub:touring]{TR-FR4.2})
+            \item System shows the intended direction of travel
+            \item User walks to the highlighted \ref{def:ar_obj} of interest
+            \item System acknowledges when the user makes it to the \ref{def:ar_obj}
+            \item System provides historical information regarding \ref{def:ar_obj}
+            \item System updates the target to be the next \ref{def:ar_obj}
+            \item Repeat steps \textbf{10}-\textbf{13} for every \ref{def:ar_obj}
+            \item System indicates that the tour has been completed
+            \item System provides metrics for time taken and distance traveled
+            \item System prompts user to leave tour
+            \item User leaves tour
+            \item System goes back to the tour list
+        \end{enumerate}
+    
+        \textbf{Secondary Scenarios:} 
+        \begin{itemize}
+            \item[{\bf 1.1:}] System pushes a notification to the user when they are in the proximity of a tour (\hyperref[ssub:touring]{TR-FR2.2})
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System opens up the \textbf{Tour Interface}
+                \item Go to step \textbf{4}
+            \end{enumerate}
+            \item[{\bf 1.2:}] User scans a tour QR code in camera app (\hyperref[ssub:touring]{TR-FR2.3})
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System opens up the \textbf{Tour Interface}
+                \item Go to step \textbf{4}
+            \end{enumerate}
+            \item[{\bf 7.1:}] User decides not to go on the tour
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Go to step \textbf{19}
+            \end{enumerate}
+            \item[{\bf 10.1:}] User indicates they want to open the map
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System opens up the \textbf{Map} view of the tour (\hyperref[ssub:touring]{TR-FR4.2})
+                \item System shows the user’s current location
+                \item System shows the indented route, direction and boundaries of the tour
+                \item System marks the location of \ref{def:ar_obj}s
+                \item User views the map
+                \item User closes the map
+                \item Go to step \textbf{9}
+            \end{enumerate}
+            \item[{\bf 14.1:}] User does not want to go to all \ref{def:ar_obj}s
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item User indicates they wish to exit the tour
+                \item Go to step \textbf{19}
+            \end{enumerate}
+            \item[{\bf 18.1:}] User does not leave tour
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System removes target object and allows user to explore \ref{def:ar_obj}s in the isolated environment
+                \item User eventually decides to exit the tour
+                \item Go to step \textbf{19}
+            \end{enumerate}
+        \end{itemize}
+        \textbf{Success Postcondition:} One of the \ref{def:gen_user} has completed a tour
+
+    \item \label{uc:26}  Act on reported \ref{def:ar_obj} \\
+        \textbf{Actor}: \ref{def:admin} \\
+        \textbf{Pre-condition:} Admin is logged into the app \textbf{AND} Admin has navigated to the \textbf{Admin Interface} \\
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item Admin navigates to the “AR Object Reports” panel (\hyperref[ssub:admin_interface]{AI-FR2.1})
+            \item System shows a list of app \ref{def:ar_obj}s that have been reported
+            \item Admin selects an object
+            \item System gives more detailed information of \ref{def:ar_obj} and allows Admin to open an \ref{def:ar_obj} inventory preview (\hyperref[ssub:inventory]{IV-FR6})
+            \item System also provides decision options on whether to keep the object or remove it
+            \item Admin opens \ref{def:ar_obj} preview
+            \item System shows preview of \ref{def:ar_obj}
+            \item Admin views \ref{def:ar_obj} preview
+            \item Admin closes \ref{def:ar_obj} preview
+            \item System once again shows the object detailed information and decision options
+            \item Admin reviews the information and decides to keep the \ref{def:ar_obj}
+            \item System keeps \ref{def:ar_obj}
+            \item System removes user report of \ref{def:ar_obj}
+            \item System brings admin back to “AR Object Reports” panel
+        \end{enumerate}
+    
+        \textbf{Secondary Scenarios:} 
+        \begin{itemize}
+            \item[{\bf 5.1:}] Admin does not open \ref{def:ar_obj} preview
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Go to step \textbf{11}
+            \end{enumerate}
+            \item[{\bf 11.1:}] Admin reviews the information and decides to remove the object
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System removes object
+                \item Go to step \textbf{13}
+            \end{enumerate}
+        \end{itemize}
+        \textbf{Success Postcondition:} An \ref{def:ar_obj} report is resolved (\ref{def:ar_obj} is kept or removed)
+
+    \item \label{uc:27}  Act on reported \ref{def:ar_obj} \\
+        \textbf{Actor}: \ref{def:admin} \\
+        \textbf{Pre-condition:} Admin is logged into the app \textbf{AND} Admin has navigated to the \textbf{Admin Interface} \\
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item Admin navigates to the “Organization User Requests” panel (\hyperref[ssub:admin_interface]{AI-FR2.2})
+            \item System shows a list of \ref{def:org_user} requests
+            \item Admin selects a request
+            \item System gives more details about a request
+            \item System also provides decision options on whether to accept or decline a request
+            \item Admin reviews information and approves the request
+            \item System activates the user as one of the \ref{def:org_user}
+            \item System notifies the user that their request has been approved
+            \item System removes organization user request
+            \item System brings admin back to “Organization User Requests” panel
+        \end{enumerate}
+    
+        \textbf{Secondary Scenarios:} 
+        \begin{itemize}
+            \item[{\bf 6.1:}] Admin reviews information and denies the request
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item System notifies the user that their request has been denied and gives a reason why
+                \item Go to step \textbf{9}
+            \end{enumerate}
+        \end{itemize}
+        \textbf{Success Postcondition:} An \ref{def:org_user} account request is resolved (approved or denied).
+    
 \end{enumerate}
 
 \subsection{Quality of Service}
@@ -416,6 +700,14 @@
 \wss{This section provides the verification approaches and methods planned to qualify the software. The information items for verification are recommended to be given in a parallel manner with the requirement items in Section 3. The purpose of the verification process is to provide objective evidence that a system or system element fulfills its specified requirements and characteristics.}
 
 \section{Appendixes}
+
+\subsection{Activity Diagrams}
+\label{sub:activity_diagrams}
+
+\begin{center}
+    \includegraphics[scale=0.4]{SequenceDiagrams/UC4.png}\\ 
+    \textbf{Figure 2: UC4}
+\end{center}
 
 \subsection{Reflection}
 
