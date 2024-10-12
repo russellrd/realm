@@ -45,18 +45,13 @@
 \section*{Revision History}
 
 \begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-2024-10-07 & Russell Davidson & \nameref{sub:compliance}, \nameref{ssub:installation}, \nameref{ssub:distribution}, and \nameref{ssub:portability} \\
-2024-10-07 & Russell Davidson & \nameref{ssub:tutorial}, \nameref{ssub:tour_management}, and \nameref{ssub:touring} \\
-2024-10-08 & Russell Davidson & \ref{uc:1}, \ref{uc:2}, \ref{uc:3}, and \ref{uc:4} \\
-2024-10-10 & Russell Davidson & \ref{uc:26}, \ref{uc:27}, and \nameref{sub:use_cases} diagram\\
-2024-10-11 & Russell Davidson & \ref{uc:4} sequence diagram\\
-\bottomrule
-\end{tabularx}
+    \caption{Revision History} \label{rev_history_table}
+    \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+        \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}} \\
+        \midrule
+        2024-10-11 & 1.0 & Initial SRS \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 \section{Introduction}
@@ -154,6 +149,27 @@
 \wss{Apportion the software requirements to software elements. For requirements that will require implementation over multiple software elements, or when allocation to a software element is initially undefined, this should be so stated. A cross reference table by function and software element should be used to summarize the apportioning.\\}
 
 \wss{Identify requirements that may be delayed until future versions of the system (e.g., blocks and/or increments).}
+
+\begin{table}[]
+    \caption{Apportioning of Requirements}
+    \label{tab:apportioning_table}
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+            \textbf{Function} & \textbf{Priority} & \textbf{Dates} \\
+        \hline \hline
+    Object Creation          & 1 & \multirow{2}{*}{2024-11-11} \\
+    AR Object Interaction    & 1 &                             \\ \hline
+    Tour Management          & 2 & \multirow{3}{*}{2025-12-01} \\
+    Touring                  & 2 & \\
+    Social Interaction       & 2 &                             \\
+    Reporting and Moderation & 2 & \multirow{4}{*}{2025-01-15} \\ \hline
+    User Profile Management  & 3 &                             \\
+    Managing Settings        & 3 &                             \\
+    Tutorial                 & 3 &                             \\
+        \hline
+    \end{tabular}
+\end{table}
 
 \section{Requirements}
 \wss{
