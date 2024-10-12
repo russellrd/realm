@@ -7,6 +7,7 @@
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{multirow}
 
 % From: https://tex.stackexchange.com/questions/438876/how-to-cross-reference-text-with-a-custom-label-reference-text
 \makeatletter
@@ -45,30 +46,26 @@
 \section*{Revision History}
 
 \begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-2024-10-07 & Russell Davidson & \nameref{sub:compliance}, \nameref{ssub:installation}, \nameref{ssub:distribution}, and \nameref{ssub:portability} \\
-2024-10-07 & Russell Davidson & \nameref{ssub:tutorial}, \nameref{ssub:tour_management}, and \nameref{ssub:touring} \\
-2024-10-08 & Russell Davidson & \ref{uc:1}, \ref{uc:2}, \ref{uc:3}, and \ref{uc:4} \\
-2024-10-10 & Russell Davidson & \ref{uc:26}, \ref{uc:27}, and \nameref{sub:use_cases} diagram\\
-2024-10-11 & Russell Davidson & \ref{uc:4} sequence diagram\\
-\bottomrule
+\caption{Revision History} \label{rev_history_table}
+\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+    \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}} \\
+    \midrule
+    2024-10-11 & 1.0 & Initial SRS \\
+    \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Introduction}
 
-\wss{This section should provide an overview of the entire document}
 \subsection{Document Purpose}
 
-\wss{Describe the purpose of the SRS and its intended audience.}
+The purpose of this document is to outline key functional and non-functional requirements and constraints for the AR project, Realm. This will help plan and guide the developers throughout the development and testing of the app. The intended audience is for the developers and testers of this project. Additionally, it can serve as a reference to the stakeholders who require an understanding of the capabilities and expectations of the project.
 
 \subsection{Product Scope}
 
-\wss{Identify the product whose software requirements are specified in this document, including the revision or release number. Explain what the product that is covered by this SRS will do, particularly if this SRS describes only part of the system or a single subsystem. Provide a short description of the software being specified and its purpose, including relevant benefits, objectives, and goals. Relate the software to corporate goals or business strategies. If a separate vision and scope document is available, refer to it rather than duplicating its contents here.}
+Realm (version 1.4) is an AR platform that aims to create a cohesive augmented reality experience that enables users to engage in social, educational and entertaining activities through the use of AR content. The app will allow users to place AR objects, react to them, interact with friends, and participate in educational tours.
+
+The key objectives of this platform include fostering social interactions through shared and customizable AR experiences and promoting educational content via AR tours.
 
 \subsection{Definitions, Acronyms and Abbreviations}
 \label{sub:def_acr_abb}
@@ -84,29 +81,73 @@
 \subsection{References}
 \label{sub:references}
 
-\wss{List any other documents or Web addresses to which this SRS refers. These may include user interface style guides, contracts, standards, system requirements specifications, use case documents, or a vision and scope document. Provide enough information so that the reader could access a copy of each reference, including title, author, version number, date, and source or location.}
-
 \begingroup
 \raggedright
 \bibliography{ref}
 \endgroup
 \bibliographystyle{ieeetr}
 
-\subsection{Document Overview}
-
-\wss{Describe what the rest of the document contains and how it is organized.}
-
 \section{Product Overview}
 
-\wss{This section should describe the general factors that affect the product and its requirements. This section does not state specific requirements. Instead, it provides a background for those requirements, which are defined in detail in Section 3, and makes them easier to understand.}
 \subsection{Product Perspective}
 
-\wss{Describe the context and origin of the product being specified in this SRS. For example, state whether this product is a follow-on member of a product family, a replacement for certain existing systems, or a new, self-contained product. If the SRS defines a component of a larger system, relate the requirements of the larger system to the functionality of this software and identify interfaces between the two. A simple diagram that shows the major components of the overall system, subsystem interconnections, and external interfaces can be helpful.}
+Realm, as specified in this SRS document, is a self-contained product designed to provide users with an immersive social, educational, and entertainment experience with the help of AR. This product is not part of an existing product family and does not replace any current systems. Instead, it is developed as a standalone system that allows users to create, interact with, and share virtual objects, such as 2D stickers and 3D artifacts, in real-world environments.\\
+
+The app operates independently but may collaborate with third-party content providers, such as educational institutions or businesses, to offer //customized AR experiences. If needed, Realm could integrate with larger systems in the future, such as educational platforms or entertainment networks, by establishing appropriate interfaces for data sharing and interaction.\\
+
+The app is to be compatible with most smartphone devices, as long as they have a camera.
+
 
 \subsection{Product Functions}
 
-\wss{Summarize the major functions the product must perform or must let the user perform. Details will be provided in Section 3, so only a high level summary (such as a bullet list) is needed here. Organize the functions to make them understandable to any reader of the SRS. A picture of the major groups of related requirements and how they relate, such as a top level data flow diagram or object class diagram, is often effective.}
+\begin{itemize}
+    \item Tutorial
+    \begin{itemize}
+        \item The user will be able to complete a walkthrough tutorial of all major app features.
+    \end{itemize}
 
+    \item Tour Management
+    \begin{itemize}
+        \item \textit{Organization users} will be able to create/modify/delete AR tours owned by their organization.
+    \end{itemize}
+
+    \item Touring
+    \begin{itemize}
+        \item \textit{General users} will be able to experience AR tours made by approved organizations.
+    \end{itemize}
+
+    \item User Profile Management
+    \begin{itemize}
+        \item Users can create, edit, and manage user profiles as well as manage privacy settings.
+    \end{itemize}
+
+    \item AR Object Interaction
+    \begin{itemize}
+        \item Users will be able to place, edit, and interact with 2D stickers and 3D artifacts within the sub-realm.
+        \item Users can react to and engage with objects placed by other users.
+    \end{itemize}
+
+    \item Social Interaction
+    \begin{itemize}
+        \item Users will be able to create, edit, and add/remove friends to a sub-realm, where they can each share AR objects within the sub-realm.
+    \end{itemize}
+
+    \item Object Creation
+    \begin{itemize}
+        \item Allow users to create their own AR objects and share them with others.
+        \item Objects can be created via a 'Scan and Upload' option or generate one using a user prompt.
+    \end{itemize}
+
+    \item Reporting and Moderation
+    \begin{itemize}
+        \item Allows users to report inappropriate objects which can go for review and moderation.
+    \end{itemize}
+
+    \item Managing Settings
+    \begin{itemize}
+        \item Manage a variety of settings including accessibility settings, display settings, privacy settings, profile settings, and group settings.
+    \end{itemize}
+\end{itemize}
 \subsection{Product Constraints}
 \wss{
     This subsection should provide a general description of any other items that will limit the developer's options. These may include:
@@ -119,15 +160,68 @@
 }
 \subsection{User Characteristics}
 
-\wss{Identify the various user classes that you anticipate will use this product. User classes may be differentiated based on frequency of use, subset of product functions used, technical expertise, security or privilege levels, educational level, or experience. Describe the pertinent characteristics of each user class. Certain requirements may pertain only to certain user classes. Distinguish the most important user classes for this product from those who are less important to satisfy.}
+There are three types of users.\\
+
+\textbf{General Users:}
+\begin{itemize}
+    \item Frequency of Use: Occasional to frequent.
+    \item Functions Used: Creating, interacting with, and sharing AR objects; joining sub-realms; participating in AR tours.
+    \item Technical Expertise: Moderate; basic understanding of mobile apps and social platforms.
+    \item Security/Privilege Level: Standard user access with limited permissions (e.g., cannot create tours or manage content).
+    \item Importance: Most important user class, as they represent the primary user base for the platform.
+\end{itemize}
+
+\textbf{Organizational Users:}
+\begin{itemize}
+    \item Frequency of Use: Frequent.
+    \item Functions Used: Creating and managing AR tours, educational content, and sub-realms for public or private use.
+    \item Technical Expertise: Moderate to advanced; comfortable with content creation tools and AR platforms.
+    \item Security/Privilege Level: Higher-level access to manage and publish content for users.
+    \item Importance: Highly important, as they provide some of the platform’s key content.
+\end{itemize}
+
+\textbf{Administrators/Moderators:}
+\begin{itemize}
+    \item Frequency of Use: Regular.
+    \item Functions Used: Managing user permissions, moderating content, handling reports of inappropriate AR objects.
+    \item Technical Expertise: Advanced; familiar with platform management and moderation tools.
+    \item Security/Privilege Level: Full access to the platform's management functions, including user and content control.
+    \item Importance: Less important for day-to-day use, but crucial for ensuring platform integrity and moderation.
+\end{itemize}
 
 \subsection{Assumptions and Dependencies}
 
-\wss{List any assumed factors (as opposed to known facts) that could affect the requirements stated in the SRS. These could include third-party or commercial components that you plan to use, issues around the development or operating environment, or constraints. The project could be affected if these assumptions are incorrect, are not shared, or change. Also identify any dependencies the project has on external factors, such as software components that you intend to reuse from another project, unless they are already documented elsewhere (for example, in the vision and scope document or the project plan).}
-
+\begin{itemize}
+    \item User has used a mobile app before.
+    \item User has internet access.
+    \item User device can provide GPS location services.
+    \item User device has a camera.
+    \item User device utilizes either Android or iOS operating systems.
+\end{itemize}
 \subsection{Apportioning of Requirements}
 
 \wss{Apportion the software requirements to software elements. For requirements that will require implementation over multiple software elements, or when allocation to a software element is initially undefined, this should be so stated. A cross reference table by function and software element should be used to summarize the apportioning.\\}
+
+\begin{table}[]
+\caption{Apportioning of Requirements}
+\label{tab:apportioning_table}
+\centering
+\begin{tabular}{lcc}
+    \toprule
+        \textbf{Function} & \textbf{Priority} & \textbf{Dates} \\
+    \hline \hline
+Object Creation          & 1 & \multirow{2}{*}{2024-11-11} \\
+AR Object Interaction    & 1 &                             \\ \hline
+Tour Management          & 2 & \multirow{3}{*}{2025-12-01} \\
+Touring                  & 2 & \\
+Social Interaction       & 2 &                             \\
+Reporting and Moderation & 2 & \multirow{4}{*}{2025-01-15} \\ \hline
+User Profile Management  & 3 &                             \\
+Managing Settings        & 3 &                             \\
+Tutorial                 & 3 &                             \\
+    \hline
+\end{tabular}
+\end{table}
 
 \wss{Identify requirements that may be delayed until future versions of the system (e.g., blocks and/or increments).}
 
@@ -283,6 +377,45 @@
         \item The app shall permit \ref{def:admin} to act on user reports of an \ref{def:ar_obj} by either keeping or removing the \ref{def:ar_obj}.
         \item The app shall permit \ref{def:admin} to review requests for \ref{def:org_user} accounts and either accept or deny the request.
     \end{enumerate}
+\end{enumerate}
+
+\subsubsection{Profile Screen}
+\label{ssub:profile_screen}
+\begin{enumerate}[align=left, label=\textbf{PS-FR\arabic*:}]
+    \item The user must enter valid credentials to be authenticated and logged into their account.
+    \item Allow the user to change their password.
+    \item The user must be able to view their profile information including username, password, profile picture, and status.
+    \item The user must be able to view all groups that they are part of.
+    \item The user shall be able to view a help page with frequently asked questions and additional help.
+\end{enumerate}
+
+\subsubsection{Groups}
+\label{ssub:groups}
+\begin{enumerate}[align=left, label=\textbf{G-FR\arabic*:}]
+    \item The user must be able to create a new group with a group name, description, and also allow inviting members.
+    \item Allow users to add or remove members from a group.
+    \item The user must be able to edit group settings, including group name and description.
+    \item The user must be able to delete a group, and all associated data should be removed.
+    \item All users within a group must be able to interact with group-specific AR content, including shared AR objects and experiences.
+\end{enumerate}
+
+\subsubsection{Friends screen}
+\label{ssub:friends_screen}
+\begin{enumerate}[align=left, label=\textbf{FS-FR\arabic*:}]
+    \item The user shall be able to send friend requests to other users within the platform.
+    \item The user must be able to accept or reject incoming friend requests.
+    \item The user shall be able to view their list of friends.
+    \item The user must be able to remove friends.
+\end{enumerate}
+
+\subsubsection{Settings}
+\label{ssub:settings}
+\begin{enumerate}[align=left, label=\textbf{S-FR\arabic*:}]
+    \item The user shall be able to access and modify Accessibility Settings, including text size, enabling/disabling viewing of object names, and changing language.
+    \item The user shall be able to adjust Display Settings, including light/dark mode, AR object visibility.
+    \item The user must be able to manage Privacy Settings, including controlling who can see their profile, friends list, and AR interactions.
+    \item Allow the user to manage Profile Settings, such as changing their username, password, profile picture, and status.
+    \item The user must be able to access Group Settings, as mentioned in the Groups section of the requirements.
 \end{enumerate}
 
 \subsection{Use Cases}
@@ -527,6 +660,409 @@
         \end{itemize}
         \textbf{Success Postcondition:} One of the \ref{def:gen_user} has completed a tour
 
+         \item \label{uc:13} \textbf{Change App Settings} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User is logged into the app.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to the settings menu from the app’s main interface.
+            \item System presents the Settings Menu with various categories (e.g., Accessibility, Display, Privacy).
+            \item User selects a specific settings category to modify.
+            \item System presents the options within the selected category.
+            \item User modifies the desired settings (e.g., adjusts brightness, changes privacy preferences).
+            \item User confirms the changes.
+            \item System saves the changes locally and within the cloud, and updates the settings.
+            \item System returns to the main settings screen.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{User cancels changes}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-5
+                \item User selects the option to cancel changes before confirming.
+                \item System discards the changes and returns to the main settings screen.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User reselects settings category:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-4
+                \item User selects the option to return to the Settings Menu and choose another category.
+                \item Main scenario resumes from step 3.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User has no network connection:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-7
+                \item System detects that the network is unavailable.
+                \item System queues the changes for synchronization once the network is reconnected.
+                \item Main scenario resumes from step 8 when the network is restored.
+            \end{enumerate}
+        \end{itemize}
+        \textbf{Success Postcondition:} The user’s settings are successfully updated locally and, when connected, synchronized to the cloud.
+
+    \item \label{uc:17} \textbf{Create a Sub-Realm} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User is logged into the app.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to the "Create Sub-Realm" page from the app’s main interface.
+            \item System presents the Sub-Realm Creation Page.
+            \item User provides a name and description for the sub-realm.
+            \item System presents the option to “Add users to sub-realm.”
+            \item User selects the option to add users.
+            \item System displays the user’s friend list.
+            \item User selects the friends they want to add to the sub-realm.
+            \item User confirms that they are done adding friends.
+            \item User confirms creation of the sub-realm.
+            \item System saves the sub-realm with the provided information and friends list.
+            \item System returns to the Realm interface, displaying the newly created sub-realm.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{User cancels the creation before confirming:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-8
+                \item User selects the option to cancel sub-realm creation.
+                \item System discards the sub-realm creation process and returns to the Realm interface.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User reselects friends:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-7
+                \item User selects the option to go back to the friends list.
+                \item Main scenario resumes from step 6.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User does not add any friends:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-5
+                \item User selects the option to skip adding friends.
+                \item Main scenario resumes from step 9.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} A new sub-realm is created and linked to the user’s account with the chosen settings and added friends.
+
+    \item \label{uc:18} \textbf{Leave a Sub-Realm} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User is logged into the app AND is a member of the sub-realm.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to the sub-realm and opens the Sub-Realm Settings.
+            \item System presents the Sub-Realm Settings Menu.
+            \item User selects the "Leave Sub-Realm" option.
+            \item System prompts the user to confirm the action.
+            \item User confirms that they wish to leave the sub-realm.
+            \item System removes the user from the sub-realm.
+            \item System returns the user to the Realm Interface, with the sub-realm no longer visible.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{User cancels leaving the sub-realm:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-4
+                \item User selects the option to cancel leaving the sub-realm.
+                \item System returns to the Sub-Realm Settings without making any changes.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} The user is no longer part of the sub-realm, and the sub-realm is no longer accessible or visible to the user.
+
+    \item \label{uc:19} \textbf{Join an Existing Sub-Realm} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User is logged into the app AND has received an invite to the sub-realm.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User receives a notification of a sub-realm invitation.
+            \item System presents the sub-realm invitation details.
+            \item User selects the sub-realm they wish to join.
+            \item System presents a confirmation prompt.
+            \item User confirms their request to join the sub-realm.
+            \item System adds the user to the selected sub-realm.
+            \item System returns to the Realm Interface, now displaying the newly joined sub-realm.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{Sub-realm is invite-only, and approval is required:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-5
+                \item System notifies the user that their request to join is pending approval.
+                \item User must wait for an admin’s approval before being added to the sub-realm.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User cancels the request before joining:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-4
+                \item User selects the option to cancel the request to join.
+                \item System returns to the main interface, and no further action is taken.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} The user is successfully added to the sub-realm and can now access it from within the Realm Interface.
+
+    \item \label{uc:20} \textbf{Add a Friend} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User is logged into the app AND the friend has created an account on the app.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to the "Add Friend" option in the app's interface.
+            \item System presents the "Add Friend" search interface.
+            \item User searches for the friend’s username.
+            \item System displays matching search results.
+            \item User selects the friend's username from the results.
+            \item User sends a friend request.
+            \item System sends the friend request and notifies the friend.
+            \item System returns the user to the friend management screen.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{Friend accepts or rejects the request:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 6-7
+                \item Friend receives the request and either accepts or rejects it.
+                \item System notifies the user if their request was accepted or rejected.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User cancels the friend request before sending:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-5
+                \item User cancels the request, and no action is taken.
+                \item System returns the user to the previous screen.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User cancels the friend request after sending:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 6-7
+                \item User cancels the sent request before the friend responds.
+                \item System withdraws the request.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} The user has successfully added the friend as a connection, and the friend now appears in their friends list.
+
+    \item \label{uc:21} \textbf{Add a Friend to a Sub-Realm} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User is logged into the app AND is a member of the sub-realm AND has the friend already added to their friend list.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to the desired sub-realm from the Realm Interface.
+            \item System presents the sub-realm view.
+            \item User opens the Sub-Realm Settings.
+            \item System presents the Sub-Realm Settings Menu.
+            \item User selects the option to “Add a Friend to Sub-Realm.”
+            \item System displays the user's friend list.
+            \item User selects the friend they wish to add to the sub-realm.
+            \item System presents a confirmation prompt.
+            \item User confirms adding the friend.
+            \item System adds the friend to the sub-realm.
+            \item System returns to the Sub-Realm Interface, now displaying the updated member list.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{User cancels adding the friend:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-8
+                \item User selects the option to cancel adding the friend.
+                \item System discards the action and returns to the Sub-Realm Settings Menu.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User selects a friend who is already a sub-realm member:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-7
+                \item System notifies the user that the selected friend is already a member of the sub-realm.
+                \item User can return to the friend list and select another friend.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User reselects a friend:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-7
+                \item User decides to reselect a different friend from the list.
+                \item System returns to the friend selection interface.
+                \item Main scenario resumes from step 7.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} The user has successfully added the friend to the sub-realm, and the updated member list is displayed in the Sub-Realm Interface.
+
+    \item \label{uc:22} \textbf{Remove a Friend from a Sub-Realm} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User is logged into the app AND is a member of the sub-realm AND has the friend added to the sub-realm.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to the desired sub-realm from the Realm Interface.
+            \item System presents the sub-realm view.
+            \item User opens the Sub-Realm Settings.
+            \item System presents the Sub-Realm Settings Menu.
+            \item User selects the option to “Remove a Friend from Sub-Realm.”
+            \item System displays the current list of members in the sub-realm.
+            \item User selects the friend they wish to remove.
+            \item System presents a confirmation prompt.
+            \item User confirms the removal.
+            \item System removes the friend from the sub-realm.
+            \item System returns to the Sub-Realm Interface, displaying the updated member list without the removed friend.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{User removes the friend from settings:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item User navigates to the settings page in the app.
+                \item System presents the settings display.
+                \item User navigates to the sub-realm settings.
+                \item System displays a list of sub-realms.
+                \item User selects the desired sub-realm.
+                \item Main scenario 4-11
+            \end{enumerate}
+            
+            \item[{}] \textbf{User cancels removing the friend:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-8
+                \item User selects the option to cancel the removal.
+                \item System discards the action and returns to the Sub-Realm Settings Menu.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User attempts to remove a friend who is not in the sub-realm:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-7
+                \item System notifies the user that the selected friend is not a member of the sub-realm.
+                \item User returns to the member list to reselect another friend.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User reselects a friend to remove:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-7
+                \item User decides to reselect a different friend from the list.
+                \item System returns to the member selection interface.
+                \item Main scenario resumes from step 7.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} The selected friend is successfully removed from the sub-realm and no longer has access to the sub-realm content.
+
+    \item \label{uc:23} \textbf{Create an Account} \\
+        \textbf{Actor}: \ref{def:new_user} \\
+        \textbf{Precondition:} User has installed the app AND is on the login screen without an existing account.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User selects the "Sign Up" option from the login screen.
+            \item System presents the account creation form, asking for details such as email, username, and password.
+            \item User fills in the required information.
+            \item System performs validation to ensure the information is complete and valid (e.g., unique username, valid email format).
+            \item User submits the form.
+            \item System creates the account and stores the user’s information securely.
+            \item System logs the user into the app and navigates to the home screen.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{User cancels account creation:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-4
+                \item User cancels the sign-up process before submitting.
+                \item System discards the entered information and returns the user to the login screen.
+            \end{enumerate}
+            
+            \item[{}] \textbf{Account creation fails due to existing email/username:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-5
+                \item System detects that the email or username is already in use.
+                \item System presents an error message, and the user must provide new information.
+                \item Main scenario resumes from step 2-7.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} A new account is created, and the user is logged into the app with their new credentials.
+
+    \item \label{uc:24} \textbf{Login to an Account} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User has an existing account on the app.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to the "Login" page.
+            \item System presents the login form, asking for email or username, and password.
+            \item User enters their email or username, and password.
+            \item System performs validation to check if the credentials match an existing account.
+            \item User submits the form.
+            \item System logs the user into the app and navigates to the home screen.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{Invalid credentials entered:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-5
+                \item System detects that the credentials are invalid (e.g., incorrect password).
+                \item System presents an error message, allowing the user to try again.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User resets password:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-4
+                \item User selects the "Forgot Password" option.
+                \item System initiates the password recovery workflow, and the user must follow the steps to reset their password.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User cancels login process:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-4
+                \item User cancels the login process before submitting.
+                \item System returns to the initial screen without logging in.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} The user is successfully logged into the app and gains access to their account and personalized settings.
+
+    \item \label{uc:25} \textbf{Edit Profile} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User is logged into the app AND has an existing profile.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to the "Settings" page from the app’s main interface.
+            \item System presents the Settings Menu with the list of settings categories, including "Profile Settings."
+            \item User selects the "Profile Settings" option.
+            \item System displays editable fields, such as username, bio, password, and other personal details.
+            \item User modifies the desired fields.
+            \item User confirms the changes.
+            \item System saves the updated profile information.
+            \item System returns the user to the Settings page with a confirmation that the profile has been updated.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{User cancels profile editing:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-5
+                \item User selects the option to cancel editing before confirming.
+                \item System discards the changes and returns the user to the Settings page without applying any updates.
+            \end{enumerate}
+            
+            \item[{}] \textbf{Invalid information provided:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-6
+                \item System detects that the updated information (e.g., username) is invalid or already taken.
+                \item System presents an error message and prompts the user to enter valid information.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} The user’s profile is successfully updated and reflects the new information.
+
+
     \item \label{uc:26}  Act on reported \ref{def:ar_obj} \\
         \textbf{Actor}: \ref{def:admin} \\
         \textbf{Pre-condition:} Admin is logged into the app \textbf{AND} Admin has navigated to the \textbf{Admin Interface} \\
@@ -590,6 +1126,44 @@
             \end{enumerate}
         \end{itemize}
         \textbf{Success Postcondition:} An \ref{def:org_user} account request is resolved (approved or denied).
+
+    \item \label{uc:23} \textbf{Unfriend a Friend} \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Precondition:} User is logged into the app AND the friend is currently on the user's friend list.
+    
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to friend list from the app’s main interface.
+            \item System presents the list of friends.
+            \item User selects a friend.
+            \item System shows list of actions with the friend.
+            \item User selects the "Unfriend" option.
+            \item System presents confirmation prompt.
+            \item User confirms to unfriend the person.
+            \item System removes the friend from the user’s friend list.
+            \item System returns the user to the friend list.
+        \end{enumerate}
+        
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{}] \textbf{User cancels unfriending the friend:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-7
+                \item User selects the option to cancel.
+                \item System discards action and returns to the friend list.
+            \end{enumerate}
+            
+            \item[{}] \textbf{User reselects a friend to unfriend:}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario 1-6
+                \item User decides to reselect a different friend from the list.
+                \item System returns to the friend list interface.
+                \item Main scenario resumes from step 3.
+            \end{enumerate}
+        \end{itemize}
+        
+        \textbf{Success Postcondition:} The selected friend is successfully unfriended and removed from the user's friend list.
+
     
 \end{enumerate}
 
