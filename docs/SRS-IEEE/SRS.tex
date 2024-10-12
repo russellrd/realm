@@ -46,13 +46,13 @@
 \section*{Revision History}
 
 \begin{table}[hp]
-\caption{Revision History} \label{rev_history_table}
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-    \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}} \\
-    \midrule
-    2024-10-11 & 1.0 & Initial SRS \\
-    \bottomrule
-\end{tabularx}
+    \caption{Revision History} \label{rev_history_table}
+    \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
+        \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}} \\
+        \midrule
+        2024-10-11 & 1.0 & Initial SRS \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 \section{Introduction}
@@ -76,6 +76,7 @@ The key objectives of this platform include fostering social interactions throug
     \item \labeltext{Organization users}{def:org_user}: Users who belong to an organization that has the ability to create tours. They are affiliated with a particular approved organization who have the ability to modify tours within their organization’s domain.
     \item \labeltext{General users}{def:gen_user}: Users that can access most of the app functionalities except creating tours.
     \item \labeltext{Admins}{def:admin}: People who have access to nothing else but the admin interface within the app.
+    \item \labeltext{AR object clusters}{def:ar_obj_cls}: A group of AR objects present within a confined area.
 \end{itemize}
 
 \subsection{References}
@@ -158,6 +159,21 @@ The app is to be compatible with most smartphone devices, as long as they have a
         \item Constraints around design or implementation.
     \end{itemize}
 }
+
+\begin{itemize}
+    \item \textbf{Interfaces to Users}: The platform must be compatible with both Android and iOS devices, meaning the design must accommodate different screen sizes and operating system guidelines. Additionally, the app requires user-friendly interfaces for interacting with AR objects and managing sub-realms.
+
+    \item \textbf{Hardware Constraints}: The app depends on mobile devices with AR capabilities (e.g., cameras, GPS, accelerometers). Users with older or less powerful devices might experience limited functionality or performance issues.
+
+    \item \textbf{Quality of Service}: Realm needs to have a smooth interaction, with little to no lag. It must also handle multiple users within a shared AR space (sub-realm).
+
+    \item \textbf{Standards Compliance}: The app has to comply with relevant privacy laws and app store requirements for both Android and iOS.
+
+    \item \textbf{Design and Implementation Constraints}: The app needs to provide cloud storage for AR objects and user data, and its design should allow for easy scalability as the user base grows. Additionally, the AR features and general app use should be intuitive and easy to use for users.
+
+    \item \textbf{Budget Constraints}: The project has a maximum budget of \$750.
+\end{itemize}
+
 \subsection{User Characteristics}
 
 There are three types of users.\\
@@ -198,6 +214,15 @@ There are three types of users.\\
     \item User device has a camera.
     \item User device utilizes either Android or iOS operating systems.
 \end{itemize}
+
+\begin{itemize}
+    \item User has used a mobile app before
+    \item User has internet access
+    \item User device can provide GPS location services
+    \item User device has a camera
+    \item User device utilizes either Android or IOS operating systems
+\end{itemize}
+
 \subsection{Apportioning of Requirements}
 
 \wss{Apportion the software requirements to software elements. For requirements that will require implementation over multiple software elements, or when allocation to a software element is initially undefined, this should be so stated. A cross reference table by function and software element should be used to summarize the apportioning.\\}
@@ -224,6 +249,27 @@ Tutorial                 & 3 &                             \\
 \end{table}
 
 \wss{Identify requirements that may be delayed until future versions of the system (e.g., blocks and/or increments).}
+
+\begin{table}[]
+    \caption{Apportioning of Requirements}
+    \label{tab:apportioning_table}
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+            \textbf{Function} & \textbf{Priority} & \textbf{Dates} \\
+        \hline \hline
+    Object Creation          & 1 & \multirow{2}{*}{2024-11-11} \\
+    AR Object Interaction    & 1 &                             \\ \hline
+    Tour Management          & 2 & \multirow{3}{*}{2025-12-01} \\
+    Touring                  & 2 & \\
+    Social Interaction       & 2 &                             \\
+    Reporting and Moderation & 2 & \multirow{4}{*}{2025-01-15} \\ \hline
+    User Profile Management  & 3 &                             \\
+    Managing Settings        & 3 &                             \\
+    Tutorial                 & 3 &                             \\
+        \hline
+    \end{tabular}
+\end{table}
 
 \section{Requirements}
 \wss{
@@ -274,6 +320,103 @@ Tutorial                 & 3 &                             \\
 \label{sub:functional}
 
 \wss{This section specifies the requirements of functional effects that the software-to-be is to have on its environment.}
+
+\subsubsection{Maps}
+\label{ssub:maps}
+
+\begin{enumerate}[align=left, label=\textbf{MP-FR\arabic*:}]
+    \item The map should provide the user's location
+    \item The map should display location markers for \ref{def:ar_obj} clusters
+    \item The marker should display the count of objects present in a tight cluster
+    \item The map should display location markers for \ref{def:ar_obj_cls}
+    \item The map should display indications of objects from all groups that the user is a part of
+    \item When a marker is selected, the option to provide directions should be available
+    \item The map should give directions to the user for a selected marker
+\end{enumerate}
+
+\begin{enumerate}[align=left, label=\textbf{MP-NFR\arabic*:}]
+    \item The map rendering should be completed quickly
+    \item The objects shown on the map should be grouped to avoid clutter
+    \item The map view provides the options for dark mode or night view
+\end{enumerate}
+
+\subsubsection{Inventory}
+\label{ssub:inventory}
+
+\begin{enumerate}[align=left, label=\textbf{IV-FR\arabic*:}]
+    \item The user should be able to delete objects from their inventory
+    \item The user should be able to add objects to their inventory
+    \item The inventory should at least have the application-provided objects
+    \item The inventory should contain a maximum of 100 personal objects excluding the application-provided ones
+    \item The personal objects present in the inventory should either be generated by the user or shared by other users
+    \item The inventory should provide the count of the total objects
+    \item The inventory should store both 2D and 3D AR objects
+    \item The user should be able to add their objects to a “favourite group”
+    \item The user should be able to sort their objects according to the number of uses, favourites and storage size
+\end{enumerate}
+
+\begin{enumerate}[align=left, label=\textbf{IV-NFR\arabic*:}]
+    \item The inventory should load quickly when viewing the user’s profile
+    \item The inventory should display the 3D objects in a continuous rotating state
+    \item The user can change the inventory background color
+\end{enumerate}
+
+\subsubsection{Object Scan}
+\label{ssub:obj_scan}
+\begin{enumerate}[label=OS-FR\arabic*:]
+    \item The user should be able to scan their surroundings to create objects.
+    \item The user should select whether a 2D or 3D object is being scanned.
+    \item While scanning, a real-time render of the scanned portion will be shown to the user.
+    \item The scanning state should not be longer than 120 seconds.
+    \item When the user has completed scanning, they should be able to confirm that the scanning process is finished.
+\end{enumerate}
+
+\begin{enumerate}[label=OS-NFR\arabic*:]
+    \item The real-time render should be delayed from the actual scan by at most ~1 second.
+\end{enumerate}
+
+\subsubsection{Object Upload to Inventory}
+\label{ssub:obj_upload_inv}
+\begin{enumerate}[label=OUI-FR\arabic*:]
+    \item The object render provided by the scan would be displayed to the user.
+    \item The user should be able to remove unneeded features of the render after the target is done being scanned.
+    \item For 2D objects, the user can crop and resize the object in the edit interface.
+    \item Once the user is satisfied with the scanned object, they should be able to confirm the creation of the \ref{def:ar_obj}.
+    \item The user should be able to name their created object.
+    \item The name should only contain ASCII characters.
+    \item The user-created name of the object should be stored along with the \ref{def:ar_obj}.
+    \item The date and time of creation should be stored with the \ref{def:ar_obj}.
+    \item The user information should be stored with the \ref{def:ar_obj}.
+    \item The storage size should be stored with the \ref{def:ar_obj}.
+    \item The type (2D or 3D) of the object should be stored with the \ref{def:ar_obj}.
+    \item The user should be able to select portions of the object and change its color.
+\end{enumerate}
+
+\begin{enumerate}[label=OUI-NFR\arabic*:]
+    \item The edit interface for the scanned render should be easy to use.
+\end{enumerate}
+
+\subsubsection{Custom AR Object Generation via prompt}
+\label{ssub:prompt_obj_gen}
+
+\begin{enumerate}[label=POG-FR\arabic*:]
+    \item The user should be able to enter a prompt.
+    \item The user prompt should not be longer than 200 characters (including spaces and punctuation).
+    \item The current character count for the prompt should be displayed to the user.
+    \item The user prompt should not contain profanity.
+    \item The user should select whether they want a 2D or 3D object.
+    \item The user should be able to confirm that they have finished writing their prompt and would like to generate the \ref{def:ar_obj}.
+    \item The application should provide multiple AR objects for the entered prompt.
+    \item After objects are generated, the user should be able to select an object from one of the provided options.
+    \item Once the user has chosen an object, they should be able to add it to their personal inventory.
+\end{enumerate}
+
+\begin{enumerate}[label=POG-NFR\arabic*:]
+    \item The object generation should not take longer than 30 seconds.
+    \item The objects can be previewed by rotating them.
+    \item The user can write the prompt in different languages.
+    \item The interface for generating objects via prompts should be user-friendly.
+\end{enumerate}
 
 \subsubsection{Tutorial}
 \label{ssub:tutorial}
@@ -422,7 +565,7 @@ Tutorial                 & 3 &                             \\
 \label{sub:use_cases}
 
 \begin{center}
-    \includegraphics[scale=0.5]{use_cases.png}\\ 
+    \includegraphics[scale=0.5]{use_cases.png}\\
     \textbf{Figure 1: Use Cases}
 \end{center}
 
@@ -430,7 +573,7 @@ Tutorial                 & 3 &                             \\
     \item \label{uc:1} Complete the Tutorial \\
         \textbf{Actor}: \ref{def:user} \\
         \textbf{Pre-condition:} User has opened the app \\
-    
+
         \textbf{Main Success Scenario:}
         \begin{enumerate}[label=\textbf{\arabic*.}]
             \item User creates an account (\ref{uc:23})
@@ -445,8 +588,8 @@ Tutorial                 & 3 &                             \\
             \item User ends tutorial (\hyperref[ssub:tutorial]{TU-FR3})
             \item System redirects to \textbf{Home Interface}
         \end{enumerate}
-    
-        \textbf{Secondary Scenarios:} 
+
+        \textbf{Secondary Scenarios:}
         \begin{itemize}
             \item[{\bf 1.1:}] User already has an account
             \begin{enumerate}[label=\textbf{\arabic*.}]
@@ -466,7 +609,7 @@ Tutorial                 & 3 &                             \\
     \item \label{uc:2} Create a Tour \\
         \textbf{Actor}: \ref{def:org_user} \\
         \textbf{Pre-condition:} User is logged into the app \textbf{AND} User has navigated to the \textbf{Tour Management Interface} \\
-    
+
         \textbf{Main Success Scenario:}
         \begin{enumerate}[label=\textbf{\arabic*.}]
             \item User selects the option to create a new tour
@@ -498,8 +641,8 @@ Tutorial                 & 3 &                             \\
             \item System uploads the tour data
             \item System makes the tour available to \ref{def:gen_user}
         \end{enumerate}
-    
-        \textbf{Secondary Scenarios:} 
+
+        \textbf{Secondary Scenarios:}
         \begin{itemize}
             \item[{\bf 4.1:}] System identifies some blank fields
             \begin{enumerate}[label=\textbf{\arabic*.}]
@@ -527,7 +670,7 @@ Tutorial                 & 3 &                             \\
     \item \label{uc:3} Edit an existing Tour \\
         \textbf{Actor}: \ref{def:org_user} \\
         \textbf{Pre-condition:} User is logged into the app \textbf{AND} User has at least one tour connected to their organization \textbf{AND} User has navigated to the \textbf{Tour Management Interface} \\
-    
+
         \textbf{Main Success Scenario:}
         \begin{enumerate}[label=\textbf{\arabic*.}]
             \item System provides a list of all tours connected to the user’s organization
@@ -563,8 +706,8 @@ Tutorial                 & 3 &                             \\
             \item System uploads the updated tour data
             \item System makes the updated tour available to \ref{def:gen_user}
         \end{enumerate}
-    
-        \textbf{Secondary Scenarios:} 
+
+        \textbf{Secondary Scenarios:}
         \begin{itemize}
             \item[{\bf 5.1:}] User decides not to edit the tour
             \begin{enumerate}[label=\textbf{\arabic*.}]
@@ -596,7 +739,7 @@ Tutorial                 & 3 &                             \\
     \item \label{uc:4} Go on a tour \\
         \textbf{Actor}: \ref{def:gen_user} \\
         \textbf{Pre-condition:} User is logged into the app \\
-    
+
         \textbf{Main Success Scenario:}
         \begin{enumerate}[label=\textbf{\arabic*.}]
             \item User navigates to the \textbf{Tour Interface}
@@ -619,8 +762,8 @@ Tutorial                 & 3 &                             \\
             \item User leaves tour
             \item System goes back to the tour list
         \end{enumerate}
-    
-        \textbf{Secondary Scenarios:} 
+
+        \textbf{Secondary Scenarios:}
         \begin{itemize}
             \item[{\bf 1.1:}] System pushes a notification to the user when they are in the proximity of a tour (\hyperref[ssub:touring]{TR-FR2.2})
             \begin{enumerate}[label=\textbf{\arabic*.}]
@@ -659,8 +802,221 @@ Tutorial                 & 3 &                             \\
             \end{enumerate}
         \end{itemize}
         \textbf{Success Postcondition:} One of the \ref{def:gen_user} has completed a tour
+        
+    \item \label{uc:5} Scan and upload \ref{def:ar_obj} to the user inventory \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Pre-condition:} User has an account on the application \textbf{AND} is logged into the application \textbf{AND} navigates to the Realm display \\
 
-         \item \label{uc:13} \textbf{Change App Settings} \\
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item System displays Realm screen to user
+            \item User selects control to scan and create an \ref{def:ar_obj}
+            \item System presents user with the option to scan a 2D or 3D \ref{def:ar_obj}
+            \item User selects one of the provided options
+            \begin{enumerate}[label=(\alph*)]
+                \item User selects 2D \ref{def:ar_obj} option
+                \item User selects 3D \ref{def:ar_obj} option
+            \end{enumerate}
+            \item System displays a scanning interface
+            \item User performs motions to scan the targeted object
+            \item System provides a render for the scanned portion (happens concurrently with step \textbf{6})
+            \item User selects the option to confirm that the scanning process is complete
+            \item System navigates user to an editor with the complete render of the target entity
+            \item User performs actions to edit the render to meet their needs
+            \begin{enumerate}[label=(\alph*)]
+                \item User removes unneeded parts of the render
+                \item User changes the colour of selected portions
+            \end{enumerate}
+            \item System applies the changes to the \ref{def:ar_obj} intended by the user
+            \item User confirms that the editing process is completed
+            \item System receives the user confirmation and provides a preview of the final \ref{def:ar_obj} with the options to discard or add it to their inventory
+            \item User selects what they would want to do with the new \ref{def:ar_obj}
+            \begin{enumerate}[label=(\alph*)]
+                \item User returns to the editing interface for further customization (Go to step \textbf{10})
+                \item User selects control to add the object to their inventory
+                \item User wants to discard the object (Go to Secondary Scenario 2)
+            \end{enumerate}
+            \item System adds the new \ref{def:ar_obj} to the User's inventory and notifies the User about adding the object to their inventory
+            \item System returns to the Realm screen
+        \end{enumerate}
+
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[\textbf{\textbf{(3.1, 5.1)}}] User cancels scanning process
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario steps \textit{1-3 or 1-5}
+                \item User selects option to cancel the scanning process
+                \item System receives User's request to cancel scanning process and returns to the Realm screen
+            \end{enumerate}
+
+            \item[9.1] User discards the scanned \ref{def:ar_obj}
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario steps \textit{1-9}
+                \item User selects option to discard the scanned object
+                \item System receives User's request and presents confirmation prompt for discarding object
+                \item User interacts with confirmation prompt
+                \begin{enumerate}[label=(\alph*)]
+                    \item User selects to discard object
+                    \item User selects to not discard object (Go back to Main scenario step \textbf{13})
+                \end{enumerate}
+                \item System receives User response and deletes object and returns to the Realm screen
+            \end{enumerate}
+
+        \end{itemize}
+        \textbf{Success Postcondition:} The User can view the new object in their inventory
+        
+    \item \label{uc:6} Generate a custom \ref{def:ar_obj} via a user prompt \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Pre-condition:} User has an account on the application \textbf{AND} is logged in to the app \textbf{AND} has navigated to the \textbf{Realm Interface} \\
+
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User is present in the Realm Interface and performs actions to navigate to the object prompt generation interface
+            \item System presents the object prompt generation interface
+            \item User enters their desired prompt and confirms that the prompt is complete
+            \item System checks the prompt for profanity
+            \begin{enumerate}[label=(\alph*)]
+                \item If the prompt contains profanity, system notifies user that the prompt is invalid due to profanity and requests the user to reenter their prompt (Go to step \textbf{2})
+                \item If the prompt does not contain profanity, system accepts the prompt and generates objects
+            \end{enumerate}
+            \item User selects from an array of objects provided by the system
+            \item System provides the options to \textbf{preview the object}, \textbf{add it to user inventory} and \textbf{place object in the Realm Interface}
+            \item User selects one of the options
+            \begin{enumerate}[label=(\alph*)]
+                \item User selects the options to preview the object
+                \item User selects to add object to their inventory
+                \item User selects option to place object in the Realm Interface
+            \end{enumerate}
+            \item System performs the action selected by the user
+            \begin{enumerate}[label=(\alph*)]
+                \item User selects option to preview object
+                \begin{enumerate}
+                    \item System opens the \ref{def:ar_obj} in the Preview Interface
+                    \item User performs actions on the \ref{def:ar_obj}
+                    \begin{itemize}
+                        \item User rotates the object to view different angles
+                        \item User zooms in and out to view object details
+                    \end{itemize}
+                    \item System provides the view of the \ref{def:ar_obj} according to the User's performed actions
+                \end{enumerate}
+                \item User selects option to add object to inventory
+                \begin{enumerate}
+                    \item System adds object to user inventory
+                \end{enumerate}
+                \item User selects option to place object in the Realm space (Go to \ref{uc:7} Main Success Scenario)
+            \end{enumerate}
+        \end{enumerate}
+
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[\textbf{(2.1, 4(b).1)}] User cancels the \ref{def:ar_obj} generation
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario steps \textit{1-2 or 1-4(b)}
+                \item User selects control to cancel object generation via prompt
+                \item System receives user request and returns to the Realm interface
+            \end{enumerate}
+
+            \item[\textbf{(2.1, 4(a).1)}] User reenters prompt due to presence of profanity
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario steps \textit{1-2 or 1-4(a)}
+                \item User is notified of profanity in the prompt and reenters their prompt
+                \item Go to Main scenario step 4
+                \item Continues Main Scenario from step 5
+            \end{enumerate}
+
+            \item[\textbf{(2.1, 4(b).1)}] User reenters prompt for a different variation
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main scenario steps \textit{1-2 or 1-4(b)}
+                \item User reenters their prompt
+                \item System validates user prompt (Go to Main scenario step \textbf{4})
+                \item Continues Main Scenario from step \textbf{5}
+            \end{enumerate}
+
+        \end{itemize}
+        \textbf{Success Postcondition:} The User can view the new object in their inventory
+        
+    \item \label{uc:9} Preview AR objects from the Inventory \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Pre-condition:} User has an account on the system \textbf{AND} is logged into the system \\
+
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User navigates to their profile view
+            \item System presents the User's profile and inventory
+            \item User selects controls to view their entire inventory
+            \item System provides complete view of the inventory
+            \item User selects an \ref{def:ar_obj} they would like to view
+            \item System provides the option to preview the \ref{def:ar_obj}
+            \item User selects the option to preview the \ref{def:ar_obj}
+            \item System opens the \ref{def:ar_obj} in the Preview Interface
+            \item User performs actions on the \ref{def:ar_obj}
+            \begin{enumerate}[label=(\alph*)]
+                \item User rotates the object to view different angles
+                \item User zooms in and out to view object details
+            \end{enumerate}
+            \item System provides the view of the \ref{def:ar_obj} according to the User's performed actions
+        \end{enumerate}
+
+        \textbf{Secondary Scenarios:}
+        N/A
+
+        \textbf{Success Postcondition:} User is able to view an \ref{def:ar_obj} in their inventory from different angles
+
+    \item \label{uc:11} Check the map to see where objects are placed in the world \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Pre-condition:} User has an account on the application \textbf{AND} is logged in to the app \\
+
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User performs actions to navigate to the Map view
+            \item System presents the Maps Interface
+            \item User observes location markers with the count of the objects and selects a marker
+            \item System shows information and options for the marker
+            \begin{enumerate}[label=(\alph*)]
+                \item System displays number of visits to the marker, the number of objects available and the area covered by the marker
+                \item System provides the options to receive directions for the selected marker (Go to \ref{uc:12})
+            \end{enumerate}
+        \end{enumerate}
+
+        \textbf{Secondary Scenarios:}
+        N/A
+
+        \textbf{Success Postcondition:} User is able to view cluster of objects in a confined area on the Maps Interface
+
+    \item \label{uc:12}  Provide directions to a selected group of objects \\
+        \textbf{Actor}: \ref{def:gen_user} \\
+        \textbf{Pre-condition:} User has an account on the application \textbf{AND} is logged in to the app \textbf{AND} is present on the Maps Interface \\
+
+        \textbf{Main Success Scenario:}
+        \begin{enumerate}[label=\textbf{\arabic*.}]
+            \item User selects a location marker on the Map Interface
+            \item System shows information about the marker (see \ref{uc:11} Main scenario step \textit{4(a)}) and the option to provide directions for the marker
+            \item User selects the option to get directions for the location markers
+            \item System provides a set of instructions to direct the user to the marker
+            \item User views the instructions and follows the directions provided
+            \item System tracks User location to check if they have arrived at the marker location (happens concurrently with step 5)
+            \item User arrives at the selected marker
+            \item System is informed that the user has arrived at the marker location (based on device location) and notifies the User of their arrival
+        \end{enumerate}
+
+        \textbf{Secondary Scenarios:}
+        \begin{itemize}
+            \item[{\textbf{6.1}}] User ends navigation to marker before reaching the marker
+            \begin{enumerate}[label=\textbf{\arabic*.}]
+                \item Main Sceanrio step \textit{1-6}
+                \item User selects option to end navigation to the marker
+                \item System provides a confirmation prompt for ending the navigation
+                \item User responds to the confirmation prompt
+                \begin{enumerate}[label=(\alph*)]
+                    \item User selects option to confirm terminating navigation
+                    \item User selects option to deny terminating the navigation and continues navigation (Go to Main scenario step \textit{5})
+                \end{enumerate}
+                \item System ends navigation and returns to the Map Interface
+            \end{enumerate}
+        \end{itemize}
+        \textbf{Success Postcondition:} The User is provided the directions to their chosen marker and have arrived at the marker location
+
+    \item \label{uc:13} \textbf{Change App Settings} \\
         \textbf{Actor}: \ref{def:gen_user} \\
         \textbf{Precondition:} User is logged into the app.
     
@@ -1059,14 +1415,12 @@ Tutorial                 & 3 &                             \\
                 \item System presents an error message and prompts the user to enter valid information.
             \end{enumerate}
         \end{itemize}
-        
         \textbf{Success Postcondition:} The user’s profile is successfully updated and reflects the new information.
-
 
     \item \label{uc:26}  Act on reported \ref{def:ar_obj} \\
         \textbf{Actor}: \ref{def:admin} \\
         \textbf{Pre-condition:} Admin is logged into the app \textbf{AND} Admin has navigated to the \textbf{Admin Interface} \\
-    
+
         \textbf{Main Success Scenario:}
         \begin{enumerate}[label=\textbf{\arabic*.}]
             \item Admin navigates to the “AR Object Reports” panel (\hyperref[ssub:admin_interface]{AI-FR2.1})
@@ -1084,8 +1438,8 @@ Tutorial                 & 3 &                             \\
             \item System removes user report of \ref{def:ar_obj}
             \item System brings admin back to “AR Object Reports” panel
         \end{enumerate}
-    
-        \textbf{Secondary Scenarios:} 
+
+        \textbf{Secondary Scenarios:}
         \begin{itemize}
             \item[{\bf 5.1:}] Admin does not open \ref{def:ar_obj} preview
             \begin{enumerate}[label=\textbf{\arabic*.}]
@@ -1102,7 +1456,7 @@ Tutorial                 & 3 &                             \\
     \item \label{uc:27}  Act on reported \ref{def:ar_obj} \\
         \textbf{Actor}: \ref{def:admin} \\
         \textbf{Pre-condition:} Admin is logged into the app \textbf{AND} Admin has navigated to the \textbf{Admin Interface} \\
-    
+
         \textbf{Main Success Scenario:}
         \begin{enumerate}[label=\textbf{\arabic*.}]
             \item Admin navigates to the “Organization User Requests” panel (\hyperref[ssub:admin_interface]{AI-FR2.2})
@@ -1116,8 +1470,8 @@ Tutorial                 & 3 &                             \\
             \item System removes organization user request
             \item System brings admin back to “Organization User Requests” panel
         \end{enumerate}
-    
-        \textbf{Secondary Scenarios:} 
+
+        \textbf{Secondary Scenarios:}
         \begin{itemize}
             \item[{\bf 6.1:}] Admin reviews information and denies the request
             \begin{enumerate}[label=\textbf{\arabic*.}]
@@ -1127,7 +1481,7 @@ Tutorial                 & 3 &                             \\
         \end{itemize}
         \textbf{Success Postcondition:} An \ref{def:org_user} account request is resolved (approved or denied).
 
-    \item \label{uc:23} \textbf{Unfriend a Friend} \\
+    \item \label{uc:28} \textbf{Unfriend a Friend} \\
         \textbf{Actor}: \ref{def:gen_user} \\
         \textbf{Precondition:} User is logged into the app AND the friend is currently on the user's friend list.
     
@@ -1164,7 +1518,6 @@ Tutorial                 & 3 &                             \\
         
         \textbf{Success Postcondition:} The selected friend is successfully unfriended and removed from the user's friend list.
 
-    
 \end{enumerate}
 
 \subsection{Quality of Service}
@@ -1279,7 +1632,7 @@ Tutorial                 & 3 &                             \\
 \label{sub:activity_diagrams}
 
 \begin{center}
-    \includegraphics[scale=0.4]{SequenceDiagrams/UC4.png}\\ 
+    \includegraphics[scale=0.4]{SequenceDiagrams/UC4.png}\\
     \textbf{Figure 2: UC4}
 \end{center}
 
