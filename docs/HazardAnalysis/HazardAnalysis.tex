@@ -109,10 +109,6 @@ documentation, and/or test cases.}
         \hline
         \multicolumn{1}{|c|}{\textbf{Design Function}} & \multicolumn{1}{c|}{\textbf{Failure Modes}} & \multicolumn{1}{c|}{\textbf{Effects of Failure}} & \multicolumn{1}{c|}{\textbf{Causes of Failure}} & \multicolumn{1}{|c|}{\textbf{Detection}} & \multicolumn{1}{c|}{\textbf{Recommended Action}} & \multicolumn{1}{c|}{\textbf{Req.}} & \multicolumn{1}{c|}{\textbf{Ref.}} \\
         \hline
-        Object Placement & System fails to store AR object instance in database & User has to redo the object placement workflow, wasting their time & Database failure, Back-end overwhelmed with traffic & Provide useful error messages from back-end to app client & Implement automatic retry mechanism for AR object instance storage in the case of storage failure & RR-1, RR-2 & H1-1\\
-        \hline
-        Object Instance Storage & Database becomes corrupted & Users lose access to their (and other's) AR object instances & Faulty storage devices on server, Bugs in database management software & Automated periodic database testing & Implement a mechanism to restore the database from a backup if necessary, based on automated database testing & RR-3, RR-4 & H2-1 \\
-        \hline
         Privacy and Data Protection & User data is exposed to unauthorized users & Loss of user trust, potential legal implications, data breaches & Weak encryption, improper access control policies and other security vulnerabilities & Regular security audits, reports of unauthorized access & Implement strong encryption protocols, two-factor authentication, and regular security updates & SR-5, SR-6 & H3-1 \\
         \hline
         AR Object Rendering &  AR objects fail to render or display incorrectly in the user’s environment & Users are unable to see placed objects or experience visual glitches & Device camera issues, insufficient processing power, software bugs, network issues & User-reported issues, monitoring rendering logs & Optimize rendering algorithms for performance; implement fallback modes for low-performance devices & SR-7 & H4-1 \\
@@ -128,10 +124,6 @@ documentation, and/or test cases.}
 \wss{Newly discovered requirements.  These should also be added to the SRS.  (A rationale design process how and why to fake it.)}
 
 \begin{enumerate}[label=\textbf{SR-\arabic*},ref=SR-\arabic*]
-    \item \label{SR-1} The system shall include a flow meter to measure insulin output flow.
-    \item \label{SR-2} The system shall have an infusion delivery control mechanism.
-    \item \label{SR-3} The system shall detect incorrect basal or bolus bounds settings.
-    \item \label{SR-4} The system shall notify the user when insulin levels are low.
     \item \label{SR-5} The system shall implement encryption protocols to protect user data when storing.
     \item \label{SR-6} The system shall provide a multi-factor authentication option for user accounts to enhance security.
     \item \label{SR-7} The system shall provide fallback modes for rendering AR objects on low-performance devices to ensure accessibility for all users.
@@ -139,9 +131,6 @@ documentation, and/or test cases.}
     \item \label{SR-9} The system shall display indicators to alert users when rendering might cause discomfort (e.g., rapid movement or flashing effects).
 
 \end{enumerate}
-
-% Example of referencing the requirements
-In this analysis, we focus on requirement \ref{SR-1} and \ref{SR-2}, which are critical for ensuring proper insulin delivery. Additionally, \ref{SR-3} helps mitigate failure due to incorrect settings.
 
 \section{Roadmap}
 
