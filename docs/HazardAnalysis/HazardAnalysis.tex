@@ -9,7 +9,6 @@
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{pdflscape}
-\usepackage{multirow}
 \usepackage{enumitem}  % For custom numbering of lists
 \geometry{a4paper, margin=1in}
 \renewcommand{\arraystretch}{1.3} % Adjust row height for better fit
@@ -41,16 +40,13 @@
 \pagenumbering{roman}
 
 \begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
-\bottomrule
-\end{tabularx}
+    \caption{Revision History} \label{rev_history_table}
+    \begin{tabularx}{\textwidth}{p{3cm}p{2cm}p{3cm}X}
+        \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Author(s)}} & {\textbf{Notes}} \\
+        \midrule
+        2024-10-18               & 1.0         & All      & Initial Hazard Analysis      \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 ~\newpage
@@ -86,6 +82,11 @@ minimize the number of assumptions that remove potential hazards.  For instance,
 you could assume a part will never fail, but it is generally better to include
 this potential failure mode.}
 
+\begin{itemize}
+    \item The software system is only used in the intended software environments (unmodified iOS and Android Versions 16.0+ and 12.0+ respectively as per distribution requirement DI-D1)
+    \item The software system is only used on devices that meet the minimum hardware requirements (GPS, camera, and all required sensors present)
+\end{itemize}
+
 \section{Failure Mode and Effect Analysis}
 
 \wss{Include your FMEA table here. This is the most important part of this document.}
@@ -97,7 +98,16 @@ requirements.}
 entered in the table, including strategies involving providing additional
 documentation, and/or test cases.}
 
-\subsubsection{Failure Mode and Effects Analysis Table}
+\subsection{Hazards Out of Scope}
+
+Hazards resulting from the failure of the following components will not be considered in this analysis as the software system cannot mitigate hazards in these external systems 
+\begin{itemize}
+    \item User device hardware
+    \item Back-end server hardware
+\end{itemize}
+
+
+\subsection{Failure Mode and Effects Analysis Table}
 
 \newgeometry{left=0.2in,right=0.2in,top=0.2in,bottom=0.2in}
 \begin{landscape}
@@ -107,7 +117,11 @@ documentation, and/or test cases.}
     \begin{footnotesize}
     \begin{tabular}{|p{1in}|p{1in}|p{1.5in}|p{1.5in}|p{1.5in}|p{2in}|p{0.4in}|p{0.4in}|}
         \hline
-        \multicolumn{1}{|c|}{\textbf{Design Function}} & \multicolumn{1}{c|}{\textbf{Failure Modes}} & \multicolumn{1}{c|}{\textbf{Effects of Failure}} & \multicolumn{1}{c|}{\textbf{Causes of Failure}} & \multicolumn{1}{|c|}{\textbf{Detection}} & \multicolumn{1}{c|}{\textbf{Recommended Action}} & \multicolumn{1}{c|}{\textbf{Req.}} & \multicolumn{1}{c|}{\textbf{Ref.}} \\
+        \multicolumn{1}{|c|}{\textbf{Design Function}} & \multicolumn{1}{c|}{\textbf{Failure Modes}} & \multicolumn{1}{c|}{\textbf{Effects of Failure}} & \multicolumn{1}{c|}{\textbf{Causes of Failure}} & \multicolumn{1}{|c|}{\textbf{Detection}} & \multicolumn{1}{c|}{\textbf{Recommended Action}} & \multicolumn{1}{c|}{\textbf{Req}} & \multicolumn{1}{c|}{\textbf{Ref.}} \\
+        \hline
+        Object Placement & System fails to store AR object instance in database & User has to redo the object placement workflow, wasting their time & Database failure, Back-end overwhelmed with traffic & Provide useful error messages from back-end to app client & Implement automatic retry mechanism for AR object instance storage in the case of storage failure & RR-1, RR-2 & H1-1\\
+        \hline
+        Object Instance Storage & Database becomes corrupted & Users lose access to their (and other's) AR object instances & Faulty storage devices on server, Bugs in database management software & Automated periodic database testing & Implement a mechanism to restore the database from a backup if necessary, based on automated database testing & RR-3, RR-4 & H2-1 \\
         \hline
         Privacy and Data Protection & User data is exposed to unauthorized users & Loss of user trust, potential legal implications, data breaches & Weak encryption, improper access control policies and other security vulnerabilities & Regular security audits, reports of unauthorized access & Implement strong encryption protocols, two-factor authentication, and regular security updates & SR-5, SR-6 & H3-1 \\
         \hline
@@ -130,6 +144,15 @@ documentation, and/or test cases.}
     \item \label{SR-8} The system shall allow users to customize rendering settings (e.g., brightness, effects) to minimize discomfort or health risks associated with viewing objects.
     \item \label{SR-9} The system shall display indicators to alert users when rendering might cause discomfort (e.g., rapid movement or flashing effects).
 
+\end{enumerate}
+
+\subsection{Robustness Requirements}
+
+\begin{enumerate}[label=\textbf{RR-\arabic*},ref=SR-\arabic*]
+    \item \label{RR-1} The system must have an automated mechanism to retry the upload and storage of object instances when an initial attempt fails
+    \item \label{RR-2} All internal APIs of the system must provide useful error messages in the case of system failures
+    \item \label{RR-3} The system must automatically back up databases daily
+    \item \label{RR-4} The system must have a mechanism to restore a database from a backup in the case of unrecoverable failure / corruption
 \end{enumerate}
 
 \section{Roadmap}
