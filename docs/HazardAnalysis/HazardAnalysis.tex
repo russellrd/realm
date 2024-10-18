@@ -40,16 +40,13 @@
 \pagenumbering{roman}
 
 \begin{table}[hp]
-\caption{Revision History} \label{TblRevisionHistory}
-\begin{tabularx}{\textwidth}{llX}
-\toprule
-\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
-\midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
-... & ... & ...\\
-\bottomrule
-\end{tabularx}
+    \caption{Revision History} \label{rev_history_table}
+    \begin{tabularx}{\textwidth}{p{3cm}p{2cm}p{3cm}X}
+        \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Author(s)}} & {\textbf{Notes}} \\
+        \midrule
+        2024-10-18               & 1.0         & All      & Initial Hazard Analysis      \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 ~\newpage
@@ -87,8 +84,8 @@ you could assume a part will never fail, but it is generally better to include
 this potential failure mode.}
 
 \begin{itemize}
-    \item The software system is only used in the intended software environments (unmodified iOS, Android)
-    \item The software system is only used on devices that meet the minimum hardware requirements (all required sensors present)
+    \item The software system is only used in the intended software environments (unmodified iOS and Android Versions 16.0+ and 12.0+ respectively as per distribution requirement DI-D1)
+    \item The software system is only used on devices that meet the minimum hardware requirements (GPS, camera, and all required sensors present)
 \end{itemize}
 
 \section{Failure Mode and Effect Analysis}
@@ -121,7 +118,7 @@ Hazards resulting from the failure of the following components will not be consi
     \begin{footnotesize}
     \begin{tabular}{|p{1in}|p{1in}|p{1.5in}|p{1.5in}|p{1.5in}|p{2in}|p{0.4in}|p{0.4in}|}
         \hline
-        \multicolumn{1}{|c|}{\textbf{Design Function}} & \multicolumn{1}{c|}{\textbf{Failure Modes}} & \multicolumn{1}{c|}{\textbf{Effects of Failure}} & \multicolumn{1}{c|}{\textbf{Causes of Failure}} & \multicolumn{1}{|c|}{\textbf{Detection}} & \multicolumn{1}{c|}{\textbf{Recommended Action}} & \multicolumn{1}{c|}{\textbf{SR}} & \multicolumn{1}{c|}{\textbf{Ref.}} \\
+        \multicolumn{1}{|c|}{\textbf{Design Function}} & \multicolumn{1}{c|}{\textbf{Failure Modes}} & \multicolumn{1}{c|}{\textbf{Effects of Failure}} & \multicolumn{1}{c|}{\textbf{Causes of Failure}} & \multicolumn{1}{|c|}{\textbf{Detection}} & \multicolumn{1}{c|}{\textbf{Recommended Action}} & \multicolumn{1}{c|}{\textbf{Req}} & \multicolumn{1}{c|}{\textbf{Ref.}} \\
         \hline
         Object Placement & System fails to store AR object instance in database & User has to redo the object placement workflow, wasting their time & Database failure, Back-end overwhelmed with traffic & Provide useful error messages from back-end to app client & Implement automatic retry mechanism for AR object instance storage in the case of storage failure & RR-1, RR-2 & H1-1\\
         \hline
