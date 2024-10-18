@@ -57,16 +57,15 @@
 
 \pagenumbering{arabic}
 
-\wss{You are free to modify this template.}
-
 \section{Introduction}
 
-\wss{You can include your definition of what a hazard is here.}
+Hazard Analysis is a key step in the engineering process, which is used to identify potential risks and dangers in a system or process. It helps us to ensure the safety and risk management of a system. By systematically analyzing potential risks of the system, we can work to mitigate these potential harms and any consequences that may arise. This document is a key part of the overall safety of the Realm app. It aims to help our stakeholders understand the possible risks of the app and all precautions we have in place to prevent such risks.
 
 \section{Scope and Purpose of Hazard Analysis}
 
-\wss{You should say what \textbf{loss} could be incurred because of the
-hazards.}
+The scope of this Hazard Analysis covers the identification, evaluation, and mitigation of hazards as it relates to the entire development process of the Realm project. Hazards which are considered in this document include features within the app, and external hazards through the environment.\\
+
+Certain losses that could be incurred because of hazards are loss of privacy, including unauthorized tracking of users location and unauthorized sharing of personal data, such as email or password. Another loss is health risks from bright flashes within the app, which can trigger seizures in users that may be suffering from photosensitive epilepsy. Furthermore, human injury may occur from accidents because of users being distracted from AR content.
 
 \section{System Boundaries and Components}
 
@@ -124,6 +123,10 @@ Hazards resulting from the failure of the following components will not be consi
         \hline
         Object Instance Storage & Database becomes corrupted & Users lose access to their (and other's) AR object instances & Faulty storage devices on server, Bugs in database management software & Automated periodic database testing & Implement a mechanism to restore the database from a backup if necessary, based on automated database testing & RR-3, RR-4 & H2-1 \\
         \hline
+        Privacy and Data Protection & User data is exposed to unauthorized users & Loss of user trust, potential legal implications, data breaches & Weak encryption, improper access control policies and other security vulnerabilities & Regular security audits, reports of unauthorized access & Implement strong encryption protocols, two-factor authentication, and regular security updates & SR-5, SR-6 & H3-1 \\
+        \hline
+        AR Object Rendering &  AR objects fail to render or display incorrectly in the user’s environment & Users are unable to see placed objects or experience visual glitches & Device camera issues, insufficient processing power, software bugs, network issues & User-reported issues, monitoring rendering logs & Optimize rendering algorithms for performance; implement fallback modes for low-performance devices & SR-7 & H4-1 \\
+        \hline
     \end{tabular}
     \end{footnotesize}
 \end{table}
@@ -134,6 +137,14 @@ Hazards resulting from the failure of the following components will not be consi
 
 \wss{Newly discovered requirements.  These should also be added to the SRS.  (A rationale design process how and why to fake it.)}
 
+\begin{enumerate}[label=\textbf{SR-\arabic*},ref=SR-\arabic*]
+    \item \label{SR-5} The system shall implement encryption protocols to protect user data when storing.
+    \item \label{SR-6} The system shall provide a multi-factor authentication option for user accounts to enhance security.
+    \item \label{SR-7} The system shall provide fallback modes for rendering AR objects on low-performance devices to ensure accessibility for all users.
+    \item \label{SR-8} The system shall allow users to customize rendering settings (e.g., brightness, effects) to minimize discomfort or health risks associated with viewing objects.
+    \item \label{SR-9} The system shall display indicators to alert users when rendering might cause discomfort (e.g., rapid movement or flashing effects).
+
+\end{enumerate}
 
 \subsection{Robustness Requirements}
 
@@ -143,7 +154,6 @@ Hazards resulting from the failure of the following components will not be consi
     \item \label{RR-3} The system must automatically back up databases daily
     \item \label{RR-4} The system must have a mechanism to restore a database from a backup in the case of unrecoverable failure / corruption
 \end{enumerate}
-
 
 \section{Roadmap}
 
@@ -159,16 +169,20 @@ Which requirements will be implemented in the future?}
 \input{../Reflection.tex}
 
 \begin{enumerate}
-    \item What went well while writing this deliverable? 
-    \item What pain points did you experience during this deliverable, and how
-    did you resolve them?
+    \item What went well while writing this deliverable? \\ \\
+    \hspace*{-0.97cm}\textbf{Ans.} Answer 1 \\
+    
+    \item What pain points did you experience during this deliverable, and how did you resolve them? \\ \\
+    \hspace*{-0.97cm}\textbf{Ans.} Answer 2 \\
+    
     \item Which of your listed risks had your team thought of before this
     deliverable, and which did you think of while doing this deliverable? For
-    the latter ones (ones you thought of while doing the Hazard Analysis), how
-    did they come about?
-    \item Other than the risk of physical harm (some projects may not have any
-    appreciable risks of this form), list at least 2 other types of risk in
-    software products. Why are they important to consider?
+    the latter ones (ones you thought of while doing the Hazard Analysis), how did they come about? \\ \\
+    \hspace*{-0.97cm}\textbf{Ans.} Answer 3 \\
+    
+    \item Other than the risk of physical harm (some projects may not have any appreciable risks of this form), list at least 2 other types of risk in software products. Why are they important to consider? \\ \\
+    \hspace*{-0.97cm}\textbf{Ans.} Answer 4 \\
+    
 \end{enumerate}
 
 \end{document}
