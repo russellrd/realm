@@ -148,13 +148,24 @@ Hazards resulting from the failure of the following components will not be consi
         \hline
         Privacy and Data Protection & User data is exposed to unauthorized users & Loss of user trust, potential legal implications, data breaches & Weak encryption, improper access control policies and other security vulnerabilities & Regular security audits, reports of unauthorized access & Implement strong encryption protocols, two-factor authentication, and regular security updates & SR-5, SR-6 & H3-1 \\
         \hline
-        AR Object Rendering &  AR objects fail to render or display incorrectly in the user’s environment & Users are unable to see placed objects or experience visual glitches & Device camera issues, insufficient processing power, software bugs, network issues & User-reported issues, monitoring rendering logs & Optimize rendering algorithms for performance; implement fallback modes for low-performance devices & SR-7 & H4-1 \\
+        AR Object Rendering &  AR objects fail to render or display incorrectly in the user's environment & Users are unable to see placed objects or experience visual glitches & Device camera issues, insufficient processing power, software bugs, network issues & User-reported issues, monitoring rendering logs & Optimize rendering algorithms for performance; implement fallback modes for low-performance devices & SR-7 & H4-1 \\
+        \hline
+        Object Placement & System fails to store AR object instance in database & User has to redo the object placement workflow, wasting their time & Database failure, Back-end overwhelmed with traffic & Provide useful error messages from back-end to app client & Implement automatic retry mechanism for AR object instance storage in the case of storage failure & RR-1, RR-2 & H1-1\\
+        \hline
+        Object Instance Storage & Database becomes corrupted & Users lose access to their (and other's) AR object instances & Faulty storage devices on server, Bugs in database management software & Automated periodic database testing & Implement a mechanism to restore the database from a backup if necessary, based on automated database testing & RR-3, RR-4 & H2-1 \\
+        \hline
+        Viewing AR objects accurately in the Realm screen & Location access is disabled & User is unable to accurately view object instances in their surroundings & Permission for location denied by mobile device, Location access disabled by the user, Bugs in software component synchronizing object and device location with each other & Having periodic updates of device location & Prompting user to grant location access or transitioning to an offline view of the Realm screen & ACR-1, ACR-2 & H3-1 \\
+        \hline
+        Navigating to AR object cluster & AR objects within selected cluster are deleted by the owner during navigation & User may arrive at destination with no AR objects present, Bugs in navigation software may cause app crashes & All AR objects within the targeted cluster are deleted by respective owners & Keeping track of AR object cluster count & Before starting navigation, check for existence of AR object cluster. Notify user about objects being deleted by owners. Provide option to start navigation back to original starting point & ACR-3, ROR-1 & H4-1 \\
+        & Location access is disabled & System is unable to present current user location, system is unable to display next instruction & Location access disabled by the user or device system & Having periodic updates of device location & Prompt user to grant location access to continue navigation & ACR-2 & H4-2 \\
         \hline
     \end{tabular}
     \end{footnotesize}
 \end{table}
 \end{landscape}
 \restoregeometry
+
+\pagebreak
 
 \section{Safety and Security Requirements}
 
@@ -168,6 +179,46 @@ Hazards resulting from the failure of the following components will not be consi
     \item \label{SR-9} The system shall display indicators to alert users when rendering might cause discomfort (e.g., rapid movement or flashing effects).
 
 \end{enumerate}
+\subsection{Definitions}
+
+\begin{enumerate}
+    \item \label{encryption standard} \textbf{Encryption standard} - An encryption standard is a set of algorithms used to encode data to ensure that it can be viewed by authorized users only.
+\end{enumerate}
+
+\subsection{Safety Requirements}
+
+\begin{enumerate}[label=\textbf{SAR-\arabic*},ref=SAR-\arabic*]
+    \item \label{SAR-1} The system should not distract users from their surroundings to the extent that they lose awareness of potential collisions or inadvertently enter restricted areas. \\
+    \item \label{SAR-2} The system shall have warnings for bright flashes or loud noises. \\
+    \item \label{SAR-3} The system should have the option to disable bright lights and loud noises. \\
+    \item \label{SAR-4} The system shall be designed to operate with minimal battery usage, ensuring that its consumption does not exceed the average battery usage of comparable applications within the same category. \\
+\end{enumerate}
+
+\subsection{Security Requirements}
+
+\begin{enumerate}[label=\textbf{SER-\arabic*},ref=SER-\arabic*]
+    \item \label{SER-1} The system should follow an \ref{encryption standard}encryption standard for communication between users and with the administrator. \\
+    \item \label{SER-2} The system should use a secure method of authenticating user access to system. \\
+    \item \label{SER-3} The system shall encrypt all user data stored using an \ref{encryption standard}encryption standard. \\
+    \item \label{SER-4} The system should not reveal the general user location to other general users. \\
+\end{enumerate}
+
+\subsection{Accessibility Requirements (accessibility of product features)}
+
+\begin{enumerate}[label=\textbf{ACR-\arabic*},ref=ACR-\arabic*]
+    \item \label{ACR-1} The system shall have an offline (without location syncing) view for interactive components. \\
+    \item \label{ACR-2} The system shall notify the user to grant access to needed device data. \\
+    \item \label{ACR-3} The system should allow the user to terminate navigation in the Maps components. \\
+\end{enumerate}
+
+\subsection{Robustness Requirements}
+
+\begin{enumerate}[label=\textbf{ROR-\arabic*},ref=ROR-\arabic*]
+    \item \label{ROR-1} The system shall keep track of object instance count for AR object clusters in the Maps component. \\
+\end{enumerate}
+
+% Example of referencing the requirements
+\ref{SAR-1} \ref{SAR-2} \ref{SAR-3} \ref{SAR-4}
 
 \subsection{Robustness Requirements}
 
@@ -194,18 +245,18 @@ Which requirements will be implemented in the future?}
 \begin{enumerate}
     \item What went well while writing this deliverable? \\ \\
     \hspace*{-0.97cm}\textbf{Ans.} Answer 1 \\
-    
+
     \item What pain points did you experience during this deliverable, and how did you resolve them? \\ \\
     \hspace*{-0.97cm}\textbf{Ans.} Answer 2 \\
-    
+
     \item Which of your listed risks had your team thought of before this
     deliverable, and which did you think of while doing this deliverable? For
     the latter ones (ones you thought of while doing the Hazard Analysis), how did they come about? \\ \\
     \hspace*{-0.97cm}\textbf{Ans.} Answer 3 \\
-    
+
     \item Other than the risk of physical harm (some projects may not have any appreciable risks of this form), list at least 2 other types of risk in software products. Why are they important to consider? \\ \\
     \hspace*{-0.97cm}\textbf{Ans.} Answer 4 \\
-    
+
 \end{enumerate}
 
 \end{document}
