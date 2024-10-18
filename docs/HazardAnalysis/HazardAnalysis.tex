@@ -69,11 +69,34 @@ Certain losses that could be incurred because of hazards are loss of privacy, in
 
 \section{System Boundaries and Components}
 
-\wss{Dividing the system into components will help you brainstorm the hazards.
-You shouldn't do a full design of the components, just get a feel for the major
-ones.  For projects that involve hardware, the components will typically include
-each individual piece of hardware.  If your software will have a database, or an
-important library, these are also potential components.}
+\begin{center}
+    \includegraphics[scale=0.4]{sys_bound_comp.png}\\
+    \textbf{Figure 1: System Boundaries and Components}
+\end{center}
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Realm App}
+    \begin{enumerate}
+        \item Realm Interface / Sub-Realms
+        \item Tours
+    \end{enumerate}
+    \item \textbf{External Libraries}
+    \begin{enumerate}
+        \item Maps
+        \item AR
+        \item Authentication
+    \end{enumerate}
+    \item \textbf{Cloud}
+    \begin{enumerate}
+        \item Accounts
+        \item Synced Object Data
+    \end{enumerate}
+    \item \textbf{Hardware}
+    \begin{enumerate}
+        \item Android Devices
+        \item iOS Devices
+    \end{enumerate}
+\end{enumerate}
 
 \section{Critical Assumptions}
 
