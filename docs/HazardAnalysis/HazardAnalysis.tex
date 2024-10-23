@@ -136,7 +136,7 @@ There are two types of sub-systems that make up the project:
         \hline
         AR Object Rendering &  AR objects fail to render or display incorrectly in the user's environment & Users are unable to see placed objects or experience visual glitches & Device camera issues, insufficient processing power, software bugs, network issues & User-reported issues, monitoring rendering logs & Optimize rendering algorithms for performance; implement fallback modes for low-performance devices & SR-7 & H4-1 \\
         \hline
-        Object Placement & System fails to store AR object instance in database & User has to redo the object placement workflow, wasting their time & Database failure, Back-end overwhelmed with traffic & Provide useful error messages from back-end to app client & Implement automatic retry mechanism for AR object instance storage in the case of storage failure & ROR-1, ROR-2 & H1-1\\
+        Viewing AR objects accurately in the Realm screen & Location access is disabled & User is unable to accurately view object instances in their surroundings & Permission for location denied by mobile device, Location access disabled by the user, Bugs in software component synchronizing object and device location with each other & Having periodic updates of device location & Prompting user to grant location access or transitioning to an offline view of the Realm screen & \ref{ACR-1}, \ref{ACR-2} & H3-1 \\
         \hline
         Object Instance Storage & Database becomes corrupted & Users lose access to their (and other's) AR object instances & Faulty storage devices on server, Bugs in database management software & Automated periodic database testing & Implement a mechanism to restore the database from a backup if necessary, based on automated database testing & ROR-3, ROR-4 & H2-1 \\
         \hline
@@ -148,9 +148,11 @@ There are two types of sub-systems that make up the project:
         & & & & & & & \\
         & Areas are maliciously spammed with objects & Users have a poor viewing experience, people and businesses can be harrassed & Unmoderated user generated content, unrestricted object placement & User object reports & There should be a system to moderate user generated content based on user reports and a system to prevent users from spamming object placements in one location & AI-FR2.1, OP-FR3 & H4-1 \\
         \hline
-        Navigating to AR object cluster & AR objects within selected cluster are deleted by the owner during navigation & User may arrive at destination with no AR objects present, Bugs in navigation software may cause app crashes & All AR objects within the targeted cluster are deleted by respective owners & Keeping track of AR object cluster count & Before starting navigation, check for existence of AR object cluster. Notify user about objects being deleted by owners. Provide option to start navigation back to original starting point & ACR-3, ROR-1 & H4-2 \\
+        Navigating to AR object cluster & AR objects within selected cluster are deleted by the owner during navigation & User may arrive at destination with no AR objects present, Bugs in navigation software may cause app crashes & All AR objects within the targeted cluster are deleted by respective owners & Keeping track of AR object cluster count & Before starting navigation, check for existence of AR object cluster. Notify user about objects being deleted by owners. Provide option to start navigation back to original starting point & \ref{ACR-3}, \ref{ROR-1} & H4-1 \\
         & & & & & & & \\
-        & Location access is disabled & System is unable to present current user location, system is unable to display next instruction & Location access disabled by the user or device system & Having periodic updates of device location & Prompt user to grant location access to continue navigation & ACR-2 & H4-2 \\
+        & Location access is disabled & System is unable to present current user location, system is unable to display next instruction & Location access disabled by the user or device system & Having periodic updates of device location & Prompt user to grant location access to continue navigation & \ref{ACR-2} & H4-2 \\
+        & & & & & & & \\
+        & System navigates user to AR object cluster located in a restricted area/non-public area & User would be frustrated due to wasted time and effort, user could arrive at a dangerous or harmful area, user could trespass onto private property & System fails to distinguish between restricted and non-restricted areas & Have a record of restricted/private areas, only provide navigation options for unrestricted areas & System denies navigation to the area by notifying the user about the area destination being restricted to the general public & \ref{PVR-1} & H4-3 \\
         \hline
     \end{tabular}
     \end{footnotesize}
@@ -161,8 +163,6 @@ There are two types of sub-systems that make up the project:
 \pagebreak
 
 \section{Safety and Security Requirements}
-
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A rationale design process how and why to fake it.)}
 
 \begin{enumerate}[label=\textbf{SR-\arabic*},ref=SR-\arabic*]
     \item \label{SR-5} The system shall implement encryption protocols to protect user data when storing.
@@ -175,6 +175,7 @@ There are two types of sub-systems that make up the project:
 
 \begin{enumerate}
     \item \label{encryption standard} \textbf{Encryption standard} - An encryption standard is a set of algorithms used to encode data to ensure that it can be viewed by authorized users only.
+    \item \label{restricted area} \textbf{Restricted Area} - A space that should not be accessible to the general public.
 \end{enumerate}
 
 \subsection{Safety Requirements}
@@ -201,7 +202,7 @@ There are two types of sub-systems that make up the project:
 \begin{enumerate}[label=\textbf{ACR-\arabic*},ref=ACR-\arabic*]
     \item \label{ACR-1} The system shall have an offline (without location syncing) view for interactive components. \\
     \item \label{ACR-2} The system shall notify the user to grant access to needed device data. \\
-    \item \label{ACR-3} The system should allow the user to terminate navigation in the Maps components. \\
+    \item \label{ACR-3} The system should allow the user to terminate navigation in the Maps component. \\
 \end{enumerate}
 
 \subsection{Robustness Requirements}
@@ -211,7 +212,13 @@ There are two types of sub-systems that make up the project:
     \item \label{ROR-2} All internal APIs of the system must provide useful error messages in the case of system failures \\
     \item \label{ROR-3} The system must automatically back up databases daily \\
     \item \label{ROR-4} The system must have a mechanism to restore a database from a backup in the case of unrecoverable failure / corruption \\
-    \item \label{ROR-1} The system shall keep track of object instance count for AR object clusters in the Maps component. \\
+    \item \label{ROR-5} The system shall keep track of object instance count for AR object clusters in the Maps component. \\
+\end{enumerate}
+
+\subsection{Privacy Requirements}
+
+\begin{enumerate}[label=\textbf{PVR-\arabic*},ref=PVR-\arabic*]
+    \item \label{PVR-1} The system should be able to identify restricted areas \\
 \end{enumerate}
 
 \section{Roadmap}
