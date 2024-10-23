@@ -110,38 +110,13 @@ There are two types of sub-systems that make up the project:
 
 \section{Critical Assumptions}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
-
 \begin{itemize}
     \item The software system is only used in the intended software environments (unmodified iOS and Android Versions 16.0+ and 12.0+ respectively as per distribution requirement DI-D1)
     \item The software system is only used on devices that meet the minimum hardware requirements (GPS, camera, and all required sensors present)
+    \item The user device hardware will not fail for reasons unrelated to the software system
 \end{itemize}
 
 \section{Failure Mode and Effect Analysis}
-
-\wss{Include your FMEA table here. This is the most important part of this document.}
-\wss{The safety requirements in the table do not have to have the prefix SR.
-The most important thing is to show traceability to your SRS. You might trace to
-requirements you have already written, or you might need to add new
-requirements.}
-\wss{If no safety requirement can be devised, other mitigation strategies can be
-entered in the table, including strategies involving providing additional
-documentation, and/or test cases.}
-
-\subsection{Hazards Out of Scope}
-
-Hazards resulting from the failure of the following components will not be considered in this analysis as the software system cannot mitigate hazards in these external systems
-\begin{itemize}
-    \item User device hardware
-    \item Back-end server hardware
-\end{itemize}
-
-
-\subsection{Failure Mode and Effects Analysis Table}
-\label{ssub:fmea}
 
 \newgeometry{left=0.2in,right=0.2in,top=0.2in,bottom=0.2in}
 \begin{landscape}
@@ -168,8 +143,13 @@ Hazards resulting from the failure of the following components will not be consi
         Viewing AR objects in the Realm screen & User collides with a real-world object & User is potentially injured, disoriented, and/or damages a real-world object & User is distracted by AR object(s) in the Realm screen and fails to see a real-world hazard right in front of them & Mobile sensors to keep track of user distance from real-world objects & A warning will be displayed through the app when a user is close to an object and is on a collision course & \ref{SAR-1}, \ref{SAR-5} & H3-1 \\
         & & & & & & & \\
         & Location access is disabled & User is unable to accurately view object instances in their surroundings & Permission for location denied by mobile device, Location access disabled by the user, Bugs in software component synchronizing object and device location with each other & Having periodic updates of device location & Prompting user to grant location access or transitioning to an offline view of the Realm screen & ACR-1, ACR-2 & H3-2 \\
+        & & & & & & & \\
+        & User is presented with offensive or obscene content & User has a bad time using the app, or experiences psychological distress & Unmoderated user generated content & User object reports, review process for tours & There should be a system to moderate user generated content based on user reports & AI-FR2.1 & H4-1 \\
+        & & & & & & & \\
+        & Areas are maliciously spammed with objects & Users have a poor viewing experience, people and businesses can be harrassed & Unmoderated user generated content, unrestricted object placement & User object reports & There should be a system to moderate user generated content based on user reports and a system to prevent users from spamming object placements in one location & AI-FR2.1, OP-FR3 & H4-1 \\
         \hline
-        Navigating to AR object cluster & AR objects within selected cluster are deleted by the owner during navigation & User may arrive at destination with no AR objects present, Bugs in navigation software may cause app crashes & All AR objects within the targeted cluster are deleted by respective owners & Keeping track of AR object cluster count & Before starting navigation, check for existence of AR object cluster. Notify user about objects being deleted by owners. Provide option to start navigation back to original starting point & ACR-3, ROR-1 & H4-1 \\
+        Navigating to AR object cluster & AR objects within selected cluster are deleted by the owner during navigation & User may arrive at destination with no AR objects present, Bugs in navigation software may cause app crashes & All AR objects within the targeted cluster are deleted by respective owners & Keeping track of AR object cluster count & Before starting navigation, check for existence of AR object cluster. Notify user about objects being deleted by owners. Provide option to start navigation back to original starting point & ACR-3, ROR-1 & H4-2 \\
+        & & & & & & & \\
         & Location access is disabled & System is unable to present current user location, system is unable to display next instruction & Location access disabled by the user or device system & Having periodic updates of device location & Prompt user to grant location access to continue navigation & ACR-2 & H4-2 \\
         \hline
     \end{tabular}
