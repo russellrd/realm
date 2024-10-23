@@ -70,9 +70,15 @@ Certain losses that could be incurred because of hazards are loss of privacy, in
 \section{System Boundaries and Components}
 
 \begin{center}
-    \includegraphics[scale=0.4]{sys_bound_comp.png}\\
+    \includegraphics[scale=0.5]{sys_bound_comp.png} \\
     \textbf{Figure 1: System Boundaries and Components}
 \end{center}
+
+There are two types of sub-systems that make up the project:
+\begin{itemize}
+    \item \emph{Internal}: These are sub-systems that are designed and implemented by us for this project.
+    \item \emph{External}: These are sub-systems that are created by a third-party.
+\end{itemize}
 
 \begin{enumerate}[label=\textbf{\arabic*.}]
     \item \textbf{Realm App}
@@ -80,22 +86,26 @@ Certain losses that could be incurred because of hazards are loss of privacy, in
         \item Realm Interface / Sub-Realms
         \item Tours
     \end{enumerate}
+    \textbf{On Failure:} \emph{See \ref{ssub:fmea}}
+    \item \textbf{Cloud}
+    \begin{enumerate}
+        \item Accounts
+        \item Synced Object Data
+    \end{enumerate}
+    \textbf{On Failure:} \emph{See \ref{ssub:fmea}}
     \item \textbf{External Libraries}
     \begin{enumerate}
         \item Maps
         \item AR
         \item Authentication
     \end{enumerate}
-    \item \textbf{Cloud}
-    \begin{enumerate}
-        \item Accounts
-        \item Synced Object Data
-    \end{enumerate}
+    \textbf{On Failure:} A message will be displayed to inform the user that the app can't connect to a specific service.
     \item \textbf{Hardware}
     \begin{enumerate}
         \item Android Devices
         \item iOS Devices
     \end{enumerate}
+    \textbf{On Failure:} The user will get information from the hardware device itself.
 \end{enumerate}
 
 \section{Critical Assumptions}
@@ -130,7 +140,9 @@ Certain losses that could be incurred because of hazards are loss of privacy, in
         \hline
         Object Instance Storage & Database becomes corrupted & Users lose access to their (and other's) AR object instances & Faulty storage devices on server, Bugs in database management software & Automated periodic database testing & Implement a mechanism to restore the database from a backup if necessary, based on automated database testing & ROR-3, ROR-4 & H2-1 \\
         \hline
-        Viewing AR objects accurately in the Realm screen & Location access is disabled & User is unable to accurately view object instances in their surroundings & Permission for location denied by mobile device, Location access disabled by the user, Bugs in software component synchronizing object and device location with each other & Having periodic updates of device location & Prompting user to grant location access or transitioning to an offline view of the Realm screen & ACR-1, ACR-2 & H3-1 \\
+        Viewing AR objects in the Realm screen & User collides with a real-world object & User is potentially injured, disoriented, and/or damages a real-world object & User is distracted by AR object(s) in the Realm screen and fails to see a real-world hazard right in front of them & Mobile sensors to keep track of user distance from real-world objects & A warning will be displayed through the app when a user is close to an object and is on a collision course & \ref{SAR-1}, \ref{SAR-5} & H3-1 \\
+        & & & & & & & \\
+        & Location access is disabled & User is unable to accurately view object instances in their surroundings & Permission for location denied by mobile device, Location access disabled by the user, Bugs in software component synchronizing object and device location with each other & Having periodic updates of device location & Prompting user to grant location access or transitioning to an offline view of the Realm screen & ACR-1, ACR-2 & H3-2 \\
         & & & & & & & \\
         & User is presented with offensive or obscene content & User has a bad time using the app, or experiences psychological distress & Unmoderated user generated content & User object reports, review process for tours & There should be a system to moderate user generated content based on user reports & AI-FR2.1 & H4-1 \\
         & & & & & & & \\
@@ -158,7 +170,6 @@ Certain losses that could be incurred because of hazards are loss of privacy, in
     \item \label{SR-7} The system shall provide fallback modes for rendering AR objects on low-performance devices to ensure accessibility for all users.
     \item \label{SR-8} The system shall allow users to customize rendering settings (e.g., brightness, effects) to minimize discomfort or health risks associated with viewing objects.
     \item \label{SR-9} The system shall display indicators to alert users when rendering might cause discomfort (e.g., rapid movement or flashing effects).
-
 \end{enumerate}
 \subsection{Definitions}
 
@@ -173,6 +184,7 @@ Certain losses that could be incurred because of hazards are loss of privacy, in
     \item \label{SAR-2} The system shall have warnings for bright flashes or loud noises. \\
     \item \label{SAR-3} The system should have the option to disable bright lights and loud noises. \\
     \item \label{SAR-4} The system shall be designed to operate with minimal battery usage, ensuring that its consumption does not exceed the average battery usage of comparable applications within the same category. \\
+    \item \label{SAR-5} The system shall give ample warning to users if they are close to a real-world hazard and on track to collide with it. \\
 \end{enumerate}
 
 \subsection{Security Requirements}
