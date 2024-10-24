@@ -154,6 +154,8 @@ There are two types of sub-systems that make up the project:
         & & & & & & & \\
         & System navigates user to AR object cluster located in a restricted area/non-public area & User would be frustrated due to wasted time and effort, user could arrive at a dangerous or harmful area, user could trespass onto private property & System fails to distinguish between restricted and non-restricted areas & Have a record of restricted/private areas, only provide navigation options for unrestricted areas & System denies navigation to the area by notifying the user about the area destination being restricted to the general public & \ref{PVR-1} & H4-3 \\
         \hline
+        Realm interaction interface &  User intends to go outside and use the app in bad weather conditions & Increased risk of accidents and injuries due to slippery surfaces, low visibility and other consequences of bad weather conditions & Intense rain/snow/hail, high winds, extreme heat or cold & "Severe weather" warnings using a weather API & Implement warnings for users about adverse weather and encourage them to stay indoors & SR-10 & H5-1 \\
+        \hline
     \end{tabular}
     \end{footnotesize}
 \end{table}
@@ -170,6 +172,7 @@ There are two types of sub-systems that make up the project:
     \item \label{SR-7} The system shall provide fallback modes for rendering AR objects on low-performance devices to ensure accessibility for all users.
     \item \label{SR-8} The system shall allow users to customize rendering settings (e.g., brightness, effects) to minimize discomfort or health risks associated with viewing objects.
     \item \label{SR-9} The system shall display indicators to alert users when rendering might cause discomfort (e.g., rapid movement or flashing effects).
+    \item \label{SR-10} The system shall display warnings to alert users of going outside during dangerous weather conditions.
 \end{enumerate}
 \subsection{Definitions}
 
@@ -236,18 +239,18 @@ Which requirements will be implemented in the future?}
 
 \begin{enumerate}
     \item What went well while writing this deliverable? \\ \\
-    \hspace*{-0.97cm}\textbf{Ans.} Answer 1 \\
-
+    \hspace*{-0.97cm}\textbf{Ans.} Our time management during this deliverable was much better. We decided on much stricter deadlines that were well in advance of the deliverable's deadline, and stuck to them. This allowed us to get most of our main points done 5 days before the deadline. Additionally, we used overleaf and wrote all of our answers in latex, as opposed to writing everything in a Google document and copying it into latex afterwards as we had done for the previous deliverable. This saved us a lot of time and headache by not needing to convert our written text into latex.  \\
+    
     \item What pain points did you experience during this deliverable, and how did you resolve them? \\ \\
-    \hspace*{-0.97cm}\textbf{Ans.} Answer 2 \\
-
+    \hspace*{-0.97cm}\textbf{Ans.} When we transferred over to overleaf, we were not able to all work on one combined document and share it with each group member, because this requires access to an overleaf subscription. Instead, we had to create a separate overleaf document for each group member, add our modifications in individually, and then commit them to github via a pull request. This made it much more difficult to see what the final version of the doc would look like before merging everything in github. \\
+    
     \item Which of your listed risks had your team thought of before this
     deliverable, and which did you think of while doing this deliverable? For
     the latter ones (ones you thought of while doing the Hazard Analysis), how did they come about? \\ \\
-    \hspace*{-0.97cm}\textbf{Ans.} Answer 3 \\
-
+    \hspace*{-0.97cm}\textbf{Ans.} Some hazards we thought of before this deliverable are moderating obscene content and spamming. Hazards we came up with during this deliverable include tripping and collision, weather hazards, and the user going into restricted areas and private properties. The latter hazards came about while brainstorming, with a focus on more physical, external hazards. This was suggested by our TA, Chris, during our meeting with him. He advised us to include such hazards because our app has some physical component to it, which is that the user goes outside to use the AR features, whereas many software engineering capstone projects do not. \\
+    
     \item Other than the risk of physical harm (some projects may not have any appreciable risks of this form), list at least 2 other types of risk in software products. Why are they important to consider? \\ \\
-    \hspace*{-0.97cm}\textbf{Ans.} Answer 4 \\
+    \hspace*{-0.97cm}\textbf{Ans.} Security and cultural/psychological hazards. Security hazards are important to consider so that we can protect the data of the user. Our app has access to users' location data, and a data leak can be very harmful to the user, which is why security is very important. Cultural and psychological hazards are important to consider to protect the emotional and social well-being of our users. If this hazard is present, it may discourage the user from using our app, and, depending on the severity of our hazard, may result in legal trouble for the Realm app.\\
 
 \end{enumerate}
 
