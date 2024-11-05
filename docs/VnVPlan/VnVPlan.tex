@@ -24,10 +24,10 @@
 
 \begin{document}
 
-\title{System Verification and Validation Plan for \progname{}} 
+\title{System Verification and Validation Plan for \progname{}}
 \author{\authname}
 \date{\today}
-	
+
 \maketitle
 
 \pagenumbering{roman}
@@ -37,87 +37,48 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+2024/11/04 & 1.0 & Initial VnV Plan\\
 \bottomrule
 \end{tabularx}
-
-~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
-
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
 
 \newpage
 
 \tableofcontents
 
 \listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
-
-\newpage
-
-\section{Symbols, Abbreviations, and Acronyms}
-
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
-  \toprule		
-  \textbf{symbol} & \textbf{description}\\
-  \midrule 
-  T & Test\\
-  \bottomrule
-\end{tabular}\\
-
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \pagenumbering{arabic}
 
-The purpose of this Verification and Validation (VnV) document is to outline the testing process we’ll use to make sure our project meets all its requirements and functions correctly. Verification checks that we’re building the product according to our design, while validation ensures the product meets the users’ needs and performs as expected. This document will describe both functional and non-functional tests, which help confirm that the project is reliable, safe, and easy to use. By following this VnV plan, we can identify and fix any issues early, ensuring the final product is high-quality and ready for users.
+The purpose of this Verification and Validation document is to outline the testing process we’ll use to make sure our project meets all its requirements and functions correctly. Verification checks that we’re building the product according to our design, while validation ensures the product meets the users’ needs and performs as expected. This document will describe both functional and non-functional tests, which help confirm that the project is reliable, safe, and easy to use. By following this VnV plan, we can identify and fix any issues early, ensuring the final product is high-quality and ready for users.
 
 \section{General Information}
+The section covers general information about the AR application, \textit{Realm}, and this document.
 
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
-
-The software being tested is "Realm", an AR social platform. The platform allows users to place AR objects in the real world for others to see, and allows organizations to create AR tours to provide users high quality experiences.
+The software being tested is "Realm", an AR social platform. The platform allows users to place AR objects in the real world for others to see and allows organizations to create AR tours to provide users with high-quality experiences.
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+The primary objectives for the validation and verification of Realm are as follows: \\
 
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
+\begin{itemize}
+    \item \textbf{Ensure accuracy of AR functionality}: One of our core goals is to build confidence in the AR features' correctness, confirming that the AR objects can be placed effectively. We also want to ensure that overlays align accurately with real-world elements, and behave as intended in various lighting and spatial conditions. \\
 
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+    \item \textbf{Verify usability and engagement}: Usability testing will focus on confirming that users can seamlessly navigate through the app, and interact with AR objects and other users. This includes ease of use, intuitiveness of the AR controls, and overall satisfaction with the social sharing features. \\
+
+    \item \textbf{Data security and privacy assurance}: Given the app's social and AR elements, it's essential to ensure that all user data, including images and interaction history, is securely managed and protected from unauthorized access. \\
+\end{itemize}
+
+Due to limited resources, the following objectives will not be prioritized in this phase: \\
+
+\begin{itemize}
+    \item \textbf{Universal device compatibility}: Testing will focus on popular AR-enabled devices, but comprehensive performance validation across all devices and OS versions is outside the scope of this initial release. \\
+
+    \item \textbf{Verification of third-party libraries}: The project relies on AR libraries and frameworks from external providers. We assume these libraries have been validated by their developers, allowing us to concentrate on verifying custom AR functionality and app-specific features. \\
+\end{itemize}
 
 \subsection{Challenge Level and Extras}
 
@@ -151,31 +112,24 @@ This section outlines the structured plan for verifying and validating our proje
 
 \subsection{Verification and Validation Team}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+\begin{table}[h!]
+\centering
+\begin{tabularx}{\textwidth}{|l|l|X|}
+\hline
+\textbf{Team Member} & \textbf{Role} & \textbf{Responsibilities} \\ \hline
+Russell & Configuration Specialist & Configure Roslyn analyzers for static code analysis, ensuring they meet project needs \\ \hline
+Abdul & Dynamic Testing Lead & Research and implement the Unity Test Framework for Unity Editor Mode, focusing on dynamic testing \\ \hline
+Avanish & Dynamic Testing Assistant & Support Abdul in implementing the Unity Test Framework for Play Mode, ensuring comprehensive test coverage \\ \hline
+Rafey & Static Analysis Specialist & Select and configure a static analysis tool (e.g., SonarQube), manage static code quality checks \\ \hline
+\end{tabularx}
+\caption{Verification and Validation Testing Team Roles and Responsibilities}
+\end{table}
 
 \subsection{SRS Verification Plan}
 
-\wss{List any approaches you intend to use for SRS verification.  This may
-  include ad hoc feedback from reviewers, like your classmates (like your
-  primary reviewer), or you may plan for something more rigorous/systematic.}
-
-\wss{If you have a supervisor for the project, you shouldn't just say they will
-read over the SRS.  You should explain your structured approach to the review.
-Will you have a meeting?  What will you present?  What questions will you ask?
-Will you give them instructions for a task-based inspection?  Will you use your
-issue tracker?}
-
-\wss{Maybe create an SRS checklist?}
+For the SRS Verification Plan, we will adopt a structured approach that includes peer reviews, systematic checks, and feedback from our TA. Initially, ad hoc feedback will be gathered from team members to identify any immediate issues or ambiguities in the SRS. We will then conduct a detailed review session where each team member inspects specific sections of the document using a predefined checklist focused on clarity, completeness, and alignment with project goals. We will also meet with our TA to discuss and gather further feedback. An issue tracker will be used to document all feedback, allowing us to systematically address and resolve identified issues.
 
 \subsection{Design Verification Plan}
-
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
 
 \begin{itemize}
     \item Internal Team Review
@@ -211,17 +165,6 @@ Once all the plans outlined in this section (\nameref{sub:plan}) are completed, 
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
-
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
-
-\wss{The final class presentation in CAS 741 could be used as a code
-walkthrough.  There is also a possibility of using the final presentation (in
-CAS741) for a partial usability survey.}
-
 The primary method of validation for the implementation of the system will be the functional, non-functional, and unit tests described in this document. In addition to the static testing and code review specified in the non-functional tests, we will have a code walkthrough for each module to verify adherence to the design, and the completeness of the implementation. In these walkthroughs we will use our MIS as a checklist and go through module implementations checking off correctly implemented elements.
 
 \subsection{Automated Testing and Verification Tools}
@@ -230,37 +173,21 @@ Refer to \href{https://github.com/russellrd/realm/blob/main/docs/DevelopmentPlan
 
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+To validate the software throughout development, we will hold bi-weekly developer meetings. In each meeting, members will present their additions to the codebase and explain how these changes impact the functionality of the targeted components. Each team member will provide a walkthrough of the modified component through a live demo. During these meetings, the team will also ensure that no functional requirements have been inadvertently removed. \\
 
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
+To further validate that all components function as intended, we will use formal methods, which include a suite of test cases, user testing, and surveys. \\
 
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
+The suite of test cases will consist of \textit{unit tests}, \textit{module tests}, and \textit{system tests}, designed to verify that each component and the overall system meet functionality requirements. \\
 
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
+User testing will be conducted by individuals outside the development team, and results will be evaluated using checklists based on the functional and non-functional requirements outlined in the Software Requirements Specification (SRS). \\
 
-\wss{This section might reference back to the SRS verification section.}
+Finally, surveys will be administered to test users, allowing them to provide feedback on user experience and satisfaction with the software's functionality. \\
 
 \section{System Tests}
-
-\wss{There should be text between all headings, even if it is just a roadmap of
-the contents of the subsections.}
+This section contains the descriptions of all system tests spanning functional and non-functional aspects of the application.
 
 \subsection{Tests for Functional Requirements}
-
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
-
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
+This section focuses on test cases pertaining to the functional requirements.
 
 \subsubsection{Tutorial}
 
@@ -277,7 +204,7 @@ This section focuses on verifying the user interactions with the app's built-in 
     \textbf{Output:} A pop-up appears that prompts the user to take the tutorial. \\
     \textbf{Test Case Derivation:} Users who have just created an account are likely new to the app and should have some guidance on the features through the built-in tutorial. \\
     \textbf{How test will be performed:} A tester will manually create an account within the app and check if the popup appears as expected.
-    
+
     \item
     \textbf{Name:} Tutorial can be opened through the settings screen \label{itm:Test-TU2} \\
     \textbf{Test ID:} Test-TU2 \\
@@ -287,7 +214,7 @@ This section focuses on verifying the user interactions with the app's built-in 
     \textbf{Output:} There is an option to open the tutorial. \\
     \textbf{Test Case Derivation:} Users may be having trouble with a major feature and need a refresher on how it works. They might also want to explore features they have not used yet. \\
     \textbf{How test will be performed:} A tester will manually navigate to the settings screen using the in-built navigation and look for the tutorial option.
-    
+
     \item
     \textbf{Name:} Tutorial involves all major features \label{itm:Test-TU3} \\
     \textbf{Test ID:} Test-TU3 \\
@@ -297,7 +224,7 @@ This section focuses on verifying the user interactions with the app's built-in 
     \textbf{Output:} All major app features were seen in the tutorial. \\
     \textbf{Test Case Derivation:} Ensure that the user has been introduced to the mechanics behind every major feature. \\
     \textbf{How test will be performed:} A tester will manually go through all the tutorial steps marking off each major app feature in a checklist.
-    
+
     \item
     \textbf{Name:} User can exit the tutorial at any time \label{itm:Test-TU4} \\
     \textbf{Test ID:} Test-TU4 \\
@@ -307,7 +234,7 @@ This section focuses on verifying the user interactions with the app's built-in 
     \textbf{Output:} The tutorial can exit in every state. \\
     \textbf{Test Case Derivation:} A user may want to learn a subset of the major features instead of going through them all. As such, they should be able to leave the tutorial at any point instead of forcing them to complete it. \\
     \textbf{How test will be performed:} A tester will manually go through all the tutorial states and marking off which states allow a user to leave the tutorial.
-    
+
     \item
     \textbf{Name:} The tutorial is interactive in a sandbox environment \label{itm:Test-TU5} \\
     \textbf{Test ID:} Test-TU5 \\
@@ -330,7 +257,7 @@ This section focuses on verifying the user interactions with the app's built-in 
 \textbf{Type:} Functional, Manual \\
 \textbf{Initial State:} Realm interface is open, AR objects are displayed in the user’s vicinity on the camera feed. \\
 \textbf{Input/Condition:} Tester changes their position and angle in relation to an AR object. \\
-\textbf{Output/Result:} The AR object adjusts perspective appropriately, reflecting the new camera position and angle. \\ \textbf{How test will be performed:} The tester will move around the AR object, observing whether it adjusts in real time and maintains correct perspective relative to the user’s view.
+\textbf{Output/Result:} The AR object adjusts perspective appropriately, reflecting the new camera position and angle. \\ \textbf{How test will be performed:} The tester will move around the AR object, observing whether it adjusts in real-time and maintains correct perspective relative to the user’s view.
 
 \item \textbf{Name:} Validate AR Object Clutter Management \label{itm:Test-RI2} \\
 \textbf{Test ID:} Test-RI2 \\
@@ -343,7 +270,7 @@ This section focuses on verifying the user interactions with the app's built-in 
 \textbf{Test ID:} Test-RI3 \\
 \textbf{Type:} Functional, Automated and Manual \\
 \textbf{Initial State:} Realm interface is open, test AR object instance is nearby \\
-\textbf{Input/Condition:} Test AR object instance is placed with a known alignment in the real world, and reference screenshots \\ 
+\textbf{Input/Condition:} Test AR object instance is placed with a known alignment in the real world, and reference screenshots \\
 \textbf{Output/Result:} Test AR object appears in correct position and orientation as expected from the known alignment and reference screenshots, position also matches stored object instance data \\
 \textbf{How test will be performed:} Automated tests will compare object instance data, while a manual test will involve the tester visually confirming the position accuracy in the camera view.
 
@@ -395,7 +322,7 @@ This section focuses on verifying the user interactions with the app's built-in 
 \textbf{Initial State:} Realm interface is open, tester is approaching a real-world hazard. \\
 \textbf{Input/Condition:} Tester moves closer to a hazard in real space. \\
 \textbf{Output/Result:} Interface displays a clear warning when user approaches the hazard. \\
-\textbf{How test will be performed:} Tester approaches a wall with the realm interface open, and verifies that a warning appears. 
+\textbf{How test will be performed:} Tester approaches a wall with the realm interface open, and verifies that a warning appears.
 
 
 \item \textbf{Name:} Validate Offline Mode for Interactive Components \label{itm:Test-RI10} \\
@@ -404,7 +331,7 @@ This section focuses on verifying the user interactions with the app's built-in 
 \textbf{Initial State:} Realm interface is open and disconnected from the internet. \\
 \textbf{Input/Condition:} Tester attempts to interact with various components of the interface in offline mode. \\
 \textbf{Output/Result:} Interactive components function normally, but location-based features are disabled. \\
-\textbf{How test will be performed:} Tester verifies the functionality of object scanning and the unavailability of object placement, maps, and other internet dependent features.
+\textbf{How test will be performed:} Tester verifies the functionality of object scanning and the unavailability of object placement, maps, and other internet-dependent features.
 
 \end{enumerate}
 
@@ -419,7 +346,7 @@ This section focuses on verifying the user interactions with the app's built-in 
 \textbf{Initial State:} Tester has progressed object placement workflow to object selection stage \\
 \textbf{Input/Condition:} Tester selects object from one of: inventory, new object scan, new prompt generation \\
 \textbf{Output/Result:} Interface successfully proceeds to sub-realm selection step with the selected object \\
-\textbf{How test will be performed:} Tester initiates object placement workflow and progresses to object selection step. They then use one of the object selection methods to select an object and validate that the interface moves on to sub-realm selection with the selected object. They select the option to return to object selection, and repeat the process for all  object selection methods.
+\textbf{How test will be performed:} Tester initiates object placement workflow and progresses to object selection step. They then use one of the object selection methods to select an object and validate that the interface moves on to sub-realm selection with the selected object. They select the option to return to object selection, and repeat the process for all object selection methods.
 
 \item \textbf{Name:} Validate Sub-Realm Selection Stage \label{itm:Test-OP2} \\
 \textbf{Test ID:} Test-OP2 \\
@@ -579,7 +506,7 @@ This section focuses on testing the \textit{Organization User} side of the tours
     \textbf{Initial State:} User logged in as a \textit{Organization User}, on tour management screen, and has a tour. \\
     \textbf{Input:} User navigates to the tour they wish to edit, selects the edit option and changes all the inputs described in \textit{TM-FR4}. \\
     \textbf{Output:} The tour is successfully edited with the correct data. \\
-    \textbf{Test Case Derivation:} \textit{Organization Users} should be able to edit a tour's  metadata and modify the objects placed along a specified path. \\
+    \textbf{Test Case Derivation:} \textit{Organization Users} should be able to edit a tour's metadata and modify the objects placed along a specified path. \\
     \textbf{How test will be performed:} A tester will manually login as a \textit{Organization User} and attempt to edit a tour using new dummy data that fits the input constraints. They will check to see if the data was set correctly.
 
 \end{enumerate}
@@ -625,7 +552,7 @@ This section focuses on testing the \textit{General User} side of the tours func
     \textbf{Test ID:} Test-TR4 \\
     \textbf{Control:} Manual \\
     \textbf{Initial State:} User logged in as a \textit{General User}, on touring screen, and a public tour exists. \\
-    \textbf{Input:} User navigates to the tour list interface, and searches for a tour belonging to a organization. \\
+    \textbf{Input:} User navigates to the tour list interface, and searches for a tour belonging to an organization. \\
     \textbf{Output:} The tour has been found. \\
     \textbf{Test Case Derivation:} \textit{General Users} should be able to find tours through one page where the tours can grouped together by organization or location. \\
     \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and attempt to find a tour through the tour list interface that belongs to an organization.
@@ -878,31 +805,333 @@ The Settings Testing focuses on verifying user interactions related to modifying
 
 \end{enumerate}
 
+\subsubsection{AR Object creation via Object Scan}
+
+\begin{enumerate}
+
+  \item \textbf{Name:} Surroundings Scan \label{itm:Test-OS1} \\
+  \textbf{Test ID:} Test-OS1 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} App is open and tester navigates to the Object Scanning interface and is ready to scan surroundings. \\
+  \textbf{Input:} Tester initiates a scan of their surroundings using the app. \\
+  \textbf{Output:} The app successfully scans the surroundings within the time limit of 120 seconds and begins creating a digital object. \\
+  \textbf{Test Case Derivation:} Scanning functionality should correctly capture and process environmental data, allowing an object to be generated. \\
+  \textbf{How test will be performed:} The tester will initiate a scan of the surroundings. They will observe the app's response to ensure that the scanning process is working and is being processed and confirm the creation of an object from the scan data.
+
+  \item \textbf{Name:} Object Type Selection \label{itm:Test-OS2} \\
+  \textbf{Test ID:} Test-OS2 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} App is open and tester is ready to begin scanning. Tester is prompted to select an object type. \\
+  \textbf{Input:} Tester selects either a 2D or 3D object scan option before starting the scan. \\
+  \textbf{Output:} The app enables scanning mode according to the selected option (2D or 3D). \\
+  \textbf{Test Case Derivation:} Proper selection should ensure the scanning mode aligns with user preferences and enables appropriate data capture. \\
+  \textbf{How test will be performed:} The tester will choose the 2D or 3D option, select option to begin scanning, and confirm that the app enters the correct mode (either 2D or 3D scan).
+
+  \item \textbf{Name:} Real-Time Render Display \label{itm:Test-OS3} \\
+  \textbf{Test ID:} Test-OS3 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} App is open, tester has navigated to object scanning interface and has began scanning. \\
+  \textbf{Input:} Tester scans their surroundings, and the app captures scan data in real-time via device sensors. \\
+  \textbf{Output:} A real-time render of the scanned portion of the target entity is displayed to the tester as the scan progresses. \\
+  \textbf{Test Case Derivation:} Real-time feedback during scanning helps users understand coverage and accuracy, essential for an intuitive scanning experience. \\
+  \textbf{How test will be performed:} Tester can verify that the rendering is accurate by comparing it to the real target entity as scan progresses. Tester can also verify of the render progrsses along with the real-time scan. \\
+
+  \item \textbf{Name:} Confirm Scanning Completion \label{itm:Test-OS4} \\
+  \textbf{Test ID:} Test-OS4 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} Tester has completed scanning. \\
+  \textbf{Input:} Tester has completed scanning and selects the option to terminate the scan. \\
+  \textbf{Output:} The scanning process is finished, and the app directs the tester to preview the saves or processes the scanned data accordingly. \\
+  \textbf{Test Case Derivation:} Confirmation allows users control over the finalization of the scan, preventing unintended data processing. \\
+  \textbf{How test will be performed:} The tester will complete a scan, then select the “confirm” option. They will observe the app's response to ensure the scanning process is finalized as expected and that the data is processed or saved correctly. \\
+
+\end{enumerate}
+
+\subsubsection{Interactions with User Inventory}
+
+\begin{enumerate}
+
+  \item \textbf{Name:} Delete Object from Inventory \label{itm:Test-IV1} \\
+  \textbf{Test ID:} Test-IV1 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} App is open, tester is present on the Profile interface. Tester performs actions to open their Inventory. The Inventory is not empty. \\
+  \textbf{Input:} Tester selects an object and chooses the delete option. \\
+  \textbf{Output:} The selected object is removed from the inventory. \\
+  \textbf{Test Case Derivation:} Users should have control over their inventory and be able to delete unwanted AR objects. \\
+  \textbf{How test will be performed:} Tester will select an object in the inventory, delete it, and check if the AR object is successfully removed. \\
+
+  \item \textbf{Name:} Add Object to Inventory \label{itm:Test-IV2} \\
+  \textbf{Test ID:} Test-IV2 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} App is open, tester is present on the Profile interface Tester performs actions to open their Inventory. \\
+  \textbf{Input:} Tester adds a new object to the inventory. \\
+  \textbf{Output:} The new object appears in the inventory. \\
+  \textbf{Test Case Derivation:} Users should be able to expand their inventory by adding objects. \\
+  \textbf{How test will be performed:} Tester will add a new object to the inventory and confirm its appearance. The object can be added through various means possible based on app features like AR object generation via prompt, scan and upload AR objects, acquiring via object sharing. \\
+
+  \item \textbf{Name:} Application-Provided AR Objects in Inventory \label{itm:Test-IV3} \\
+  \textbf{Test ID:} Test-IV3 \\
+  \textbf{Control:} Automatic \\
+  \textbf{Initial State:} App is installed and launched for the first time. Tester navigates to the Profile interface. \\
+  \textbf{Input:} Tester opens the inventory. \\
+  \textbf{Output:} Inventory contains the preloaded application-provided objects. \\
+  \textbf{Test Case Derivation:} The inventory should always contain a set of default objects for user reference. \\
+  \textbf{How test will be performed:} An automated test verifies that default objects are loaded and present in the user's inventory on app initialization. \\
+
+  \item \textbf{Name:} Inventory Capacity for Personal Objects \label{itm:Test-IV4} \\
+  \textbf{Test ID:} Test-IV4 \\
+  \textbf{Control:} Automatic \\
+  \textbf{Initial State:} Tester has 99 personal objects in inventory. \\
+  \textbf{Input:} Tester attempts to add an additional object. \\
+  \textbf{Output:} The object is successfully added, but adding another would be prevented. \\
+  \textbf{Test Case Derivation:} Limiting personal objects prevents overuse of storage. \\
+  \textbf{How test will be performed:} An automated test attempts to add objects beyond inventory limit to check if inventory maintains strict limit. \\
+
+  \item \textbf{Name:} Personal Object Source Verification \label{itm:Test-IV5} \\
+  \textbf{Test ID:} Test-IV5 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} Inventory contains personal objects generated or shared by users. \\
+  \textbf{Input:} Tester opens the inventory and inspects object origins. \\
+  \textbf{Output:} Each personal object is either user-generated or shared. \\
+  \textbf{Test Case Derivation:} Ensures the integrity of inventory sources. \\
+  \textbf{How test will be performed:} Tester inspects objects and verifies they meet origin requirements. \\
+
+  \item \textbf{Name:} Total Object Count in Inventory \label{itm:Test-IV6} \\
+  \textbf{Test ID:} Test-IV6 \\
+  \textbf{Control:} Automatic \\
+  \textbf{Initial State:} Inventory contains objects of varying types. \\
+  \textbf{Input:} Tester views the total count of objects. \\
+  \textbf{Output:} The app displays the correct total number of objects. \\
+  \textbf{Test Case Derivation:} Provides users with an overview of their inventory. \\
+  \textbf{How test will be performed:} Automated test calculates total object count and compares it to the displayed count. \\
+
+  \item \textbf{Name:} Storage of 2D and 3D AR Objects \label{itm:Test-IV7} \\
+  \textbf{Test ID:} Test-IV7 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} Inventory is empty or has objects. \\
+  \textbf{Input:} Tester adds both 2D and 3D AR objects to their inventory. \\
+  \textbf{Output:} Both 2D and 3D objects are correctly stored in inventory. \\
+  \textbf{Test Case Derivation:} Inventory should be versatile in managing object types. \\
+  \textbf{How test will be performed:} Tester can verify that both 2D and 3D objects are present in the inventory and is able to interact with them. \\
+
+  \item \textbf{Name:} Add to Favourite Group \label{itm:Test-IV8} \\
+  \textbf{Test ID:} Test-IV8 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} App is open, tester is viewing their Inventory. Inventory has objects. \\
+  \textbf{Input:} Tester adds an object to the favourite group. \\
+  \textbf{Output:} Object is marked as a favourite. \\
+  \textbf{Test Case Derivation:} Users should highlight preferred objects for quick access. \\
+  \textbf{How test will be performed:} Tester adds an object to favourites and verifies if the object is present under the favourite category. \\
+
+  \item \textbf{Name:} Sort Objects \label{itm:Test-IV9} \\
+  \textbf{Test ID:} Test-IV9 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} App is open, tester is viewing their Inventory. Inventory has objects with varied usage, favourites, and sizes. \\
+  \textbf{Input:} Tester sorts objects by usage, favourites, or size. \\
+  \textbf{Output:} Objects are sorted as per user selection. \\
+  \textbf{Test Case Derivation:} Sorting aids in organizing objects for efficient use. \\
+  \textbf{How test will be performed:} Tester selects sorting criteria and verifies that the results are indeed sorted, based on the selected criteria. \\
+
+  \item \textbf{Name:} Continuous Rotation for 3D Objects \label{itm:Test-IV10} \\
+  \textbf{Test ID:} Test-IV10 \\
+  \textbf{Control:} Automatic \\
+  \textbf{Initial State:} App is open, tester is viewing their Inventory. Inventory contains 3D objects. \\
+  \textbf{Input:} Tester selects option to view a 3D AR object. \\
+  \textbf{Output:} 3D objects are displayed in a continuous rotating state. \\
+  \textbf{Test Case Derivation:} Rotation helps users fully examine 3D objects. \\
+  \textbf{How test will be performed:} Automated test opens inventory and confirms rotation of 3D objects. \\
+
+\end{enumerate}
+
+\subsubsection{Maps Interface}
+
+\begin{enumerate}
+
+  \item \textbf{Name:} Map Location and Display of Overlays \label{itm:Test-MP1} \\
+  \textbf{Test ID:} Test-MP1 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} App is open, tester navigates to the Map interface. \\
+  \textbf{Input:} Tester is present on the Map interface and is viewing the complete map and check displayed information. \\
+  \textbf{Output:}
+  \begin{enumerate}
+    \item User's current location is displayed on the map.
+    \item Location markers appear for AR object clusters.
+    \item Markers show the count of objects in each cluster.
+    \item All sub-realm objects associated with the user are indicated on the map.
+  \end{enumerate}
+  \textbf{Test Case Derivation:} Ensures that the map displays the user's location, object clusters, and relevant sub-realm data accurately. \\
+  \textbf{How Test Will Be Performed:}
+  \begin{enumerate}
+    \item Open the map and verify that the user's location is displayed correctly.
+    \item Confirm that AR object clusters are marked and each marker displays an accurate count of objects.
+    \item Check that all sub-realm objects connected to the user are visible on the map.
+  \end{enumerate}
+
+  \item \textbf{Name:} Navigation and Directions on Map \label{itm:Test-MP2} \\
+  \textbf{Test ID:} Test-MP2 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} Tester is viewing the map with visible AR object markers. \\
+  \textbf{Input:} Select a marker and initiate navigation. Terminate navigation mid-route. \\
+  \textbf{Output:}
+  \begin{enumerate}
+    \item Directions to the selected marker are provided.
+    \item Navigation terminates when requested by the user.
+  \end{enumerate}
+  \textbf{Test Case Derivation:} Confirms that users can receive directions to selected markers and can end navigation if needed. \\
+  \textbf{How Test Will Be Performed:}
+  \begin{enumerate}
+    \item Select a marker and confirm that the option to receive directions appears.
+    \item Begin navigation and verify directions are correct.
+    \item Terminate navigation and confirm that the system stops route guidance.
+  \end{enumerate}
+
+  \item \textbf{Name:} Clutter Management and Restricted Area Identification \label{itm:Test-MP3} \\
+  \textbf{Test ID:} Test-MP3 \\
+  \textbf{Control:} Automatic \\
+  \textbf{Initial State:} Tester is viewing the map with a high density of objects. \\
+  \textbf{Input:} Zoom in and out on the map and navigate toward restricted areas. \\
+  \textbf{Output:}
+  \begin{enumerate}
+    \item Objects are grouped to reduce clutter on the map.
+    \item Restricted areas are identified, and navigation to these areas is disallowed.
+  \end{enumerate}
+  \textbf{Test Case Derivation:} Ensures that map view remains clear through grouping and that restricted areas are indicated to prevent access. \\
+  \textbf{How Test Will Be Performed:}
+  \begin{enumerate}
+    \item Zoom in and out to verify that objects are grouped or separated appropriately to avoid clutter.
+    \item Attempt to navigate to a restricted area and confirm that the system prevents navigation.
+  \end{enumerate}
+
+\end{enumerate}
+
+\subsubsection{Custom AR Object Generation}
+
+\begin{enumerate}
+
+  \item \textbf{Name:} Prompt Entry and Validation \label{itm:Test-POG1} \\
+  \textbf{Test ID:} Test-POG1 \\
+  \textbf{Control:} Automatic \\
+  \textbf{Initial State:} App is open, tester is present on the prompt entry screen. \\
+  \textbf{Input:} Enter prompts of various lengths, with and without profanity. \\
+  \textbf{Output:}
+      \begin{enumerate}
+          \item Tester can successfully enter a prompt.
+          \item The prompt is restricted to 200 characters.
+          \item Character count is displayed in real-time as user types.
+          \item Profanity is flagged and rejected.
+      \end{enumerate}
+  \textbf{Test Case Derivation:} Confirms that prompts adheres to length restrictions, real-time character count display, and profanity filtering. \\
+  \textbf{How Test Will Be Performed:} Enter prompts within and exceeding 200 characters, observe character count display, and include some profanity to confirm filtering. \\
+
+  \item \textbf{Name:} Object Type Selection and Confirmation \label{itm:Test-POG2} \\
+  \textbf{Test ID:} Test-POG2 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} App is open, tester has entered a valid prompt and is ready to generate an object. \\
+  \textbf{Input:} Select between 2D or 3D object type and confirm submission. \\
+  \textbf{Output:}
+      \begin{enumerate}
+          \item The tester can select either 2D or 3D object type.
+          \item System initiates AR object generation upon confirmation.
+      \end{enumerate}
+  \textbf{Test Case Derivation:} Ensures users can select object type before submission, and confirmation triggers generation. \\
+  \textbf{How Test Will Be Performed:} Choose each object type and confirm prompt submission, tester observes the initiation of the object generation (2D or 3D). \\
+
+  \item \textbf{Name:} AR Object Generation and Selection \label{itm:Test-POG3} \\
+  \textbf{Test ID:} Test-POG3 \\
+  \textbf{Control:} Automatic \\
+  \textbf{Initial State:} App is open, tester has entered a valid prompt and confirmed initiation of object generation process. \\
+  \textbf{Input:} Await object generation, then select one of the generated options. \\
+  \textbf{Output:}
+      \begin{enumerate}
+          \item Multiple AR objects are generated based on the prompt.
+          \item Tester can select a preferred object from the options provided.
+      \end{enumerate}
+  \textbf{Test Case Derivation:} Ensures the system generates multiple objects and allows user selection. \\
+  \textbf{How Test Will Be Performed:} Submit a prompt, observe the generated objects, and select one to confirm selection functionality. \\
+
+  \item \textbf{Name:} Add to Inventory \label{itm:Test-POG4} \\
+  \textbf{Test ID:} Test-POG4 \\
+  \textbf{Control:} Automatic \\
+  \textbf{Initial State:} Tester has selected an AR object from the generated options. \\
+  \textbf{Input:} Add the selected object to the personal inventory. \\
+  \textbf{Output:} The chosen AR object is saved in the user's inventory. \\
+  \textbf{Test Case Derivation:} Ensures that user selections can be stored in inventory for future access. \\
+  \textbf{How Test Will Be Performed:} Add the object and confirm its presence in the inventory list. \\
+
+  \item \textbf{Name:} Generated AR Object Preview \label{itm:Test-POG5} \\
+  \textbf{Test ID:} Test-POG5 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} Tester is viewing a selected AR object in preview mode. \\
+  \textbf{Input:} Rotate the AR object to inspect all sides. \\
+  \textbf{Output:} The AR object rotates smoothly, allowing inspection from all angles. \\
+  \textbf{Test Case Derivation:} Confirms that users can preview generated objects by rotating them. \\
+  \textbf{How Test Will Be Performed:} Manually rotate the AR object to confirm smooth and complete rotation in preview mode. \\
+
+\end{enumerate}
+
+\subsubsection{Uploading Objects to Inventory, Post Object Scan}
+
+\begin{enumerate}
+
+  \item \textbf{Name:} Object Render Display and Editing \label{itm:Test-OUI1} \\
+  \textbf{Test ID:} Test-OUI1 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} Tester has completed a scan of an object, and the scan is ready for viewing/editing. \\
+  \textbf{Input:} Display the scanned object and allow for user interaction in editing mode. \\
+  \textbf{Output:}
+  \begin{enumerate}
+      \item Render of scanned object is displayed to the user.
+      \item Tester can remove unneeded features from the render.
+      \item Tester can crop and resize 2D objects in the edit interface.
+      \item Tester can confirm the creation of the AR object once satisfied with edits.
+  \end{enumerate}
+  \textbf{Test Case Derivation:} Ensures that the user can visualize and edit the scanned object before saving it to the inventory. \\
+  \textbf{How Test Will Be Performed:}
+  \begin{enumerate}
+      \item Display the scanned object render and prompt the tester to interact with it.
+      \item Attempt removal of unnecessary features, then save changes and confirm that edits are applied.
+      \item For 2D objects, perform cropping and resizing operations and confirm that modifications are correctly reflected.
+      \item Complete edits and confirm creation, ensuring that all final changes are saved.
+  \end{enumerate}
+
+  \item \textbf{Name:} Object Naming and Storage \label{itm:Test-OUI2} \\
+  \textbf{Test ID:} Test-OUI2 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} Tester has finished editing and is ready to save the object. \\
+  \textbf{Input:} Provide a name for the object, then save it to inventory with relevant metadata. \\
+  \textbf{Output:}
+  \begin{enumerate}
+      \item Object name is stored, containing only ASCII characters.
+      \item Creation date, time, user information, storage size, and type (2D or 3D) are stored with the object in the inventory.
+  \end{enumerate}
+  \textbf{Test Case Derivation:} Confirms that all necessary metadata is correctly assigned and stored along with the object. \\
+  \textbf{How Test Will Be Performed:}
+  \begin{enumerate}
+      \item Enter a name containing only ASCII characters and confirm successful entry.
+      \item Verify that all metadata, including date, time, user information, storage size, and type, is correctly saved.
+      \item Access the object in inventory to confirm that metadata is retrievable and accurate.
+  \end{enumerate}
+
+  \item \textbf{Name:} Object Color Editing \label{itm:Test-OUI3} \\
+  \textbf{Test ID:} Test-OUI3 \\
+  \textbf{Control:} Manual \\
+  \textbf{Initial State:} Object is open in the edit interface after scanning has been completed. \\
+  \textbf{Input:} Select specific portions of the object and apply color changes. \\
+  \textbf{Output:} Color changes are applied to selected portions of the object, and the final render reflects these edits accurately. \\
+  \textbf{Test Case Derivation:} Verifies that users can apply color changes to specific parts of the object for customization. \\
+  \textbf{How Test Will Be Performed:}
+  \begin{enumerate}
+      \item Select a portion of the object and change its color.
+      \item Verify that the color change is applied only to the selected portion.
+      \item Confirm that changes are saved and displayed correctly in the final render.
+  \end{enumerate}
+
+\end{enumerate}
+
 \subsection{Tests for Nonfunctional Requirements}
-
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy.}
-
-\wss{For some nonfunctional tests, you won't be setting a target threshold for
-passing the test, but rather describing the experiment you will do to measure
-the quality for different inputs.  For instance, you could measure speed versus
-the problem size.  The output of the test isn't pass/fail, but rather a summary
-table or graph.}
-
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
-
-\wss{If you introduce static tests in your plan, you need to provide details.
-How will they be done?  In cases like code (or document) walkthroughs, who will
-be involved? Be specific.}
+This section focuses on test cases pertaining to the non-functional requirements.
 
 \subsubsection{Usability Testing}
-
 
 
 \begin{enumerate}
@@ -922,6 +1151,9 @@ be involved? Be specific.}
     \textbf{Input/Condition:} Tester performs common workflows such as account setup, navigating between interfaces, creating AR objects, viewing and placing AR objects, and finding objects on the map, all without guidance or assistance  \\
     \textbf{Output/Result:} 80\% of testers complete each task and report that the app is easy and satisfying to use, and rate each workflow as highly intuitive.\\
     \textbf{How test will be performed:} A group of new users will perform specified workflows and complete a post-test \hyperref[sub:usability_survey]{survey} rating the intuitiveness and satisfaction of their experience. Quantitative results should show that most users rate the app as highly intuitive and satisfying to use.
+
+\end{enumerate}
+
 \subsubsection{Security Testing}
 
 \begin{enumerate}
@@ -931,7 +1163,7 @@ be involved? Be specific.}
     \textbf{Test ID:} Test-QS-SC1 \\
     \textbf{Type:} Manual \\
     \textbf{Initial State:} Encryption algorithm is complete, user has opened the app, and requests to the server are being monitored. \\
-    \textbf{Input/Condition:} A request with sensitive information has been sent to the sever. \\
+    \textbf{Input/Condition:} A request with sensitive information has been sent to the server. \\
     \textbf{Output/Result:} The contents of the information passed is not decipherable by reading the request but the server can decrypt the information to get the original message. \\
     \textbf{How test will be performed:} A tester will open the app and monitor requests made to the server. They will check to see if the information has been encrypted or not.
 
@@ -957,7 +1189,7 @@ be involved? Be specific.}
 \subsubsection{Availability Testing}
 
 \begin{enumerate}
-    
+
 \item \textbf{Name:} Validate Server Availability \label{itm:Test-QS-A1} \\
     \textbf{Test ID:} Test-QS-A1 \\
     \textbf{Type:} Non-Functional, Automated \\
@@ -979,7 +1211,7 @@ be involved? Be specific.}
 \subsubsection{Maintainability Testing}
 
 \begin{enumerate}
-    
+
 \item \textbf{Name:} Validate API Error Message Clarity \label{itm:Test-DI-M1} \\
     \textbf{Test ID:} Test-DI-M1 \\
     \textbf{Type:} Non-Functional, Manual and Automated \\
@@ -1121,15 +1353,125 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
     \textbf{How test will be performed:} Tester will initiate the installation from each app store, ensuring the app installs seamlessly without requiring extra configurations or settings adjustments.
 \end{enumerate}
 
+\subsubsection{Performance Requirements}
+
+\begin{enumerate}
+
+  \item \textbf{Name:} Map Rendering \label{itm:Test-QS-PE1} \\
+    \textbf{Test ID:} Test-QS-PE1 \\
+    \textbf{Type:} Non-Functional, Automatic, Dynamic \\
+    \textbf{Initial State:} App is open, tester is present on any interface except for the Maps interface. \\
+    \textbf{Input/Condition:} User performs actions to navigate to the Map interface. \\
+    \textbf{Output/Result:} The map and its overlays are completely visible and can be interacted with. \\
+    \textbf{How test will be performed:} Tester will navigate to the Maps interface. Once there, the load time for all overlays will be recorded and considered to introduce improvements in their loading and rendering. \\
+
+  \item \textbf{Name:} Inventory Load \label{itm:Test-QS-PE2} \\
+    \textbf{Test ID:} Test-QS-PE2 \\
+    \textbf{Type:} Non-Functional, Automatic, Dynamic \\
+    \textbf{Initial State:} App is open, and the tester is present on their profile page. \\
+    \textbf{Input/Condition:} User selects the option to view their entire Inventory. \\
+    \textbf{Output/Result:} The Inventory loads completely and can be interacted with within 1-10 seconds depending on the number of objects present in the Inventory. \\
+    \textbf{How test will be performed:} Tester will access the Inventory section and the application will record the load time such that the time is recorded until the user is able to interact with the objects visible. Then, the tester can observe the recorded load times and verify if the times are below the maximum threshold (10 seconds). \\
+
+  \item \textbf{Name:} Real-Time Render Delay \label{itm:Test-QS-PE3} \\
+    \textbf{Test ID:} Test-QS-PE3 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} App is open, User has intialized process to scan and create an AR object. User is actively scanning the environment. \\
+    \textbf{Input/Condition:} Device settings and sensors are functioning properly. User initiates a scan of the environment. \\
+    \textbf{Output/Result:} Rendered results appear within 1 second of the initial scan data. \\
+    \textbf{How test will be performed:} Tester will initiate a scan to create AR object, start two timers, one for the render being displayed (\textit{Timer1}) and the other for the scan performed by the tester (\textit{Timer2}). Once the scanning process is finished, both timers are stopped. Then, the tester will take the difference of the two recorded times, and ensure that it does not exceed 1 second. \\
+
+  \item \textbf{Name:} AR Object Generation \label{itm:Test-QS-PE4} \\
+    \textbf{Test ID:} Test-QS-PE4 \\
+    \textbf{Type:} Non-Functional, Automatic \\
+    \textbf{Initial State:} App is open, tester is present on object generation interface and has entered a \textit{valid} prompt to begin AR object generation. \\
+    \textbf{Input/Condition:} Tester initiates the generation of an AR object. \\
+    \textbf{Output/Result:} The AR object is fully generated and visible. \\
+    \textbf{How test will be performed:} Tester will initiate AR object generation and start a timer. The timer will be stopped once the AR object is fully generated and visible. The time taken is recorded to verify the process takes at most 30 seconds. \\
+
+  \item \textbf{Name:} AR Object Fallback Mode \label{itm:Test-QS-PE5} \\
+    \textbf{Test ID:} Test-QS-PE5 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} App is open on a low-performance device. \\
+    \textbf{Input/Condition:} Tester attempts to view AR objects within the app. \\
+    \textbf{Output/Result:} The app renders AR objects with minimal lag or provides a fallback mode (low-resolution objects) for accessibility. \\
+    \textbf{How test will be performed:} Tester will use a low-performance device to attempt rendering AR objects. Performance will be observed to confirm the app enables a fallback mode for compatibility such as lower resolution for AR objects and limited functionality in terms of app features (AR object generation, Scan and Upload AR objects). \\
+
+\end{enumerate}
+
+\subsubsection{Reliability Requirements}
+
+\begin{enumerate}
+
+  \item \textbf{Name:} Database Failure/Corruption \label{itm:Test-QS-RE1} \\
+  \textbf{Test ID:} Test-QS-RE1 \\
+  \textbf{Type:} Non-Functional, Dynamic, Automatic \\
+  \textbf{Initial State:} The app is running with a stable connection to the primary database, and all user data is accessible without issues. (No failure or corruption has occurred in the database) \\
+  \textbf{Input:} Inject random data or errors into the test database to trigger failure. \\
+  \textbf{Output:}
+  \begin{enumerate}
+      \item Database recovers automatically or through a set of recovery steps.
+      \item If there is user data loss, only \textbf{2\%} of user data will be lost after the recovery.
+      \item System returns to normal operation, allowing all users to access their data without issues.
+  \end{enumerate}
+  \textbf{How Test Will Be Performed:}
+  \begin{enumerate}
+      \item Set up a testing environment where the database can be backed up and forcefully corrupted.
+      \item Initiate a database corruption/failure.
+      \item Ensure that the system detects and logs the failure and attempts recovery.
+      \item After the recovery process is finished, review the data with a backed-up copy for multiple test user accounts to confirm that large amounts of user data have not been erased.
+      \item Compute the data loss percent to ensure it does not exceed the stated limit.
+  \end{enumerate}
+
+\end{enumerate}
+
+\subsubsection{Distribution Requirements}
+
+\begin{enumerate}
+
+  \item \textbf{Name:} Device Compatibility \label{itm:Test-DI-D1} \\
+  \textbf{Test ID:} Test-DI-D1 \\
+  \textbf{Type:} Non-Functional, Automatic \\
+  \textbf{Initial State:} The app is not yet installed on test devices. The test devices include mobile devices running iOS 16.0+ and Android 12+ and even older Android and iOS versions. \\
+  \textbf{Input/Condition:} Attempt to download and install the app on the user device. \\
+  \textbf{Output/Result:}
+    \begin{enumerate}
+        \item The app installs successfully on devices running iOS 16.0+ and Android 12+.
+        \item The app functions as expected post-installation on the device.
+    \end{enumerate}
+  \textbf{How test will be performed:} Install the app on a device, app checks if the device's OS version satisfies the requirements. \\
+
+  \item \textbf{Name:} Regional Availability \label{itm:Test-DI-D2} \\
+    \textbf{Test ID:} Test-DI-D2 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} The app is available in the app store. \\
+    \textbf{Input/Condition:} Attempt to access and download the app from app stores within Canada and the USA. \\
+    \textbf{Output/Result:} The app is accessible and can be downloaded by users in both Canada and the USA.
+    \textbf{How test will be performed:} Using devices connected to networks in Canada and the USA, check that the app is accessible, downloadable, and installable from each app store. \\
+
+  \item \textbf{Name:} Recommended Age Requirement Display \label{itm:Test-DI-D3} \\
+    \textbf{Test ID:} Test-DI-D3 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} The app is available in the app store, ready to be viewed by users. \\
+    \textbf{Input/Condition:} Open the app store listing for the app. \\
+    \textbf{Output/Result:} The app store listing clearly shows a recommended age requirement of 16+.
+    \textbf{How test will be performed:} View the app's store page on various devices and confirm the presence of the age recommendation. \\
+
+  \item \textbf{Name:} User Data Storage in North America \label{itm:Test-DI-D4} \\
+    \textbf{Test ID:} Test-DI-D4 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} User data is being created and saved through app usage. \\
+    \textbf{Input/Condition:} Review server locations where user data is stored. \\
+    \textbf{Output/Result:} All user data is stored within North America.
+    \textbf{How test will be performed:} Verify if app servers used for user data storage and processing are located within North American. \\
+
+\end{enumerate}
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
-
-\begin{table}[h!]
+\begin{table}[htpb!]
     \centering
-    \begin{tabular}{|l|p{8cm}|l|}
+    \begin{tabular}{|l|p{8cm}|p{3cm}|}
         \hline
         \textbf{Test-ID} & \textbf{Test Name} &\textbf{Requirements} \\
         \hline
@@ -1181,6 +1523,15 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
         \hline
         \hyperref[itm:Test-DI-M1]{Test-DI-M1} & Validate API Error Message Clarity & DI-M1 \\
         \hline
+    \end{tabular}
+    \caption{Mapping of Tests to Requirements (I)}
+    \label{tab:test_requirements1}
+\end{table}
+
+\begin{table}[htpb!]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{3cm}|}
+        \hline
         \hyperref[itm:Test-PS1]{Test-PS1} & Validate User Authentication & PS-FR1 \\
         \hline
         \hyperref[itm:Test-PS2]{Test-PS2} & Password Change Functionality & PS-FR3 \\
@@ -1231,6 +1582,17 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
         \hline
         \hyperref[itm:Test-I2]{Test-I2} & Simple Installation Process & DI-I2 \\
         \hline
+
+        \hline
+    \end{tabular}
+    \caption{Mapping of Tests to Requirements (II)}
+    \label{tab:test_requirements2}
+\end{table}
+
+\begin{table}[htpb!]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{3cm}|}
+        \hline
         \hyperref[itm:Test-TU1]{Test-TU1} & Tutorial opens on account creation & TU-FR2 \\
         \hline
         \hyperref[itm:Test-TU2]{Test-TU2} & Tutorial can be opened through the settings screen & TU-FR4 \\
@@ -1267,6 +1629,15 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
         \hline
         \hyperref[itm:Test-TR5]{Test-TR5} & \textit{General Users} can find a tour through a push notification when in proximity to a tour area in the real-world & TR-FR2.2 \\
         \hline
+    \end{tabular}
+    \caption{Mapping of Tests to Requirements (III)}
+    \label{tab:test_requirements3}
+\end{table}
+
+\begin{table}[htpb!]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{3cm}|}
+        \hline
         \hyperref[itm:Test-TR6]{Test-TR6} & \textit{General Users} can find a tour through a QR code & TR-FR2.3 \\
         \hline
         \hyperref[itm:Test-TR7]{Test-TR7} & \textit{General Users} can switch between the map and AR view in a tour & TR-FR4 \\
@@ -1281,8 +1652,7 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
         \hline
         \hyperref[itm:Test-QS-SC3]{Test-QS-SC3} & Verify identity before transmitting private data & QS-SC2 \\
         \hline
-        \hyperref[itm:Test-CO1]{Test-CO1} & Check Personal Information and Electronic
-Documents Act (PIPEDA) \cite{PIPEDA} compliance & CO1 \\
+        \hyperref[itm:Test-CO1]{Test-CO1} & Check Personal Information and Electronic Documents Act (PIPEDA) \cite{PIPEDA} compliance & CO1 \\
         \hline
         \hyperref[itm:Test-CO2]{Test-CO2} & Tax records check going back six years & CO2 \\
         \hline
@@ -1292,13 +1662,101 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance & CO1 \\
         \hline
         \hyperref[itm:Test-DI-R1]{Test-DI-R1} & Reusable components check & DI-R1 \\
         \hline
+        \hyperref[itm:Test-OS1]{Test-OS1} & Surroundings Scan & OS-FR1, OS-FR4 \\
+        \hline
+        \hyperref[itm:Test-OS2]{Test-OS2} & Object Type Selection & OS-FR2 \\
+        \hline
+        \hyperref[itm:Test-OS3]{Test-OS3} & Real-Time Render Display & OS-FR3 \\
+        \hline
+        \hyperref[itm:Test-OS4]{Test-OS4} & Confirm Scanning Completion & OS-FR5 \\
+        \hline
+        \hyperref[itm:Test-IV1]{Test-IV1} & Delete Object from Inventory & IV-FR1 \\
+        \hline
+        \hyperref[itm:Test-IV2]{Test-IV2} & Add Object to Inventory & IV-FR2 \\
+        \hline
+        \hyperref[itm:Test-IV3]{Test-IV3} & Application-Provided AR Objects in Inventory & IV-FR3 \\
+        \hline
+        \hyperref[itm:Test-IV4]{Test-IV4} & Inventory Capacity for Personal Objects & IV-FR4 \\
+        \hline
+        \hyperref[itm:Test-IV5]{Test-IV5} & Personal Object Source Verification & IV-FR5 \\
+        \hline
     \end{tabular}
-    \caption{Mapping of Tests to Requirements}
-    \label{tab:test_requirements}
+    \caption{Mapping of Tests to Requirements (IV)}
+    \label{tab:test_requirements4}
+\end{table}
+
+\begin{table}[htpb!]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{3cm}|}
+        \hline
+        \hyperref[itm:Test-IV6]{Test-IV6} & Total Object Count in Inventory & IV-FR6 \\
+        \hline
+        \hyperref[itm:Test-IV7]{Test-IV7} & Storage of 2D and 3D AR Objects & IV-FR7 \\
+        \hline
+        \hyperref[itm:Test-IV8]{Test-IV8} & Add to Favourite Group & IV-FR8 \\
+        \hline
+        \hyperref[itm:Test-IV9]{Test-IV9} & Sort Objects & IV-FR9 \\
+        \hline
+        \hyperref[itm:Test-IV10]{Test-IV10} & Continuous Rotation for 3D Objects & IV-FR10 \\
+        \hline
+        \hyperref[itm:Test-MP1]{Test-MP1} & Map Location and Display of Overlays & MP-FR1, MP-FR2, MP-FR3, MP-FR4, MP-FR5 \\
+        \hline
+        \hyperref[itm:Test-MP2]{Test-MP2} & Navigation and Directions on Map & MP-FR6, MP-FR7, MP-FR9 \\
+        \hline
+        \hyperref[itm:Test-MP3]{Test-MP3} & Clutter Management and Restricted Area Identification & MP-FR8, MP-FR10 \\
+        \hline
+        \hyperref[itm:Test-POG1]{Test-POG1} & Prompt Entry and Validation & POG-FR1, POG-FR2, POG-FR3, POG-FR4 \\
+        \hline
+        \hyperref[itm:Test-POG2]{Test-POG2} & Object Type Selection and Confirmation & POG-FR5, POG-FR6 \\
+        \hline
+        \hyperref[itm:Test-POG3]{Test-POG3} & AR Object Generation and Selection & POG-FR7, POG-FR8 \\
+        \hline
+        \hyperref[itm:Test-POG4]{Test-POG4} & Add to Inventory & POG-FR9 \\
+        \hline
+        \hyperref[itm:Test-POG5]{Test-POG5} & Generated AR Object Preview & POG-FR10 \\
+        \hline
+        \hyperref[itm:Test-OUI1]{Test-OUI1} & Object Render Display and Editing & OUI-FR1, OUI-FR2, OUI-FR3, OUI-FR4 \\
+        \hline
+        \hyperref[itm:Test-OUI2]{Test-OUI2} & Object Naming and Storage & OUI-FR5 OUI-FR6, OUI-FR7, OUI-FR8, OUI-FR9, OUI-FR10, OUI-FR11, \\
+        \hline
+        \hyperref[itm:Test-OUI3]{Test-OUI3} & Object Color Editing & OUI-FR12 \\
+        \hline
+    \end{tabular}
+    \caption{Mapping of Tests to Requirements (V)}
+    \label{tab:test_requirements5}
+\end{table}
+
+\begin{table}[htpb!]
+    \centering
+    \begin{tabular}{|l|p{8cm}|p{3cm}|}
+        \hline
+        \hyperref[itm:Test-QS-PE1]{Test-QS-PE1} & Map Rendering & QS-PE1 \\
+        \hline
+        \hyperref[itm:Test-QS-PE2]{Test-QS-PE2} & Inventory Load & QS-PE2 \\
+        \hline
+        \hyperref[itm:Test-QS-PE3]{Test-QS-PE3} & Real-Time Render Delay & QS-PE3 \\
+        \hline
+        \hyperref[itm:Test-QS-PE4]{Test-QS-PE4} & AR Object Generation & QS-PE4 \\
+        \hline
+        \hyperref[itm:Test-QS-PE5]{Test-QS-PE5} & AR Object Fallback Mode & QS-PE5 \\
+        \hline
+        \hyperref[itm:Test-QS-RE1]{Test-QS-RE1} & Database Failure/Corruption & QS-RE1 \\
+        \hline
+        \hyperref[itm:Test-DI-D1]{Test-DI-D1} & Device Compatibility & DI-D1 \\
+        \hline
+        \hyperref[itm:Test-DI-D2]{Test-DI-D2} & Regional Availability & DI-D2 \\
+        \hline
+        \hyperref[itm:Test-DI-D3]{Test-DI-D3} & Recommended Age Requirement Display & DI-D3 \\
+        \hline
+        \hyperref[itm:Test-DI-D4]{Test-DI-D4} & User Data Storage in North America & DI-D4 \\
+        \hline
+    \end{tabular}
+    \caption{Mapping of Tests to Requirements (VI)}
+    \label{tab:test_requirements6}
 \end{table}
 
 \pagebreak
-  
+
 
 \section{Unit Test Description}
 
@@ -1309,14 +1767,14 @@ This section will contain descriptions of the unit tests derived from the MIS, w
   document) has been completed.}
 
 \wss{Reference your MIS (detailed design document) and explain your overall
-philosophy for test case selection.}  
+philosophy for test case selection.}
 
-\wss{To save space and time, it may be an option to provide less detail in this section.  
-For the unit tests you can potentially layout your testing strategy here.  That is, you 
-can explain how tests will be selected for each module.  For instance, your test building 
-approach could be test cases for each access program, including one test for normal behaviour 
-and as many tests as needed for edge cases.  Rather than create the details of the input 
-and output here, you could point to the unit testing code.  For this to work, you code 
+\wss{To save space and time, it may be an option to provide less detail in this section.
+For the unit tests you can potentially layout your testing strategy here.  That is, you
+can explain how tests will be selected for each module.  For instance, your test building
+approach could be test cases for each access program, including one test for normal behaviour
+and as many tests as needed for edge cases.  Rather than create the details of the input
+and output here, you could point to the unit testing code.  For this to work, you code
 needs to be well-documented, with meaningful names for all of the tests.}
 
 \subsection{Unit Testing Scope}
@@ -1346,34 +1804,34 @@ needs to be well-documented, with meaningful names for all of the tests.}
 
 Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
   be automatic}
-					
-Initial State: 
-					
-Input: 
-					
+
+Initial State:
+
+Input:
+
 Output: \wss{The expected result for the given inputs}
 
 Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
-					
+How test will be performed:
+
 \item{test-id2\\}
 
 Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
   be automatic}
-					
-Initial State: 
-					
-Input: 
-					
+
+Initial State:
+
+Input:
+
 Output: \wss{The expected result for the given inputs}
 
 Test Case Derivation: \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+How test will be performed:
 
 \item{...\\}
-    
+
 \end{enumerate}
 
 \subsubsection{Module 2}
@@ -1390,33 +1848,33 @@ How test will be performed:
   mentioned functional tests.}
 
 \subsubsection{Module ?}
-		
+
 \begin{enumerate}
 
 \item{test-id1\\}
 
 Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
   be automatic}
-					
-Initial State: 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-How test will be performed: 
-					
+
+Initial State:
+
+Input/Condition:
+
+Output/Result:
+
+How test will be performed:
+
 \item{test-id2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
-					
-Initial State: 
-					
-Input: 
-					
-Output: 
-					
-How test will be performed: 
+
+Initial State:
+
+Input:
+
+Output:
+
+How test will be performed:
 
 \end{enumerate}
 
@@ -1470,8 +1928,6 @@ Their values are defined in this section for easy maintenance.
 \newpage{}
 \section*{Appendix --- Reflection}
 
-\wss{This section is not required for CAS 741}
-
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.
 
@@ -1479,9 +1935,9 @@ graduate attribute of Lifelong Learning.
 
 \begin{enumerate}
   \item What went well while writing this deliverable? \\
-  
+
   Making the tests were very easy after we had the initial template down and distributed the work effectively amongst ourselves based on the functional and non-functional requirements.
-  
+
   \item What pain points did you experience during this deliverable, and how did you resolve them?\\
 
     One pain point we experienced was that we had a lot to do for this deliverable that we couldn't work on the next one, which is POC. Ultimately, what we decided to do was to focus mainly on this, because the deadline is earlier, and focus mainly on getting our project set up for POC. That way, we at least have started on the next deliverable.
@@ -1490,8 +1946,8 @@ graduate attribute of Lifelong Learning.
 
   \item What knowledge and skills will the team collectively need to acquire to successfully complete the verification and validation of your project? Examples of possible knowledge and skills include dynamic testing knowledge, static testing knowledge, specific tool usage, Valgrind etc. You should look to identify at least one item for each team member.\\
 
-    The team will need to become familiar with C\# tooling like unit test frameworks and compatible static analysis tools. 
-    
+    The team will need to become familiar with C\# tooling like unit test frameworks and compatible static analysis tools.
+
     For dynamic testing, the team will likely use the \textit{Unity Test Framework} since it is already integrated into the Unity game engine which powers the project. There are also Roslyn analyzers build for the .NET platform that are integrated into IDEs that are connected to Unity. These are useful as static analyzers that can check for errors in the code even if it still compiles.
 
     As a tentative plan, we will have Russell look into configuring the Roslyn analyzers that come packaged with .NET so that it meets our needs. Abdul and Avanish will research the \textit{Unity Test Framework} for the Unity \textit{Editor Mode} and \textit{Play Mode} respectively. Rafey will pick a static analysis tool like SonarQube for us to use the code.
@@ -1501,10 +1957,10 @@ graduate attribute of Lifelong Learning.
     One approach (especially given the popularity of Unity/.NET/SonarQube) is to watch videos online where people talk about the testing within the context of Unity projects. This could give us a prospective on how other people implement testing. Another approach is to read through the documentation associated with the topic at hand. This is very useful when a there is a smaller user base for a tool and no associated videos or examples.
 
     Russell will read documentation since most of his work surrounds configuration which requires a description for each configurable part. This is easily searchable when sifting through documentation.
-    
+
     Abdul and Avanish will watch videos (if they can find some good ones) about the \textit{Unity Test Framework}. Since it is a very popular among game developers who use Unity, there should be many walkthroughs on how to use it. By watching multiple videos, they should get a sense of how people usually implement the framework for testing.
 
-    Rafey will use google and look through internet forums to see what other developers recommend when it comes to static analysis for C\#. He will also end up looking at the documentation for these tools to decide which one works the best for our use case.
+    Rafey will use Google and look through internet forums to see what other developers recommend when it comes to static analysis for C\#. He will also end up looking at the documentation for these tools to decide which one works the best for our use case.
 
 \end{enumerate}
 
