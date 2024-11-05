@@ -11,7 +11,13 @@
     linkcolor=red,
     urlcolor=blue
 }
-\usepackage[round]{natbib}
+
+\usepackage{multibib}
+\usepackage[style=ieee]{biblatex}
+\newcites{doc}{Documentation Bibliography}
+\newcites{ref}{References}
+\addbibresource[datatype=bibtex]{bibliography/documentation.bib}
+\addbibresource[datatype=bibtex]{bibliography/references.bib}
 
 \input{../Comments}
 \input{../Common}
@@ -83,8 +89,7 @@ in.}
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+The purpose of this Verification and Validation (VnV) document is to outline the testing process we’ll use to make sure our project meets all its requirements and functions correctly. Verification checks that we’re building the product according to our design, while validation ensures the product meets the users’ needs and performs as expected. This document will describe both functional and non-functional tests, which help confirm that the project is reliable, safe, and easy to use. By following this VnV plan, we can identify and fix any issues early, ensuring the final product is high-quality and ready for users.
 
 \section{General Information}
 
@@ -116,37 +121,33 @@ has already been verified by its implementation team.}
 
 \subsection{Challenge Level and Extras}
 
-\wss{State the challenge level (advanced, general, basic) for your project.
-Your challenge level should exactly match what is included in your problem
-statement.  This should be the challenge level agreed on between you and the
-course instructor.  You can use a pull request to update your challenge level
-(in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
-VnV planning exercise.}
-
-\wss{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.
-You can use a pull request to update your extras (in TeamComposition.csv or
-Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+The challenge level for the Realm project is \textbf{general}. The extras that are going to be tackled in this project are \textbf{user documentation} and \textbf{usability testing}.
 
 \subsection{Relevant Documentation}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.  You can create BibTeX entries for your
-  documents and within those entries include a hyperlink to the documents.}
+This document contains information garnered from all the previous documentation referenced below:
 
-\citet{SRS}
+\begingroup
+    \raggedright
+    \renewcommand{\refname}{}
+    \vspace{-3em}
+    \printbibliography
+\endgroup
 
-\wss{Don't just list the other documents.  You should explain why they are relevant and 
-how they relate to your VnV efforts.}
+\begin{itemize}
+    \item The Problem Statement \cite{ProblemStatement} is a good reference to understand the context in which all of the requirements come from. The plans in this document should reflect the goals outlined in the Problem Statement.
+    \item The Development Plan \cite{DevelopmentPlan} has a list of team member roles which are should be considered when writing about a team member's testing role.
+    \item The SRS \cite{SRS} contains all of the functional (FR) and non-functional (NFR) requirements that were found in the elicitation process and those that were found after the initial version. This document strives to have a plan for each of these requirements.
+    \item The HA \cite{HA} has many considerations for potential hazards and mitigation strategies to reduce the project risk. There are many new FRs and NFRs that were derived from this analysis that need to be verified and validated.
+    \item The VnV Plan \cite{VnV} itself is also subject to verification as outlined by the \nameref{ssub:vnv_plan_verificaiton_plan} sub-section.
+\end{itemize}
+
+\newrefsection
 
 \section{Plan}
+\label{sub:plan}
 
-\wss{Introduce this section.  You can provide a roadmap of the sections to
-  come.}
+This section outlines the structured plan for verifying and validating our project at each stage of development. It first lists the roles of the team members involved in verification, the strategies for ensuring the accuracy of our requirements, design, and implementation, as well as the tools we'll use for automated testing. Each part is designed to ensure our project meets quality standards and fulfills its intended purpose.
 
 \subsection{Verification and Validation Team}
 
@@ -184,13 +185,29 @@ issue tracker?}
 \end{itemize}
 
 \subsection{Verification and Validation Plan Verification Plan}
+\label{ssub:vnv_plan_verificaiton_plan}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
+Once all the plans outlined in this section (\nameref{sub:plan}) are completed, they go will through a review process such that components that have no validation/verification method are discovered. The following process will take place:
 
-\wss{The review will include reviews by your classmates}
+\begin{enumerate}
+    \item Initial internal review by all group members
+    \begin{itemize}
+        \item Before the deadline for this document, the group will meet to look over the entire document in the search for components of the project that were overlooked in terms of testing.
+        \item A checklist of all the functional and non-functional requirements from the SRS will be used to ensure each of them have a plan to be tested.
+        \item All plans in this sub-sections will be checked against the grading rubric. This will act as a checklist for the expected level of detail for each plan.
+    \end{itemize}
+    \item Peer-Review by an external group
+    \begin{itemize}
+        \item As part of this deliverable another group will look over the plans from an outside perspective and give feedback on components we may have missed or were not sufficiently covered.
+        \item These suggestions will be made through GitHub Issues on the repo.
+    \end{itemize}
+    \item TA review
+    \begin{itemize}
+        \item When the TA reviews this deliverable, they will provide feedback for plans that they believe could use some reconstruction.
+    \end{itemize}
+\end{enumerate}
 
-\wss{Create a checklists?}
+
 
 \subsection{Implementation Verification Plan}
 
@@ -209,20 +226,7 @@ The primary method of validation for the implementation of the system will be th
 
 \subsection{Automated Testing and Verification Tools}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+Refer to \href{https://github.com/russellrd/realm/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{section 10 of the development plan} for the list of tools. We will use the NUnit-based Unity Testing framework for unit testing and code coverage metrics. Continuous testing will be done by GitHub actions using Unity Builder and Unity Test Runner from the GameCI open source project.
 
 \subsection{Software Validation Plan}
 
@@ -258,49 +262,65 @@ the contents of the subsections.}
 \wss{Include a blurb here to explain why the subsections below
   cover the requirements.  References to the SRS would be good here.}
 
-\subsubsection{Area of Testing1}
+\subsubsection{Tutorial}
 
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-		
-\paragraph{Title for Test}
+This section focuses on verifying the user interactions with the app's built-in tutorial. These tests ensure that users will have a fluid experience when finding and completing the tutorial. Given that this is the main instruction method provided by the app, it must work well otherwise users will likely stop using the app. To make it as comprehensible as possible, the tutorial has an interactive experience for every major feature as relayed in (\textit{TU-FR1}) and (\textit{TU-FR5}).  All functional requirements listed under Tutorial (TU) in the SRS \cite{SRS} have at least one test plan below.
 
 \begin{enumerate}
 
-\item{test-id1\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs.  Output is not how you
-are going to return the results of the test.  The output is the expected
-result.}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-					
-How test will be performed: 
-					
-\item{test-id2\\}
-
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
-
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-How test will be performed: 
+    \item
+    \textbf{Name:} Tutorial opens on account creation \label{itm:Test-TU1} \\
+    \textbf{Test ID:} Test-TU1 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User has opened the app. \\
+    \textbf{Input:} User creates an account. \\
+    \textbf{Output:} A pop-up appears that prompts the user to take the tutorial. \\
+    \textbf{Test Case Derivation:} Users who have just created an account are likely new to the app and should have some guidance on the features through the built-in tutorial. \\
+    \textbf{How test will be performed:} A tester will manually create an account within the app and check if the popup appears as expected.
+    
+    \item
+    \textbf{Name:} Tutorial can be opened through the settings screen \label{itm:Test-TU2} \\
+    \textbf{Test ID:} Test-TU2 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in. \\
+    \textbf{Input:} User navigates to settings screen. \\
+    \textbf{Output:} There is an option to open the tutorial. \\
+    \textbf{Test Case Derivation:} Users may be having trouble with a major feature and need a refresher on how it works. They might also want to explore features they have not used yet. \\
+    \textbf{How test will be performed:} A tester will manually navigate to the settings screen using the in-built navigation and look for the tutorial option.
+    
+    \item
+    \textbf{Name:} Tutorial involves all major features \label{itm:Test-TU3} \\
+    \textbf{Test ID:} Test-TU3 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, on tutorial screen. \\
+    \textbf{Input:} User traverses through every step of the tutorial. \\
+    \textbf{Output:} All major app features were seen in the tutorial. \\
+    \textbf{Test Case Derivation:} Ensure that the user has been introduced to the mechanics behind every major feature. \\
+    \textbf{How test will be performed:} A tester will manually go through all the tutorial steps marking off each major app feature in a checklist.
+    
+    \item
+    \textbf{Name:} User can exit the tutorial at any time \label{itm:Test-TU4} \\
+    \textbf{Test ID:} Test-TU4 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, on tutorial screen. \\
+    \textbf{Input:} User repeatedly goes through the tutorial and attempts to exit at each unique state. \\
+    \textbf{Output:} The tutorial can exit in every state. \\
+    \textbf{Test Case Derivation:} A user may want to learn a subset of the major features instead of going through them all. As such, they should be able to leave the tutorial at any point instead of forcing them to complete it. \\
+    \textbf{How test will be performed:} A tester will manually go through all the tutorial states and marking off which states allow a user to leave the tutorial.
+    
+    \item
+    \textbf{Name:} The tutorial is interactive in a sandbox environment \label{itm:Test-TU5} \\
+    \textbf{Test ID:} Test-TU5 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, on tutorial screen. \\
+    \textbf{Input:} User partially attempts each step of the tutorial by interacting with the sandbox environment. \\
+    \textbf{Output:} Each step of the tutorial is interactive. \\
+    \textbf{Test Case Derivation:} The user experience is improved when they can directly interact with a major feature instead of the app just displaying text describing its function. \\
+    \textbf{How test will be performed:} A tester will manually go through the tutorial and attempt to interact with the specific feature at each step within the sandbox environment. They don't have to complete the interaction specified in the step but it should be apparent that the major feature is working properly in the environment.
 
 \end{enumerate}
 
+<<<<<<< HEAD
 \subsubsection{Realm Testing}
 
 \begin{enumerate}
@@ -477,6 +497,389 @@ How test will be performed:
 
 \end{enumerate}
 
+=======
+\subsubsection{Tour Management}
+
+This section focuses on testing the \textit{Organization User} side of the tours functionality within the app. This includes creating, modifying, and publishing tours so that \textit{General Users} can use them. The main requirement for tour management is the ability to add metadata and objects to an area (\textit{TM-FR4}) which is covered by \textit{Test-TM3} and \textit{Test-TM8}. All the other functional requirements from the Tour Management (TM) section in the SRS \cite{SRS} have at least one test plan below.
+
+\begin{enumerate}
+
+    \item
+    \textbf{Name:} \textit{Organization Users} can access tour management screen \label{itm:Test-TM1} \\
+    \textbf{Test ID:} Test-TM1 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{Organization User}. \\
+    \textbf{Input:} User attempts to navigate to tour management screen. \\
+    \textbf{Output:} The tour management screen is reachable. \\
+    \textbf{Test Case Derivation:} Only users who are part of a verified organization will have the ability to create/edit/delete tours for their organization. \textit{Organization Users} should have be able to access the tour management screen. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{Organization User} and attempt to see the tour management screen in the navigation.
+
+    \item
+    \textbf{Name:} \textit{General Users} can NOT access the tour management screen \label{itm:Test-TM2} \\
+    \textbf{Test ID:} Test-TM2 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{General User}. \\
+    \textbf{Input:} User attempts to navigate to tour management screen. \\
+    \textbf{Output:} The tour management screen is hidden from user. \\
+    \textbf{Test Case Derivation:} Only users who are part of a verified organization will have the ability to create/edit/delete tours for their organization. \textit{General Users} should not have the ability to do any tour management. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and attempt to see the tour management screen in the navigation.
+
+    \item
+    \textbf{Name:} \textit{Organization Users} can create a customized tour \label{itm:Test-TM3} \\
+    \textbf{Test ID:} Test-TM3 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{Organization User}, on tour management screen. \\
+    \textbf{Input:} User attempts to create a tour by inputting all the information described in \textit{TM-FR4} and placing one of each type of object in the environment. \\
+    \textbf{Output:} The tour is successfully created with the correct data. \\
+    \textbf{Test Case Derivation:} \textit{Organization Users} should be able to create customized tours with metadata and objects placed along a specified path for a \textit{General User} to follow. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{Organization User} and attempt to create a tour using dummy data that fits the input constraints. They will check to see if the data was set correctly.
+
+    \item
+    \textbf{Name:} \textit{Organization Users} can create a tour as a draft \label{itm:Test-TM4} \\
+    \textbf{Test ID:} Test-TM4 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{Organization User}, on tour management screen. \\
+    \textbf{Input:} User attempts to create a tour by inputting all the information described in \textit{TM-FR4} and selects the option to save as a draft. \\
+    \textbf{Output:} The tour is successfully created as a draft. \\
+    \textbf{Test Case Derivation:} \textit{Organization Users} should be able to create customized tours but not release it directly to the public. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{Organization User} and attempt to create a tour using dummy data that fits the input constraints. They will then select the option at the end to save it as a draft.
+
+    \item
+    \textbf{Name:} \textit{Organization Users} can create a tour and directly publish it \label{itm:Test-TM5} \\
+    \textbf{Test ID:} Test-TM5 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{Organization User}, on tour management screen. \\
+    \textbf{Input:} User attempts to create a tour by inputting all the information described in \textit{TM-FR4} and selects the option to publish the tour. \\
+    \textbf{Output:} The tour is successfully created and published. \\
+    \textbf{Test Case Derivation:} \textit{Organization Users} should be able to create customized tours and release it directly to the public. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{Organization User} and attempt to create a tour using dummy data that fits the input constraints. They will then select the option at the end to publish it.
+
+    \item
+    \textbf{Name:} \textit{Organization Users} can publish a draft tour \label{itm:Test-TM6} \\
+    \textbf{Test ID:} Test-TM6 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{Organization User}, on tour management screen, and has a draft tour. \\
+    \textbf{Input:} User navigates to the draft tour and selects publish option. \\
+    \textbf{Output:} The tour is successfully published. \\
+    \textbf{Test Case Derivation:} \textit{Organization Users} should be able to take draft tours that they have previously worked on and publish them for use by \textit{General Users}. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{Organization User}, publish a draft tour and look to see if it was released successfully.
+
+    \item
+    \textbf{Name:} \textit{Organization Users} can preview one of their tours \label{itm:Test-TM7} \\
+    \textbf{Test ID:} Test-TM7 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{Organization User}, on tour management screen, and has a tour. \\
+    \textbf{Input:} User navigates to the tour and selects the preview option. \\
+    \textbf{Output:} The tour can be previewed through the lens of what a \textit{General User} would see. \\
+    \textbf{Test Case Derivation:} \textit{Organization Users} should be able see what their tour will end up looking like when \textit{General Users} eventually use them. This could expose any mistakes in the layout of the tour that can be fixed before release. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{Organization User}, attempt to preview a tour, and see if the interface is accurately showing the expected tour.
+
+    \item
+    \textbf{Name:} \textit{Organization Users} can edit one of their tours \label{itm:Test-TM8} \\
+    \textbf{Test ID:} Test-TM8 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{Organization User}, on tour management screen, and has a tour. \\
+    \textbf{Input:} User navigates to the tour they wish to edit, selects the edit option and changes all the inputs described in \textit{TM-FR4}. \\
+    \textbf{Output:} The tour is successfully edited with the correct data. \\
+    \textbf{Test Case Derivation:} \textit{Organization Users} should be able to edit a tour's  metadata and modify the objects placed along a specified path. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{Organization User} and attempt to edit a tour using new dummy data that fits the input constraints. They will check to see if the data was set correctly.
+
+\end{enumerate}
+
+\subsubsection{Touring}
+
+This section focuses on testing the \textit{General User} side of the tours functionality within the app. This includes the various ways a user can find tours (\textit{TR-FR2}). There are also requirements for previewing a tour (\textit{TR-FR3}) and using the view seen when actually going on a tour (\textit{TR-FR4}). All the other functional requirements from the Touring (TR) section in the SRS \cite{SRS} have at least one test plan below.
+
+\begin{enumerate}
+
+    \item
+    \textbf{Name:} \textit{General Users} can access the touring screen \label{itm:Test-TR1} \\
+    \textbf{Test ID:} Test-TR1 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{General User}. \\
+    \textbf{Input:} User attempts to navigate to the touring screen. \\
+    \textbf{Output:} The touring screen is reachable. \\
+    \textbf{Test Case Derivation:} Only users who are \textit{General Users} will have the ability to go on tours. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and attempt to see the touring screen in the navigation.
+
+    \item
+    \textbf{Name:} \textit{Organization Users} can NOT access the touring screen \label{itm:Test-TR2} \\
+    \textbf{Test ID:} Test-TR2 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{Organization User}. \\
+    \textbf{Input:} User attempts to navigate to touring screen. \\
+    \textbf{Output:} The touring screen is hidden from user. \\
+    \textbf{Test Case Derivation:} Only users who are \textit{General Users} will have the ability to go on tours. \textit{Organization Users} should have no option to do any touring. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{Organization User} and attempt to see the touring screen in the navigation.
+
+    \item
+    \textbf{Name:} \textit{General Users} can preview a tour \label{itm:Test-TR3} \\
+    \textbf{Test ID:} Test-TR3 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as \textit{General User}, on touring screen, and a tour exits. \\
+    \textbf{Input:} User finds a tour and attempts to preview it. \\
+    \textbf{Output:} User can see the information described in \textit{TR-FR3}. \\
+    \textbf{Test Case Derivation:} \textit{General Users} should be able to preview a tour to see information like the distance and route before actually starting it. They may want to determine if the tour fits with their schedule. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and attempt to preview a tour. They will check to see if all the data outlined in \textit{TR-FR3} is present.
+
+    \item
+    \textbf{Name:} \textit{General Users} can find a tour through the tour list interface \label{itm:Test-TR4} \\
+    \textbf{Test ID:} Test-TR4 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{General User}, on touring screen, and a public tour exists. \\
+    \textbf{Input:} User navigates to the tour list interface, and searches for a tour belonging to a organization. \\
+    \textbf{Output:} The tour has been found. \\
+    \textbf{Test Case Derivation:} \textit{General Users} should be able to find tours through one page where the tours can grouped together by organization or location. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and attempt to find a tour through the tour list interface that belongs to an organization.
+
+    \item
+    \textbf{Name:} \textit{General Users} can find a tour through a push notification when in proximity to a tour area in the real-world \label{itm:Test-TR5} \\
+    \textbf{Test ID:} Test-TR5 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{General User} but out of the app itself, push notifications are turned on, and their is a tour in the area. \\
+    \textbf{Input:} User goes close to a tour area in the real-world. \\
+    \textbf{Output:} A push notification appears on the user's phone indicating that a tour is nearby and prompts them to preview it. \\
+    \textbf{Test Case Derivation:} \textit{General Users} should be able to find tours that they might not know about by just being in proximity to it. This will expose the user to tours they may enjoy going on even when the app is not in their mind at that moment. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and close the app. They will then walk close to a tour location in the real-world and check to see if they get a push notification.
+
+    \item
+    \textbf{Name:} \textit{General Users} can find a tour through a QR code \label{itm:Test-TR6} \\
+    \textbf{Test ID:} Test-TR6 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{General User} but in their phone's camera app and they have a tour QR code. \\
+    \textbf{Input:} User scans the QR code through the camera app. \\
+    \textbf{Output:} The camera app opens \textit{Realm} to the preview of the corresponding tour. \\
+    \textbf{Test Case Derivation:} \textit{General Users} should be able to find tours in the app using a QR code sticker located in the real-world at the start of a tour. This allows them to quickly find the tour without searching through the list. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and open the camera app. They will scan the QR code and see if the preview of the tour opens up in the \textit{Realm} app properly.
+
+    \item
+    \textbf{Name:} \textit{General Users} can switch between the map and AR view in a tour \label{itm:Test-TR7} \\
+    \textbf{Test ID:} Test-TR7 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{General User}, started a tour, and is in map view. \\
+    \textbf{Input:} User selects option to change tour view to AR view and back. \\
+    \textbf{Output:} The app switches the view to AR view and then back to map view. \\
+    \textbf{Test Case Derivation:} \textit{General Users} should be able see tours through the two views and switch between them at any point in time. The AR view is more immersive but users may want to see their progress on a larger scale through the map. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and start a tour. They will try switching the tour view and see if the view is actually changed.
+
+    \item
+    \textbf{Name:} \textit{General Users} can see the map tour view \label{itm:Test-TR8} \\
+    \textbf{Test ID:} Test-TR8 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{General User} and started a tour \\
+    \textbf{Input:} User selects map view. \\
+    \textbf{Output:} The user can see the map with the properties described in \textit{TR-FR4.1}. \\
+    \textbf{Test Case Derivation:} \textit{General Users} should be able to view their progress in a tour through a map of the route with information that will aid in their understanding. They should be able to see their location overlaid on the map along with the \textit{AR objects} locations. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and start a tour. They will open the map view and check to see if all properties of maps outlined in \textit{TR-FR4.1} are present.
+
+    \item
+    \textbf{Name:} \textit{General Users} can see the AR tour view \label{itm:Test-TR9} \\
+    \textbf{Test ID:} Test-TR9 \\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in as a \textit{General User} and started a tour \\
+    \textbf{Input:} User selects AR view. \\
+    \textbf{Output:} The user can see an AR view with the properties described in \textit{TR-FR4.2}. \\
+    \textbf{Test Case Derivation:} \textit{General Users} should have a more immersive interface similar to the realm interface used in the main app instead of having just a map. They should be able to see the \textit{AR objects} superimposed on their screen with the historical information associated with them. \\
+    \textbf{How test will be performed:} A tester will manually login as a \textit{General User} and start a tour. They will open the AR view and check to see if all properties of maps outlined in \textit{TR-FR4.2} are present.
+
+\end{enumerate}
+
+\subsubsection{Profile Testing}
+\label{sec:profile_screen_testing}
+
+The Profile Screen Testing focuses on verifying user interactions related to profile management, password changes, and viewing of profile data. These tests ensure that users can efficiently manage their profile settings and view relevant information, which is critical for maintaining user engagement and security.
+
+\begin{enumerate}
+    \item \textbf{Name:} {Validate User Authentication} \label{itm:Test-PS1}\\
+    \textbf{Test ID:} Test-PS1\\
+    \textbf{Control:} Automated \\
+    \textbf{Initial State:} App launched, login screen displayed. \\
+    \textbf{Input:} User enters valid credentials. \\
+    \textbf{Output:} The expected result is that the user successfully logs in and is redirected to their profile page. \\
+    \textbf{Test Case Derivation:} This test is to ensure the system authenticates users with valid credentials.\\
+    \textbf{How test will be performed:} Through an automated script that inputs valid user credentials and checks if redirection to the profile page is successful.
+
+    \item \textbf{Name:} {Password Change Functionality} \label{itm:Test-PS2}\\
+    \textbf{Test ID:} Test-PS2\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, on profile settings page. \\
+    \textbf{Input:} User inputs new password and confirms. \\
+    \textbf{Output:} The expected result is that the system updates the password and provides a confirmation message. \\
+    \textbf{Test Case Derivation:} To verify that the system allows users to change their password securely. \\
+    \textbf{How test will be performed:} Tester manually changes the password and checks for confirmation of the change.
+
+    \item \textbf{Name:} {View Profile Information} \label{itm:Test-PS3}\\
+    \textbf{Test ID:} Test-PS3\\
+    \textbf{Control:} Automated \\
+    \textbf{Initial State:} User logged in, on profile page. \\
+    \textbf{Input:} None. \\
+    \textbf{Output:} The expected result is that profile information (username, password, profile picture, status) is displayed correctly. \\
+    \textbf{Test Case Derivation:} Confirm that all user profile information is retrievable and displayed correctly. \\
+    \textbf{How test will be performed:} Automated test that logs in as a user and verifies that all profile information is displayed as expected.
+
+    \item \textbf{Name:} {Access Help Page} \label{itm:Test-PS4}\\
+    \textbf{Test ID:} Test-PS4\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, on profile page. \\
+    \textbf{Input:} User navigates to help page. \\
+    \textbf{Output:} The expected result is that a help page with FAQs and additional help information is displayed. \\
+    \textbf{Test Case Derivation:} Ensure the help page is accessible and provides useful information. \\
+    \textbf{How test will be performed:} Tester navigates to the help page and verifies the presence and accuracy of the information.
+\end{enumerate}
+
+\subsubsection{Sub-Realm Testing}
+\label{sec:sub-realms_testing}
+
+The Sub-Realms Testing focuses on verifying user interactions related to creating, managing, and interacting within sub-realms. These tests ensure that users can efficiently create sub-realms, manage sub-realm members, and interact with sub-realm-specific content, which is essential for fostering collaboration and community engagement within the app.
+
+\begin{enumerate}
+
+    \item \textbf{Name:} {Create New Sub-Realm} \label{itm:Test-G1}\\
+    \textbf{Test ID:} Test-G1\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, on sub-realms page. \\
+    \textbf{Input:} User provides a sub-realm name, description, and invites members. \\
+    \textbf{Output:} The expected result is that a new sub-realm is created with the specified details, and invited members are notified. \\
+    \textbf{Test Case Derivation:} To verify that users can create new sub-realms with relevant details and invite members. \\
+    \textbf{How test will be performed:} Tester manually creates a sub-realm and verifies that the sub-realm is created with the correct details and members are notified.
+
+    \item \textbf{Name:} {Add or Remove Sub-Realm Members} \label{itm:Test-G2}\\
+    \textbf{Test ID:} Test-G2\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing a sub-realm they manage. \\
+    \textbf{Input:} User adds or removes specific members from the sub-realm. \\
+    \textbf{Output:} The expected result is that sub-realm membership updates accordingly, reflecting added or removed members. \\
+    \textbf{Test Case Derivation:} Ensure the sub-realm manager can manage sub-realm membership. \\
+    \textbf{How test will be performed:} Tester adds and removes members from the sub-realm and verifies that the changes are reflected.
+
+    \item \textbf{Name:} {Edit Sub-Realm Settings} \label{itm:Test-G3}\\
+    \textbf{Test ID:} Test-G3\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing a sub-realm they manage. \\
+    \textbf{Input:} User changes sub-realm name or description. \\
+    \textbf{Output:} The expected result is that sub-realm settings update with the new name or description. \\
+    \textbf{Test Case Derivation:} Verify that sub-realm settings can be modified by the sub-realm manager. \\
+    \textbf{How test will be performed:} Tester edits the sub-realm settings and checks that the changes are applied.
+
+    \item \textbf{Name:} {Delete Sub-Realm} \label{itm:Test-G4}\\
+    \textbf{Test ID:} Test-G4\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing a sub-realm they manage. \\
+    \textbf{Input:} User selects the option to delete the sub-realm. \\
+    \textbf{Output:} The expected result is that the sub-realm and all associated data are removed from the system. \\
+    \textbf{Test Case Derivation:} Ensure that sub-realm managers can delete sub-realms and remove associated data. \\
+    \textbf{How test will be performed:} Tester deletes a sub-realm and verifies that it no longer exists in the system.
+
+    \item \textbf{Name:} {Interact with Sub-Realm AR Content} \label{itm:Test-G5}\\
+    \textbf{Test ID:} Test-G5\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing a sub-realm. \\
+    \textbf{Input:} User interacts with sub-realm-specific AR content. \\
+    \textbf{Output:} The expected result is that sub-realm-specific AR content responds to user interactions. \\
+    \textbf{Test Case Derivation:} Verify that users can interact with shared AR content within the sub-realm. \\
+    \textbf{How test will be performed:} Tester interacts with sub-realm-specific AR content and observes responses.
+
+\end{enumerate}
+
+\subsubsection{Friends Testing}
+\label{sec:friends_screen_testing}
+
+The Friends Screen Testing focuses on verifying user interactions related to managing friends, including sending requests, accepting or rejecting requests, and viewing or removing friends. These tests ensure that users can effectively manage their friend connections within the app, which is important for social interaction and network building.
+
+\begin{enumerate}
+
+    \item \textbf{Name:} {Send Friend Request} \label{itm:Test-FS1}\\
+    \textbf{Test ID:} Test-FS1\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing friends screen. \\
+    \textbf{Input:} User sends a friend request to another user. \\
+    \textbf{Output:} The expected result is that the friend request is sent, and the recipient receives a notification. \\
+    \textbf{Test Case Derivation:} To ensure users can initiate friend requests. \\
+    \textbf{How test will be performed:} Tester sends a friend request and verifies that it reaches the recipient.
+
+    \item \textbf{Name:} {Accept or Reject Friend Request} \label{itm:Test-FS2}\\
+    \textbf{Test ID:} Test-FS2\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing pending friend requests. \\
+    \textbf{Input:} User accepts or rejects a friend request. \\
+    \textbf{Output:} The expected result is that the friend list updates with the accepted friend, or the request is removed if rejected. \\
+    \textbf{Test Case Derivation:} Confirm that users can manage incoming friend requests. \\
+    \textbf{How test will be performed:} Tester accepts and rejects friend requests, verifying updates to the friend list.
+
+    \item \textbf{Name:} {View Friend List} \label{itm:Test-FS3}\\
+    \textbf{Test ID:} Test-FS3\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing friends screen. \\
+    \textbf{Input:} None \\
+    \textbf{Output:} The expected result is that a list of current friends is displayed. \\
+    \textbf{Test Case Derivation:} Ensure users can view their list of friends. \\
+    \textbf{How test will be performed:} Tester views the friends screen to check for an accurate friend list.
+
+    \item \textbf{Name:} {Remove Friend} \label{itm:Test-FS4}\\
+    \textbf{Test ID:} Test-FS4\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing friends screen. \\
+    \textbf{Input:} User selects a friend to remove. \\
+    \textbf{Output:} The expected result is that the friend is removed from the user’s friend list. \\
+    \textbf{Test Case Derivation:} To verify users can remove friends from their friend list. \\
+    \textbf{How test will be performed:} Tester removes a friend and verifies the friend list updates.
+
+\end{enumerate}
+
+\subsubsection{Settings Testing}
+\label{sec:settings_testing}
+
+The Settings Testing focuses on verifying user interactions related to modifying various settings, including accessibility, display, privacy, profile, and sub-realm settings. These tests ensure that users can customize their app experience according to their preferences and privacy requirements, enhancing usability and personalization.
+
+\begin{enumerate}
+
+    \item \textbf{Name:} {Modify Accessibility Settings} \label{itm:Test-S1}\\
+    \textbf{Test ID:} Test-S1\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User adjusts text size, enables/disables viewing of object names, or changes language. \\
+    \textbf{Output:} The expected result is that accessibility settings apply as configured by the user. \\
+    \textbf{Test Case Derivation:} Confirm that accessibility settings are configurable. \\
+    \textbf{How test will be performed:} Tester changes each accessibility setting and verifies the changes apply.
+
+    \item \textbf{Name:} {Adjust Display Settings} \label{itm:Test-S2}\\
+    \textbf{Test ID:} Test-S2\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User changes display settings such as light/dark mode or AR object visibility. \\
+    \textbf{Output:} The expected result is that display settings reflect user preferences. \\
+    \textbf{Test Case Derivation:} To ensure display settings are customizable by the user. \\
+    \textbf{How test will be performed:} Tester modifies display settings and observes changes.
+
+    \item \textbf{Name:} {Manage Privacy Settings} \label{itm:Test-S3}\\
+    \textbf{Test ID:} Test-S3\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User modifies privacy settings to control visibility of profile, friends list, and AR interactions. \\
+    \textbf{Output:} The expected result is that privacy settings update based on user preferences. \\
+    \textbf{Test Case Derivation:} Verify users can control privacy settings for their profiles and interactions. \\
+    \textbf{How test will be performed:} Tester changes privacy settings and checks for corresponding updates.
+
+    \item \textbf{Name:} {Update Profile Settings} \label{itm:Test-S4}\\
+    \textbf{Test ID:} Test-S4\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User changes username, password, profile picture, or status. \\
+    \textbf{Output:} The expected result is that profile settings are updated and saved. \\
+    \textbf{Test Case Derivation:} Ensure users can update personal profile information. \\
+    \textbf{How test will be performed:} Tester updates profile settings and verifies changes.
+
+    \item \textbf{Name:} {Access Sub-Realm Settings} \label{itm:Test-S5}\\
+    \textbf{Test ID:} Test-S5\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User navigates to sub-realm settings to modify sub-realm options. \\
+    \textbf{Output:} The expected result is that sub-realm settings are accessible and configurable. \\
+    \textbf{Test Case Derivation:} To confirm users can manage settings for sub-realms they belong to. \\
+    \textbf{How test will be performed:} Tester accesses and modifies sub-realm settings, verifying updates.
+
+\end{enumerate}
+>>>>>>> main
 
 \subsection{Tests for Nonfunctional Requirements}
 
@@ -501,6 +904,7 @@ format for the tests given below.}
 How will they be done?  In cases like code (or document) walkthroughs, who will
 be involved? Be specific.}
 
+<<<<<<< HEAD
 \subsubsection{Usability Testing}
 
 
@@ -522,10 +926,43 @@ be involved? Be specific.}
     \textbf{Input/Condition:} Tester performs common workflows such as account setup, navigating between interfaces, creating AR objects, viewing and placing AR objects, and finding objects on the map, all without guidance or assistance  \\
     \textbf{Output/Result:} 80\% of testers complete each task and report that the app is easy and satisfying to use, and rate each workflow as highly intuitive.\\
     \textbf{How test will be performed:} A group of new users will perform specified workflows and complete a post-test \hyperref[sub:usability_survey]{survey} rating the intuitiveness and satisfaction of their experience. Quantitative results should show that most users rate the app as highly intuitive and satisfying to use.
+=======
+\subsubsection{Security Testing}
+
+\begin{enumerate}
+
+    \item
+    \textbf{Name:} Encryption implementation message reading \label{itm:Test-QS-SC1} \\
+    \textbf{Test ID:} Test-QS-SC1 \\
+    \textbf{Type:} Manual \\
+    \textbf{Initial State:} Encryption algorithm is complete, user has opened the app, and requests to the server are being monitored. \\
+    \textbf{Input/Condition:} A request with sensitive information has been sent to the sever. \\
+    \textbf{Output/Result:} The contents of the information passed is not decipherable by reading the request but the server can decrypt the information to get the original message. \\
+    \textbf{How test will be performed:} A tester will open the app and monitor requests made to the server. They will check to see if the information has been encrypted or not.
+
+    \item
+    \textbf{Name:} Encryption implementation algorithm check \label{itm:Test-QS-SC2} \\
+    \textbf{Test ID:} Test-QS-SC2 \\
+    \textbf{Type:} Static \\
+    \textbf{Initial State:} Encryption algorithm is complete. \\
+    \textbf{Input/Condition:} All code relating to the encryption algorithm will be sent to a static analyzer. \\
+    \textbf{Output/Result:} The analyzer will show any vulnerabilities found within the algorithm \\
+    \textbf{How test will be performed:} A tester will run a static analyzer that is tasked with finding code errors in the encryption algorithm implementation that could lead to an incorrect output by the system.
+
+    \item
+    \textbf{Name:} Verify identity before transmitting private data \label{itm:Test-QS-SC3} \\
+    \textbf{Test ID:} Test-QS-SC3 \\
+    \textbf{Type:} Manual \\
+    \textbf{Initial State:} The app is ready for security review. \\
+    \textbf{Input/Condition:} All sections of the code where a user's sensitive data is displayed is checked for a corresponding identity check. \\
+    \textbf{Output/Result:} The sections all have a check to verify the user's identity before divulging the private data. \\
+    \textbf{How test will be performed:} A tester will search through the code and find all locations where private data is being displayed. They will check to see if each of them are guarded by an identity verification check.
+>>>>>>> main
 
 \end{enumerate}
 \subsubsection{Availability Testing}
 
+<<<<<<< HEAD
 \begin{enumerate}
     
 \item \textbf{Name:} Validate Server Availability \label{itm:Test-QS-A1} \\
@@ -560,6 +997,139 @@ be involved? Be specific.}
 
 
 \end{enumerate}
+=======
+\subsubsection{Compliance Testing}
+
+\begin{enumerate}
+
+    \item
+    \textbf{Name:} Check Personal Information and Electronic
+Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
+    \textbf{Test ID:} Test-CO1 \\
+    \textbf{Type:} Manual \\
+    \textbf{Initial State:} App is ready for compliance review. \\
+    \textbf{Input/Condition:} The app in its current state is checked against PIPEDA for compliance. \\
+    \textbf{Output/Result:} The app has been verified to comply with PIPEDA. \\
+    \textbf{How test will be performed:} A tester will manually parse through PIPEDA and check off all the sections that the app comports with. The app should comply with all sections.
+
+    \item
+    \textbf{Name:} Tax records check going back six years \label{itm:Test-CO2} \\
+    \textbf{Test ID:} Test-CO2 \\
+    \textbf{Type:} Manual \\
+    \textbf{Initial State:} The app is published on a app store. \\
+    \textbf{Input/Condition:} Records are checked for purchases and ad-revenue made over the course of the project's lifetime. \\
+    \textbf{Output/Result:} The records go back at least six years. \\
+    \textbf{How test will be performed:} A tester will look at the history of all revenue generated through the app and make sure the records go back to the legally required time span of 6 years.
+
+    \item
+    \textbf{Name:} Check \textit{Google Play} developer policy \cite{GooglePlay} compliance \label{itm:Test-CO3} \\
+    \textbf{Test ID:} Test-CO3 \\
+    \textbf{Type:} Manual \\
+    \textbf{Initial State:} App is ready for compliance review. \\
+    \textbf{Input/Condition:} The app in its current state is checked against the \textit{Google Play} developer policy for compliance. \\
+    \textbf{Output/Result:} The app has been verified to comply with the \textit{Google Play} developer policy. \\
+    \textbf{How test will be performed:} A tester will manually parse through the \textit{Google Play} developer policy and mark down all the sections that the app comports with. The app should comply with all sections.
+
+    \item
+    \textbf{Name:} Check \textit{App Store} review guidelines \cite{AppStore} compliance \label{itm:Test-CO4} \\
+    \textbf{Test ID:} Test-CO4 \\
+    \textbf{Type:} Manual \\
+    \textbf{Initial State:} App is ready for compliance review. \\
+    \textbf{Input/Condition:} The app in its current state is checked against the \textit{App Store} review guidelines for compliance. \\
+    \textbf{Output/Result:} The app has been verified to comply with the \textit{App Store} review guidelines. \\
+    \textbf{How test will be performed:} A tester will manually parse through the \textit{App Store} review guidelines and mark down all the sections that the app comports with. The app should comply with all sections.
+
+\end{enumerate}
+
+\subsubsection{Reusability Testing}
+
+\begin{enumerate}
+
+    \item
+    \textbf{Name:} Reusable components check \label{itm:Test-DI-R1} \\
+    \textbf{Test ID:} Test-DI-R1 \\
+    \textbf{Type:} Static \\
+    \textbf{Initial State:} All code is available for analysis. \\
+    \textbf{Input/Condition:} All code is sent to a static analyzer that has indicators for code duplication. \\
+    \textbf{Output/Result:} The analysis will show metrics relating to the sections of code that have a high amount of duplication. \\
+    \textbf{How test will be performed:} A tester will run the static analysis and look at the metrics to determine if an abstract component is warranted for sections of the code that have a lot of overlap. These sections could be simplified by having them all derive from a common component.
+
+\end{enumerate}
+
+
+\subsubsection{Portability Testing}
+
+\begin{enumerate}
+
+    \item \textbf{Name:} Validate Cross-Platform Compatibility \label{itm:Test-PT1} \\
+    \textbf{Test ID:} Test-PT1 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} Application is built for both iOS and Android platforms. \\
+    \textbf{Input/Condition:} Run the app on iOS and Android devices. \\
+    \textbf{Output/Result:} The app is functional and displays correctly on both platforms. \\
+    \textbf{How test will be performed:} Tester will install the app on both an iOS and an Android device, verifying consistent functionality and UI.
+
+    \item \textbf{Name:} Common Codebase Validation \label{itm:Test-PT2} \\
+    \textbf{Test ID:} Test-PT2 \\
+    \textbf{Type:} Non-Functional, Code Review \\
+    \textbf{Initial State:} The app’s codebase is ready for review. \\
+    \textbf{Input/Condition:} Inspect the codebase to ensure shared files are correctly configured with minimal platform-specific files. \\
+    \textbf{Output/Result:} Codebase only differs in configuration files for platform-specific settings. \\
+    \textbf{How test will be performed:} Developer will conduct a code walkthrough, focusing on configuration files to confirm minimal platform-specific variations.
+
+    \item \textbf{Name:} Build Verification on iOS and Android \label{itm:Test-PT3} \\
+    \textbf{Test ID:} Test-PT3 \\
+    \textbf{Type:} Non-Functional, Automated \\
+    \textbf{Initial State:} The cross-platform codebase is ready for automated build testing. \\
+    \textbf{Input/Condition:} Initiate automated builds for both iOS and Android. \\
+    \textbf{Output/Result:} Both builds succeed without errors. \\
+    \textbf{How test will be performed:} An automated CI/CD pipeline will attempt to build the app for both platforms, confirming compatibility.
+
+\end{enumerate}
+
+
+\subsubsection{Safety Testing}
+
+\begin{enumerate}
+
+    \item \textbf{Name:} Distraction to Surroundings Assessment \label{itm:Test-SA1} \\
+    \textbf{Test ID:} Test-SA1 \\
+    \textbf{Type:} Non-Functional, Survey-Based \\
+    \textbf{Initial State:} App is functional and ready for user testing. \\
+    \textbf{Input/Condition:} Conduct a user survey after users engage with the app in a controlled environment. \\
+    \textbf{Output/Result:} Survey results show that users do not find the app dangerously distracting them from their surroundings while using it. \\
+    \textbf{How test will be performed:} A group of users will be observed using the app, followed by a survey asking them to rate their distraction levels from surrounding objects. Results will be analyzed to confirm minimal distraction.
+
+    \item \textbf{Name:} No Bright Flashes or Loud Noises \label{itm:Test-SA2} \\
+    \textbf{Test ID:} Test-SA2 \\
+    \textbf{Type:} Non-Functional, Manual Inspection \\
+    \textbf{Initial State:} The app is fully developed with all interfaces available for review. \\
+    \textbf{Input/Condition:} Navigate through all screens and interactions within the app. \\
+    \textbf{Output/Result:} No bright flashes or loud noises are present in any of the app interfaces. \\
+    \textbf{How test will be performed:} Tester will manually explore the app, paying special attention to visual and audio elements, ensuring that no features could trigger discomfort or seizures in sensitive users.
+\end{enumerate}
+
+\subsubsection{Installation Testing}
+
+\begin{enumerate}
+    \item \textbf{Name:} Verify App Store Availability \label{itm:Test-I1} \\
+    \textbf{Test ID:} Test-I1 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} App has been submitted and approved on both iOS and Android app stores. \\
+    \textbf{Input/Condition:} Search for the app on the Apple App Store and Google Play Store. \\
+    \textbf{Output/Result:} The app is available for download on both app stores. \\
+    \textbf{How test will be performed:} Tester will verify the presence of the app by searching for it on the respective app stores and confirming it is listed and downloadable.
+
+    \item \textbf{Name:} Simple Installation Process \label{itm:Test-I2} \\
+    \textbf{Test ID:} Test-I2 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} App is available on both app stores. \\
+    \textbf{Input/Condition:} Attempt to install the app on a device from both the Apple App Store and Google Play Store. \\
+    \textbf{Output/Result:} The app installs directly without any additional steps or configurations. \\
+    \textbf{How test will be performed:} Tester will initiate the installation from each app store, ensuring the app installs seamlessly without requiring extra configurations or settings adjustments.
+\end{enumerate}
+
+>>>>>>> main
 
 \subsection{Traceability Between Test Cases and Requirements}
 
@@ -570,6 +1140,7 @@ be involved? Be specific.}
     \centering
     \begin{tabular}{|l|l|l|}
         \hline
+<<<<<<< HEAD
         \textbf{Test-ID} & \textbf{Test Name} &\textbf{Requirements} \\
         \hline
         \hyperref[itm:Test-RI1]{Test-RI1} & Validate AR Object Perspective Adjustment & RI-FR1.1 \\
@@ -619,6 +1190,122 @@ be involved? Be specific.}
         \hyperref[itm:Test-QS-A2]{Test-QS-A2} & User Feedback on Server Availability & QS-A1 \\
         \hline
         \hyperref[itm:Test-DI-M1]{Test-DI-M1} & Validate API Error Message Clarity & DI-M1 \\
+=======
+        \textbf{Test-ID} & \textbf{Test Name} & \textbf{Requirements} \\
+        \hline
+        \hyperref[itm:Test-PS1]{Test-PS1} & Validate User Authentication & PS-FR1 \\
+        \hline
+        \hyperref[itm:Test-PS2]{Test-PS2} & Password Change Functionality & PS-FR3 \\
+        \hline
+        \hyperref[itm:Test-PS3]{Test-PS3} & View Profile Information & PS-FR4 \\
+        \hline
+        \hyperref[itm:Test-PS4]{Test-PS4} & Access Help Page & PS-FR6 \\
+        \hline
+        \hyperref[itm:Test-G1]{Test-G1} & Create New Group & G-FR1 \\
+        \hline
+        \hyperref[itm:Test-G2]{Test-G2} & Add or Remove Group Members & G-FR2 \\
+        \hline
+        \hyperref[itm:Test-G3]{Test-G3} & Edit Group Settings & G-FR3 \\
+        \hline
+        \hyperref[itm:Test-G4]{Test-G4} & Delete Group & G-FR4 \\
+        \hline
+        \hyperref[itm:Test-G5]{Test-G5} & Interact with Group AR Content & G-FR5 \\
+        \hline
+        \hyperref[itm:Test-FS1]{Test-FS1} & Send Friend Request & FS-FR1 \\
+        \hline
+        \hyperref[itm:Test-FS2]{Test-FS2} & Accept or Reject Friend Request & FS-FR2 \\
+        \hline
+        \hyperref[itm:Test-FS3]{Test-FS3} & View Friend List & FS-FR3 \\
+        \hline
+        \hyperref[itm:Test-FS4]{Test-FS4} & Remove Friend & FS-FR4 \\
+        \hline
+        \hyperref[itm:Test-S1]{Test-S1} & Modify Accessibility Settings & S-FR1 \\
+        \hline
+        \hyperref[itm:Test-S2]{Test-S2} & Adjust Display Settings & S-FR2 \\
+        \hline
+        \hyperref[itm:Test-S3]{Test-S3} & Manage Privacy Settings & S-FR3 \\
+        \hline
+        \hyperref[itm:Test-S4]{Test-S4} & Update Profile Settings & S-FR4 \\
+        \hline
+        \hyperref[itm:Test-S5]{Test-S5} & Access Group Settings & S-FR5 \\
+        \hline
+        \hyperref[itm:Test-PT1]{Test-PT1} & Validate Cross-Platform Compatibility & DI-P1 \\
+        \hline
+        \hyperref[itm:Test-PT2]{Test-PT2} & Common Codebase Validation & DI-P2 \\
+        \hline
+        \hyperref[itm:Test-PT3]{Test-PT3} & Build Verification on iOS and Android & DI-P1\\
+        \hline
+        \hyperref[itm:Test-SA1]{Test-SA1} & Distraction Level Assessment & QS-SA1 \\
+        \hline
+        \hyperref[itm:Test-SA2]{Test-SA2} & No Bright Flashes or Loud Noises & QS-SA2 \\
+        \hline
+        \hyperref[itm:Test-I1]{Test-I1} & Verify App Store Availability & DI-I1 \\
+        \hline
+        \hyperref[itm:Test-I2]{Test-I2} & Simple Installation Process & DI-I2 \\
+        \hline
+        \textbf{Test-ID} & \textbf{Test Name} &\textbf{Requirements} \\
+        \hline
+        \hyperref[itm:Test-TU1]{Test-TU1} & Tutorial opens on account creation & TU-FR2 \\
+        \hline
+        \hyperref[itm:Test-TU2]{Test-TU2} & Tutorial can be opened through the settings screen & TU-FR4 \\
+        \hline
+        \hyperref[itm:Test-TU3]{Test-TU3} & Tutorial involves all major features & TU-FR1 \\
+        \hline
+        \hyperref[itm:Test-TU4]{Test-TU4} & User can exit the tutorial at any time & TU-FR3 \\
+        \hline
+        \hyperref[itm:Test-TU5]{Test-TU5} & The tutorial is interactive in a sandbox environment & TU-FR5 \\
+        \hline
+        \hyperref[itm:Test-TM1]{Test-TM1} & \textit{Organization Users} can access tour management screen & TM-FR1 \\
+        \hline
+        \hyperref[itm:Test-TM2]{Test-TM2} & \textit{General Users} can NOT access the tour management screen & TM-FR1 \\
+        \hline
+        \hyperref[itm:Test-TM3]{Test-TM3} & \textit{Organization Users} can create a customized tour & TM-FR4 \\
+        \hline
+        \hyperref[itm:Test-TM4]{Test-TM4} & \textit{Organization Users} can create a tour as a draft & TM-FR2 \\
+        \hline
+        \hyperref[itm:Test-TM5]{Test-TM5} & \textit{Organization Users} can create a tour and directly publish it & TM-FR3 \\
+        \hline
+        \hyperref[itm:Test-TM6]{Test-TM6} & \textit{Organization Users} can publish a draft tour & TM-FR3 \\
+        \hline
+        \hyperref[itm:Test-TM7]{Test-TM7} & \textit{Organization Users} can preview one of their tours & TM-FR5 \\
+        \hline
+        \hyperref[itm:Test-TM8]{Test-TM8} & \textit{Organization Users} can edit one of their tours & TM-FR6 \\
+        \hline
+        \hyperref[itm:Test-TR1]{Test-TR1} & \textit{General Users} can access the touring screen & TR-FR1 \\
+        \hline
+        \hyperref[itm:Test-TR2]{Test-TR2} & \textit{Organization Users} can NOT access the touring screen & TR-FR1 \\
+        \hline
+        \hyperref[itm:Test-TR3]{Test-TR3} & \textit{General Users} can preview a tour & TR-FR3 \\
+        \hline
+        \hyperref[itm:Test-TR4]{Test-TR4} & \textit{General Users} can find a tour through the tour list interface & TR-FR2.1 \\
+        \hline
+        \hyperref[itm:Test-TR5]{Test-TR5} & \textit{General Users} can find a tour through a push notification when in proximity to a tour area in the real-world & TR-FR2.2 \\
+        \hline
+        \hyperref[itm:Test-TR6]{Test-TR6} & \textit{General Users} can find a tour through a QR code & TR-FR2.3 \\
+        \hline
+        \hyperref[itm:Test-TR7]{Test-TR7} & \textit{General Users} can switch between the map and AR view in a tour & TR-FR4 \\
+        \hline
+        \hyperref[itm:Test-TR8]{Test-TR8} & \textit{General Users} can see the map tour view \label{itm:Test-TR8} & TR-FR4.1 \\
+        \hline
+        \hyperref[itm:Test-TR9]{Test-TR9} & \textit{General Users} can see the AR tour view & TR-FR4.2 \\
+        \hline
+        \hyperref[itm:Test-QS-SC1]{Test-QS-SC1} & Encryption implementation message reading & QS-SC1 \\
+        \hline
+        \hyperref[itm:Test-QS-SC2]{Test-QS-SC2} & Encryption implementation algorithm check & QS-SC1 \\
+        \hline
+        \hyperref[itm:Test-QS-SC3]{Test-QS-SC3} & Verify identity before transmitting private data & QS-SC2 \\
+        \hline
+        \hyperref[itm:Test-CO1]{Test-CO1} & Check Personal Information and Electronic
+Documents Act (PIPEDA) \cite{PIPEDA} compliance & CO1 \\
+        \hline
+        \hyperref[itm:Test-CO2]{Test-CO2} & Tax records check going back six years & CO2 \\
+        \hline
+        \hyperref[itm:Test-CO3]{Test-CO3} & Check \textit{Google Play} developer policy \cite{GooglePlay} compliance & CO3 \\
+        \hline
+        \hyperref[itm:Test-CO4]{Test-CO4} & Check \textit{App Store} review guidelines \cite{AppStore} compliance & CO4 \\
+        \hline
+        \hyperref[itm:Test-DI-R1]{Test-DI-R1} & Reusable components check & DI-R1 \\
+>>>>>>> main
         \hline
     \end{tabular}
     \caption{Mapping of Tests to Requirements}
@@ -626,7 +1313,10 @@ be involved? Be specific.}
 \end{table}
 
 \pagebreak
+<<<<<<< HEAD
   
+=======
+>>>>>>> main
 
 \section{Unit Test Description}
 
@@ -755,10 +1445,8 @@ How test will be performed:
 \subsection{Traceability Between Test Cases and Modules}
 
 \wss{Provide evidence that all of the modules have been considered.}
-				
-\bibliographystyle{plainnat}
 
-\bibliography{../../refs/References}
+\printbibliography
 
 \end{comment}
 
@@ -795,6 +1483,12 @@ Their values are defined in this section for easy maintenance.
 \end{itemize}
 
 
+<<<<<<< HEAD
+=======
+\begin{itemize}
+    \item On a scale of 1 - 10, how distracted were you from your surroundings when using the app?
+\end{itemize}
+>>>>>>> main
 
 \newpage{}
 \section*{Appendix --- Reflection}
@@ -807,14 +1501,25 @@ graduate attribute of Lifelong Learning.
 \input{../Reflection.tex}
 
 \begin{enumerate}
-  \item What went well while writing this deliverable? 
+  \item What went well while writing this deliverable? \\
+  
+  Making the tests were very easy after we had the initial template down and distributed the work effectively amongst ourselves based on the functional and non-functional requirements.
+  
   \item What pain points did you experience during this deliverable, and how
-    did you resolve them?
+    did you resolve them?\\
+
+    One pain point we experienced was that we had a lot to do for this deliverable that we couldn't work on the next one, which is POC. Ultimately, what we decided to do was to focus mainly on this, because the deadline is earlier, and focus mainly on getting our project set up for POC. That way, we at least have started on the next deliverable.
+
+    Another thing was deciding which tests to automate and which to make manual. We resolved this by seeing which test would be easiest or quickest to implement. If a manual test was easiest, we would choose that, but if a manual test would take long, we'd make it automated.\\
+    
   \item What knowledge and skills will the team collectively need to acquire to
   successfully complete the verification and validation of your project?
   Examples of possible knowledge and skills include dynamic testing knowledge,
   static testing knowledge, specific tool usage, Valgrind etc.  You should look to
-  identify at least one item for each team member.
+  identify at least one item for each team member.\\
+
+    
+  
   \item For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
   mastering the skill?  Of the identified approaches, which will each team
