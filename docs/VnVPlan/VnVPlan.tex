@@ -3,6 +3,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{comment}
 \hypersetup{
     colorlinks,
     citecolor=blue,
@@ -96,6 +97,8 @@ The purpose of this Verification and Validation (VnV) document is to outline the
 
 \wss{Say what software is being tested.  Give its name and a brief overview of
   its general functions.}
+
+The software being tested is "Realm", an AR social platform. The platform allows users to place AR objects in the real world for others to see, and allows organizations to create AR tours to provide users high quality experiences.
 
 \subsection{Objectives}
 
@@ -219,6 +222,8 @@ Once all the plans outlined in this section (\nameref{sub:plan}) are completed, 
 walkthrough.  There is also a possibility of using the final presentation (in
 CAS741) for a partial usability survey.}
 
+The primary method of validation for the implementation of the system will be the functional, non-functional, and unit tests described in this document. In addition to the static testing and code review specified in the non-functional tests, we will have a code walkthrough for each module to verify adherence to the design, and the completeness of the implementation. In these walkthroughs we will use our MIS as a checklist and go through module implementations checking off correctly implemented elements.
+
 \subsection{Automated Testing and Verification Tools}
 
 Refer to \href{https://github.com/russellrd/realm/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{section 10 of the development plan} for the list of tools. We will use the NUnit-based Unity Testing framework for unit testing and code coverage metrics. Continuous testing will be done by GitHub actions using Unity Builder and Unity Test Runner from the GameCI open source project.
@@ -312,6 +317,182 @@ This section focuses on verifying the user interactions with the app's built-in 
     \textbf{Output:} Each step of the tutorial is interactive. \\
     \textbf{Test Case Derivation:} The user experience is improved when they can directly interact with a major feature instead of the app just displaying text describing its function. \\
     \textbf{How test will be performed:} A tester will manually go through the tutorial and attempt to interact with the specific feature at each step within the sandbox environment. They don't have to complete the interaction specified in the step but it should be apparent that the major feature is working properly in the environment.
+
+\end{enumerate}
+
+\subsubsection{Realm Testing}
+
+\begin{enumerate}
+
+
+\item \textbf{Name:} Validate AR Object Perspective Adjustment \label{itm:Test-RI1} \\
+\textbf{Test ID:} Test-RI1 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Realm interface is open, AR objects are displayed in the user’s vicinity on the camera feed. \\
+\textbf{Input/Condition:} Tester changes their position and angle in relation to an AR object. \\
+\textbf{Output/Result:} The AR object adjusts perspective appropriately, reflecting the new camera position and angle. \\ \textbf{How test will be performed:} The tester will move around the AR object, observing whether it adjusts in real time and maintains correct perspective relative to the user’s view.
+
+\item \textbf{Name:} Validate AR Object Clutter Management \label{itm:Test-RI2} \\
+\textbf{Test ID:} Test-RI2 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Realm interface is open, tester is in an area with overlapping AR object instances \\
+\textbf{Input/Condition:} Tester moves camera over a crowded area where multiple AR objects are present. \\
+\textbf{Output/Result:} The interface selectively displays a manageable number of AR objects without overwhelming the user’s view. \\ \textbf{How test will be performed:} Tester observes the interface to confirm only a few objects are displayed at once, reducing clutter in the view.
+
+\item \textbf{Name:} Validate AR Object Placement Accuracy \label{itm:Test-RI3} \\
+\textbf{Test ID:} Test-RI3 \\
+\textbf{Type:} Functional, Automated and Manual \\
+\textbf{Initial State:} Realm interface is open, test AR object instance is nearby \\
+\textbf{Input/Condition:} Test AR object instance is placed with a known alignment in the real world, and reference screenshots \\ 
+\textbf{Output/Result:} Test AR object appears in correct position and orientation as expected from the known alignment and reference screenshots, position also matches stored object instance data \\
+\textbf{How test will be performed:} Automated tests will compare object instance data, while a manual test will involve the tester visually confirming the position accuracy in the camera view.
+
+
+\item \textbf{Name:} Validate Sub-Realm Selection Indicator \label{itm:Test-RI4} \\
+\textbf{Test ID:} Test-RI4 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Realm interface is open with a sub-realm selected. \\
+\textbf{Input/Condition:} Tester views the interface with a sub-realm selected. \\
+\textbf{Output/Result:} The current sub-realm is clearly indicated on the interface. \\
+\textbf{How test will be performed:} Tester observes the interface to ensure that the active sub-realm is always visually indicated.
+
+\item \textbf{Name:} Validate Sub-Realm Selection Change \label{itm:Test-RI5} \\
+\textbf{Test ID:} Test-RI5 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Realm interface is open with a sub-realm selected, tester is in area with object instances from multiple sub-realms \\
+\textbf{Input/Condition:} Tester attempts to change the sub-realm using the interface controls. \\
+\textbf{Output/Result:} The interface updates to display the newly selected sub-realm, and the correct object instances appear. \\ \textbf{How test will be performed:} Tester selects a new sub-realm and observes if the displayed objects and interface reflect the new selection.
+
+
+\item \textbf{Name:} Validate Object Placement Workflow Control \label{itm:Test-RI6} \\
+\textbf{Test ID:} Test-RI6 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Realm interface is open. \\
+\textbf{Input/Condition:} Tester attempts to access the object placement workflow via the provided control. \\
+\textbf{Output/Result:} Tester is successfully redirected to the object placement workflow. \\
+\textbf{How test will be performed:} Tester selects the object placement control and verifies redirection to the appropriate workflow screen.
+
+\item \textbf{Name:} Validate Object Scanning Workflow Control \label{itm:Test-RI7} \\
+\textbf{Test ID:} Test-RI7 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Realm interface is open. \\
+\textbf{Input/Condition:} Tester attempts to access the object scanning workflow via the provided control. \\
+\textbf{Output/Result:} Tester is successfully redirected to the object scanning workflow. \\
+\textbf{How test will be performed:} Tester selects the object scanning control and verifies redirection to the appropriate workflow screen.
+
+
+\item \textbf{Name:} Validate Nearby Tour Indication \label{itm:Test-RI8} \\
+\textbf{Test ID:} Test-RI8 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Realm interface is open, tester is near the starting point of a tour. \\
+\textbf{Input/Condition:} Tester moves within range of the tour start point. \\
+\textbf{Output/Result:} The interface displays a clear indication of the nearby tour and a link to the tour preview. \\
+\textbf{How test will be performed:} Tester observes if the indication and link appear when near the tour start point.
+
+\item \textbf{Name:} Validate Hazard Warning \label{itm:Test-RI9} \\
+\textbf{Test ID:} Test-RI9 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Realm interface is open, tester is approaching a real-world hazard. \\
+\textbf{Input/Condition:} Tester moves closer to a hazard in real space. \\
+\textbf{Output/Result:} Interface displays a clear warning when user approaches the hazard. \\
+\textbf{How test will be performed:} Tester approaches a wall with the realm interface open, and verifies that a warning appears. 
+
+
+\item \textbf{Name:} Validate Offline Mode for Interactive Components \label{itm:Test-RI10} \\
+\textbf{Test ID:} Test-RI10 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Realm interface is open and disconnected from the internet. \\
+\textbf{Input/Condition:} Tester attempts to interact with various components of the interface in offline mode. \\
+\textbf{Output/Result:} Interactive components function normally, but location-based features are disabled. \\
+\textbf{How test will be performed:} Tester verifies the functionality of object scanning and the unavailability of object placement, maps, and other internet dependent features.
+
+\end{enumerate}
+
+\subsubsection{Object Placement Testing}
+
+\begin{enumerate}
+
+
+\item \textbf{Name:} Validate Object Selection Stage \label{itm:Test-OP1} \\
+\textbf{Test ID:} Test-OP1 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Tester has progressed object placement workflow to object selection stage \\
+\textbf{Input/Condition:} Tester selects object from one of: inventory, new object scan, new prompt generation \\
+\textbf{Output/Result:} Interface successfully proceeds to sub-realm selection step with the selected object \\
+\textbf{How test will be performed:} Tester initiates object placement workflow and progresses to object selection step. They then use one of the object selection methods to select an object and validate that the interface moves on to sub-realm selection with the selected object. They select the option to return to object selection, and repeat the process for all  object selection methods.
+
+\item \textbf{Name:} Validate Sub-Realm Selection Stage \label{itm:Test-OP2} \\
+\textbf{Test ID:} Test-OP2 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Tester has progressed object placement workflow to sub-realm selection stage, and is part of multiple sub-realms \\
+\textbf{Input/Condition:} Tester selects multiple sub-realms for sharing the object instance. \\
+\textbf{Output/Result:} The system associates the selected sub-realms with the object instance upon placement. \\
+\textbf{How test will be performed:} Tester initiates object placement workflow and progresses to sub-realm selection step. They then select multiple sub-realms before placing the object, verifying that the correct sub-realms are associated by checking the object instance database entries.
+
+\item \textbf{Name:} Validate Object Placement Stage \label{itm:Test-OP3} \\
+\textbf{Test ID:} Test-OP3 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Tester has progressed object placement workflow object placement stage \\
+\textbf{Input/Condition:} Tester rotates, resizes, and translates the object in real space, then confirms placement. \\
+\textbf{Output/Result:} Rotation, resizing, and translating are all functional, and the AR object is positioned accurately in real space with the correct orientation, aligning with the tester's intent. \\
+\textbf{How test will be performed:} Tester initiates object placement workflow and progresses to object placement step. Tester rotates, resizes, and translates the object, verifying visually that it appears in the intended location and orientation in the real-world view, and finally confirms the placement of the object.
+
+\item \textbf{Name:} Validate Object Instance Storage \label{itm:Test-OP4} \\
+\textbf{Test ID:} Test-OP4 \\
+\textbf{Type:} Functional, Manual \\
+\textbf{Initial State:} Tester has just placed an AR object instance \\
+\textbf{Input/Condition:} Tester checks the AR object instance database \\
+\textbf{Output/Result:} The AR object instance that the tester placed is present with correct details, including object type, sub-realm(s), position, and orientation. \\
+\textbf{How test will be performed:} Tester completes the object placement workflow then checks the AR object instance database and verifies the presence and correctness of their newly created object instance.
+
+
+\item \textbf{Name:} Validate Area Based Placement Limit \label{itm:Test-OP5} \\
+\textbf{Test ID:} Test-OP5 \\
+\textbf{Type:} Functional, Automated and Manual \\
+\textbf{Initial State:} Test user has sufficient AR object instances recorded to reach the object placement limit of an area  \\
+\textbf{Input/Condition:} Tester attempts to place another object in the same area \\
+\textbf{Output/Result:} System prevents additional placements once the area limit is reached, displaying a relevant warning. \\
+\textbf{How test will be performed:} Automated test script creates AR object instance entries in database to reach limit. Tester manually attempts to place another object in selected area, and validates that they are prevented from doing so, and are presented with a warning.
+
+\item \textbf{Name:} Validate Time Based Placement Limit \label{itm:Test-OP6} \\
+\textbf{Test ID:} Test-OP6 \\
+\textbf{Type:} Functional, Automated and Manual \\
+\textbf{Initial State:} Test user has sufficient AR object instances recorded to reach the time-based object placement limit for a user \\
+\textbf{Input/Condition:} Tester attempts to place another object within a short period \\
+\textbf{Output/Result:} System restricts further placements once the time-based limit is reached, displaying a relevant warning. \\
+\textbf{How test will be performed:} Automated test script creates AR object instance entries in database to reach limit. Tester manually attempts to place another object within a short period, and validates that they are prevented from doing so, and are presented with a warning.
+
+\item \textbf{Name:} Validate Automated Retry for Failed Object Storage \label{itm:Test-OP7} \\
+\textbf{Test ID:} Test-OP7 \\
+\textbf{Type:} Functional, Automated \\
+\textbf{Initial State:} System is running, with simulated conditions preventing initial object storage (e.g., network issues). \\
+\textbf{Input/Condition:} User places an object, but initial storage attempt fails due to simulated conditions. \\
+\textbf{Output/Result:} System automatically retries object storage until success or retry limit reached. \\
+\textbf{How test will be performed:} Simulate a storage failure on the initial attempt, monitoring logs to confirm retry attempts are made until storage is successful, validating the success scenario. Repeat this process, but simulate continued storage failure, and verify that the number of retries attempted is equal to the retry limit.
+
+\end{enumerate}
+
+\subsubsection{Database Testing}
+
+\begin{enumerate}
+
+\item \textbf{Name:} Validate Periodic Database Backup \label{itm:Test-DB1} \\
+    \textbf{Test ID:} Test-DB1 \\
+    \textbf{Type:} Functional, Automated \\
+    \textbf{Initial State:} System is running, database is available, periodic backup is set up. \\
+    \textbf{Input/Condition:} Periodic backup run is completed.  \\
+    \textbf{Output/Result:} Automated monitor verifies that the database backup is present and correct.  \\
+    \textbf{How test will be performed:} An automated monitor will wait for periodic backups, then restore the database from the backup in a sandbox environment and check that the data is present as expected.
+
+\item \textbf{Name:} Validate Database Encryption \label{itm:Test-DB2} \\
+    \textbf{Test ID:} Test-DB2 \\
+    \textbf{Type:} Functional, Automated \\
+    \textbf{Initial State:} System is running, database is available. \\
+    \textbf{Input/Condition:} Command to check encryption status is inputted into DBMS for all databases \\
+    \textbf{Output/Result:} DBMS response shows that all databases are encrypted \\
+    \textbf{How test will be performed:} Will depend on the database platform used, for example on SQL Server the following query would be ran, and the output would be checked: \\
+    SELECT db\_name(database\_id), encryption\_state \\
+    FROM sys.dm\_database\_encryption\_keys;
 
 \end{enumerate}
 
@@ -720,6 +901,27 @@ format for the tests given below.}
 How will they be done?  In cases like code (or document) walkthroughs, who will
 be involved? Be specific.}
 
+\subsubsection{Usability Testing}
+
+
+
+\begin{enumerate}
+
+    \item \textbf{Name:} Validate Localization \label{itm:Test-QS-U1} \\
+    \textbf{Test ID:} Test-QS-U1 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} App is open on settings page. \\
+    \textbf{Input/Condition:} Language setting is changed to English, Mandarin Chinese, Hindi, Spanish, and French (The 5 most spoken languages in the world) in turn.  \\
+    \textbf{Output/Result:} Text in the app correctly changes to the selected language, with understandable translations. \\
+    \textbf{How test will be performed:} Tester navigates to settings menu, selects one of the languages to be tested, and verifies that text in the settings page, realm interface, and maps interface are all correctly displayed in the selected language
+
+    \item \textbf{Name:} Validate User Intuitiveness and Satisfaction \label{itm:Test-QS-U2} \\
+    \textbf{Test ID:} Test-QS-U2 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} App is open, and tester is logged in as a new user with no prior experience using the app. \\
+    \textbf{Input/Condition:} Tester performs common workflows such as account setup, navigating between interfaces, creating AR objects, viewing and placing AR objects, and finding objects on the map, all without guidance or assistance  \\
+    \textbf{Output/Result:} 80\% of testers complete each task and report that the app is easy and satisfying to use, and rate each workflow as highly intuitive.\\
+    \textbf{How test will be performed:} A group of new users will perform specified workflows and complete a post-test \hyperref[sub:usability_survey]{survey} rating the intuitiveness and satisfaction of their experience. Quantitative results should show that most users rate the app as highly intuitive and satisfying to use.
 \subsubsection{Security Testing}
 
 \begin{enumerate}
@@ -752,7 +954,42 @@ be involved? Be specific.}
     \textbf{How test will be performed:} A tester will search through the code and find all locations where private data is being displayed. They will check to see if each of them are guarded by an identity verification check.
 
 \end{enumerate}
+\subsubsection{Availability Testing}
 
+\begin{enumerate}
+    
+\item \textbf{Name:} Validate Server Availability \label{itm:Test-QS-A1} \\
+    \textbf{Test ID:} Test-QS-A1 \\
+    \textbf{Type:} Non-Functional, Automated \\
+    \textbf{Initial State:} Server is running, with monitoring tools actively tracking uptime. \\
+    \textbf{Input/Condition:} Automated monitoring scripts track server uptime and downtime continuously over a one-week period \\
+    \textbf{Output/Result:} Monitoring scripts log any downtime, with server uptime recorded at 99\% or higher over the test period. \\
+    \textbf{How test will be performed:} Monitoring scripts will check server availability at regular intervals and log any downtime events, ensuring the server meets the 99\% availability criteria.
+
+
+\item \textbf{Name:} Validate User Feedback on Server Availability \label{itm:Test-QS-A2} \\
+    \textbf{Test ID:} Test-QS-A2 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} Server is running, and a test group of users has been granted access to the app. \\
+    \textbf{Input/Condition:} Over a one-week period, users in the test group access the app multiple times per day, as they normally would, at varying times. \\
+    \textbf{Output/Result:} No user complaints about server unavailability during the test period. Users report no issues with app access. \\
+    \textbf{How test will be performed:} Test group participants will be \hyperref[sub:usability_survey]{surveyed} at the end of the test period regarding any access issues they encountered. Any user-reported issues will be logged and reviewed to assess the server's availability from the user’s perspective.
+
+\end{enumerate}
+\subsubsection{Maintainability Testing}
+
+\begin{enumerate}
+    
+\item \textbf{Name:} Validate API Error Message Clarity \label{itm:Test-DI-M1} \\
+    \textbf{Test ID:} Test-DI-M1 \\
+    \textbf{Type:} Non-Functional, Manual and Automated \\
+    \textbf{Initial State:} System is running, with logging enabled for internal API calls. \\
+    \textbf{Input/Condition:} Simulate the following types of system failures in internal APIs and observe the resulting error messages: database connection failure, invalid input data, service timeout. \\
+    \textbf{Output/Result:} Error messages generated by the APIs clearly indicate the source and nature of the error in at least 90\% of cases, helping developers quickly identify issues. \\
+    \textbf{How test will be performed:} Automated scripts will be used to simulate common errors and log the resulting API responses. The resulting error messages will be manually reviewed to be evaluated on detail (e.g., error type, location, and possible causes), and clarity (accurate indication of what is causing error). Success is achieved if 90\% of the messages help to identify the error source.
+
+
+\end{enumerate}
 \subsubsection{Compliance Testing}
 
 \begin{enumerate}
@@ -894,7 +1131,55 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
     \centering
     \begin{tabular}{|l|p{8cm}|l|}
         \hline
-        \textbf{Test-ID} & \textbf{Test Name} & \textbf{Requirements} \\
+        \textbf{Test-ID} & \textbf{Test Name} &\textbf{Requirements} \\
+        \hline
+        \hyperref[itm:Test-RI1]{Test-RI1} & Validate AR Object Perspective Adjustment & RI-FR1.1 \\
+        \hline
+        \hyperref[itm:Test-RI2]{Test-RI2} & Validate AR Object Clutter Management & RI-FR1.2 \\
+        \hline
+        \hyperref[itm:Test-RI3]{Test-RI3} & Validate AR Object Placement Accuracy & RI-FR1.2 \\
+        \hline
+        \hyperref[itm:Test-RI4]{Test-RI4} & Validate Sub-Realm Selection Indicator & RI-FR2.1 \\
+        \hline
+        \hyperref[itm:Test-RI5]{Test-RI5} & Validate Sub-Realm Selection Change & RI-FR2.2 \\
+        \hline
+        \hyperref[itm:Test-RI6]{Test-RI6} & Validate Object Placement Workflow Control & RI-FR3 \\
+        \hline
+        \hyperref[itm:Test-RI7]{Test-RI7} & Validate Object Scanning Workflow Control & RI-FR4 \\
+        \hline
+        \hyperref[itm:Test-RI8]{Test-RI8} & Validate Nearby Tour Indication & RI-FR5 \\
+        \hline
+        \hyperref[itm:Test-RI9]{Test-RI9} & Validate Hazard Warning & RI-FR6 \\
+        \hline
+        \hyperref[itm:Test-RI10]{Test-RI10} & Validate Offline Mode for Interactive Components & RI-FR7 \\
+        \hline
+        \hyperref[itm:Test-OP1]{Test-OP1} & Validate Object Selection Stage & OP-FR2.1 \\
+        \hline
+        \hyperref[itm:Test-OP2]{Test-OP2} & Validate Sub-Realm Selection Stage & OP-FR2.2 \\
+        \hline
+        \hyperref[itm:Test-OP3]{Test-OP3} & Validate Object Placement Stage & OP-FR2.3 \\
+        \hline
+        \hyperref[itm:Test-OP4]{Test-OP4} & Validate Object Instance Storage & OP-FR1 \\
+        \hline
+        \hyperref[itm:Test-OP5]{Test-OP5} & Validate Area Based Placement Limit & OP-FR3.1 \\
+        \hline
+        \hyperref[itm:Test-OP6]{Test-OP6} & Validate Time Based Placement Limit & OP-FR3.2 \\
+        \hline
+        \hyperref[itm:Test-OP7]{Test-OP7} & Validate Automated Retry for Failed Object Storage & OP-FR1 \\
+        \hline
+        \hyperref[itm:Test-DB1]{Test-DB1} & Validate Periodic Database Backup & DB-FR1 \\
+        \hline
+        \hyperref[itm:Test-DB2]{Test-DB2} & Validate Database Encryption & DB-FR2 \\
+        \hline
+        \hyperref[itm:Test-QS-U1]{Test-QS-U1} & Validate Localization & QS-U1 \\
+        \hline
+        \hyperref[itm:Test-QS-U2]{Test-QS-U2} & Validate User Intuitiveness and Satisfaction & QS-U2 \\
+        \hline
+        \hyperref[itm:Test-QS-A1]{Test-QS-A1} & Automated Server Availability Monitoring & QS-A1 \\
+        \hline
+        \hyperref[itm:Test-QS-A2]{Test-QS-A2} & User Feedback on Server Availability & QS-A1 \\
+        \hline
+        \hyperref[itm:Test-DI-M1]{Test-DI-M1} & Validate API Error Message Clarity & DI-M1 \\
         \hline
         \hyperref[itm:Test-PS1]{Test-PS1} & Validate User Authentication & PS-FR1 \\
         \hline
@@ -1013,9 +1298,13 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance & CO1 \\
 \end{table}
 
 \pagebreak
+  
 
 \section{Unit Test Description}
 
+This section will contain descriptions of the unit tests derived from the MIS, which will be completed in a later iteration of this document
+
+\begin{comment}
 \wss{This section should not be filled in until after the MIS (detailed design
   document) has been completed.}
 
@@ -1139,7 +1428,11 @@ How test will be performed:
 
 \wss{Provide evidence that all of the modules have been considered.}
 
+\end{comment}
+
 \printbibliography
+
+
 
 \newpage
 
@@ -1152,10 +1445,26 @@ This is where you can place additional information.
 The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
 Their values are defined in this section for easy maintenance.
 
-\subsection{Usability Survey Questions?}
+\subsection{Usability Survey Questions} \label{sub:usability_survey}
 
 \begin{itemize}
-    \item On a scale of 1 - 10, how distracted were you from your surroundings when using the app?
+    \item For the following statements, please indicate your level of agreement between Strongly Disagree, Disagree, Neither Agree nor Disagree, Agree, and Strongly Agree:
+    \begin{itemize}
+        \item Navigating between interfaces is intuitive
+        \item Placing objects is intuitive
+        \item Scanning objects is intuitive
+        \item Generating objects by prompt is intuitive
+        \item Embarking on tours is intuitive
+        \item Creating tours is intuitive (ONLY FOR ORG USERS)
+        \item Managing tours is intuitive (ONLY FOR ORG USERS)
+        \item Changing user settings is intuitive
+        \item Interacting with other's objects is intuitive
+        \item Reporting other's objects is intuitive
+        \item Adding friends, and creating and managing sub-realms is intuitive
+        \item Using the app is generally satisfying
+        \item Using the app is distracting from the surroundings
+    \end{itemize}
+    \item Did you experience any service interruptions, including but not limited to excessive load times for elements like navigation and object placement, while testing the app? \\
 \end{itemize}
 
 \newpage{}
