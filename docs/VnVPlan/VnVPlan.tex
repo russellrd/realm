@@ -88,8 +88,7 @@ in.}
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+The purpose of this Verification and Validation (VnV) document is to outline the testing process we’ll use to make sure our project meets all its requirements and functions correctly. Verification checks that we’re building the product according to our design, while validation ensures the product meets the users’ needs and performs as expected. This document will describe both functional and non-functional tests, which help confirm that the project is reliable, safe, and easy to use. By following this VnV plan, we can identify and fix any issues early, ensuring the final product is high-quality and ready for users.
 
 \section{General Information}
 
@@ -119,19 +118,7 @@ has already been verified by its implementation team.}
 
 \subsection{Challenge Level and Extras}
 
-\wss{State the challenge level (advanced, general, basic) for your project.
-Your challenge level should exactly match what is included in your problem
-statement.  This should be the challenge level agreed on between you and the
-course instructor.  You can use a pull request to update your challenge level
-(in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
-VnV planning exercise.}
-
-\wss{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.
-You can use a pull request to update your extras (in TeamComposition.csv or
-Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+The challenge level for the Realm project is \textbf{general}. The extras that are going to be tackled in this project are \textbf{user documentation} and \textbf{usability testing}.
 
 \subsection{Relevant Documentation}
 
@@ -157,8 +144,7 @@ This document contains information garnered from all the previous documentation 
 \section{Plan}
 \label{sub:plan}
 
-\wss{Introduce this section.  You can provide a roadmap of the sections to
-  come.}
+This section outlines the structured plan for verifying and validating our project at each stage of development. It first lists the roles of the team members involved in verification, the strategies for ensuring the accuracy of our requirements, design, and implementation, as well as the tools we'll use for automated testing. Each part is designed to ensure our project meets quality standards and fulfills its intended purpose.
 
 \subsection{Verification and Validation Team}
 
@@ -188,6 +174,13 @@ issue tracker?}
 
 \wss{Create a checklists?}
 
+\begin{itemize}
+    \item Internal Team Review
+    \item Peer Review
+    \item TA Review
+    \item Requirements Coverage Check
+\end{itemize}
+
 \subsection{Verification and Validation Plan Verification Plan}
 \label{ssub:vnv_plan_verificaiton_plan}
 
@@ -211,6 +204,8 @@ Once all the plans outlined in this section (\nameref{sub:plan}) are completed, 
     \end{itemize}
 \end{enumerate}
 
+
+
 \subsection{Implementation Verification Plan}
 
 \wss{You should at least point to the tests listed in this document and the unit
@@ -226,20 +221,7 @@ CAS741) for a partial usability survey.}
 
 \subsection{Automated Testing and Verification Tools}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
+Refer to \href{https://github.com/russellrd/realm/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{section 10 of the development plan} for the list of tools. We will use the NUnit-based Unity Testing framework for unit testing and code coverage metrics. Continuous testing will be done by GitHub actions using Unity Builder and Unity Test Runner from the GameCI open source project.
 
 \subsection{Software Validation Plan}
 
@@ -519,6 +501,202 @@ This section focuses on testing the \textit{General User} side of the tours func
 
 \end{enumerate}
 
+\subsubsection{Profile Testing}
+\label{sec:profile_screen_testing}
+
+The Profile Screen Testing focuses on verifying user interactions related to profile management, password changes, and viewing of profile data. These tests ensure that users can efficiently manage their profile settings and view relevant information, which is critical for maintaining user engagement and security.
+
+\begin{enumerate}
+    \item \textbf{Name:} {Validate User Authentication} \label{itm:Test-PS1}\\
+    \textbf{Test ID:} Test-PS1\\
+    \textbf{Control:} Automated \\
+    \textbf{Initial State:} App launched, login screen displayed. \\
+    \textbf{Input:} User enters valid credentials. \\
+    \textbf{Output:} The expected result is that the user successfully logs in and is redirected to their profile page. \\
+    \textbf{Test Case Derivation:} This test is to ensure the system authenticates users with valid credentials.\\
+    \textbf{How test will be performed:} Through an automated script that inputs valid user credentials and checks if redirection to the profile page is successful.
+
+    \item \textbf{Name:} {Password Change Functionality} \label{itm:Test-PS2}\\
+    \textbf{Test ID:} Test-PS2\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, on profile settings page. \\
+    \textbf{Input:} User inputs new password and confirms. \\
+    \textbf{Output:} The expected result is that the system updates the password and provides a confirmation message. \\
+    \textbf{Test Case Derivation:} To verify that the system allows users to change their password securely. \\
+    \textbf{How test will be performed:} Tester manually changes the password and checks for confirmation of the change.
+
+    \item \textbf{Name:} {View Profile Information} \label{itm:Test-PS3}\\
+    \textbf{Test ID:} Test-PS3\\
+    \textbf{Control:} Automated \\
+    \textbf{Initial State:} User logged in, on profile page. \\
+    \textbf{Input:} None. \\
+    \textbf{Output:} The expected result is that profile information (username, password, profile picture, status) is displayed correctly. \\
+    \textbf{Test Case Derivation:} Confirm that all user profile information is retrievable and displayed correctly. \\
+    \textbf{How test will be performed:} Automated test that logs in as a user and verifies that all profile information is displayed as expected.
+
+    \item \textbf{Name:} {Access Help Page} \label{itm:Test-PS4}\\
+    \textbf{Test ID:} Test-PS4\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, on profile page. \\
+    \textbf{Input:} User navigates to help page. \\
+    \textbf{Output:} The expected result is that a help page with FAQs and additional help information is displayed. \\
+    \textbf{Test Case Derivation:} Ensure the help page is accessible and provides useful information. \\
+    \textbf{How test will be performed:} Tester navigates to the help page and verifies the presence and accuracy of the information.
+\end{enumerate}
+
+\subsubsection{Sub-Realm Testing}
+\label{sec:sub-realms_testing}
+
+The Sub-Realms Testing focuses on verifying user interactions related to creating, managing, and interacting within sub-realms. These tests ensure that users can efficiently create sub-realms, manage sub-realm members, and interact with sub-realm-specific content, which is essential for fostering collaboration and community engagement within the app.
+
+\begin{enumerate}
+
+    \item \textbf{Name:} {Create New Sub-Realm} \label{itm:Test-G1}\\
+    \textbf{Test ID:} Test-G1\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, on sub-realms page. \\
+    \textbf{Input:} User provides a sub-realm name, description, and invites members. \\
+    \textbf{Output:} The expected result is that a new sub-realm is created with the specified details, and invited members are notified. \\
+    \textbf{Test Case Derivation:} To verify that users can create new sub-realms with relevant details and invite members. \\
+    \textbf{How test will be performed:} Tester manually creates a sub-realm and verifies that the sub-realm is created with the correct details and members are notified.
+
+    \item \textbf{Name:} {Add or Remove Sub-Realm Members} \label{itm:Test-G2}\\
+    \textbf{Test ID:} Test-G2\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing a sub-realm they manage. \\
+    \textbf{Input:} User adds or removes specific members from the sub-realm. \\
+    \textbf{Output:} The expected result is that sub-realm membership updates accordingly, reflecting added or removed members. \\
+    \textbf{Test Case Derivation:} Ensure the sub-realm manager can manage sub-realm membership. \\
+    \textbf{How test will be performed:} Tester adds and removes members from the sub-realm and verifies that the changes are reflected.
+
+    \item \textbf{Name:} {Edit Sub-Realm Settings} \label{itm:Test-G3}\\
+    \textbf{Test ID:} Test-G3\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing a sub-realm they manage. \\
+    \textbf{Input:} User changes sub-realm name or description. \\
+    \textbf{Output:} The expected result is that sub-realm settings update with the new name or description. \\
+    \textbf{Test Case Derivation:} Verify that sub-realm settings can be modified by the sub-realm manager. \\
+    \textbf{How test will be performed:} Tester edits the sub-realm settings and checks that the changes are applied.
+
+    \item \textbf{Name:} {Delete Sub-Realm} \label{itm:Test-G4}\\
+    \textbf{Test ID:} Test-G4\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing a sub-realm they manage. \\
+    \textbf{Input:} User selects the option to delete the sub-realm. \\
+    \textbf{Output:} The expected result is that the sub-realm and all associated data are removed from the system. \\
+    \textbf{Test Case Derivation:} Ensure that sub-realm managers can delete sub-realms and remove associated data. \\
+    \textbf{How test will be performed:} Tester deletes a sub-realm and verifies that it no longer exists in the system.
+
+    \item \textbf{Name:} {Interact with Sub-Realm AR Content} \label{itm:Test-G5}\\
+    \textbf{Test ID:} Test-G5\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing a sub-realm. \\
+    \textbf{Input:} User interacts with sub-realm-specific AR content. \\
+    \textbf{Output:} The expected result is that sub-realm-specific AR content responds to user interactions. \\
+    \textbf{Test Case Derivation:} Verify that users can interact with shared AR content within the sub-realm. \\
+    \textbf{How test will be performed:} Tester interacts with sub-realm-specific AR content and observes responses.
+
+\end{enumerate}
+
+\subsubsection{Friends Testing}
+\label{sec:friends_screen_testing}
+
+The Friends Screen Testing focuses on verifying user interactions related to managing friends, including sending requests, accepting or rejecting requests, and viewing or removing friends. These tests ensure that users can effectively manage their friend connections within the app, which is important for social interaction and network building.
+
+\begin{enumerate}
+
+    \item \textbf{Name:} {Send Friend Request} \label{itm:Test-FS1}\\
+    \textbf{Test ID:} Test-FS1\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing friends screen. \\
+    \textbf{Input:} User sends a friend request to another user. \\
+    \textbf{Output:} The expected result is that the friend request is sent, and the recipient receives a notification. \\
+    \textbf{Test Case Derivation:} To ensure users can initiate friend requests. \\
+    \textbf{How test will be performed:} Tester sends a friend request and verifies that it reaches the recipient.
+
+    \item \textbf{Name:} {Accept or Reject Friend Request} \label{itm:Test-FS2}\\
+    \textbf{Test ID:} Test-FS2\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing pending friend requests. \\
+    \textbf{Input:} User accepts or rejects a friend request. \\
+    \textbf{Output:} The expected result is that the friend list updates with the accepted friend, or the request is removed if rejected. \\
+    \textbf{Test Case Derivation:} Confirm that users can manage incoming friend requests. \\
+    \textbf{How test will be performed:} Tester accepts and rejects friend requests, verifying updates to the friend list.
+
+    \item \textbf{Name:} {View Friend List} \label{itm:Test-FS3}\\
+    \textbf{Test ID:} Test-FS3\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing friends screen. \\
+    \textbf{Input:} None \\
+    \textbf{Output:} The expected result is that a list of current friends is displayed. \\
+    \textbf{Test Case Derivation:} Ensure users can view their list of friends. \\
+    \textbf{How test will be performed:} Tester views the friends screen to check for an accurate friend list.
+
+    \item \textbf{Name:} {Remove Friend} \label{itm:Test-FS4}\\
+    \textbf{Test ID:} Test-FS4\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing friends screen. \\
+    \textbf{Input:} User selects a friend to remove. \\
+    \textbf{Output:} The expected result is that the friend is removed from the user’s friend list. \\
+    \textbf{Test Case Derivation:} To verify users can remove friends from their friend list. \\
+    \textbf{How test will be performed:} Tester removes a friend and verifies the friend list updates.
+
+\end{enumerate}
+
+\subsubsection{Settings Testing}
+\label{sec:settings_testing}
+
+The Settings Testing focuses on verifying user interactions related to modifying various settings, including accessibility, display, privacy, profile, and sub-realm settings. These tests ensure that users can customize their app experience according to their preferences and privacy requirements, enhancing usability and personalization.
+
+\begin{enumerate}
+
+    \item \textbf{Name:} {Modify Accessibility Settings} \label{itm:Test-S1}\\
+    \textbf{Test ID:} Test-S1\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User adjusts text size, enables/disables viewing of object names, or changes language. \\
+    \textbf{Output:} The expected result is that accessibility settings apply as configured by the user. \\
+    \textbf{Test Case Derivation:} Confirm that accessibility settings are configurable. \\
+    \textbf{How test will be performed:} Tester changes each accessibility setting and verifies the changes apply.
+
+    \item \textbf{Name:} {Adjust Display Settings} \label{itm:Test-S2}\\
+    \textbf{Test ID:} Test-S2\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User changes display settings such as light/dark mode or AR object visibility. \\
+    \textbf{Output:} The expected result is that display settings reflect user preferences. \\
+    \textbf{Test Case Derivation:} To ensure display settings are customizable by the user. \\
+    \textbf{How test will be performed:} Tester modifies display settings and observes changes.
+
+    \item \textbf{Name:} {Manage Privacy Settings} \label{itm:Test-S3}\\
+    \textbf{Test ID:} Test-S3\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User modifies privacy settings to control visibility of profile, friends list, and AR interactions. \\
+    \textbf{Output:} The expected result is that privacy settings update based on user preferences. \\
+    \textbf{Test Case Derivation:} Verify users can control privacy settings for their profiles and interactions. \\
+    \textbf{How test will be performed:} Tester changes privacy settings and checks for corresponding updates.
+
+    \item \textbf{Name:} {Update Profile Settings} \label{itm:Test-S4}\\
+    \textbf{Test ID:} Test-S4\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User changes username, password, profile picture, or status. \\
+    \textbf{Output:} The expected result is that profile settings are updated and saved. \\
+    \textbf{Test Case Derivation:} Ensure users can update personal profile information. \\
+    \textbf{How test will be performed:} Tester updates profile settings and verifies changes.
+
+    \item \textbf{Name:} {Access Sub-Realm Settings} \label{itm:Test-S5}\\
+    \textbf{Test ID:} Test-S5\\
+    \textbf{Control:} Manual \\
+    \textbf{Initial State:} User logged in, viewing settings page. \\
+    \textbf{Input:} User navigates to sub-realm settings to modify sub-realm options. \\
+    \textbf{Output:} The expected result is that sub-realm settings are accessible and configurable. \\
+    \textbf{Test Case Derivation:} To confirm users can manage settings for sub-realms they belong to. \\
+    \textbf{How test will be performed:} Tester accesses and modifies sub-realm settings, verifying updates.
+
+\end{enumerate}
+
 \subsection{Tests for Nonfunctional Requirements}
 
 \wss{The nonfunctional requirements for accuracy will likely just reference the
@@ -634,6 +812,79 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
 \end{enumerate}
 
 
+\subsubsection{Portability Testing}
+
+\begin{enumerate}
+
+    \item \textbf{Name:} Validate Cross-Platform Compatibility \label{itm:Test-PT1} \\
+    \textbf{Test ID:} Test-PT1 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} Application is built for both iOS and Android platforms. \\
+    \textbf{Input/Condition:} Run the app on iOS and Android devices. \\
+    \textbf{Output/Result:} The app is functional and displays correctly on both platforms. \\
+    \textbf{How test will be performed:} Tester will install the app on both an iOS and an Android device, verifying consistent functionality and UI.
+
+    \item \textbf{Name:} Common Codebase Validation \label{itm:Test-PT2} \\
+    \textbf{Test ID:} Test-PT2 \\
+    \textbf{Type:} Non-Functional, Code Review \\
+    \textbf{Initial State:} The app’s codebase is ready for review. \\
+    \textbf{Input/Condition:} Inspect the codebase to ensure shared files are correctly configured with minimal platform-specific files. \\
+    \textbf{Output/Result:} Codebase only differs in configuration files for platform-specific settings. \\
+    \textbf{How test will be performed:} Developer will conduct a code walkthrough, focusing on configuration files to confirm minimal platform-specific variations.
+
+    \item \textbf{Name:} Build Verification on iOS and Android \label{itm:Test-PT3} \\
+    \textbf{Test ID:} Test-PT3 \\
+    \textbf{Type:} Non-Functional, Automated \\
+    \textbf{Initial State:} The cross-platform codebase is ready for automated build testing. \\
+    \textbf{Input/Condition:} Initiate automated builds for both iOS and Android. \\
+    \textbf{Output/Result:} Both builds succeed without errors. \\
+    \textbf{How test will be performed:} An automated CI/CD pipeline will attempt to build the app for both platforms, confirming compatibility.
+
+\end{enumerate}
+
+
+\subsubsection{Safety Testing}
+
+\begin{enumerate}
+
+    \item \textbf{Name:} Distraction to Surroundings Assessment \label{itm:Test-SA1} \\
+    \textbf{Test ID:} Test-SA1 \\
+    \textbf{Type:} Non-Functional, Survey-Based \\
+    \textbf{Initial State:} App is functional and ready for user testing. \\
+    \textbf{Input/Condition:} Conduct a user survey after users engage with the app in a controlled environment. \\
+    \textbf{Output/Result:} Survey results show that users do not find the app dangerously distracting them from their surroundings while using it. \\
+    \textbf{How test will be performed:} A group of users will be observed using the app, followed by a survey asking them to rate their distraction levels from surrounding objects. Results will be analyzed to confirm minimal distraction.
+
+    \item \textbf{Name:} No Bright Flashes or Loud Noises \label{itm:Test-SA2} \\
+    \textbf{Test ID:} Test-SA2 \\
+    \textbf{Type:} Non-Functional, Manual Inspection \\
+    \textbf{Initial State:} The app is fully developed with all interfaces available for review. \\
+    \textbf{Input/Condition:} Navigate through all screens and interactions within the app. \\
+    \textbf{Output/Result:} No bright flashes or loud noises are present in any of the app interfaces. \\
+    \textbf{How test will be performed:} Tester will manually explore the app, paying special attention to visual and audio elements, ensuring that no features could trigger discomfort or seizures in sensitive users.
+\end{enumerate}
+
+\subsubsection{Installation Testing}
+
+\begin{enumerate}
+    \item \textbf{Name:} Verify App Store Availability \label{itm:Test-I1} \\
+    \textbf{Test ID:} Test-I1 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} App has been submitted and approved on both iOS and Android app stores. \\
+    \textbf{Input/Condition:} Search for the app on the Apple App Store and Google Play Store. \\
+    \textbf{Output/Result:} The app is available for download on both app stores. \\
+    \textbf{How test will be performed:} Tester will verify the presence of the app by searching for it on the respective app stores and confirming it is listed and downloadable.
+
+    \item \textbf{Name:} Simple Installation Process \label{itm:Test-I2} \\
+    \textbf{Test ID:} Test-I2 \\
+    \textbf{Type:} Non-Functional, Manual \\
+    \textbf{Initial State:} App is available on both app stores. \\
+    \textbf{Input/Condition:} Attempt to install the app on a device from both the Apple App Store and Google Play Store. \\
+    \textbf{Output/Result:} The app installs directly without any additional steps or configurations. \\
+    \textbf{How test will be performed:} Tester will initiate the installation from each app store, ensuring the app installs seamlessly without requiring extra configurations or settings adjustments.
+\end{enumerate}
+
+
 \subsection{Traceability Between Test Cases and Requirements}
 
 \wss{Provide a table that shows which test cases are supporting which
@@ -641,7 +892,59 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{|l|p{8cm}|l|}
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{Test-ID} & \textbf{Test Name} & \textbf{Requirements} \\
+        \hline
+        \hyperref[itm:Test-PS1]{Test-PS1} & Validate User Authentication & PS-FR1 \\
+        \hline
+        \hyperref[itm:Test-PS2]{Test-PS2} & Password Change Functionality & PS-FR3 \\
+        \hline
+        \hyperref[itm:Test-PS3]{Test-PS3} & View Profile Information & PS-FR4 \\
+        \hline
+        \hyperref[itm:Test-PS4]{Test-PS4} & Access Help Page & PS-FR6 \\
+        \hline
+        \hyperref[itm:Test-G1]{Test-G1} & Create New Group & G-FR1 \\
+        \hline
+        \hyperref[itm:Test-G2]{Test-G2} & Add or Remove Group Members & G-FR2 \\
+        \hline
+        \hyperref[itm:Test-G3]{Test-G3} & Edit Group Settings & G-FR3 \\
+        \hline
+        \hyperref[itm:Test-G4]{Test-G4} & Delete Group & G-FR4 \\
+        \hline
+        \hyperref[itm:Test-G5]{Test-G5} & Interact with Group AR Content & G-FR5 \\
+        \hline
+        \hyperref[itm:Test-FS1]{Test-FS1} & Send Friend Request & FS-FR1 \\
+        \hline
+        \hyperref[itm:Test-FS2]{Test-FS2} & Accept or Reject Friend Request & FS-FR2 \\
+        \hline
+        \hyperref[itm:Test-FS3]{Test-FS3} & View Friend List & FS-FR3 \\
+        \hline
+        \hyperref[itm:Test-FS4]{Test-FS4} & Remove Friend & FS-FR4 \\
+        \hline
+        \hyperref[itm:Test-S1]{Test-S1} & Modify Accessibility Settings & S-FR1 \\
+        \hline
+        \hyperref[itm:Test-S2]{Test-S2} & Adjust Display Settings & S-FR2 \\
+        \hline
+        \hyperref[itm:Test-S3]{Test-S3} & Manage Privacy Settings & S-FR3 \\
+        \hline
+        \hyperref[itm:Test-S4]{Test-S4} & Update Profile Settings & S-FR4 \\
+        \hline
+        \hyperref[itm:Test-S5]{Test-S5} & Access Group Settings & S-FR5 \\
+        \hline
+        \hyperref[itm:Test-PT1]{Test-PT1} & Validate Cross-Platform Compatibility & DI-P1 \\
+        \hline
+        \hyperref[itm:Test-PT2]{Test-PT2} & Common Codebase Validation & DI-P2 \\
+        \hline
+        \hyperref[itm:Test-PT3]{Test-PT3} & Build Verification on iOS and Android & DI-P1\\
+        \hline
+        \hyperref[itm:Test-SA1]{Test-SA1} & Distraction Level Assessment & QS-SA1 \\
+        \hline
+        \hyperref[itm:Test-SA2]{Test-SA2} & No Bright Flashes or Loud Noises & QS-SA2 \\
+        \hline
+        \hyperref[itm:Test-I1]{Test-I1} & Verify App Store Availability & DI-I1 \\
+        \hline
+        \hyperref[itm:Test-I2]{Test-I2} & Simple Installation Process & DI-I2 \\
         \hline
         \textbf{Test-ID} & \textbf{Test Name} &\textbf{Requirements} \\
         \hline
@@ -710,6 +1013,8 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance & CO1 \\
     \caption{Mapping of Tests to Requirements}
     \label{tab:test_requirements}
 \end{table}
+
+\pagebreak
 
 \section{Unit Test Description}
 
@@ -851,7 +1156,9 @@ Their values are defined in this section for easy maintenance.
 
 \subsection{Usability Survey Questions?}
 
-\wss{This is a section that would be appropriate for some projects.}
+\begin{itemize}
+    \item On a scale of 1 - 10, how distracted were you from your surroundings when using the app?
+\end{itemize}
 
 \newpage{}
 \section*{Appendix --- Reflection}
@@ -864,14 +1171,25 @@ graduate attribute of Lifelong Learning.
 \input{../Reflection.tex}
 
 \begin{enumerate}
-  \item What went well while writing this deliverable? 
+  \item What went well while writing this deliverable? \\
+  
+  Making the tests were very easy after we had the initial template down and distributed the work effectively amongst ourselves based on the functional and non-functional requirements.
+  
   \item What pain points did you experience during this deliverable, and how
-    did you resolve them?
+    did you resolve them?\\
+
+    One pain point we experienced was that we had a lot to do for this deliverable that we couldn't work on the next one, which is POC. Ultimately, what we decided to do was to focus mainly on this, because the deadline is earlier, and focus mainly on getting our project set up for POC. That way, we at least have started on the next deliverable.
+
+    Another thing was deciding which tests to automate and which to make manual. We resolved this by seeing which test would be easiest or quickest to implement. If a manual test was easiest, we would choose that, but if a manual test would take long, we'd make it automated.\\
+    
   \item What knowledge and skills will the team collectively need to acquire to
   successfully complete the verification and validation of your project?
   Examples of possible knowledge and skills include dynamic testing knowledge,
   static testing knowledge, specific tool usage, Valgrind etc.  You should look to
-  identify at least one item for each team member.
+  identify at least one item for each team member.\\
+
+    
+  
   \item For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
   mastering the skill?  Of the identified approaches, which will each team
