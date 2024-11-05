@@ -320,7 +320,6 @@ This section focuses on verifying the user interactions with the app's built-in 
 
 \end{enumerate}
 
-<<<<<<< HEAD
 \subsubsection{Realm Testing}
 
 \begin{enumerate}
@@ -497,7 +496,6 @@ This section focuses on verifying the user interactions with the app's built-in 
 
 \end{enumerate}
 
-=======
 \subsubsection{Tour Management}
 
 This section focuses on testing the \textit{Organization User} side of the tours functionality within the app. This includes creating, modifying, and publishing tours so that \textit{General Users} can use them. The main requirement for tour management is the ability to add metadata and objects to an area (\textit{TM-FR4}) which is covered by \textit{Test-TM3} and \textit{Test-TM8}. All the other functional requirements from the Tour Management (TM) section in the SRS \cite{SRS} have at least one test plan below.
@@ -879,7 +877,6 @@ The Settings Testing focuses on verifying user interactions related to modifying
     \textbf{How test will be performed:} Tester accesses and modifies sub-realm settings, verifying updates.
 
 \end{enumerate}
->>>>>>> main
 
 \subsection{Tests for Nonfunctional Requirements}
 
@@ -904,7 +901,6 @@ format for the tests given below.}
 How will they be done?  In cases like code (or document) walkthroughs, who will
 be involved? Be specific.}
 
-<<<<<<< HEAD
 \subsubsection{Usability Testing}
 
 
@@ -926,7 +922,6 @@ be involved? Be specific.}
     \textbf{Input/Condition:} Tester performs common workflows such as account setup, navigating between interfaces, creating AR objects, viewing and placing AR objects, and finding objects on the map, all without guidance or assistance  \\
     \textbf{Output/Result:} 80\% of testers complete each task and report that the app is easy and satisfying to use, and rate each workflow as highly intuitive.\\
     \textbf{How test will be performed:} A group of new users will perform specified workflows and complete a post-test \hyperref[sub:usability_survey]{survey} rating the intuitiveness and satisfaction of their experience. Quantitative results should show that most users rate the app as highly intuitive and satisfying to use.
-=======
 \subsubsection{Security Testing}
 
 \begin{enumerate}
@@ -957,12 +952,10 @@ be involved? Be specific.}
     \textbf{Input/Condition:} All sections of the code where a user's sensitive data is displayed is checked for a corresponding identity check. \\
     \textbf{Output/Result:} The sections all have a check to verify the user's identity before divulging the private data. \\
     \textbf{How test will be performed:} A tester will search through the code and find all locations where private data is being displayed. They will check to see if each of them are guarded by an identity verification check.
->>>>>>> main
 
 \end{enumerate}
 \subsubsection{Availability Testing}
 
-<<<<<<< HEAD
 \begin{enumerate}
     
 \item \textbf{Name:} Validate Server Availability \label{itm:Test-QS-A1} \\
@@ -997,7 +990,6 @@ be involved? Be specific.}
 
 
 \end{enumerate}
-=======
 \subsubsection{Compliance Testing}
 
 \begin{enumerate}
@@ -1129,7 +1121,6 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
     \textbf{How test will be performed:} Tester will initiate the installation from each app store, ensuring the app installs seamlessly without requiring extra configurations or settings adjustments.
 \end{enumerate}
 
->>>>>>> main
 
 \subsection{Traceability Between Test Cases and Requirements}
 
@@ -1140,7 +1131,6 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
     \centering
     \begin{tabular}{|l|l|l|}
         \hline
-<<<<<<< HEAD
         \textbf{Test-ID} & \textbf{Test Name} &\textbf{Requirements} \\
         \hline
         \hyperref[itm:Test-RI1]{Test-RI1} & Validate AR Object Perspective Adjustment & RI-FR1.1 \\
@@ -1190,8 +1180,6 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
         \hyperref[itm:Test-QS-A2]{Test-QS-A2} & User Feedback on Server Availability & QS-A1 \\
         \hline
         \hyperref[itm:Test-DI-M1]{Test-DI-M1} & Validate API Error Message Clarity & DI-M1 \\
-=======
-        \textbf{Test-ID} & \textbf{Test Name} & \textbf{Requirements} \\
         \hline
         \hyperref[itm:Test-PS1]{Test-PS1} & Validate User Authentication & PS-FR1 \\
         \hline
@@ -1305,7 +1293,6 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance & CO1 \\
         \hyperref[itm:Test-CO4]{Test-CO4} & Check \textit{App Store} review guidelines \cite{AppStore} compliance & CO4 \\
         \hline
         \hyperref[itm:Test-DI-R1]{Test-DI-R1} & Reusable components check & DI-R1 \\
->>>>>>> main
         \hline
     \end{tabular}
     \caption{Mapping of Tests to Requirements}
@@ -1313,10 +1300,7 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance & CO1 \\
 \end{table}
 
 \pagebreak
-<<<<<<< HEAD
   
-=======
->>>>>>> main
 
 \section{Unit Test Description}
 
@@ -1446,9 +1430,11 @@ How test will be performed:
 
 \wss{Provide evidence that all of the modules have been considered.}
 
+\end{comment}
+
 \printbibliography
 
-\end{comment}
+
 
 \newpage
 
@@ -1480,15 +1466,8 @@ Their values are defined in this section for easy maintenance.
         \item Using the app is generally satisfying
     \end{itemize}
     \item Did you experience any service interruptions, including but not limited to excessive load times for elements like navigation and object placement, while testing the app? \\
-\end{itemize}
-
-
-<<<<<<< HEAD
-=======
-\begin{itemize}
     \item On a scale of 1 - 10, how distracted were you from your surroundings when using the app?
 \end{itemize}
->>>>>>> main
 
 \newpage{}
 \section*{Appendix --- Reflection}
