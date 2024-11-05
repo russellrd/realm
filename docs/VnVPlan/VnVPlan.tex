@@ -892,7 +892,7 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
 
 \begin{table}[h!]
     \centering
-    \begin{tabular}{|l|l|l|}
+    \begin{tabular}{|l|p{8cm}|l|}
         \hline
         \textbf{Test-ID} & \textbf{Test Name} & \textbf{Requirements} \\
         \hline
@@ -1173,25 +1173,30 @@ graduate attribute of Lifelong Learning.
   
   Making the tests were very easy after we had the initial template down and distributed the work effectively amongst ourselves based on the functional and non-functional requirements.
   
-  \item What pain points did you experience during this deliverable, and how
-    did you resolve them?\\
+  \item What pain points did you experience during this deliverable, and how did you resolve them?\\
 
     One pain point we experienced was that we had a lot to do for this deliverable that we couldn't work on the next one, which is POC. Ultimately, what we decided to do was to focus mainly on this, because the deadline is earlier, and focus mainly on getting our project set up for POC. That way, we at least have started on the next deliverable.
 
     Another thing was deciding which tests to automate and which to make manual. We resolved this by seeing which test would be easiest or quickest to implement. If a manual test was easiest, we would choose that, but if a manual test would take long, we'd make it automated.\\
-    
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage, Valgrind etc.  You should look to
-  identify at least one item for each team member.\\
 
+  \item What knowledge and skills will the team collectively need to acquire to successfully complete the verification and validation of your project? Examples of possible knowledge and skills include dynamic testing knowledge, static testing knowledge, specific tool usage, Valgrind etc. You should look to identify at least one item for each team member.\\
+
+    The team will need to become familiar with C\# tooling like unit test frameworks and compatible static analysis tools. 
     
-  
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
+    For dynamic testing, the team will likely use the \textit{Unity Test Framework} since it is already integrated into the Unity game engine which powers the project. There are also Roslyn analyzers build for the .NET platform that are integrated into IDEs that are connected to Unity. These are useful as static analyzers that can check for errors in the code even if it still compiles.
+
+    As a tentative plan, we will have Russell look into configuring the Roslyn analyzers that come packaged with .NET so that it meets our needs. Abdul and Avanish will research the \textit{Unity Test Framework} for the Unity \textit{Editor Mode} and \textit{Play Mode} respectively. Rafey will pick a static analysis tool like SonarQube for us to use the code.
+
+  \item For each of the knowledge areas and skills identified in the previous question, what are at least two approaches to acquiring the knowledge or mastering the skill?  Of the identified approaches, which will each team member pursue, and why did they make this choice? \\
+
+    One approach (especially given the popularity of Unity/.NET/SonarQube) is to watch videos online where people talk about the testing within the context of Unity projects. This could give us a prospective on how other people implement testing. Another approach is to read through the documentation associated with the topic at hand. This is very useful when a there is a smaller user base for a tool and no associated videos or examples.
+
+    Russell will read documentation since most of his work surrounds configuration which requires a description for each configurable part. This is easily searchable when sifting through documentation.
+    
+    Abdul and Avanish will watch videos (if they can find some good ones) about the \textit{Unity Test Framework}. Since it is a very popular among game developers who use Unity, there should be many walkthroughs on how to use it. By watching multiple videos, they should get a sense of how people usually implement the framework for testing.
+
+    Rafey will use google and look through internet forums to see what other developers recommend when it comes to static analysis for C\#. He will also end up looking at the documentation for these tools to decide which one works the best for our use case.
+
 \end{enumerate}
 
 \end{document}
