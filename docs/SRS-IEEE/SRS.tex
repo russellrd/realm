@@ -134,13 +134,13 @@ The app is to be compatible with most smartphone devices, as long as they have a
 
     \item AR Object Interaction
           \begin{itemize}
-              \item Users will be able to place, edit, and interact with 2D stickers and 3D artifacts within the sub-realm.
+              \item Users will be able to place, edit, and interact with 2D stickers and 3D artifacts within the \hyperref[def:sub_realm]{sub-realm}.
               \item Users can react to and engage with objects placed by other users.
           \end{itemize}
 
     \item Social Interaction
           \begin{itemize}
-              \item Users will be able to create, edit, and add/remove friends to a sub-realm, where they can each share AR objects within the sub-realm.
+              \item Users will be able to create, edit, and add/remove friends to a \hyperref[def:sub_realm]{sub-realm}, where they can each share AR objects within the \hyperref[def:sub_realm]{sub-realm}.
           \end{itemize}
 
     \item Object Creation
@@ -156,13 +156,13 @@ The app is to be compatible with most smartphone devices, as long as they have a
 
     \item Managing Settings
           \begin{itemize}
-              \item Manage a variety of settings including accessibility settings, display settings, privacy settings, profile settings, and sub-realm settings.
+              \item Manage a variety of settings including accessibility settings, display settings, privacy settings, profile settings, and \hyperref[def:sub_realm]{sub-realm} settings.
           \end{itemize}
 \end{itemize}
 \subsection{Product Constraints}
 
 \begin{itemize}
-    \item \textbf{Interfaces to Users}: The platform must be compatible with both Android and iOS devices, meaning the design must accommodate different screen sizes and operating system guidelines. Additionally, the app requires user-friendly interfaces for interacting with AR objects and managing sub-realms.
+    \item \textbf{Interfaces to Users}: The platform must be compatible with both Android and iOS devices, meaning the design must accommodate different screen sizes and operating system guidelines. Additionally, the app requires user-friendly interfaces for interacting with AR objects and managing \hyperref[def:sub_realm]{sub-realms}.
 
     \item \textbf{Hardware Constraints}: The app depends on mobile devices with AR capabilities (e.g., cameras, GPS, accelerometers). Users with older or less powerful devices might experience limited functionality or performance issues.
 
@@ -182,7 +182,7 @@ There are three types of users.\\
 \textbf{General Users:}
 \begin{itemize}
     \item Frequency of Use: Occasional to frequent.
-    \item Functions Used: Creating, interacting with, and sharing AR objects; joining sub-realms; participating in AR tours.
+    \item Functions Used: Creating, interacting with, and sharing AR objects; joining \hyperref[def:sub_realm]{sub-realms}; participating in AR tours.
     \item Technical Expertise: Moderate; basic understanding of mobile apps and social platforms.
     \item Security/Privilege Level: Standard user access with limited permissions (e.g., cannot create tours or manage content).
     \item Importance: Most important user class, as they represent the primary user base for the platform.
@@ -191,7 +191,7 @@ There are three types of users.\\
 \textbf{Organizational Users:}
 \begin{itemize}
     \item Frequency of Use: Frequent.
-    \item Functions Used: Creating and managing AR tours, educational content, and sub-realms for public or private use.
+    \item Functions Used: Creating and managing AR tours, educational content, and \hyperref[def:sub_realm]{sub-realms} for public or private use.
     \item Technical Expertise: Moderate to advanced; comfortable with content creation tools and AR platforms.
     \item Security/Privilege Level: Higher-level access to manage and publish content for users.
     \item Importance: Highly important, as they provide some of the platform’s key content.
@@ -259,12 +259,12 @@ There are three types of users.\\
               \item \textbf{Tour Editor:} Allows organization users to edit tours and publish changes.
           \end{itemize}
     \item \textbf{Maps:} Map view displaying objects placed around you
-    \item \textbf{Inventory:} A display of available AR objects (personal objects, objects mapped to a sub-realm and application preset objects)
+    \item \textbf{Inventory:} A display of available AR objects (personal objects, objects mapped to a \hyperref[def:sub_realm]{sub-realm} and application preset objects)
     \item \textbf{Profile:}
           \begin{itemize}
-              \item \textbf{Sub-Realms:} Ability to add, edit and interact with sub-realm settings
+              \item \textbf{Sub-Realms:} Ability to add, edit and interact with \hyperref[def:sub_realm]{sub-realm} settings
               \item \textbf{Friends:} Managing friends
-              \item \textbf{Settings:} Accessibility settings, Display settings, Privacy settings, Profile Settings, Sub-Realm settings
+              \item \textbf{Settings:} Accessibility settings, Display settings, Privacy settings, Profile Settings, \ref{def:sub_realm} settings
               \item \textbf{Help:} FAQ and request org account
           \end{itemize}
     \item \textbf{Placement Editor:} Able to move, rotate, resize the object prior to confirming placement.
@@ -316,7 +316,7 @@ The functional requirements of the system broken down by the features they speci
     \item The map should display location markers for \ref{def:ar_obj} clusters
     \item The marker should display the count of objects present in a tight cluster
     \item The map should display location markers for \ref{def:ar_obj_cls}
-    \item The map should display indications of objects from all sub-realms that the user is a part of
+    \item The map should display indications of objects from all \hyperref[def:sub_realm]{sub-realms} that the user is a part of
     \item When a marker is selected, the option to provide directions should be available
     \item The map should give directions to the user for a selected marker
     \item The objects shown on the map should be grouped to avoid clutter
@@ -483,14 +483,14 @@ The functional requirements of the system broken down by the features they speci
     \item The system must have the capability to store object instances that specify the following details:
           \begin{itemize}
               \item The AR object that was placed.
-              \item The sub-realm(s) in which the object instance will be shared.
+              \item The \hyperref[def:sub_realm]{sub-realm}(s) in which the object instance will be shared.
               \item All data required to precisely reproduce the position and orientation of the object in real space.
           \end{itemize}
 
     \item The system must provide a way for a user to place AR objects in the space around them, creating object instances.
           \begin{enumerate}[align=left, label=\textbf{OP-FR2.\arabic*:}]
               \item The system must provide a way for a user to select an object either from their inventory or by generating a new object.
-              \item The system must provide a way for the user to select one or more sub-realms of which they are a member.
+              \item The system must provide a way for the user to select one or more \hyperref[def:sub_realm]{sub-realms} of which they are a member.
               \item The system must provide a way for the user to position an AR object in real space.
           \end{enumerate}
 
@@ -514,10 +514,10 @@ The functional requirements of the system broken down by the features they speci
               \item AR object instances reproduced on the Realm interface must be in the correct position and orientation as defined by the object placement.
           \end{enumerate}
 
-    \item The Realm interface must keep track of a selected sub-realm which determines which object instances are displayed.
+    \item The Realm interface must keep track of a selected \hyperref[def:sub_realm]{sub-realm} which determines which object instances are displayed.
           \begin{enumerate}[align=left, label=\textbf{RI-FR2.\arabic*:}]
-              \item The Realm interface must provide an indication of what sub-realm is currently selected.
-              \item The Realm interface must provide a way for the user to change the selected sub-realm.
+              \item The Realm interface must provide an indication of what \hyperref[def:sub_realm]{sub-realm} is currently selected.
+              \item The Realm interface must provide a way for the user to change the selected \hyperref[def:sub_realm]{sub-realm}.
           \end{enumerate}
 
     \item The Realm interface must provide a control to allow the user to enter the object placement workflow.
@@ -548,18 +548,18 @@ The functional requirements of the system broken down by the features they speci
     \item The system shall provide a multi-factor authentication option for user accounts to enhance security. \\
     \item Allow the user to change their password.
     \item The user must be able to view their profile information including username, password, profile picture, and status.
-    \item The user must be able to view all sub-realms that they are part of.
+    \item The user must be able to view all \hyperref[def:sub_realm]{sub-realms} that they are part of.
     \item The user shall be able to view a help page with frequently asked questions and additional help.
 \end{enumerate}
 
 \subsubsection{Sub-Realms}
 \label{ssub:sub-realms}
 \begin{enumerate}[align=left, label=\textbf{G-FR\arabic*:}]
-    \item The user must be able to create a new sub-realm with a sub-realm name, description, and also allow inviting members.
-    \item Allow users to add or remove members from a sub-realm.
-    \item The user must be able to edit sub-realm settings, including sub-realm name and description.
-    \item The user must be able to delete a sub-realm, and all associated data should be removed.
-    \item All users within a sub-realm must be able to interact with sub-realm-specific AR content, including shared AR objects and experiences.
+    \item The user must be able to create a new \hyperref[def:sub_realm]{sub-realm} with a \hyperref[def:sub_realm]{sub-realm} name, description, and also allow inviting members.
+    \item Allow users to add or remove members from a \hyperref[def:sub_realm]{sub-realm}.
+    \item The user must be able to edit \hyperref[def:sub_realm]{sub-realm} settings, including \hyperref[def:sub_realm]{sub-realm} name and description.
+    \item The user must be able to delete a \hyperref[def:sub_realm]{sub-realm}, and all associated data should be removed.
+    \item All users within a \hyperref[def:sub_realm]{sub-realm} must be able to interact with \hyperref[def:sub_realm]{sub-realm}-specific AR content, including shared AR objects and experiences.
 \end{enumerate}
 
 \subsubsection{Friends screen}
@@ -578,7 +578,7 @@ The functional requirements of the system broken down by the features they speci
     \item The user shall be able to adjust Display Settings, including light/dark mode, AR object visibility.
     \item The user must be able to manage Privacy Settings, including controlling who can see their profile, friends list, and AR interactions.
     \item Allow the user to manage Profile Settings, such as changing their username, password, profile picture, and status.
-    \item The user must be able to access sub-realm Settings, as mentioned in the sub-realms section of the requirements.
+    \item The user must be able to access \hyperref[def:sub_realm]{sub-realm} Settings, as mentioned in the \ref{ssub:sub-realms} section of the requirements.
     \item The system must provide a setting to set the app theme to \textbf{Dark} or \textbf{Light}, with the option to automatically match the system theme \\
 \end{enumerate}
 
@@ -973,7 +973,7 @@ The functional requirements of the system broken down by the features they speci
               \item System presents the \textbf{Object Selection Menu} (\hyperref[ssub:object_placement]{OP-FR2.1}).
               \item User selects an existing AR object for placement.
               \item System presents the \textbf{Sub-Realm Selection Menu} (\hyperref[ssub:object_placement]{OP-FR2.2}).
-              \item User selects the sub-realm(s) in which they wish for their object instance to be shared.
+              \item User selects the \hyperref[def:sub_realm]{sub-realm}(s) in which they wish for their object instance to be shared.
               \item System presents the \textbf{Object Positioning Interface} (\hyperref[ssub:object_placement]{OP-FR2.3}).
               \item User positions the AR object using given controls and confirms when done.
               \item System returns to Realm screen.
@@ -1013,7 +1013,7 @@ The functional requirements of the system broken down by the features they speci
                         \item Main scenario resumes from step 3.
                     \end{enumerate}
 
-              \item[{\bf 7.2:}] User reselects Sub-realms:
+              \item[{\bf 7.2:}] User reselects \hyperref[def:sub_realm]{sub-realms}:
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario steps 1-7.
                         \item User selects option to return to \textbf{Sub-Realm Selection Menu} (\hyperref[ssub:object_placement]{OP-FR2.2}).
@@ -1021,7 +1021,7 @@ The functional requirements of the system broken down by the features they speci
                     \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} Users that are members of the sub-realm in which the object instance has been shared can see the object instance from the \textbf{Realm interface}.
+          \textbf{Success Postcondition:} Users that are members of the \hyperref[def:sub_realm]{sub-realm} in which the object instance has been shared can see the object instance from the \textbf{Realm interface}.
 
     \item \label{uc:8} Place an AR object from the Inventory \\
           \textbf{Actor}: General User \\
@@ -1034,7 +1034,7 @@ The functional requirements of the system broken down by the features they speci
               \item System presents object details.
               \item User selects option to initiate object placement.
               \item System presents the \textbf{Sub-Realm Selection Menu} (\hyperref[ssub:object_placement]{OP-FR2.1}).
-              \item User selects the sub-realm(s) in which they wish for their object instance to be shared.
+              \item User selects the \hyperref[def:sub_realm]{sub-realm}(s) in which they wish for their object instance to be shared.
               \item System presents the \textbf{Object Positioning Interface} (\hyperref[ssub:object_placement]{OP-FR2.3}).
               \item User positions the AR object using given controls and confirms when done.
               \item System returns to Realm screen.
@@ -1049,7 +1049,7 @@ The functional requirements of the system broken down by the features they speci
                         \item System returns to the Inventory screen.
                     \end{enumerate}
 
-              \item[{\bf 7.2:}] User reselects Sub-realm:
+              \item[{\bf 7.2:}] User reselects \hyperref[def:sub_realm]{sub-realm}:
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario steps 1-7.
                         \item User selects option to return to \textbf{Sub-Realm Selection} (\hyperref[ssub:object_placement]{OP-FR2.2}).
@@ -1057,7 +1057,7 @@ The functional requirements of the system broken down by the features they speci
                     \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} Users that are members of the sub-realm in which the object instance has been shared can see the object instance from the \textbf{Realm Interface}.
+          \textbf{Success Postcondition:} Users that are members of the \hyperref[def:sub_realm]{sub-realm} in which the object instance has been shared can see the object instance from the \textbf{Realm Interface}.
 
     \item \label{uc:9} Preview AR objects from the Inventory \\
           \textbf{Actor}: \ref{def:gen_user} \\
@@ -1087,22 +1087,22 @@ The functional requirements of the system broken down by the features they speci
           \textbf{Success Postcondition:} User is able to view an \ref{def:ar_obj} in their inventory from different angles
 
 
-    \item \label{uc:10} View object instances that are shared in a Sub-realm in the \textbf{Realm interface} \\
+    \item \label{uc:10} View object instances that are shared in a \hyperref[def:sub_realm]{sub-realm} in the \textbf{Realm interface} \\
           \textbf{Actor}: General User \\
           \textbf{Pre-condition:} User is logged in to the app \textbf{AND} has navigated to the \textbf{Realm Interface} (\hyperref[ssub:realm_interface]{RI-FR1}) \\
 
           \textbf{Main Success Scenario:}
           \begin{enumerate}[label=\textbf{\arabic*.}]
               \item System presents the \textbf{Realm Interface}.
-              \item User selects a sub-realm to see objects from.
-              \item System only presents object instances in the selected sub-realm.
+              \item User selects a \hyperref[def:sub_realm]{sub-realm} to see objects from.
+              \item System only presents object instances in the selected \hyperref[def:sub_realm]{sub-realm}.
               \item User moves their device to see any angle of the object instance.
               \item System continuously presents the object instance with the correct perspective relative to the user’s camera.
           \end{enumerate}
 
           \textbf{Secondary Scenarios:}
           \begin{itemize}
-              \item[{\bf 10.1:}] User is not a member of any sub-realms:
+              \item[{\bf 10.1:}] User is not a member of any \hyperref[def:sub_realm]{sub-realms}:
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item System presents \textbf{Realm Interface} (\hyperref[ssub:realm_interface]{RI-FR1}).
                         \item System presents only public object instances.
@@ -1111,7 +1111,7 @@ The functional requirements of the system broken down by the features they speci
                     \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} The user can see any AR object instances that are in any sub-realm that they are a part of correctly positioned in real space.
+          \textbf{Success Postcondition:} The user can see any AR object instances that are in any \hyperref[def:sub_realm]{sub-realm} that they are a part of correctly positioned in real space.
 
     \item \label{uc:11} Check the map to see where objects are placed in the world \\
           \textbf{Actor}: \ref{def:gen_user} \\
@@ -1297,23 +1297,23 @@ The functional requirements of the system broken down by the features they speci
           \textbf{Success Postcondition:} The user’s desired object is available in the user’s inventory for preview and placement.
 
 
-    \item \label{uc:17} \textbf{Create a Sub-Realm} \\
+    \item \label{uc:17} \textbf{Create a \ref{def:sub_realm}} \\
           \textbf{Actor}: \ref{def:gen_user} \\
           \textbf{Precondition:} User is logged into the app.
 
           \textbf{Main Success Scenario:}
           \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to the "Create Sub-Realm" page from the app’s main interface.
-              \item System presents the Sub-Realm Creation Page.
-              \item User provides a name and description for the sub-realm.
-              \item System presents the option to “Add users to sub-realm.”
+              \item User navigates to the "Create \ref{def:sub_realm}" page from the app’s main interface.
+              \item System presents the \ref{def:sub_realm} Creation Page.
+              \item User provides a name and description for the \hyperref[def:sub_realm]{sub-realm}.
+              \item System presents the option to “Add users to \hyperref[def:sub_realm]{sub-realm}.”
               \item User selects the option to add users.
               \item System displays the user’s friend list.
-              \item User selects the friends they want to add to the sub-realm.
+              \item User selects the friends they want to add to the \hyperref[def:sub_realm]{sub-realm}.
               \item User confirms that they are done adding friends.
-              \item User confirms creation of the sub-realm.
-              \item System saves the sub-realm with the provided information and friends list.
-              \item System returns to the Realm interface, displaying the newly created sub-realm.
+              \item User confirms creation of the \hyperref[def:sub_realm]{sub-realm}.
+              \item System saves the \hyperref[def:sub_realm]{sub-realm} with the provided information and friends list.
+              \item System returns to the Realm interface, displaying the newly created \hyperref[def:sub_realm]{sub-realm}.
           \end{enumerate}
 
           \textbf{Secondary Scenarios:}
@@ -1321,8 +1321,8 @@ The functional requirements of the system broken down by the features they speci
               \item[{}] \textbf{User cancels the creation before confirming:}
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario 1-8
-                        \item User selects the option to cancel sub-realm creation.
-                        \item System discards the sub-realm creation process and returns to the Realm interface.
+                        \item User selects the option to cancel \hyperref[def:sub_realm]{sub-realm} creation.
+                        \item System discards the \hyperref[def:sub_realm]{sub-realm} creation process and returns to the Realm interface.
                     \end{enumerate}
 
               \item[{}] \textbf{User reselects friends:}
@@ -1340,48 +1340,48 @@ The functional requirements of the system broken down by the features they speci
                     \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} A new sub-realm is created and linked to the user’s account with the chosen settings and added friends.
+          \textbf{Success Postcondition:} A new \hyperref[def:sub_realm]{sub-realm} is created and linked to the user’s account with the chosen settings and added friends.
 
-    \item \label{uc:18} \textbf{Leave a Sub-Realm} \\
+    \item \label{uc:18} \textbf{Leave a \ref{def:sub_realm}} \\
           \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND is a member of the sub-realm.
+          \textbf{Precondition:} User is logged into the app AND is a member of the \hyperref[def:sub_realm]{sub-realm}.
 
           \textbf{Main Success Scenario:}
           \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to the sub-realm and opens the Sub-Realm Settings.
-              \item System presents the Sub-Realm Settings Menu.
-              \item User selects the "Leave Sub-Realm" option.
+              \item User navigates to the \hyperref[def:sub_realm]{sub-realm} and opens the \ref{def:sub_realm} Settings.
+              \item System presents the \ref{def:sub_realm} Settings Menu.
+              \item User selects the "Leave \ref{def:sub_realm}" option.
               \item System prompts the user to confirm the action.
-              \item User confirms that they wish to leave the sub-realm.
-              \item System removes the user from the sub-realm.
-              \item System returns the user to the Realm Interface, with the sub-realm no longer visible.
+              \item User confirms that they wish to leave the \hyperref[def:sub_realm]{sub-realm}.
+              \item System removes the user from the \hyperref[def:sub_realm]{sub-realm}.
+              \item System returns the user to the Realm Interface, with the \hyperref[def:sub_realm]{sub-realm} no longer visible.
           \end{enumerate}
 
           \textbf{Secondary Scenarios:}
           \begin{itemize}
-              \item[{}] \textbf{User cancels leaving the sub-realm:}
+              \item[{}] \textbf{User cancels leaving the \hyperref[def:sub_realm]{sub-realm}:}
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario 1-4
-                        \item User selects the option to cancel leaving the sub-realm.
-                        \item System returns to the Sub-Realm Settings without making any changes.
+                        \item User selects the option to cancel leaving the \hyperref[def:sub_realm]{sub-realm}.
+                        \item System returns to the \ref{def:sub_realm} Settings without making any changes.
                     \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} The user is no longer part of the sub-realm, and the sub-realm is no longer accessible or visible to the user.
+          \textbf{Success Postcondition:} The user is no longer part of the \hyperref[def:sub_realm]{sub-realm}, and the \hyperref[def:sub_realm]{sub-realm} is no longer accessible or visible to the user.
 
-    \item \label{uc:19} \textbf{Join an Existing Sub-Realm} \\
+    \item \label{uc:19} \textbf{Join an Existing\ref{def:sub_realm}} \\
           \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND has received an invite to the sub-realm.
+          \textbf{Precondition:} User is logged into the app AND has received an invite to the \hyperref[def:sub_realm]{sub-realm}.
 
           \textbf{Main Success Scenario:}
           \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User receives a notification of a sub-realm invitation.
-              \item System presents the sub-realm invitation details.
-              \item User selects the sub-realm they wish to join.
+              \item User receives a notification of a \hyperref[def:sub_realm]{sub-realm} invitation.
+              \item System presents the \hyperref[def:sub_realm]{sub-realm} invitation details.
+              \item User selects the \hyperref[def:sub_realm]{sub-realm} they wish to join.
               \item System presents a confirmation prompt.
-              \item User confirms their request to join the sub-realm.
-              \item System adds the user to the selected sub-realm.
-              \item System returns to the Realm Interface, now displaying the newly joined sub-realm.
+              \item User confirms their request to join the \hyperref[def:sub_realm]{sub-realm}.
+              \item System adds the user to the selected \hyperref[def:sub_realm]{sub-realm}.
+              \item System returns to the Realm Interface, now displaying the newly joined \hyperref[def:sub_realm]{sub-realm}.
           \end{enumerate}
 
           \textbf{Secondary Scenarios:}
@@ -1390,7 +1390,7 @@ The functional requirements of the system broken down by the features they speci
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario 1-5
                         \item System notifies the user that their request to join is pending approval.
-                        \item User must wait for an admin’s approval before being added to the sub-realm.
+                        \item User must wait for an admin’s approval before being added to the \hyperref[def:sub_realm]{sub-realm}.
                     \end{enumerate}
 
               \item[{}] \textbf{User cancels the request before joining:}
@@ -1401,7 +1401,7 @@ The functional requirements of the system broken down by the features they speci
                     \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} The user is successfully added to the sub-realm and can now access it from within the Realm Interface.
+          \textbf{Success Postcondition:} The user is successfully added to the \hyperref[def:sub_realm]{sub-realm} and can now access it from within the Realm Interface.
 
     \item \label{uc:20} \textbf{Add a Friend} \\
           \textbf{Actor}: \ref{def:gen_user} \\
@@ -1445,23 +1445,23 @@ The functional requirements of the system broken down by the features they speci
 
           \textbf{Success Postcondition:} The user has successfully added the friend as a connection, and the friend now appears in their friends list.
 
-    \item \label{uc:21} \textbf{Add a Friend to a Sub-Realm} \\
+    \item \label{uc:21} \textbf{Add a Friend to a\ref{def:sub_realm}} \\
           \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND is a member of the sub-realm AND has the friend already added to their friend list.
+          \textbf{Precondition:} User is logged into the app AND is a member of the \hyperref[def:sub_realm]{sub-realm} AND has the friend already added to their friend list.
 
           \textbf{Main Success Scenario:}
           \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to the desired sub-realm from the Realm Interface.
-              \item System presents the sub-realm view.
-              \item User opens the Sub-Realm Settings.
-              \item System presents the Sub-Realm Settings Menu.
-              \item User selects the option to “Add a Friend to Sub-Realm.”
+              \item User navigates to the desired \hyperref[def:sub_realm]{sub-realm} from the Realm Interface.
+              \item System presents the \hyperref[def:sub_realm]{sub-realm} view.
+              \item User opens the\ref{def:sub_realm} Settings.
+              \item System presents the\ref{def:sub_realm} Settings Menu.
+              \item User selects the option to “Add a Friend to\ref{def:sub_realm}.”
               \item System displays the user's friend list.
-              \item User selects the friend they wish to add to the sub-realm.
+              \item User selects the friend they wish to add to the \hyperref[def:sub_realm]{sub-realm}.
               \item System presents a confirmation prompt.
               \item User confirms adding the friend.
-              \item System adds the friend to the sub-realm.
-              \item System returns to the Sub-Realm Interface, now displaying the updated member list.
+              \item System adds the friend to the \hyperref[def:sub_realm]{sub-realm}.
+              \item System returns to the\ref{def:sub_realm} Interface, now displaying the updated member list.
           \end{enumerate}
 
           \textbf{Secondary Scenarios:}
@@ -1470,13 +1470,13 @@ The functional requirements of the system broken down by the features they speci
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario 1-8
                         \item User selects the option to cancel adding the friend.
-                        \item System discards the action and returns to the Sub-Realm Settings Menu.
+                        \item System discards the action and returns to the\ref{def:sub_realm} Settings Menu.
                     \end{enumerate}
 
-              \item[{}] \textbf{User selects a friend who is already a sub-realm member:}
+              \item[{}] \textbf{User selects a friend who is already a \hyperref[def:sub_realm]{sub-realm} member:}
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario 1-7
-                        \item System notifies the user that the selected friend is already a member of the sub-realm.
+                        \item System notifies the user that the selected friend is already a member of the \hyperref[def:sub_realm]{sub-realm}.
                         \item User can return to the friend list and select another friend.
                     \end{enumerate}
 
@@ -1489,25 +1489,25 @@ The functional requirements of the system broken down by the features they speci
                     \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} The user has successfully added the friend to the sub-realm, and the updated member list is displayed in the Sub-Realm Interface.
+          \textbf{Success Postcondition:} The user has successfully added the friend to the \hyperref[def:sub_realm]{sub-realm}, and the updated member list is displayed in the\ref{def:sub_realm} Interface.
 
-    \item \label{uc:22} \textbf{Remove a Friend from a Sub-Realm} \\
+    \item \label{uc:22} \textbf{Remove a Friend from a\ref{def:sub_realm}} \\
           \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND is a member of the sub-realm AND has the friend added to the sub-realm.
+          \textbf{Precondition:} User is logged into the app AND is a member of the \hyperref[def:sub_realm]{sub-realm} AND has the friend added to the \hyperref[def:sub_realm]{sub-realm}.
 
           \textbf{Main Success Scenario:}
           \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to the desired sub-realm from the Realm Interface.
-              \item System presents the sub-realm view.
-              \item User opens the Sub-Realm Settings.
-              \item System presents the Sub-Realm Settings Menu.
-              \item User selects the option to “Remove a Friend from Sub-Realm.”
-              \item System displays the current list of members in the sub-realm.
+              \item User navigates to the desired \hyperref[def:sub_realm]{sub-realm} from the Realm Interface.
+              \item System presents the \hyperref[def:sub_realm]{sub-realm} view.
+              \item User opens the\ref{def:sub_realm} Settings.
+              \item System presents the\ref{def:sub_realm} Settings Menu.
+              \item User selects the option to “Remove a Friend from\ref{def:sub_realm}.”
+              \item System displays the current list of members in the \hyperref[def:sub_realm]{sub-realm}.
               \item User selects the friend they wish to remove.
               \item System presents a confirmation prompt.
               \item User confirms the removal.
-              \item System removes the friend from the sub-realm.
-              \item System returns to the Sub-Realm Interface, displaying the updated member list without the removed friend.
+              \item System removes the friend from the \hyperref[def:sub_realm]{sub-realm}.
+              \item System returns to the\ref{def:sub_realm} Interface, displaying the updated member list without the removed friend.
           \end{enumerate}
 
           \textbf{Secondary Scenarios:}
@@ -1516,9 +1516,9 @@ The functional requirements of the system broken down by the features they speci
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item User navigates to the settings page in the app.
                         \item System presents the settings display.
-                        \item User navigates to the sub-realm settings.
-                        \item System displays a list of sub-realms.
-                        \item User selects the desired sub-realm.
+                        \item User navigates to the \hyperref[def:sub_realm]{sub-realm} settings.
+                        \item System displays a list of \hyperref[def:sub_realm]{sub-realms}.
+                        \item User selects the desired \hyperref[def:sub_realm]{sub-realm}.
                         \item Main scenario 4-11
                     \end{enumerate}
 
@@ -1526,13 +1526,13 @@ The functional requirements of the system broken down by the features they speci
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario 1-8
                         \item User selects the option to cancel the removal.
-                        \item System discards the action and returns to the Sub-Realm Settings Menu.
+                        \item System discards the action and returns to the\ref{def:sub_realm} Settings Menu.
                     \end{enumerate}
 
-              \item[{}] \textbf{User attempts to remove a friend who is not in the sub-realm:}
+              \item[{}] \textbf{User attempts to remove a friend who is not in the \hyperref[def:sub_realm]{sub-realm}:}
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario 1-7
-                        \item System notifies the user that the selected friend is not a member of the sub-realm.
+                        \item System notifies the user that the selected friend is not a member of the \hyperref[def:sub_realm]{sub-realm}.
                         \item User returns to the member list to reselect another friend.
                     \end{enumerate}
 
@@ -1545,7 +1545,7 @@ The functional requirements of the system broken down by the features they speci
                     \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} The selected friend is successfully removed from the sub-realm and no longer has access to the sub-realm content.
+          \textbf{Success Postcondition:} The selected friend is successfully removed from the \hyperref[def:sub_realm]{sub-realm} and no longer has access to the \hyperref[def:sub_realm]{sub-realm} content.
 
     \item \label{uc:23} \textbf{Create an Account} \\
           \textbf{Actor}: \ref{def:gen_user} \\
