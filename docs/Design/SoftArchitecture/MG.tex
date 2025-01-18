@@ -258,52 +258,78 @@ to be implemented.
 \subsection{Hardware Hiding Modules (\mref{mHH})}
 
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
+\item[Secrets:] The data structure and algorithm used to implement the virtual hardware.
+\item[Services:] Serves as a virtual hardware used by the rest of the system. This module provides the interface between the hardware and the software, allowing the system to display outputs or accept inputs.
+\item[Implemented By:] OS
+\end{description}
+
+\subsubsection{Device Input/Output Module}
+
+\begin{description}
+\item[Secrets:] How data is collected from and sent to device sensors like the camera, GPS, or microphone.
+\item[Services:] Provides a standard interface for capturing sensor input (e.g., photos, location data) and delivering it to the higher-level system modules.
 \item[Implemented By:] OS
 \end{description}
 
 \subsection{Behaviour-Hiding Module}
 
 \begin{description}
-\item[Secrets:]The contents of the required behaviours.
-\item[Services:]Includes programs that provide externally visible behaviour of
-  the system as specified in the software requirements specification (SRS)
-  documents. This module serves as a communication layer between the
-  hardware-hiding module and the software decision module. The programs in this
-  module will need to change if there are changes in the SRS.
+\item[Secrets:] The contents of the required behaviours.
+\item[Services:] Includes programs that provide externally visible behaviour of the system as specified in the software requirements specification (SRS) documents. This module serves as a communication layer between the hardware-hiding module and the software decision module. The programs in this module will need to change if there are changes in the SRS.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Input Format Module (\mref{mInput})}
+\subsubsection{Group Data Storage Module}
 
 \begin{description}
-\item[Secrets:]The format and structure of the input data.
-\item[Services:]Converts the input data into the data structure used by the
-  input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Secrets:] How group-related data is structured and stored in the database backend.
+\item[Services:] Handles storage, retrieval, and modification of group data for the application.
+\item[Implemented By:] Database Backend
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Friend Data Storage Module}
 
+\begin{description}
+\item[Secrets:] How friend-related data is structured and stored in the database backend.
+\item[Services:] Manages operations for adding, removing, and retrieving friends and their associated data.
+\item[Implemented By:] Database Backend
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{Settings Data Storage Module}
+
+\begin{description}
+\item[Secrets:] How user settings are structured and stored in the database backend.
+\item[Services:] Provides operations to save, retrieve, and modify user settings such as preferences, accessibility options, and privacy settings.
+\item[Implemented By:] Database Backend
+\item[Type of Module:] Abstract Data Type
+\end{description}
 
 \subsection{Software Decision Module}
 
 \begin{description}
-\item[Secrets:] The design decision based on mathematical theorems, physical
-  facts, or programming considerations. The secrets of this module are
-  \emph{not} described in the SRS.
-\item[Services:] Includes data structure and algorithms used in the system that
-  do not provide direct interaction with the user. 
-  % Changes in these modules are more likely to be motivated by a desire to
-  % improve performance than by externally imposed changes.
+\item[Secrets:] The design decision based on mathematical theorems, physical facts, or programming considerations. The secrets of this module are \emph{not} described in the SRS.
+\item[Services:] Includes data structures and algorithms used in the system that do not provide direct interaction with the user.
 \item[Implemented By:] --
 \end{description}
+
+\subsubsection{Algorithm Optimization Module}
+
+\begin{description}
+\item[Secrets:] The algorithms and mathematical models used to optimize object rendering and placement.
+\item[Services:] Improves the performance and quality of object rendering in AR while maintaining real-time responsiveness.
+\item[Implemented By:] AR Engine
+\end{description}
+
+\subsubsection{User Interaction Logic Module}
+
+\begin{description}
+\item[Secrets:] The logic and rules for user interaction with AR objects and interfaces.
+\item[Services:] Manages interactions such as selecting, dragging, and dropping AR objects, ensuring consistency and usability.
+\item[Implemented By:] AR Engine
+\end{description}
+
 
 \subsubsection{Etc.}
 
@@ -402,10 +428,43 @@ needed. Drawings, Sketches, Figma}
 \wss{If appropriate}
 
 \section{Timeline}
+Below is a schedule for our implementation and work distribution of the modules.
 
-\wss{Schedule of tasks and who is responsible}
-
-\wss{You can point to GitHub if this information is included there}
+\begin{table}[H]
+\begin{tabular}{lll}
+\hline
+\multicolumn{1}{|l|}{\textbf{Due Date}}                & \multicolumn{1}{l|}{\textbf{Work to be Completed}}            & \multicolumn{1}{l|}{\textbf{Assigned Member}} \\ \hline
+\multicolumn{1}{|l|}{\multirow{3}{*}{Jan 15 - Jan 20}} & \multicolumn{1}{l|}{Hardware Module}                          & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tutorial Module}                          & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Inventory Module}                         & \multicolumn{1}{l|}{Avanish}                  \\ \hline
+\multicolumn{1}{|l|}{\multirow{4}{*}{Jan 20 - Jan 25}} & \multicolumn{1}{l|}{Sub-Realm Module}                         & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Touring Module}                           & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tour List Module}                         & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tour Management Module}                   & \multicolumn{1}{l|}{Russell}                  \\ \hline
+\multicolumn{1}{|l|}{\multirow{4}{*}{Jan 25 - Feb 1}}  & \multicolumn{1}{l|}{Settings Module}                          & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Help Module}                              & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Friends Module}                           & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Maps Module}                              & \multicolumn{1}{l|}{Abdul}                    \\ \hline
+\multicolumn{1}{|l|}{\multirow{5}{*}{Jan 30 - Feb 5}}  & \multicolumn{1}{l|}{Realm Interface Module}                   & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Importer Module}                   & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Placement Module}                  & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Interaction Module}                & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Render Module}                     & \multicolumn{1}{l|}{Abdul}                    \\ \hline
+\multicolumn{1}{|l|}{\multirow{4}{*}{Feb 5 - Feb 10}}  & \multicolumn{1}{l|}{Collision Hazard Detection Module}         & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Restricted Area Detection Module}          & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Weather Hazard Detection Module}           & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tour Proximity Detection Module}           & \multicolumn{1}{l|}{Rafey}                    \\ \hline
+\multicolumn{1}{|l|}{\multirow{4}{*}{Feb 6 - Feb 10}}  & \multicolumn{1}{l|}{Notifications Module}                     & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{REST API Module}                          & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Local Database Manager Module}             & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Data Sync Module}                         & \multicolumn{1}{l|}{Russell}                  \\ \hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{Feb 8 - Feb 10}}  & \multicolumn{1}{l|}{Server Database Manager Module}            & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Authentication Module}                    & \multicolumn{1}{l|}{Rafey}                    \\ \hline
+                                                       &                                                                &                                              
+\end{tabular}
+\caption{Module Development Schedule}
+\label{tab:module_schedule}
+\end{table}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}
