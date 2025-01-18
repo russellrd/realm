@@ -51,11 +51,11 @@ urlcolor=cyan          % color of external links
 \section{Revision History}
 
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
+  \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
+  \midrule
+  Date 1              & 1.0           & Notes       \\
+  Date 2              & 1.1           & Notes       \\
+  \bottomrule
 \end{tabularx}
 
 ~\newpage
@@ -93,23 +93,23 @@ with the addition that template modules have been adapted from
 \cite{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
 \citet{HoffmanAndStrooper1995}.  For instance, the symbol := is used for a
 multiple assignment statement and conditional rules follow the form $(c_1
-\Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
+  \Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
 
-The following table summarizes the primitive data types used by \progname. 
+The following table summarizes the primitive data types used by \progname.
 
 \begin{center}
-\renewcommand{\arraystretch}{1.2}
-\noindent 
-\begin{tabular}{l l p{7.5cm}} 
-\toprule 
-\textbf{Data Type} & \textbf{Notation} & \textbf{Description}\\ 
-\midrule
-character & char & a single symbol or digit\\
-integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
-natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
-real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
-\bottomrule
-\end{tabular} 
+  \renewcommand{\arraystretch}{1.2}
+  \noindent
+  \begin{tabular}{l l p{7.5cm}}
+    \toprule
+    \textbf{Data Type} & \textbf{Notation} & \textbf{Description}                                             \\
+    \midrule
+    character          & char              & a single symbol or digit                                         \\
+    integer            & $\mathbb{Z}$      & a number without a fractional component in (-$\infty$, $\infty$) \\
+    natural number     & $\mathbb{N}$      & a number without a fractional component in [1, $\infty$)         \\
+    real               & $\mathbb{R}$      & any number in (-$\infty$, $\infty$)                              \\
+    \bottomrule
+  \end{tabular}
 \end{center}
 
 \noindent
@@ -125,107 +125,2010 @@ described by giving their type signature followed by their specification.
 The following table is taken directly from the Module Guide document for this project.
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{Level 1} & \textbf{Level 2}\\
-\midrule
+  \centering
+  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+    \toprule
+    \textbf{Level 1}                               & \textbf{Level 2}                \\
+    \midrule
 
-{Hardware-Hiding} & ~ \\
-\midrule
+    {Hardware-Hiding}                              & ~                               \\
+    \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
-\midrule
+    \multirow{7}{0.3\textwidth}{Behaviour-Hiding}  & Input Parameters                \\
+                                                   & Output Format                   \\
+                                                   & Output Verification             \\
+                                                   & Temperature ODEs                \\
+                                                   & Energy Equations                \\
+                                                   & Control Module                  \\
+                                                   & Specification Parameters Module \\
+    \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
-\bottomrule
-
-\end{tabular}
-\caption{Module Hierarchy}
-\label{TblMH}
+    \multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}       \\
+                                                   & ODE Solver                      \\
+                                                   & Plotting                        \\
+    \bottomrule
+  \end{tabular}
+  \caption{Module Hierarchy}
+  \label{TblMH}
 \end{table}
 
 \newpage
 ~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
-
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\section{MIS of Settings Module} \label{Module_Settings}
 
 \subsection{Module}
 
-\wss{Short name for the module}
+Settings Module
 
 \subsection{Uses}
 
+\begin{itemize}
+  \item Database/Network Manager Module
+  \item Error Manager Module
+  \item Authentication Module
+\end{itemize}
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
 
+\begin{itemize}
+  \item None
+\end{itemize}
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-\wss{accessProg} & - & - & - \\
-\hline
-\end{tabular}
+  \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+    \hline
+    \textbf{Name}        & \textbf{In}                                   & \textbf{Out}                       & \textbf{Exceptions}     \\
+    \hline
+    UpdateSettings       & Dictionary of key-value pairs                 & Bool - Success or Fail             & InvalidKeyException     \\
+    \hline
+    FetchSettings        & -                                             & Dictionary of current settings     & -                       \\
+    \hline
+    ResetToDefaults      & -                                             & Bool - Success or Fail             & -                       \\
+    \hline
+    UpdateProfileDetails & Dictionary of profile-related key-value pairs & Bool - Success or Fail             & InvalidKeyException     \\
+    \hline
+    FetchProfileDetails  & -                                             & Dictionary of profile-related data & -                       \\
+    \hline
+    ChangePassword       & Old password, new password                    & Bool - Success or Fail             & AuthenticationException \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item settings: A dictionary containing user-configurable settings and their current values.
+  \item profileDetails: A dictionary storing user profile-related data (e.g., name, avatar, bio).
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Device Storage: Used to persist settings and profile details.
+  \item Encryption Mechanism: Ensures sensitive data like passwords and privacy settings are encrypted during storage and transmission.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item The device has sufficient storage for saving and retrieving settings and profile details.
+  \item All keys provided for updates are predefined and valid.
+  \item The user is authenticated before accessing this module.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent UpdateSettings(newSettings):
+\begin{itemize}
+  \item \textbf{Transition:} Updates the corresponding entries in the settings dictionary with the provided key-value pairs.
+  \item \textbf{Output:} Returns true if all updates succeed, false otherwise.
+  \item \textbf{Exception:} Throws InvalidKeyException if an invalid key is provided.
+\end{itemize}
+
+\noindent FetchSettings():
+\begin{itemize}
+  \item \textbf{Output:} Returns the current settings dictionary.
+  \item \textbf{Exception:} None
+\end{itemize}
+
+\noindent ResetToDefaults():
+\begin{itemize}
+  \item \textbf{Transition:} Resets all settings in the dictionary to their default values.
+  \item \textbf{Output:} Returns true if the reset succeeds, false otherwise.
+  \item \textbf{Exception:} None
+\end{itemize}
+
+\noindent UpdateProfileDetails(newProfileDetails):
+\begin{itemize}
+  \item \textbf{Transition:} Updates the corresponding entries in the profileDetails dictionary with the provided key-value pairs.
+  \item \textbf{Output:} Returns true if all updates succeed, false otherwise.
+  \item \textbf{Exception:} Throws InvalidKeyException if an invalid key is provided.
+\end{itemize}
+
+\noindent FetchProfileDetails():
+\begin{itemize}
+  \item \textbf{Output:} Returns the current profileDetails dictionary.
+  \item \textbf{Exception:} None
+\end{itemize}
+
+\noindent ChangePassword(oldPassword, newPassword):
+\begin{itemize}
+  \item \textbf{Transition:} Validates the old password and updates the password to the new one if valid.
+  \item \textbf{Output:} Returns true if the password is successfully changed, false otherwise.
+  \item \textbf{Exception:} Throws AuthenticationException if the old password is incorrect or the user session is invalid.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item ValidateKey(key): Ensures the provided key is predefined and valid for the settings or profileDetails dictionaries.
+  \item EncryptData(data): Applies encryption to sensitive data before storage or transmission.
+\end{itemize}
+
+
+\newpage
+
+
+\section{MIS of Help Module} \label{Module_Help}
+
+\subsection{Module}
+
+Help Module
+
+\subsection{Uses}
+
+\begin{itemize}
+  \item User Interface Manager Module
+  \item Content Storage Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item None
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{3cm} p{4cm} p{4cm} p{5cm}}
+    \hline
+    \textbf{Name}  & \textbf{In}                     & \textbf{Out}                       & \textbf{Exceptions}         \\
+    \hline
+    ViewHelpTopics & -                               & List of help topics                & -                           \\
+    \hline
+    SearchHelp     & Query string                    & Relevant help content              & InvalidQueryException       \\
+    \hline
+    FetchFAQ       & -                               & List of frequently asked questions & -                           \\
+    \hline
+    ContactSupport & User message, user contact info & Confirmation of message sent       & MessageDeliveryException    \\
+    \hline
+    SubmitFeedback & Feedback message                & Bool - Success or Fail             & FeedbackSubmissionException \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item helpSections: A collection of predefined help sections, each identified by a unique ID and containing text, images, or links.
+  \item searchIndex: An index to facilitate quick searches within help content.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Content Storage: Stores the help documentation (e.g., FAQs, guides, tutorials).
+  \item Device Network: Used for fetching online help content if local content is not available.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item All help content is preloaded in the Content Storage or accessible via a network connection.
+  \item The section identifiers used are valid and correspond to existing help sections.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent FetchHelpContent(sectionID):
+\begin{itemize}
+  \item \textbf{Transition:} None
+  \item \textbf{Output:} Returns the help content associated with the given section identifier.
+  \item \textbf{Exception:} Throws ContentNotFoundException if the sectionID is invalid or not found.
+\end{itemize}
+
+\noindent SearchHelpContent(query):
+\begin{itemize}
+  \item \textbf{Transition:} None
+  \item \textbf{Output:} Returns a list of section identifiers that are relevant to the search query.
+  \item \textbf{Exception:} None
+\end{itemize}
+
+\noindent NavigateToHelpSection(sectionID):
+\begin{itemize}
+  \item \textbf{Transition:} Updates the displayed help section in the user interface to the section corresponding to the given identifier.
+  \item \textbf{Output:} Returns true if navigation is successful, false otherwise.
+  \item \textbf{Exception:} Throws InvalidSectionException if the sectionID is invalid.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item ValidateSectionID(sectionID): Ensures the section identifier is valid and corresponds to an existing help section.
+  \item PerformSearch(query): Matches the search query against the searchIndex and returns relevant section identifiers.
+\end{itemize}
+
+
+\newpage
+
+\section{MIS of Friends Module} \label{Module_Friends}
+
+\subsection{Module}
+
+Friends Module
+
+\subsection{Uses}
+
+\begin{itemize}
+  \item User Interface Manager Module
+  \item Database Manager Module
+  \item Notification Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item None
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+    \hline
+    \textbf{Name}       & \textbf{In}              & \textbf{Out}           & \textbf{Exceptions}     \\
+    \hline
+    AddFriend           & User ID of friend        & Bool - Success or Fail & FriendRequestException  \\
+    \hline
+    RemoveFriend        & User ID of friend        & Bool - Success or Fail & FriendNotFoundException \\
+    \hline
+    FetchFriendList     & -                        & List of friends        & -                       \\
+    \hline
+    AcceptFriendRequest & Request ID               & Bool - Success or Fail & InvalidRequestException \\
+    \hline
+    RejectFriendRequest & Request ID               & Bool - Success or Fail & InvalidRequestException \\
+    \hline
+    BlockUser           & User ID of user to block & Bool - Success or Fail & BlockException          \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item friendsList: A list of user identifiers representing the user's current friends.
+  \item pendingRequests: A list of incoming and outgoing friend requests.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Database: Stores the user’s friends and pending requests.
+  \item Notification System: Sends notifications for friend requests and updates.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item All user identifiers provided are valid and correspond to registered users.
+  \item The database connection is available and operational during module use.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent AddFriend(userID):
+\begin{itemize}
+  \item \textbf{Transition:} Adds the specified user to the friends list if the request is valid and approved.
+  \item \textbf{Output:} Returns true if the friend is successfully added, false otherwise.
+  \item \textbf{Exception:} Throws UserNotFoundException if the specified userID does not exist.
+\end{itemize}
+
+\noindent RemoveFriend(userID):
+\begin{itemize}
+  \item \textbf{Transition:} Removes the specified user from the friends list.
+  \item \textbf{Output:} Returns true if the friend is successfully removed, false otherwise.
+  \item \textbf{Exception:} Throws UserNotFoundException if the specified userID does not exist.
+\end{itemize}
+
+\noindent FetchFriendsList():
+\begin{itemize}
+  \item \textbf{Output:} Returns a list of user identifiers representing the user’s current friends.
+  \item \textbf{Exception:} None
+\end{itemize}
+
+\noindent SendFriendRequest(userID):
+\begin{itemize}
+  \item \textbf{Transition:} Adds a new friend request to the pendingRequests list.
+  \item \textbf{Output:} Returns true if the request is successfully sent, false otherwise.
+  \item \textbf{Exception:} Throws UserNotFoundException if the specified userID does not exist.
+\end{itemize}
+
+\noindent RespondToFriendRequest(requestID, response):
+\begin{itemize}
+  \item \textbf{Transition:} Updates the status of the specified friend request (accept or reject).
+  \item \textbf{Output:} Returns true if the response is successfully recorded, false otherwise.
+  \item \textbf{Exception:} Throws RequestNotFoundException if the specified requestID does not exist.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item ValidateUserID(userID): Ensures the user identifier corresponds to a valid registered user.
+  \item NotifyUser(userID, message): Sends a notification to the specified user.
+\end{itemize}
+
+\newpage
+
+
+\section{MIS of Collision Hazard Detection Module} \label{Module_CollisionHazardDetection}
+
+\subsection{Module}
+
+Collision Hazard Detection Module
+
+\subsection{Uses}
+
+\begin{itemize}
+  \item AR Object Manager Module
+  \item Device Sensors Module (e.g., Camera, LiDAR)
+  \item Notification Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item None
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4.2cm} p{3cm} p{3cm} p{4cm}}
+    \hline
+    \textbf{Name}           & \textbf{In}                                  & \textbf{Out}                              & \textbf{Exceptions}            \\
+    \hline
+    DetectCollision         & User’s current position, AR object positions & Boolean (Collision Detected/Not Detected) & SensorDataUnavailableException \\
+    \hline
+    FetchHazardDetails      & Collision ID                                 & Hazard details (Type, Severity, Location) & HazardNotFoundException        \\
+    \hline
+    LogCollisionEvent       & Collision details (Position, Time, Severity) & Bool - Success or Fail                    & LoggingException               \\
+    \hline
+    ClearHazardAlerts       & -                                            & Bool - Success or Fail                    & AlertClearanceException        \\
+    \hline
+    UpdateDetectionSettings & Dictionary of detection settings             & Bool - Success or Fail                    & InvalidSettingsException       \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item collisionEvents: A log of detected collisions, including timestamps, object data, and resolutions.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Device Sensors: Provides real-time data for collision detection (e.g., LiDAR, camera).
+  \item Notification System: Sends alerts when collisions are detected.
+  \item Storage System: Logs collision events for future analysis.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item Device sensors are operational and capable of providing accurate real-time data.
+  \item The system has access to sufficient storage for logging collision events.
+  \item All objects in the AR environment are registered and have defined collision boundaries.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent DetectCollision(sensorData):
+\begin{itemize}
+  \item \textbf{Transition:} None
+  \item \textbf{Output:} Returns true if a collision is detected based on sensor data, false otherwise.
+  \item \textbf{Exception:} Throws SensorUnavailableException if real-time data cannot be accessed.
+\end{itemize}
+
+\noindent ResolveCollision(collisionData):
+\begin{itemize}
+  \item \textbf{Transition:} Attempts to resolve the collision by adjusting object positions or notifying the user.
+  \item \textbf{Output:} Returns true if the collision is successfully resolved, false otherwise.
+  \item \textbf{Exception:} Throws CollisionNotResolvableException if the collision cannot be resolved.
+\end{itemize}
+
+\noindent LogCollisionEvent(eventData):
+\begin{itemize}
+  \item \textbf{Transition:} Records the collision event in the system log.
+  \item \textbf{Output:} Returns true if the event is successfully logged, false otherwise.
+  \item \textbf{Exception:} Throws LogWriteException if the log cannot be updated.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item AnalyzeSensorData(sensorData): Processes real-time data to determine if a collision is imminent.
+  \item NotifyUserOfCollision(collisionData): Sends an alert to the user about a detected collision.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Tour Proximity Detection Module} \label{Module_TourProximityDetection}
+
+\subsection{Module}
+
+Tour Proximity Detection Module
+
+\subsection{Uses}
+
+\begin{itemize}
+  \item GPS Module
+  \item Notification Module
+  \item AR Object Manager Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item None
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{3cm} p{3cm} p{5cm}}
+    \hline
+    \textbf{Name}         & \textbf{In}                                        & \textbf{Out}                   & \textbf{Exceptions}              \\
+    \hline
+    DetectNearbyTours     & User’s current location, registered tour locations & List of tours within proximity & LocationDataUnavailableException \\
+    \hline
+    NotifyTourProximity   & User’s proximity to a specific tour                & Notification message           & NotificationFailureException     \\
+    \hline
+    UpdateTourProximity   & Updated user location, updated tour locations      & Bool - Success or Fail         & UpdateFailedException            \\
+    \hline
+    FetchProximityDetails & User ID, tour ID                                   & Details of proximity data      & DataFetchException               \\
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item proximityEvents: A log of detected proximity events, including timestamps, tour data, and notifications sent.
+  \item currentLocation: The user's most recently reported GPS coordinates.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item GPS System: Provides the user's real-time location.
+  \item Notification System: Sends alerts when a user is near a tour location.
+  \item Storage System: Logs proximity detection events for future analysis.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item The GPS system is operational and capable of providing accurate location data.
+  \item The system has sufficient storage for logging proximity detection events.
+  \item All tours in the system have clearly defined geographical boundaries.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent DetectNearbyTour(currentLocation):
+\begin{itemize}
+  \item \textbf{Transition:} None
+  \item \textbf{Output:} Returns a list of tours within proximity to the user's current location.
+  \item \textbf{Exception:} Throws LocationUnavailableException if GPS data cannot be accessed.
+\end{itemize}
+
+\noindent TriggerTourNotification(tourData):
+\begin{itemize}
+  \item \textbf{Transition:} Sends a notification to the user about the nearby tour.
+  \item \textbf{Output:} Returns true if the notification is successfully sent, false otherwise.
+  \item \textbf{Exception:} Throws NotificationSendException if the notification fails to send.
+\end{itemize}
+
+\noindent LogProximityEvent(eventData):
+\begin{itemize}
+  \item \textbf{Transition:} Records the proximity event in the system log.
+  \item \textbf{Output:} Returns true if the event is successfully logged, false otherwise.
+  \item \textbf{Exception:} Throws LogWriteException if the log cannot be updated.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item AnalyzeLocationData(locationData): Processes the current GPS location to identify nearby tours.
+  \item NotifyUserOfProximity(tourData): Sends an alert to the user about a detected nearby tour.
+\end{itemize}
+
+\newpage
+
+
+\section{MIS of Notifications Module} \label{Module_Notifications}
+
+\subsection{Module}
+
+Notifications Module
+
+\subsection{Uses}
+
+\begin{itemize}
+  \item User Interface Manager Module
+  \item Database Manager Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item None
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
+    \hline
+    \textbf{Name}              & \textbf{In}                   & \textbf{Out}           & \textbf{Exceptions}           \\
+    \hline
+    SendNotification           & User ID, notification message & Bool - Success or Fail & NotificationSendException     \\
+    \hline
+    FetchNotifications         & User ID                       & List of notifications  & DataFetchException            \\
+    \hline
+    MarkNotificationRead       & Notification ID               & Bool - Success or Fail & NotificationNotFoundException \\
+    \hline
+    DeleteNotification         & Notification ID               & Bool - Success or Fail & DeleteFailedException         \\
+    \hline
+    UpdateNotificationSettings & User ID, settings data        & Bool - Success or Fail & InvalidSettingsException      \\
+    \hline
+  \end{tabular}
 \end{center}
 
 \subsection{Semantics}
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+\begin{itemize}
+  \item notifications: A list of notifications associated with each user, including their status (read/unread).
+\end{itemize}
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+\begin{itemize}
+  \item Notification System: Handles the actual delivery of notifications to users.
+  \item Database: Stores notifications for retrieval and management.
+\end{itemize}
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+\begin{itemize}
+  \item The notification delivery service is operational and capable of sending notifications in real-time.
+  \item All user identifiers and notification identifiers are valid and exist in the database.
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent SendNotification(notificationData):
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+  \item \textbf{Transition:} Adds the notification to the database and attempts to deliver it to the specified user.
+  \item \textbf{Output:} Returns true if the notification is successfully sent, false otherwise.
+  \item \textbf{Exception:} Throws NotificationSendException if the delivery fails.
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\noindent FetchNotifications(userID):
+\begin{itemize}
+  \item \textbf{Output:} Returns a list of notifications for the specified user.
+  \item \textbf{Exception:} Throws UserNotFoundException if the user ID is not found.
+\end{itemize}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent MarkNotificationAsRead(notificationID):
+\begin{itemize}
+  \item \textbf{Transition:} Updates the status of the specified notification to "read" in the database.
+  \item \textbf{Output:} Returns true if the status update is successful, false otherwise.
+  \item \textbf{Exception:} Throws NotificationNotFoundException if the notification ID is not found.
+\end{itemize}
+
+\noindent DeleteNotification(notificationID):
+\begin{itemize}
+  \item \textbf{Transition:} Removes the specified notification from the database.
+  \item \textbf{Output:} Returns true if the notification is successfully deleted, false otherwise.
+  \item \textbf{Exception:} Throws NotificationNotFoundException if the notification ID is not found.
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+\begin{itemize}
+  \item ValidateNotificationData(notificationData): Ensures the notification data is valid before sending.
+  \item NotifyUser(notificationData): Sends the notification to the user using the delivery system.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Authentication Module} \label{Module_Authentication}
+
+\subsection{Module}
+
+Authentication Module
+
+\subsection{Uses}
+
+\begin{itemize}
+  \item Database Manager Module
+  \item Encryption Module
+  \item Notification Module (for two-factor authentication)
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item None
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{3cm} p{3cm} p{5cm}}
+    \hline
+    \textbf{Name}              & \textbf{In}                   & \textbf{Out}           & \textbf{Exceptions}           \\
+    \hline
+    SendNotification           & User ID, notification message & Bool - Success or Fail & NotificationSendException     \\
+    \hline
+    FetchNotifications         & User ID                       & List of notifications  & DataFetchException            \\
+    \hline
+    MarkNotificationRead       & Notification ID               & Bool - Success or Fail & NotificationNotFoundException \\
+    \hline
+    DeleteNotification         & Notification ID               & Bool - Success or Fail & DeleteFailedException         \\
+    \hline
+    UpdateNotificationSettings & User ID, settings data        & Bool - Success or Fail & InvalidSettingsException      \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item users: A collection of user data, including credentials, authentication settings, and two-factor status.
+  \item activeSessions: A list of currently authenticated user sessions.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Database: Stores user credentials and authentication-related data.
+  \item Encryption System: Encrypts sensitive user information like passwords.
+  \item Notification System: Sends two-factor authentication codes or password reset links.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item All usernames and passwords are stored securely and hashed using industry-standard encryption.
+  \item The system has access to a functional notification system for delivering codes and reset links.
+  \item Users provide valid inputs during registration and login attempts.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent AuthenticateUser(username, password):
+\begin{itemize}
+  \item \textbf{Transition:} Verifies the username and password against stored credentials.
+  \item \textbf{Output:} Returns true if the credentials are valid, false otherwise.
+  \item \textbf{Exception:} Throws AuthenticationFailedException if the credentials do not match.
+\end{itemize}
+
+\noindent RegisterUser(registrationData):
+\begin{itemize}
+  \item \textbf{Transition:} Adds a new user to the database with the provided registration data.
+  \item \textbf{Output:} Returns true if the registration is successful, false otherwise.
+  \item \textbf{Exception:} Throws RegistrationFailedException if the registration fails due to invalid data or duplication.
+\end{itemize}
+
+\noindent ResetPassword(emailOrUsername):
+\begin{itemize}
+  \item \textbf{Transition:} Sends a password reset link or code to the associated email.
+  \item \textbf{Output:} Returns true if the reset link/code is sent successfully, false otherwise.
+  \item \textbf{Exception:} Throws UserNotFoundException if the email or username is not found.
+\end{itemize}
+
+\noindent EnableTwoFactorAuth(userID):
+\begin{itemize}
+  \item \textbf{Transition:} Enables two-factor authentication for the specified user.
+  \item \textbf{Output:} Returns true if the feature is enabled successfully, false otherwise.
+  \item \textbf{Exception:} Throws UserNotFoundException if the user ID is invalid.
+\end{itemize}
+
+\noindent ValidateTwoFactorCode(userID, code):
+\begin{itemize}
+  \item \textbf{Transition:} Validates the two-factor authentication code provided by the user.
+  \item \textbf{Output:} Returns true if the code is valid, false otherwise.
+  \item \textbf{Exception:} Throws InvalidCodeException if the code is incorrect or expired.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item HashPassword(password): Generates a secure hash for the given password.
+  \item GenerateTwoFactorCode(userID): Creates a time-sensitive code for two-factor authentication.
+  \item SendNotification(userID, message): Sends a notification to the specified user with relevant authentication details.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Object Render Module} \label{ObjectRenderModule}
+
+\subsection{Module}
+
+Object Render Module
+
+\subsection{Uses}
+
+\begin{itemize}
+  \item Maps Module
+  \item Object Placement Module
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item \textbf{RENDER\_RESOLUTION\_DEFAULT}: Default resolution for rendering objects.
+  \item \textbf{RENDER\_FPS\_LIMIT}: Frame-per-second limit for rendering.
+  \item \textbf{RENDER\_QUALITY\_OPTIONS}: Preset quality levels (e.g., low, medium, high).
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+    \hline
+    \textbf{Name}        & \textbf{In}                      & \textbf{Out}                          & \textbf{Exceptions}     \\
+    \hline
+    RenderObject         & Object ID, Position, Orientation & Rendered Object                       & RenderingException      \\
+    \hline
+    AdjustRenderSettings & Dictionary of key-value pairs    & Bool - Success or Fail                & InvalidSettingException \\
+    \hline
+    FetchRenderSettings  & -                                & Dictionary of current render settings & -                       \\
+    \hline
+    PauseRendering       & -                                & Bool - Success or Fail                & RenderingException      \\
+    \hline
+    ResumeRendering      & -                                & Bool - Success or Fail                & RenderingException      \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \textbf{currentRenderSettings}: Stores the current rendering settings, such as resolution and FPS.
+  \item \textbf{renderQueue}: A queue of objects to be rendered.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Graphics Processing Unit (GPU)
+  \item Rendering Library (e.g., OpenGL, Vulkan, Unity Renderer)
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item Objects to be rendered are correctly formatted and preprocessed.
+  \item The rendering hardware meets the minimum requirements.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent RenderObject(Object ID, Position, Orientation):
+\begin{itemize}
+  \item transition: Adds the object to the render queue and renders it based on the given parameters.
+  \item output: The rendered object appears in the virtual environment.
+  \item exception: Throws \texttt{RenderingException} if the rendering fails due to hardware or software issues.
+\end{itemize}
+
+\noindent AdjustRenderSettings(Dictionary of key-value pairs):
+\begin{itemize}
+  \item transition: Updates the \texttt{currentRenderSettings} variable with the provided values.
+  \item output: Returns a success or failure boolean.
+  \item exception: Throws \texttt{InvalidSettingException} if the provided settings are invalid.
+\end{itemize}
+
+\noindent FetchRenderSettings():
+\begin{itemize}
+  \item transition: None.
+  \item output: Returns the \texttt{currentRenderSettings}.
+  \item exception: None.
+\end{itemize}
+
+\noindent PauseRendering():
+\begin{itemize}
+  \item transition: Pauses the rendering process.
+  \item output: Returns a success or failure boolean.
+  \item exception: Throws \texttt{RenderingException} if pausing fails.
+\end{itemize}
+
+\noindent ResumeRendering():
+\begin{itemize}
+  \item transition: Resumes the rendering process.
+  \item output: Returns a success or failure boolean.
+  \item exception: Throws \texttt{RenderingException} if resuming fails.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \textbf{ValidateRenderSettings(settings)}: Ensures that the given render settings are within acceptable ranges.
+  \item \textbf{OptimizeRenderQueue()}: Reorders the render queue to improve performance.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Touring Module} \label{TouringModule}
+
+\subsection{Module}
+
+Touring Module
+
+\subsection{Uses}
+
+Realm Interface Module, Maps Module, Notifications Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item \textbf{DEFAULT\_TOUR\_RADIUS:} The default radius for proximity detection during tours.
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{2cm} p{4cm} p{4cm}}
+    \hline
+    \textbf{Name}    & \textbf{In} & \textbf{Out}           & \textbf{Exceptions}    \\
+    \hline
+    StartTour        & Tour ID     & Bool - Success or Fail & InvalidTourIDException \\
+    \hline
+    PauseTour        & -           & Bool - Success or Fail & -                      \\
+    \hline
+    EndTour          & Tour ID     & Bool - Success or Fail & InvalidTourIDException \\
+    \hline
+    FetchTourDetails & Tour ID     & Tour Object            & InvalidTourIDException \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \textbf{CurrentTour:} Stores the details of the ongoing tour.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+GPS and Maps API for location tracking.
+
+\subsubsection{Assumptions}
+
+It is assumed that GPS and Maps API services are functional.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \textbf{StartTour}:
+\begin{itemize}
+  \item transition: Initializes the tour with the given Tour ID and marks it as active.
+  \item output: Returns success if the tour starts successfully.
+  \item exception: Throws InvalidTourIDException if the Tour ID does not exist.
+\end{itemize}
+
+\noindent \textbf{PauseTour}:
+\begin{itemize}
+  \item transition: Pauses the current active tour.
+  \item output: Returns success if the tour is paused successfully.
+\end{itemize}
+
+\noindent \textbf{EndTour}:
+\begin{itemize}
+  \item transition: Ends the current active tour and updates its status.
+  \item output: Returns success if the tour is ended successfully.
+  \item exception: Throws InvalidTourIDException if the Tour ID does not exist.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Tour List Module} \label{TourListModule}
+
+\subsection{Module}
+
+Tour List Module
+
+\subsection{Uses}
+
+Touring Module, Maps Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item \textbf{MAX\_TOUR\_ENTRIES:} The maximum number of tours that can be displayed in the list.
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In}      & \textbf{Out}   & \textbf{Exceptions} \\
+    \hline
+    FetchTourList & None             & Array of Tours & -                   \\
+    \hline
+    SearchTours   & Search Query     & Array of Tours & -                   \\
+    \hline
+    SortTours     & Sorting Criteria & Array of Tours & -                   \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \textbf{TourList:} Stores a list of available tours.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+Database connection to retrieve available tours.
+
+\subsubsection{Assumptions}
+
+It is assumed that the database is functional and contains valid tour data.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \textbf{FetchTourList}:
+\begin{itemize}
+  \item transition: Retrieves all available tours from the database.
+  \item output: Returns an array of available tours.
+\end{itemize}
+
+\noindent \textbf{SearchTours}:
+\begin{itemize}
+  \item transition: Filters the available tours based on the search query.
+  \item output: Returns an array of tours matching the search criteria.
+\end{itemize}
+
+\noindent \textbf{SortTours}:
+\begin{itemize}
+  \item transition: Sorts the available tours based on the specified criteria.
+  \item output: Returns an array of tours sorted by the given criteria.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Tour Management Module} \label{TourManagementModule}
+
+\subsection{Module}
+
+Tour Management Module
+
+\subsection{Uses}
+
+Realm Interface Module, Server Database Manager Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\begin{itemize}
+  \item \textbf{MAX\_TOUR\_POINTS:} The maximum number of waypoints allowed in a single tour.
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{2.5cm} p{4cm} p{4cm} p{5cm}}
+    \hline
+    \textbf{Name} & \textbf{In}                & \textbf{Out}           & \textbf{Exceptions}      \\
+    \hline
+    CreateTour    & Tour Object                & Bool - Success or Fail & InvalidTourDataException \\
+    \hline
+    UpdateTour    & Tour ID, Updated Tour Data & Bool - Success or Fail & InvalidTourIDException   \\
+    \hline
+    DeleteTour    & Tour ID                    & Bool - Success or Fail & InvalidTourIDException   \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \textbf{ManagedTours:} Stores a list of tours created and managed by the organization.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+Database connection to manage tour data.
+
+\subsubsection{Assumptions}
+
+It is assumed that the database is functional and contains valid tour data.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \textbf{CreateTour}:
+\begin{itemize}
+  \item transition: Adds a new tour to the database.
+  \item output: Returns success if the tour is created successfully.
+  \item exception: Throws InvalidTourDataException if the tour data is invalid.
+\end{itemize}
+
+\noindent \textbf{UpdateTour}:
+\begin{itemize}
+  \item transition: Updates the details of an existing tour in the database.
+  \item output: Returns success if the tour is updated successfully.
+  \item exception: Throws InvalidTourIDException if the Tour ID does not exist.
+\end{itemize}
+
+\noindent \textbf{DeleteTour}:
+\begin{itemize}
+  \item transition: Removes a tour from the database.
+  \item output: Returns success if the tour is deleted successfully.
+  \item exception: Throws InvalidTourIDException if the Tour ID does not exist.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Sub-Realms} \label{sub-realms}
+
+\subsection{Module}
+
+SubRealms
+
+\subsection{Uses}
+
+\hyperref[local-dbm]{Local Database Manager}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{4cm} p{3cm} p{3cm}}
+    \hline
+    \textbf{Name}  & \textbf{In}                             & \textbf{Out}                            & \textbf{Exceptions}                     \\
+    \hline
+    getMembers     & $\mathbb{N}$                            & Array\textlangle$\mathbb{N}$\textrangle & SubRealmNotFound                        \\
+    addMember      & $\mathbb{N}$, $\mathbb{N}$              & -                                       & SubRealmNotFound, UserAlreadyInSubRealm \\
+    removeMember   & $\mathbb{N}$, $\mathbb{N}$              & -                                       & SubRealmNotFound, MemberNotFound        \\
+    createNew      & Array\textlangle$\mathbb{N}$\textrangle & $\mathbb{N}$                            & -                                       \\
+    deleteExisting & $\mathbb{N}$                            & -                                       & SubRealmNotFound                        \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( subRealms \): A mapping of \( subRealmID \to subRealm \), where each \( subRealm \) contains a list of \( members \) (user IDs).
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item \( localDB \): The local database used for storing sub-realm data temporarily.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+Sub-realm IDs (\( subRealmID \)) are unique, and all user IDs (\( userID \)) are valid.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getMembers(subRealmID):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}: Returns the list of \( userIDs \) that are members of the sub-realm identified by \( subRealmID \).
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+        \end{itemize}
+\end{itemize}
+
+\noindent addMember(subRealmID, userID):
+\begin{itemize}
+  \item \textbf{transition}:
+        If \( subRealmID \in subRealms \) and \( userID \notin subRealms[subRealmID].members \), add \( userID \) to the members of the sub-realm identified by \( subRealmID \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+          \item \( UserAlreadyInSubRealm \): If \( userID \) is already a member of the sub-realm.
+        \end{itemize}
+\end{itemize}
+
+\noindent removeMember(subRealmID, userID):
+\begin{itemize}
+  \item \textbf{transition}:
+        If \( subRealmID \in subRealms \) and \( userID \in subRealms[subRealmID].members \), remove \( userID \) from the members of the sub-realm identified by \( subRealmID \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+          \item \( MemberNotFound \): If \( userID \) is not a member of the sub-realm.
+        \end{itemize}
+\end{itemize}
+
+\noindent createNew(memberList):
+\begin{itemize}
+  \item \textbf{transition}:
+        A new sub-realm is created with a unique \( subRealmID \), and its \( members \) are initialized to \( memberList \).
+        The new sub-realm is stored in both the local and server databases.
+  \item \textbf{output}: Returns the unique \( subRealmID \) of the newly created sub-realm.
+  \item \textbf{exception}: None
+\end{itemize}
+
+\noindent deleteExisting(subRealmID):
+\begin{itemize}
+  \item \textbf{transition}:
+        If \( subRealmID \in subRealms \), remove the sub-realm from both the local and server databases.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{syncWithLocalDB()}: Synchronizes sub-realm data with the local database.
+  \item \texttt{syncWithServerDB()}: Synchronizes sub-realm data with the server database.
+\end{itemize}
+
+
+\newpage
+
+
+\section{MIS of Maps} \label{maps}
+
+\subsection{Module}
+
+Maps
+
+\subsection{Uses}
+
+\hyperref[local-dbm]{Local Database Manager}, Maps API (external)
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{3cm} p{3cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In}                     & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getMapData    & $\mathbb{N}$                    & MapData      & LocationNotFound    \\
+    addMarker     & $\mathbb{N}$, Location, Details & -            & -                   \\
+    removeMarker  & $\mathbb{N}$, Location          & -            & MarkerNotFound      \\
+    updateMarker  & $\mathbb{N}$, Location, Details & -            & MarkerNotFound      \\
+    displayMap    & $\mathbb{N}$                    & RenderedMap  & LocationNotFound    \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( markers \): A collection of markers, where each marker includes its \( Location \) and associated \( Details \).
+  \item \( mapViews \): A mapping from \( \mathbb{N} \) (view IDs) to rendered map states.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Access to the Google Maps API.
+  \item Access to the local database for location details.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+The Google Maps API and the local database are available and functioning properly.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getMapData(viewID):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}: Returns \( MapData \) for the \( viewID \), including all markers and details for the associated location.
+  \item \textbf{exception}: \( viewID \notin mapViews \)
+\end{itemize}
+
+\noindent addMarker(viewID, location, details):
+\begin{itemize}
+  \item \textbf{transition}:
+        If \( viewID \in mapViews \), adds a marker to the map at \( location \) with the given \( details \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: None
+\end{itemize}
+
+\noindent removeMarker(viewID, location):
+\begin{itemize}
+  \item \textbf{transition}:
+        If \( location \in markers[viewID] \), removes the marker at \( location \) from the map.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: \( location \notin markers[viewID] \)
+\end{itemize}
+
+\noindent updateMarker(viewID, location, details):
+\begin{itemize}
+  \item \textbf{transition}:
+        If \( location \in markers[viewID] \), updates the marker at \( location \) with new \( details \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: \( location \notin markers[viewID] \)
+\end{itemize}
+
+\noindent displayMap(viewID):
+\begin{itemize}
+  \item \textbf{transition}:
+        Renders the map for the \( viewID \), including all markers and relevant details.
+  \item \textbf{output}: Returns \( RenderedMap \), which is a visual representation of the map.
+  \item \textbf{exception}: \( viewID \notin mapViews \)
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{fetchLocationDetails(Location)}: Communicates with the local database to retrieve detailed information for a given location.
+  \item \texttt{renderMap(viewID)}: Generates a visual representation of the map for the given \( viewID \) using the Google Maps API.
+\end{itemize}
+
+\newpage
+
+\bibliographystyle {plainnat}
+\bibliography {../../../refs/References}
+
+\newpage
+
+\section{MIS of Object Interaction Module} \label{object-interaction}
+
+\subsection{Module}
+
+ObjectInteraction
+
+\subsection{Uses}
+
+\hyperref[local-dbm]{Local Database Manager}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{4cm} p{3cm} p{3cm}}
+    \hline
+    \textbf{Name}  & \textbf{In}                     & \textbf{Out}                         & \textbf{Exceptions} \\
+    \hline
+    reportObject   & $\mathbb{N}$, Reason, Details   & -                                    & ObjectNotFound      \\
+    reactToObject  & $\mathbb{N}$, Reaction          & -                                    & ObjectNotFound      \\
+    fetchReactions & $\mathbb{N}$                    & Array\textlangle Reaction\textrangle & ObjectNotFound      \\
+    fetchReports   & $\mathbb{N}$                    & Array\textlangle Report\textrangle   & ObjectNotFound      \\
+    resolveReport  & $\mathbb{N}$, ResolutionDetails & -                                    & ReportNotFound      \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( objects \): A collection of AR objects, each identified by a unique \( \mathbb{N} \).
+  \item \( reports \): A collection of reports associated with AR objects, including \( Reason \) and \( Details \).
+  \item \( reactions \): A collection of user reactions, associated with specific AR objects.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item AR objects are rendered and interactable in the environment.
+  \item The system must have a connection to the local database for storing reports and reactions.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+All AR objects are assigned unique identifiers and are interactable within the system. Users have access to a predefined set of reaction types (e.g., Like, Dislike).
+
+\subsubsection{Access Routine Semantics}
+
+\noindent reportObject(objectID, reason, details):
+\begin{itemize}
+  \item \textbf{transition}:
+        Adds a new report to \( reports \) for the object identified by \( objectID \), with the specified \( reason \) and \( details \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: \( objectID \notin objects \)
+\end{itemize}
+
+\noindent reactToObject(objectID, reaction):
+\begin{itemize}
+  \item \textbf{transition}:
+        Adds a \( reaction \) (e.g., Like, Dislike) to \( reactions \) for the object identified by \( objectID \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: \( objectID \notin objects \)
+\end{itemize}
+
+\noindent fetchReactions(objectID):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}: Returns all \( reactions \) associated with \( objectID \).
+  \item \textbf{exception}: \( objectID \notin objects \)
+\end{itemize}
+
+\noindent fetchReports(objectID):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}: Returns all \( reports \) associated with \( objectID \).
+  \item \textbf{exception}: \( objectID \notin objects \)
+\end{itemize}
+
+\noindent resolveReport(reportID, resolutionDetails):
+\begin{itemize}
+  \item \textbf{transition}:
+        Marks the \( report \) identified by \( reportID \) as resolved and stores the \( resolutionDetails \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: \( reportID \notin reports \)
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{validateObject(objectID)}: Ensures \( objectID \) corresponds to a valid AR object in the system.
+  \item \texttt{notifyUser(reportID)}: Sends a notification to the user who submitted the report, indicating its resolution status.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Local Database Manager} \label{local-dbm}
+
+\subsection{Module}
+
+LocalDBM
+
+\subsection{Uses}
+
+\hyperref[server-dbm]{Server Database Manager}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{4cm} p{3cm} p{3cm}}
+    \hline
+    \textbf{Name}  & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    fetchData      & Query       & Data         & DataNotFound        \\
+    saveData       & Key, Data   & -            & -                   \\
+    updateData     & Key, Data   & -            & DataNotFound        \\
+    deleteData     & Key         & -            & DataNotFound        \\
+    syncWithServer & -           & -            & ServerError         \\
+    getCachedData  & Key         & Data         & DataNotCached       \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( localCache \): A local in-memory or on-disk cache, keyed by unique \( Key \), storing frequently accessed data.
+  \item \( lastSyncTime \): A timestamp of the last successful synchronization with the server database.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Access to the server database for retrieving and storing persistent data.
+  \item A local caching mechanism (e.g., in-memory cache or local storage).
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+The server database is available and operational for syncing, and the local caching system has sufficient storage capacity.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent fetchData(query):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}: Executes \( query \) on the local cache or the server database if the data is not cached, and returns the \( Data \).
+  \item \textbf{exception}: Returns \( DataNotFound \) if the query does not match any records.
+\end{itemize}
+
+\noindent saveData(key, data):
+\begin{itemize}
+  \item \textbf{transition}:
+        Stores \( data \) in the \( localCache \) with the associated \( key \). Also updates the server database asynchronously.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: None
+\end{itemize}
+
+\noindent updateData(key, data):
+\begin{itemize}
+  \item \textbf{transition}:
+        Updates \( data \) in \( localCache \) and synchronizes the change to the server database.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: \( key \notin localCache \)
+\end{itemize}
+
+\noindent deleteData(key):
+\begin{itemize}
+  \item \textbf{transition}:
+        Removes \( data \) identified by \( key \) from \( localCache \) and the server database.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: \( key \notin localCache \)
+\end{itemize}
+
+\noindent syncWithServer():
+\begin{itemize}
+  \item \textbf{transition}:
+        Synchronizes the \( localCache \) with the server database, updating any stale or missing records.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: \( ServerError \) if the server database is unavailable or the synchronization fails.
+\end{itemize}
+
+\noindent getCachedData(key):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}: Returns \( data \) from \( localCache \) associated with \( key \).
+  \item \textbf{exception}: \( key \notin localCache \)
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{isCacheStale(key)}: Determines whether the cached data for \( key \) is outdated compared to the server database.
+  \item \texttt{resolveConflict(localData, serverData)}: Resolves discrepancies between \( localCache \) and server database data.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Server Database Manager} \label{server-dbm}
+
+\subsection{Module}
+
+ServerDBM
+
+\subsection{Uses}
+
+\hyperref[local-dbm]{Local Database Manager}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{4cm} p{3cm} p{3cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}        \\
+    \hline
+    fetchData     & Query       & Data         & DataNotFound, NetworkError \\
+    saveData      & Key, Data   & -            & NetworkError               \\
+    updateData    & Key, Data   & -            & DataNotFound, NetworkError \\
+    deleteData    & Key         & -            & DataNotFound, NetworkError \\
+    syncWithLocal & DataDiff    & -            & NetworkError               \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( database \): The server database that stores all permanent data associated with the app.
+  \item \( lastSyncTime \): A timestamp indicating the last synchronization with the local database.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Network connectivity must be available for communication between the server database and local database manager.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+The server database is accessible, operational, and synchronized with the local database manager periodically.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent fetchData(query):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}: Executes \( query \) on the server database and returns the corresponding \( Data \).
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( DataNotFound \): If \( query \) does not match any records in the database.
+          \item \( NetworkError \): If the network connection fails.
+        \end{itemize}
+\end{itemize}
+
+\noindent saveData(key, data):
+\begin{itemize}
+  \item \textbf{transition}:
+        Adds \( data \) to the server database with the associated \( key \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( NetworkError \): If the network connection fails.
+        \end{itemize}
+\end{itemize}
+
+\noindent updateData(key, data):
+\begin{itemize}
+  \item \textbf{transition}:
+        Updates \( data \) in the server database associated with \( key \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( DataNotFound \): If \( key \) does not exist in the database.
+          \item \( NetworkError \): If the network connection fails.
+        \end{itemize}
+\end{itemize}
+
+\noindent deleteData(key):
+\begin{itemize}
+  \item \textbf{transition}:
+        Removes the record associated with \( key \) from the server database.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( DataNotFound \): If \( key \) does not exist in the database.
+          \item \( NetworkError \): If the network connection fails.
+        \end{itemize}
+\end{itemize}
+
+\noindent syncWithLocal(dataDiff):
+\begin{itemize}
+  \item \textbf{transition}:
+        Synchronizes the \( database \) with changes provided in \( dataDiff \) from the local database manager.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( NetworkError \): If the network connection fails during synchronization.
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{applyDataDiff(dataDiff)}: Applies the changes from \( dataDiff \) to the server database during synchronization.
+  \item \texttt{logSyncOperation(status)}: Logs the success or failure of the synchronization operation.
+\end{itemize}
+
+\newpage
+
+\section{MIS of REST API Communication Module} \label{rest-api}
+
+\subsection{Module}
+
+RESTAPICommunication
+
+\subsection{Uses}
+
+\hyperref[server-dbm]{Server Database Manager}, HTTP Client Library (external)
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{4cm} p{3cm} p{3cm}}
+    \hline
+    \textbf{Name}        & \textbf{In}              & \textbf{Out}   & \textbf{Exceptions}    \\
+    \hline
+    sendRequest          & Endpoint, Method, Params & Response       & APIError, NetworkError \\
+    parseResponse        & RawResponse              & ParsedResponse & ResponseParsingError   \\
+    setHeaders           & Headers                  & -              & -                      \\
+    handleAuthentication & AuthToken                & -              & AuthError              \\
+    checkServerStatus    & -                        & ServerStatus   & APIError, NetworkError \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( baseURL \): The base URL for the REST API server.
+  \item \( headers \): Key-value pairs for HTTP headers, including authentication tokens and content type.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item Network connectivity for sending HTTP requests to the REST API server.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+The REST API server follows standard HTTP and REST conventions, and the API endpoints are well-documented and accessible.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent sendRequest(endpoint, method, params):
+\begin{itemize}
+  \item \textbf{transition}:
+        Sends an HTTP request to the API server at \( baseURL + endpoint \) using the specified HTTP \( method \) (e.g., GET, POST, PUT, DELETE) and \( params \) as query parameters or request body.
+  \item \textbf{output}:
+        Returns the \( Response \) received from the API server.
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( APIError \): If the server responds with an error status code (e.g., 4xx or 5xx).
+          \item \( NetworkError \): If the request fails due to network issues.
+        \end{itemize}
+\end{itemize}
+
+\noindent parseResponse(rawResponse):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}:
+        Converts \( rawResponse \) (raw HTTP response) into a structured \( ParsedResponse \) (e.g., JSON or XML object).
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( ResponseParsingError \): If the \( rawResponse \) cannot be parsed due to invalid format.
+        \end{itemize}
+\end{itemize}
+
+\noindent setHeaders(headers):
+\begin{itemize}
+  \item \textbf{transition}:
+        Updates the \( headers \) used for subsequent HTTP requests.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: None
+\end{itemize}
+
+\noindent handleAuthentication(authToken):
+\begin{itemize}
+  \item \textbf{transition}:
+        Sets the authentication token in the \( headers \) for authorized requests.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( AuthError \): If the \( authToken \) is invalid or rejected by the server.
+        \end{itemize}
+\end{itemize}
+
+\noindent checkServerStatus():
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}:
+        Returns the \( ServerStatus \) indicating whether the API server is reachable and operational.
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( APIError \): If the server responds with an error status code.
+          \item \( NetworkError \): If the request fails due to network issues.
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{buildURL(endpoint, params)}: Constructs the complete URL for the API request by appending \( endpoint \) to \( baseURL \) and encoding \( params \) as query parameters.
+  \item \texttt{logRequest(requestDetails)}: Logs details of the outgoing API request for debugging purposes.
+  \item \texttt{retryRequest(requestDetails)}: Attempts to resend a failed request based on the retry policy.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Object Importer Module} \label{object-importer}
+
+\subsection{Module}
+
+ObjectImporter
+
+\subsection{Uses}
+
+\hyperref[local-dbm]{Local Database Manager}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{5cm} p{3cm} p{3cm}}
+    \hline
+    \textbf{Name}        & \textbf{In} & \textbf{Out}                       & \textbf{Exceptions}            \\
+    \hline
+    importObject         & FilePath    & ObjectID                           & InvalidFileFormat, ImportError \\
+    validateObject       & FilePath    & Boolean                            & InvalidFileFormat              \\
+    addObjectToInventory & ObjectID    & -                                  & ObjectAlreadyExists            \\
+    listSupportedFormats & -           & Array\textlangle String\textrangle & -                              \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( supportedFormats \): A list of file formats (e.g., OBJ, FBX, GLTF) that the module can process.
+  \item \( importedObjects \): A mapping of \( ObjectID \to ObjectMetadata \), representing all objects imported by the user.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item File system access for reading 3D model files.
+  \item Network connectivity for syncing imported objects with the server database.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+The file paths provided are accessible, and the objects being imported are in formats supported by the module.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent importObject(filePath):
+\begin{itemize}
+  \item \textbf{transition}:
+        Reads the 3D model file from \( filePath \), parses it using the 3D Model Parser Library, and generates an \( ObjectID \). The object is then stored locally and synced with the server database.
+  \item \textbf{output}:
+        Returns the \( ObjectID \) of the successfully imported object.
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( InvalidFileFormat \): If the file format is not supported.
+          \item \( ImportError \): If the file cannot be read or parsed due to corruption or other issues.
+        \end{itemize}
+\end{itemize}
+
+\noindent validateObject(filePath):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}:
+        Returns \( true \) if the file at \( filePath \) is in a supported format and passes initial validation, \( false \) otherwise.
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( InvalidFileFormat \): If the file format is not supported.
+        \end{itemize}
+\end{itemize}
+
+\noindent addObjectToInventory(objectID):
+\begin{itemize}
+  \item \textbf{transition}:
+        Adds the object identified by \( objectID \) to the user's inventory and marks it as available for use within the app.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( ObjectAlreadyExists \): If the object is already present in the user's inventory.
+        \end{itemize}
+\end{itemize}
+
+\noindent listSupportedFormats():
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}:
+        Returns the list of \( supportedFormats \), indicating which file types can be imported.
+  \item \textbf{exception}: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{parseFile(filePath)}: Reads and parses the 3D model file to extract metadata and geometry.
+  \item \texttt{generateObjectID(metadata)}: Generates a unique identifier for the imported object based on its metadata.
+  \item \texttt{syncObjectWithServer(objectID)}: Uploads the imported object’s metadata to the server database.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Realm Interface Module} \label{realm-interface}
+
+\subsection{Module}
+
+RealmInterface
+
+\subsection{Uses}
+
+\ref{sub-realms}, \ref{maps}, 3D Renderer, AR Framework
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{5cm} p{3cm} p{3cm}}
+    \hline
+    \textbf{Name}          & \textbf{In}                                           & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    displayObjectsInRealm  & $\mathbb{N}$                                          & -            & SubRealmNotFound    \\
+    navigateToMap          & -                                                     & -            & -                   \\
+    updateDisplayedObjects & $\mathbb{N}$, Array\textlangle$\mathbb{N}$\textrangle & -            & SubRealmNotFound    \\
+    getActiveSubRealm      & -                                                     & $\mathbb{N}$ & NoActiveSubRealm    \\
+    setActiveSubRealm      & $\mathbb{N}$                                          & -            & SubRealmNotFound    \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( activeSubRealm \): The \( subRealmID \) of the currently selected sub-realm.
+  \item \( displayedObjects \): A list of 3D objects being rendered in the current view.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item 3D rendering engine for displaying AR objects.
+  \item Maps module interface for quick navigation.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+A valid \( subRealmID \) corresponds to an existing sub-realm, and all objects in the realm are properly loaded.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent displayObjectsInRealm(subRealmID):
+\begin{itemize}
+  \item \textbf{transition}:
+        Retrieves the 3D objects associated with \( subRealmID \) and displays them in the AR view.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+        \end{itemize}
+\end{itemize}
+
+\noindent navigateToMap():
+\begin{itemize}
+  \item \textbf{transition}:
+        Opens the Maps interface to display the map view.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: None
+\end{itemize}
+
+\noindent updateDisplayedObjects(subRealmID, objectIDs):
+\begin{itemize}
+  \item \textbf{transition}:
+        Updates the list of objects displayed in the AR view for the specified \( subRealmID \). Removes any previously displayed objects not in \( objectIDs \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+        \end{itemize}
+\end{itemize}
+
+\noindent getActiveSubRealm():
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}:
+        Returns the \( subRealmID \) of the currently active sub-realm.
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( NoActiveSubRealm \): If no sub-realm is currently active.
+        \end{itemize}
+\end{itemize}
+
+\noindent setActiveSubRealm(subRealmID):
+\begin{itemize}
+  \item \textbf{transition}:
+        Sets the \( subRealmID \) as the \( activeSubRealm \) and updates the displayed objects accordingly.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{loadObjects(subRealmID)}: Loads 3D object data for the given \( subRealmID \) from the local or server database.
+  \item \texttt{renderObjects(objectList)}: Renders the provided list of 3D objects in the AR view.
+  \item \texttt{clearDisplay()}: Removes all objects currently displayed in the AR view.
+\end{itemize}
 
 \newpage
 
@@ -250,20 +2153,37 @@ graduate attribute of Problem Analysis and Design.
 \input{../../Reflection.tex}
 
 \begin{enumerate}
-  \item What went well while writing this deliverable? 
+  \item What went well while writing this deliverable? \\ \\
+        The modules were distributed relatively well according to what each group member seems most comfortable and experienced with.
   \item What pain points did you experience during this deliverable, and how
-    did you resolve them?
+        did you resolve them?\\ \\
+        Deciding the modules initially was a bit of a challenge, but after speaking with our TA, it helped us decide which modules to split and which ones to combine.
   \item Which of your design decisions stemmed from speaking to your client(s)
-  or a proxy (e.g. your peers, stakeholders, potential users)? For those that
-  were not, why, and where did they come from?
+        or a proxy (e.g. your peers, stakeholders, potential users)? For those that
+        were not, why, and where did they come from?\\ \\
+        Our design decisions came as a natural consequence of our requirements, many of which did stem from speaking to clients.
+        So while indirectly influenced, our design decisions were mostly made to be the easiest way to
+        meet the requirements we set out
   \item While creating the design doc, what parts of your other documents (e.g.
-  requirements, hazard analysis, etc), it any, needed to be changed, and why?
+        requirements, hazard analysis, etc), it any, needed to be changed, and why?\\ \\
+        We did not need to change any parts of other documents.
+
   \item What are the limitations of your solution?  Put another way, given
-  unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)
+        unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)\\ \\
+        One of the key components of our design is the client server system for storing user data.
+        If we had infinite resources, it would be beneficial to move more logic to the server to relieve the client from certain expensive computations.
+        The reason our current design has them on the client side is to reduce the complexity of client server communication to simplify the implementation.
+
   \item Give a brief overview of other design solutions you considered.  What
-  are the benefits and tradeoffs of those other designs compared with the chosen
-  design?  From all the potential options, why did you select the documented design?
-  (LO\_Explores)
+        are the benefits and tradeoffs of those other designs compared with the chosen
+        design?  From all the potential options, why did you select the documented design?
+        (LO\_Explores)\\ \\
+        In our initial solution, user content generation was meant to be internal,
+        and more components were designed to be on the server. This design would have been ideal for users, and more maintainable in the long run,
+        but came at an exorbiant cost for compute for object generation,
+        and a complex design that would be infeasible to build in the alloted time.
+        The driving force behind our changes since then were to make our app easier to implement,
+        and less expensive to run.
 \end{enumerate}
 
 

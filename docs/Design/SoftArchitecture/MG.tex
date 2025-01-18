@@ -294,11 +294,16 @@ to be implemented.
 \subsection{Hardware Hiding Modules (\mref{mHardware})}
 
 \begin{description}
-\item[Secrets:]The data structure and algorithm used to implement the virtual
-  hardware.
-\item[Services:]Serves as a virtual hardware used by the rest of the
-  system. This module provides the interface between the hardware and the
-  software. So, the system can use it to display outputs or to accept inputs.
+\item[Secrets:] The data structure and algorithm used to implement the virtual hardware.
+\item[Services:] Serves as a virtual hardware used by the rest of the system. This module provides the interface between the hardware and the software, allowing the system to display outputs or accept inputs.
+\item[Implemented By:] OS
+\end{description}
+
+\subsubsection{Device Input/Output Module}
+
+\begin{description}
+\item[Secrets:] How data is collected from and sent to device sensors like the camera, GPS, or microphone.
+\item[Services:] Provides a standard interface for capturing sensor input (e.g., photos, location data) and delivering it to the higher-level system modules.
 \item[Implemented By:] OS
 \end{description}
 
@@ -797,10 +802,43 @@ The following are images of various major interfaces:
 N/A
 
 \section{Timeline}
+Below is a schedule for our implementation and work distribution of the modules.
 
-\wss{Schedule of tasks and who is responsible}
-
-\wss{You can point to GitHub if this information is included there}
+\begin{table}[H]
+\begin{tabular}{lll}
+\hline
+\multicolumn{1}{|l|}{\textbf{Due Date}}                & \multicolumn{1}{l|}{\textbf{Work to be Completed}}            & \multicolumn{1}{l|}{\textbf{Assigned Member}} \\ \hline
+\multicolumn{1}{|l|}{\multirow{3}{*}{Jan 15 - Jan 20}} & \multicolumn{1}{l|}{Hardware Module}                          & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tutorial Module}                          & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Inventory Module}                         & \multicolumn{1}{l|}{Avanish}                  \\ \hline
+\multicolumn{1}{|l|}{\multirow{4}{*}{Jan 20 - Jan 25}} & \multicolumn{1}{l|}{Sub-Realm Module}                         & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Touring Module}                           & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tour List Module}                         & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tour Management Module}                   & \multicolumn{1}{l|}{Russell}                  \\ \hline
+\multicolumn{1}{|l|}{\multirow{4}{*}{Jan 25 - Feb 1}}  & \multicolumn{1}{l|}{Settings Module}                          & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Help Module}                              & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Friends Module}                           & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Maps Module}                              & \multicolumn{1}{l|}{Abdul}                    \\ \hline
+\multicolumn{1}{|l|}{\multirow{5}{*}{Jan 30 - Feb 5}}  & \multicolumn{1}{l|}{Realm Interface Module}                   & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Importer Module}                   & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Placement Module}                  & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Interaction Module}                & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Render Module}                     & \multicolumn{1}{l|}{Abdul}                    \\ \hline
+\multicolumn{1}{|l|}{\multirow{4}{*}{Feb 5 - Feb 10}}  & \multicolumn{1}{l|}{Collision Hazard Detection Module}         & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Restricted Area Detection Module}          & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Weather Hazard Detection Module}           & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tour Proximity Detection Module}           & \multicolumn{1}{l|}{Rafey}                    \\ \hline
+\multicolumn{1}{|l|}{\multirow{4}{*}{Feb 6 - Feb 10}}  & \multicolumn{1}{l|}{Notifications Module}                     & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{REST API Module}                          & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Local Database Manager Module}             & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Data Sync Module}                         & \multicolumn{1}{l|}{Russell}                  \\ \hline
+\multicolumn{1}{|l|}{\multirow{2}{*}{Feb 8 - Feb 10}}  & \multicolumn{1}{l|}{Server Database Manager Module}            & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Authentication Module}                    & \multicolumn{1}{l|}{Rafey}                    \\ \hline
+                                                       &                                                                &                                              
+\end{tabular}
+\caption{Module Development Schedule}
+\label{tab:module_schedule}
+\end{table}
 
 \bibliographystyle {plainnat}
 \bibliography{../../../refs/References}
