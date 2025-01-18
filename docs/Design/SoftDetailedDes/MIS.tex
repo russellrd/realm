@@ -124,6 +124,7 @@ described by giving their type signature followed by their specification.
 
 The following table is taken directly from the Module Guide document for this project.
 
+
 \begin{table}[h!]
 \centering
 \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
@@ -131,21 +132,36 @@ The following table is taken directly from the Module Guide document for this pr
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding} & ~ \\
+{Hardware-Hiding Module} & Hardware Module\\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & Tutorial Module\\
+& Inventory Module\\
+& Sub-Realm Module\\
+& Touring Module\\
+& Tour List Module\\
+& Tour Management Module\\
+& Settings Module\\
+& Help Module\\
+& Friends Module\\ 
+& Maps Module\\
+& Realm Interface Module\\
+& Object Importer Module\\
+& Object Placement Module\\
+& Object Interaction Module\\
+& Object Render Module\\
+& Collision Detection Module\\
+& Restricted Area Detection Module\\
+& Weather Detection Module\\
+& Tour Proximity Detection Module\\
+& Notifications Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & REST API Connection Module\\
+& Local Database Manager Module\\
+& Data Sync Module\\
+& Server Database Manager Module\\
+& Authentication Module\\
 \bottomrule
 
 \end{tabular}
@@ -156,19 +172,22 @@ The following table is taken directly from the Module Guide document for this pr
 \newpage
 ~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
+\section{MIS of Tutorial} \label{Tutorial}
 
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+The Tutorial module contains the methods needed to produce an interactive tutorial. Once a feature has been demonstrated, a user can choose to move on to the next feature. Once all the features have been shown, the user can quit the tutorial immediately or stay in the sandbox.
 
 \subsection{Module}
 
-\wss{Short name for the module}
+TutorialModule
 
 \subsection{Uses}
 
+Realm Interface Module\\
+Maps Module\\
+Object Importer Module\\
+Object Placement Module\\
+Object Interaction Module\\
+REST API Connection Module
 
 \subsection{Syntax}
 
@@ -181,7 +200,10 @@ The following table is taken directly from the Module Guide document for this pr
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+Full & - & - & - \\
+One & $\mathbb{Z}, string$ & - & - \\
+Close & $string$ & - & - \\
+Reset & - & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -190,42 +212,111 @@ The following table is taken directly from the Module Guide document for this pr
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+page: $\mathbb{Z}$\\
+isLoaded: $\mathbb{B}$\\
+isNextAvailable: $\mathbb{B}$\\
+isLast: $\mathbb{B}$
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+N/A
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent Full():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item transition: (isNextAvailable == True $\wedge$ button.pressed == True $\wedge$ isLast == True) $\Rightarrow$ Close("Realm Interface")
+\item output: N/A
+\item exception: N/A
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\noindent One(page, prev):
+\begin{itemize}
+\item transition: (isNextAvailable == True $\wedge$ button.pressed == True) $\Rightarrow$ Close(prev)
+\item output: N/A
+\item exception: N/A
+\end{itemize}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent Close(nav\_screen):
+\begin{itemize}
+\item transition: button.pressed == True $\Rightarrow$ (Reset(), screen == nav\_screen)
+\item output: N/A
+\item exception: N/A
+\end{itemize}
+
+\noindent Reset():
+\begin{itemize}
+\item transition: page = 0 
+\item output: N/A
+\item exception: N/A
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+N/A
+
+\newpage
+
+\section{MIS of Data Sync Module} \label{DataSync} 
+
+The Data Sync Module updates the common data on both the local and server databases based on whichever has the most up-to-date information. This will mostly just apply to locally stored AR Objects.
+
+\subsection{Module}
+
+DataSyncModule
+
+\subsection{Uses}
+
+Server Database Manager Module\\
+Local Database Manager Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+Sync & - & - & SyncFailureException \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+syncInProgress: $\mathbb{B}$
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent Sync():
+\begin{itemize}
+\item transition: local\_obj.lastModified $<$ server\_obj.lastModified == True $\Rightarrow$ LocalDatabaseManager.update(local\_obj, server\_obj)
+\item exception: (LocalDatabaseManager == null $\vee$ ServerDatabaseManager == null) $\Rightarrow$ SyncFailureException
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
 
 \newpage
 
