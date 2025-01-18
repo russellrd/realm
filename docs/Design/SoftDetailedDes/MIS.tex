@@ -163,7 +163,7 @@ SubRealms
 
 \subsection{Uses}
 
-\ref{local-dbm}
+\hyperref[local-dbm]{Local Database Manager}
 
 \subsection{Syntax}
 
@@ -280,7 +280,7 @@ Maps
 
 \subsection{Uses}
 
-\ref{local-dbm}, Google Maps API
+\hyperref[local-dbm]{Local Database Manager}, Maps API (external)
 
 \subsection{Syntax}
 
@@ -387,7 +387,7 @@ ObjectInteraction
 
 \subsection{Uses}
 
-\ref{local-dbm}, AR Object Renderer, Notification System
+\hyperref[local-dbm]{Local Database Manager}
 
 \subsection{Syntax}
 
@@ -489,7 +489,7 @@ LocalDBM
 
 \subsection{Uses}
 
-\ref{server-dbm}
+\hyperref[server-dbm]{Server Database Manager}
 
 \subsection{Syntax}
 
@@ -599,7 +599,7 @@ ServerDBM
 
 \subsection{Uses}
 
-\ref{local-dbm}
+\hyperref[local-dbm]{Local Database Manager}
 
 \subsection{Syntax}
 
@@ -718,7 +718,7 @@ RESTAPICommunication
 
 \subsection{Uses}
 
-\ref{server-dbm}, HTTP Client Library (external)
+\hyperref[server-dbm]{Server Database Manager}, HTTP Client Library (external)
 
 \subsection{Syntax}
 
@@ -828,7 +828,227 @@ The REST API server follows standard HTTP and REST conventions, and the API endp
 
 \newpage
 
+\section{MIS of Object Importer Module} \label{object-importer}
 
+\subsection{Module}
+
+ObjectImporter
+
+\subsection{Uses}
+
+\hyperref[local-dbm]{Local Database Manager}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{5cm} p{3cm} p{3cm}}
+    \hline
+    \textbf{Name}        & \textbf{In} & \textbf{Out}                       & \textbf{Exceptions}            \\
+    \hline
+    importObject         & FilePath    & ObjectID                           & InvalidFileFormat, ImportError \\
+    validateObject       & FilePath    & Boolean                            & InvalidFileFormat              \\
+    addObjectToInventory & ObjectID    & -                                  & ObjectAlreadyExists            \\
+    listSupportedFormats & -           & Array\textlangle String\textrangle & -                              \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( supportedFormats \): A list of file formats (e.g., OBJ, FBX, GLTF) that the module can process.
+  \item \( importedObjects \): A mapping of \( ObjectID \to ObjectMetadata \), representing all objects imported by the user.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item File system access for reading 3D model files.
+  \item Network connectivity for syncing imported objects with the server database.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+The file paths provided are accessible, and the objects being imported are in formats supported by the module.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent importObject(filePath):
+\begin{itemize}
+  \item \textbf{transition}:
+        Reads the 3D model file from \( filePath \), parses it using the 3D Model Parser Library, and generates an \( ObjectID \). The object is then stored locally and synced with the server database.
+  \item \textbf{output}:
+        Returns the \( ObjectID \) of the successfully imported object.
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( InvalidFileFormat \): If the file format is not supported.
+          \item \( ImportError \): If the file cannot be read or parsed due to corruption or other issues.
+        \end{itemize}
+\end{itemize}
+
+\noindent validateObject(filePath):
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}:
+        Returns \( true \) if the file at \( filePath \) is in a supported format and passes initial validation, \( false \) otherwise.
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( InvalidFileFormat \): If the file format is not supported.
+        \end{itemize}
+\end{itemize}
+
+\noindent addObjectToInventory(objectID):
+\begin{itemize}
+  \item \textbf{transition}:
+        Adds the object identified by \( objectID \) to the user's inventory and marks it as available for use within the app.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( ObjectAlreadyExists \): If the object is already present in the user's inventory.
+        \end{itemize}
+\end{itemize}
+
+\noindent listSupportedFormats():
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}:
+        Returns the list of \( supportedFormats \), indicating which file types can be imported.
+  \item \textbf{exception}: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{parseFile(filePath)}: Reads and parses the 3D model file to extract metadata and geometry.
+  \item \texttt{generateObjectID(metadata)}: Generates a unique identifier for the imported object based on its metadata.
+  \item \texttt{syncObjectWithServer(objectID)}: Uploads the imported object’s metadata to the server database.
+\end{itemize}
+
+\newpage
+
+\section{MIS of Realm Interface Module} \label{realm-interface}
+
+\subsection{Module}
+
+RealmInterface
+
+\subsection{Uses}
+
+\ref{sub-realms}, \ref{maps}, 3D Renderer, AR Framework
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{5cm} p{3cm} p{3cm}}
+    \hline
+    \textbf{Name}          & \textbf{In}                                           & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    displayObjectsInRealm  & $\mathbb{N}$                                          & -            & SubRealmNotFound    \\
+    navigateToMap          & -                                                     & -            & -                   \\
+    updateDisplayedObjects & $\mathbb{N}$, Array\textlangle$\mathbb{N}$\textrangle & -            & SubRealmNotFound    \\
+    getActiveSubRealm      & -                                                     & $\mathbb{N}$ & NoActiveSubRealm    \\
+    setActiveSubRealm      & $\mathbb{N}$                                          & -            & SubRealmNotFound    \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{itemize}
+  \item \( activeSubRealm \): The \( subRealmID \) of the currently selected sub-realm.
+  \item \( displayedObjects \): A list of 3D objects being rendered in the current view.
+\end{itemize}
+
+\subsubsection{Environment Variables}
+
+\begin{itemize}
+  \item 3D rendering engine for displaying AR objects.
+  \item Maps module interface for quick navigation.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+A valid \( subRealmID \) corresponds to an existing sub-realm, and all objects in the realm are properly loaded.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent displayObjectsInRealm(subRealmID):
+\begin{itemize}
+  \item \textbf{transition}:
+        Retrieves the 3D objects associated with \( subRealmID \) and displays them in the AR view.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+        \end{itemize}
+\end{itemize}
+
+\noindent navigateToMap():
+\begin{itemize}
+  \item \textbf{transition}:
+        Opens the Maps interface to display the map view.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}: None
+\end{itemize}
+
+\noindent updateDisplayedObjects(subRealmID, objectIDs):
+\begin{itemize}
+  \item \textbf{transition}:
+        Updates the list of objects displayed in the AR view for the specified \( subRealmID \). Removes any previously displayed objects not in \( objectIDs \).
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+        \end{itemize}
+\end{itemize}
+
+\noindent getActiveSubRealm():
+\begin{itemize}
+  \item \textbf{transition}: N/A
+  \item \textbf{output}:
+        Returns the \( subRealmID \) of the currently active sub-realm.
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( NoActiveSubRealm \): If no sub-realm is currently active.
+        \end{itemize}
+\end{itemize}
+
+\noindent setActiveSubRealm(subRealmID):
+\begin{itemize}
+  \item \textbf{transition}:
+        Sets the \( subRealmID \) as the \( activeSubRealm \) and updates the displayed objects accordingly.
+  \item \textbf{output}: N/A
+  \item \textbf{exception}:
+        \begin{itemize}
+          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{itemize}
+  \item \texttt{loadObjects(subRealmID)}: Loads 3D object data for the given \( subRealmID \) from the local or server database.
+  \item \texttt{renderObjects(objectList)}: Renders the provided list of 3D objects in the AR view.
+  \item \texttt{clearDisplay()}: Removes all objects currently displayed in the AR view.
+\end{itemize}
+
+\newpage
 
 
 
