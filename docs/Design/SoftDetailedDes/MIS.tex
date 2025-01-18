@@ -53,8 +53,7 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
   \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
   \midrule
-  Date 1              & 1.0           & Notes       \\
-  Date 2              & 1.1           & Notes       \\
+  2025-01-18              & 1.0           & Initial Version       \\
   \bottomrule
 \end{tabularx}
 
@@ -124,36 +123,142 @@ described by giving their type signature followed by their specification.
 
 The following table is taken directly from the Module Guide document for this project.
 
+
 \begin{table}[h!]
-  \centering
-  \begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
-    \toprule
-    \textbf{Level 1}                               & \textbf{Level 2}                \\
-    \midrule
+\centering
+\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
+\toprule
+\textbf{Level 1} & \textbf{Level 2}\\
+\midrule
 
-    {Hardware-Hiding}                              & ~                               \\
-    \midrule
+{Hardware-Hiding Module} & Hardware Module\\
+\midrule
 
-    \multirow{7}{0.3\textwidth}{Behaviour-Hiding}  & Input Parameters                \\
-                                                   & Output Format                   \\
-                                                   & Output Verification             \\
-                                                   & Temperature ODEs                \\
-                                                   & Energy Equations                \\
-                                                   & Control Module                  \\
-                                                   & Specification Parameters Module \\
-    \midrule
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & Tutorial Module\\
+& Inventory Module\\
+& Sub-Realm Module\\
+& Touring Module\\
+& Tour List Module\\
+& Tour Management Module\\
+& Settings Module\\
+& Help Module\\
+& Friends Module\\ 
+& Maps Module\\
+& Realm Interface Module\\
+& Object Importer Module\\
+& Object Placement Module\\
+& Object Interaction Module\\
+& Object Render Module\\
+& Collision Detection Module\\
+& Restricted Area Detection Module\\
+& Weather Detection Module\\
+& Tour Proximity Detection Module\\
+& Notifications Module\\
+\midrule
 
-    \multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}       \\
-                                                   & ODE Solver                      \\
-                                                   & Plotting                        \\
-    \bottomrule
-  \end{tabular}
-  \caption{Module Hierarchy}
-  \label{TblMH}
+\multirow{3}{0.3\textwidth}{Software Decision Module} & REST API Connection Module\\
+& Local Database Manager Module\\
+& Data Sync Module\\
+& Server Database Manager Module\\
+& Authentication Module\\
+\bottomrule
+
+\end{tabular}
+\caption{Module Hierarchy}
+\label{TblMH}
 \end{table}
 
 \newpage
 ~\newpage
+
+\section{MIS of Tutorial} \label{Tutorial}
+
+The Tutorial module contains the methods needed to produce an interactive tutorial. Once a feature has been demonstrated, a user can choose to move on to the next feature. Once all the features have been shown, the user can quit the tutorial immediately or stay in the sandbox.
+
+\subsection{Module}
+
+TutorialModule
+
+\subsection{Uses}
+
+Realm Interface Module\\
+Maps Module\\
+Object Importer Module\\
+Object Placement Module\\
+Object Interaction Module\\
+REST API Connection Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+Full & - & - & - \\
+One & $\mathbb{Z}, string$ & - & - \\
+Close & $string$ & - & - \\
+Reset & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+page: $\mathbb{Z}$\\
+isLoaded: $\mathbb{B}$\\
+isNextAvailable: $\mathbb{B}$\\
+isLast: $\mathbb{B}$
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent Full():
+\begin{itemize}
+\item transition: (isNextAvailable == True $\wedge$ button.pressed == True $\wedge$ isLast == True) $\Rightarrow$ Close("Realm Interface")
+\item output: N/A
+\item exception: N/A
+\end{itemize}
+
+\noindent One(page, prev):
+\begin{itemize}
+\item transition: (isNextAvailable == True $\wedge$ button.pressed == True) $\Rightarrow$ Close(prev)
+\item output: N/A
+\item exception: N/A
+\end{itemize}
+
+\noindent Close(nav\_screen):
+\begin{itemize}
+\item transition: button.pressed == True $\Rightarrow$ (Reset(), screen == nav\_screen)
+\item output: N/A
+\item exception: N/A
+\end{itemize}
+
+\noindent Reset():
+\begin{itemize}
+\item transition: page = 0 
+\item output: N/A
+\item exception: N/A
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
+
+\newpage
 
 \section{MIS of Settings Module} \label{Module_Settings}
 
@@ -1670,6 +1775,65 @@ The server database is available and operational for syncing, and the local cach
   \item \texttt{isCacheStale(key)}: Determines whether the cached data for \( key \) is outdated compared to the server database.
   \item \texttt{resolveConflict(localData, serverData)}: Resolves discrepancies between \( localCache \) and server database data.
 \end{itemize}
+
+\newpage
+
+\section{MIS of Data Sync Module} \label{DataSync} 
+
+The Data Sync Module updates the common data on both the local and server databases based on whichever has the most up-to-date information. This will mostly just apply to locally stored AR Objects.
+
+\subsection{Module}
+
+DataSyncModule
+
+\subsection{Uses}
+
+Server Database Manager Module\\
+Local Database Manager Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+Sync & - & - & SyncFailureException \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+syncInProgress: $\mathbb{B}$
+
+\subsubsection{Environment Variables}
+
+N/A
+
+\subsubsection{Assumptions}
+
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent Sync():
+\begin{itemize}
+\item transition: local\_obj.lastModified $<$ server\_obj.lastModified == True $\Rightarrow$ LocalDatabaseManager.update(local\_obj, server\_obj)
+\item exception: (LocalDatabaseManager == null $\vee$ ServerDatabaseManager == null) $\Rightarrow$ SyncFailureException
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+N/A
 
 \newpage
 
