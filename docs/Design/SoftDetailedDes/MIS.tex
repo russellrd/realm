@@ -57,13 +57,11 @@ urlcolor=cyan          % color of external links
   \bottomrule
 \end{tabularx}
 
-~\newpage
+\newpage
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
-
-\wss{Also add any additional symbols, abbreviations or acronyms}
+See SRS Documentation \href{https://github.com/russellrd/realm/blob/main/docs/SRS-IEEE/SRS.pdf}{here}.
 
 \newpage
 
@@ -75,54 +73,38 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+The following document details the Module Interface Specifications for the mobile AR application, \textit{Realm}. The application is designed to provide users with an interactive and immersive experience of the world of AR. The application will be developed using the Unity game engine and will be compatible with both iOS and Android devices. The MIS will provide a detailed description of the modules that will be implemented in the application on both the client and server sides. The modules are decomposed into the hardware-hiding, behavior-hiding, and software decision modules. The hardware-hiding modules are used to abstract the hardware components of the system. The behavior-hiding modules are used to provide the functional requirements of the system. The software decision modules are used to provide the algorithms and data structures that will be used in the system. \\
 
-Complementary documents include the System Requirement Specifications
-and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+Complementary documents include the SRS (System Requirement Specifications) and Module Guide. The full documentation and implementation can be found \href{https://github.com/russellrd/realm}{here}.
 
 \section{Notation}
 
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
-
-The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
-with the addition that template modules have been adapted from
-\cite{GhezziEtAl2003}.  The mathematical notation comes from Chapter 3 of
-\citet{HoffmanAndStrooper1995}.  For instance, the symbol := is used for a
-multiple assignment statement and conditional rules follow the form $(c_1
-  \Rightarrow r_1 | c_2 \Rightarrow r_2 | ... | c_n \Rightarrow r_n )$.
-
-The following table summarizes the primitive data types used by \progname.
+The following table summarizes the primitive data types used by the \textit{Realm} application.
 
 \begin{center}
   \renewcommand{\arraystretch}{1.2}
   \noindent
   \begin{tabular}{l l p{7.5cm}}
     \toprule
-    \textbf{Data Type} & \textbf{Notation} & \textbf{Description}                                             \\
+    \textbf{Data Type} & \textbf{Notation} & \textbf{Description}\\
     \midrule
-    character          & char              & a single symbol or digit                                         \\
-    integer            & $\mathbb{Z}$      & a number without a fractional component in (-$\infty$, $\infty$) \\
-    natural number     & $\mathbb{N}$      & a number without a fractional component in [1, $\infty$)         \\
-    real               & $\mathbb{R}$      & any number in (-$\infty$, $\infty$)                              \\
+    character & char & a single symbol or digit\\
+    string & str & a sequence of characters\\
+    integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
+    natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
+    real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+    boolean & $\mathbb{B}$ & \{True, False\} \\
+    array & $\Theta$\textbf{[ ]} & Collection of data of type $\Theta$. Fixed size can be mentioned within the brackets.  Example: $\mathbb{R}$\textbf{[ ]}\\
+    AR object & $\mathbb{AR}$ & a binary blob containing information to read and view the AR object \\
     \bottomrule
   \end{tabular}
 \end{center}
 
-\noindent
-The specification of \progname \ uses some derived data types: sequences, strings, and
-tuples. Sequences are lists filled with elements of the same data type. Strings
-are sequences of characters. Tuples contain a list of values, potentially of
-different types. In addition, \progname \ uses functions, which
-are defined by the data types of their inputs and outputs. Local functions are
-described by giving their type signature followed by their specification.
+\newpage
 
 \section{Module Decomposition}
 
 The following table is taken directly from the Module Guide document for this project.
-
 
 \begin{table}[h!]
 \centering
@@ -142,7 +124,7 @@ The following table is taken directly from the Module Guide document for this pr
 & Tour Management Module\\
 & Settings Module\\
 & Help Module\\
-& Friends Module\\ 
+& Friends Module\\
 & Maps Module\\
 & Realm Interface Module\\
 & Object Importer Module\\
@@ -169,7 +151,6 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 \newpage
-~\newpage
 
 \section{MIS of Tutorial} \label{Tutorial}
 
@@ -249,7 +230,7 @@ N/A
 
 \noindent Reset():
 \begin{itemize}
-\item transition: page = 0 
+\item transition: page = 0
 \item output: N/A
 \item exception: N/A
 \end{itemize}
@@ -380,7 +361,6 @@ Settings Module
 
 
 \newpage
-
 
 \section{MIS of Help Module} \label{Module_Help}
 
@@ -790,7 +770,6 @@ Tour Proximity Detection Module
 \end{itemize}
 
 \newpage
-
 
 \section{MIS of Notifications Module} \label{Module_Notifications}
 
@@ -1455,9 +1434,7 @@ Sub-realm IDs (\( subRealmID \)) are unique, and all user IDs (\( userID \)) are
   \item \texttt{syncWithServerDB()}: Synchronizes sub-realm data with the server database.
 \end{itemize}
 
-
 \newpage
-
 
 \section{MIS of Maps} \label{maps}
 
@@ -1558,11 +1535,6 @@ The Google Maps API and the local database are available and functioning properl
   \item \texttt{fetchLocationDetails(Location)}: Communicates with the local database to retrieve detailed information for a given location.
   \item \texttt{renderMap(viewID)}: Generates a visual representation of the map for the given \( viewID \) using the Google Maps API.
 \end{itemize}
-
-\newpage
-
-\bibliographystyle {plainnat}
-\bibliography {../../../refs/References}
 
 \newpage
 
@@ -1778,7 +1750,7 @@ The server database is available and operational for syncing, and the local cach
 
 \newpage
 
-\section{MIS of Data Sync Module} \label{DataSync} 
+\section{MIS of Data Sync Module} \label{DataSync}
 
 The Data Sync Module updates the common data on both the local and server databases based on whichever has the most up-to-date information. This will mostly just apply to locally stored AR Objects.
 
@@ -2296,58 +2268,531 @@ A valid \( subRealmID \) corresponds to an existing sub-realm, and all objects i
 
 \newpage
 
-\bibliographystyle {plainnat}
-\bibliography {../../../refs/References}
+\section{MIS of AccessHardware} \label{mod-hardware}
+
+The AccessHardware module is used to interface with the hardware components of the device. The module will be used to access the camera, GPS, and an array of device sensors on the mobile device.
+
+\subsection{Module}
+
+\textbf{Short Name: AccHard}
+
+\subsection{Uses}
+
+\textbf{AccHard} does not use any other modules.
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+\begin{enumerate}
+  \item CAM\_RES\_WIDTH = 1920 (Default width of the camera resolution)
+  \item CAM\_RES\_HEIGHT = 1080 (Default height of the camera resolution)
+\end{enumerate}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+getResH() & None & Resolution height : $\mathbb{N}$ & None \\
+\hline
+getResW() & None & Resolution width : $\mathbb{N}$ & None \\
+\hline
+getFrameRate() & None & Frame rate : $\mathbb{N}$ & None \\
+\hline
+getNextFrame() & None & Frame : $\mathbb{Z}$\textbf{[ ]} & \textbf{FrameNotFoundException} \\
+\hline
+getFrame() & FrameID : $\mathbb{N}$ & Frame : $\mathbb{Z}$\textbf{[ ]} & \textbf{FrameNotFoundException} \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{enumerate}
+  \item FRAME\_COUNT : $\mathbb{N}$ (Number of frames captured by the camera)
+  \item FRAME\_BUFFER : $\mathbb{Z}$\textbf{[ ]}\textbf{[ ]} (Buffer to store frames captured by the camera)
+  \item CAM\_PROG\_SCAN : $\mathbb{B}$ (Camera scans progressively if true, else scans using interlaced)
+  \item CAM\_ACC : $\mathbb{B}$ (Access to device camera)
+  \item GPS\_ACC : $\mathbb{B}$ (Access to device GPS)
+\end{enumerate}
+
+\subsubsection{Environment Variables}
+
+\begin{enumerate}
+  \item CAM\_RES\_WIDTH : $\mathbb{N}$ (Current width of the camera resolution)
+  \item CAM\_RES\_HEIGHT : $\mathbb{N}$ (Current height of the camera resolution)
+  \item FRAME\_RATE : $\mathbb{N}$ (Current frame rate of the camera)
+  \item CAM\_ON : $\mathbb{B}$ (Device camera turned on)
+\end{enumerate}
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item Device provides the ability to access the camera and GPS through device applications
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getResH():
+\begin{itemize}
+\item transition: No transition
+\item output: Returns the camera resolution height
+\item exception: No exceptions
+\end{itemize}
+
+\noindent getResW():
+\begin{itemize}
+\item transition: No transition
+\item output: Returns the camera resolution width
+\item exception: No exceptions
+\end{itemize}
+
+\noindent getFrameRate():
+\begin{itemize}
+\item transition: No transition
+\item output: Returns the camera frame rate
+\item exception: No exceptions
+\end{itemize}
+
+\noindent getNextFrame():
+\begin{itemize}
+\item transition: No transition
+\item output: Returns the next frame as a buffer.
+\item exception: Raises \textbf{FrameNotFoundException} if the next frame cannot be returned.
+\end{itemize}
+
+\noindent getFrame(FrameID):
+\begin{itemize}
+\item transition: No transition
+\item output: Returns the frame matching the given FrameID.
+\item exception: Raises \textbf{FrameNotFoundException} if the specified frame cannot be found.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{enumerate}
+  \item ReqCamAccess(): None $\rightarrow$ $\mathbb{B}$
+\end{enumerate}
+
+
+\section{MIS of Inventory} \label{inventory}
+
+The Inventory module is used to manage the user's inventory of 3D and 2D AR objects. The module will be used to add, remove, and view objects in the user's inventory. The module will also be used to access the user's inventory while placing objects in the AR environment.
+
+\subsection{Module}
+
+\textbf{Short Name: Inventory}
+
+\subsection{Uses}
+\begin{itemize}
+  \item \hyperref[rest-api]{RESTAPICommunication}
+  \item \hyperref[ObjectRenderModule]{Object Render Module}
+  \item \hyperref[local-dbm]{LocalDBM}
+  \item \hyperref[DataSync]{DataSyncModule}
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+\begin{enumerate}
+  \item MAX\_OBJ\_COUNT = 100 (Maximum number of objects that can be stored in the user's inventory (except for application-provided objects))
+  \item FILTER\_OPTS = \{Favorites, Oldest, Newest, Most Shared, Least Shared, Largest Size, Smallest Size\} (Fixed list of filter options that can be applied to the user's inventory)
+\end{enumerate}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    getObjCount & None & $\mathbb{N}$ & None \\
+    \hline
+    addObj & Object : $\mathbb{AR}$ & $\mathbb{B}$ & \textbf{ObjAddException} \\
+    \hline
+    getObj & ObjectID : $\mathbb{N}$ & $\mathbb{AR}$ & \textbf{ObjNotFoundException} \\
+    \hline
+    delObj & ObjectID : $\mathbb{N}$ & $\mathbb{B}$ & \textbf{ObjDelException} \\
+    \hline
+    getObjList & ObjectIDs : $\mathbb{N}$\textbf{[ ]} & Object List : $\mathbb{AR}$\textbf{[ ]} & \textbf{ObjNotFoundException} \\
+    \hline
+    setBackColor & Color code : $\mathbb{N}$\textbf{[3]} & None & None \\
+    \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{enumerate}
+  \item OBJ\_SYNCED : $\mathbb{B}$ (true if objects that are synced with the server, else false)
+  \item TOTAL\_OBJ\_COUNT : $\mathbb{N}$ (Total number of objects in the user's inventory)
+  \item 3D\_OBJECT\_COUNT : $\mathbb{N}$ (Number of 3D objects in the user's inventory)
+  \item 2D\_OBJECT\_COUNT : $\mathbb{N}$ (Number of 2D objects in the user's inventory)
+  \item BACKGROUND\_COLOR : str (Color code of the background of the inventory)
+\end{enumerate}
+
+\subsubsection{Environment Variables}
+
+No environment variables for this module.
+
+\subsubsection{Assumptions}
+
+No assumptions are made for this module.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent getObjCount():
+\begin{itemize}
+\item transition: No transition
+\item output: Returns the number of objects in the user's inventory.
+\item exception: No exceptions
+\end{itemize}
+
+\noindent addObj(Object : $\mathbb{AR}$):
+\begin{itemize}
+\item transition: Adds the specified AR object to the user's inventory.
+\item output: Returns a boolean indicating whether the object was successfully added (true for success, false otherwise).
+\item exception: Raises \textbf{ObjAddException} if the object cannot be added.
+\end{itemize}
+
+\noindent getObj(ObjectID: $\mathbb{N}$):
+\begin{itemize}
+\item transition: No transition
+\item output: Returns the AR object corresponding to the given ObjectID.
+\item exception: Raises \textbf{ObjNotFoundException} if the specified object cannot be found in the inventory.
+\end{itemize}
+
+\noindent delObj(ObjectID: $\mathbb{N}$):
+\begin{itemize}
+\item transition:  Removes the AR object corresponding to the given ObjectID from the user's inventory.
+\item output: Returns a boolean indicating whether the object was successfully removed (true for success, false otherwise).
+\item exception: Raises \textbf{ObjDelException} if the object cannot be deleted.
+\end{itemize}
+
+\noindent getObjList(ObjectIDs: $\mathbb{N}$\textbf{[ ]}):
+\begin{itemize}
+\item transition: No transition
+\item output: Returns a list of AR objects ($\mathbb{AR}$\textbf{[ ]}) corresponding to the specified ObjectIDs
+\item exception: Raises \textbf{ObjNotFoundException} if any of the specified objects cannot be found in the inventory.
+\end{itemize}
+
+\noindent setBackColor(ColorCode: $\mathbb{N}$\textbf{[3]}):
+\begin{itemize}
+\item transition: Updates the background color setting for the inventory view using the specified RGB color code ($\mathbb{N}$\textbf{[3]}).
+\item output: None
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{enumerate}
+  \item filterObj(): (Filter option : str, Objects : $\mathbb{AR}$\textbf{[ ]}) $\rightarrow$ $\mathbb{AR}$\textbf{[ ]}
+  \item syncObjs(): None $\rightarrow$ $\mathbb{B}$
+\end{enumerate}
+
+\section{MIS of ObjectPlacement} \label{obj-place}
+
+The Object Placement module is used to place 3D and 2D AR objects in the AR environment. The module will be used in the Realm interface to begin the object placement workflow. It will place objects from the user's inventory.
+
+\subsection{Module}
+
+\textbf{Short Name: ObjPlacer}
+
+\subsection{Uses}
+\begin{itemize}
+  \item \hyperref[rest-api]{RESTAPICommunication}
+  \item \hyperref[ObjectRenderModule]{Object Render Module}
+  \item \hyperref[inventory]{Inventory}
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+There are no constants for this module.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{3cm} p{4cm} p{4cm} p{4cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    beginPlacement & None & $\mathbb{B}$ & \textbf{PlacementFailException} \\
+    \hline
+    displayEditor & None & $\mathbb{B}$ & None \\
+    \hline
+    hideEditor & None & $\mathbb{B}$ & None \\
+    \hline
+    termPlacement & None & $\mathbb{B}$ & \textbf{PlacementFailException} \\
+    \hline
+    endPlacement & None & $\mathbb{B}$ & \textbf{PlacementFailException} \\
+    \hline
+    rotateObj & (Angle : $\mathbb{Z}$, Axis : char) & Angle rotated : $\mathbb{Z}$ & None \\
+    \hline
+    translateObj & (Distance : $\mathbb{Z}$, Axis : char) & Dist Translated : $\mathbb{Z}$ & None \\
+    \hline
+    placeObj & ObjectID : $\mathbb{N}$ & $\mathbb{B}$ & \textbf{ObjPlaceException} \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+\begin{enumerate}
+  \item PLACEMENT\_STATUS : $\mathbb{B}$ (true if object placement is in progress, else false)
+  \item OBJ\_PLACED : $\mathbb{B}$ (true if object is placed in the AR environment, else false)
+  \item OBJ\_ID : $\mathbb{N}$ (ID of the object being placed)
+  \item OBJ\_POS : $\mathbb{Z}$\textbf{[3]} (XYZ position of the object in the AR environment)
+\end{enumerate}
+
+\subsubsection{Environment Variables}
+
+\begin{enumerate}
+  \item DEVICE\_LOCATION : $\mathbb{Z}$\textbf{[3]} (Current location of the device)
+\end{enumerate}
+
+\subsubsection{Assumptions}
+
+\begin{itemize}
+  \item The user is not located in a restricted area.
+  \item The user has objects in their inventory.
+  \item The weather is not hazardous.
+  \item The user surroundings is large enough for the object to be placed.
+\end{itemize}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent beginPlacement():
+\begin{itemize}
+\item transition: Initiates the object placement workflow in the AR environment.
+\item output: Returns a boolean indicating whether the workflow started successfully (true for success, false otherwise).
+\item exception: Raises \textbf{PlacementFailException} if the workflow cannot be initiated.
+\end{itemize}
+
+\noindent displayEditor():
+\begin{itemize}
+\item transition: Displays the object placement editor in the AR environment.
+\item output: Returns a boolean indicating whether the editor was displayed successfully (true for success, false otherwise).
+\item exception: No exceptions
+\end{itemize}
+
+\noindent hideEditor():
+\begin{itemize}
+\item transition: Hides the object placement editor from the AR environment.
+\item output: Returns a boolean indicating whether the editor was hidden successfully (true for success, false otherwise).
+\item exception: No exceptions
+\end{itemize}
+
+\noindent termPlacement():
+\begin{itemize}
+\item transition: Terminates the object placement workflow in the AR environment without finalizing the placement.
+\item output: Returns a boolean indicating whether the workflow was terminated successfully (true for success, false otherwise).
+\item exception: Raises \textbf{PlacementFailException} if the workflow cannot be terminated.
+\end{itemize}
+
+\noindent endPlacement():
+\begin{itemize}
+\item transition: Ends the object placement workflow, finalizing the placement in the AR environment.
+\item output: Returns a boolean indicating whether the workflow ended successfully (true for success, false otherwise).
+\item exception: Raises \textbf{PlacementFailException} if the workflow cannot be ended.
+\end{itemize}
+
+\noindent rotateObj(Angle: $\mathbb{Z}$, Axis: char):
+\begin{itemize}
+\item transition: Rotates the object in the AR environment by the specified angle (Angle) around the specified axis (Axis).
+\item output: Returns the total angle the object was rotated.
+\item exception: No exceptions
+\end{itemize}
+
+\noindent translateObj(Distance: $\mathbb{Z}$, Axis: char):
+\begin{itemize}
+\item transition: Translates the object in the AR environment by the specified distance (Distance) along the specified axis (Axis).
+\item output: Returns the total distance the object is translated by.
+\item exception: No exceptions
+\end{itemize}
+
+\noindent placeObj(ObjectID: $\mathbb{N}$):
+\begin{itemize}
+\item transition: Places the specified object (identified by ObjectID) from the user's inventory into the AR environment.
+\item output: Returns a boolean indicating whether the object was placed successfully (true for success, false otherwise).
+\item exception: Raises \textbf{ObjPlaceException} if the object cannot be placed.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{enumerate}
+  \item getObj(): None $\rightarrow$ $\mathbb{AR}$
+  \item checkRestrictArea(): None $\rightarrow$ $\mathbb{B}$
+  \item checkWeatherHaz(): None $\rightarrow$ $\mathbb{B}$
+  \item checkObjCollisions(): None $\rightarrow$ $\mathbb{B}$
+  \item getCoords(): None $\rightarrow$ $\mathbb{Z}$\textbf{[3]}
+\end{enumerate}
+
+\section{MIS of RestrictedAreaDetect} \label{rest-area}
+
+The Restricted Area Detection module is used to detect if the user is located in a restricted area. The module will be get the user's location and determine if they are present in a pre-defined restricted area.
+
+\subsection{Module}
+
+\textbf{Short Name: RestrictAreaDet}
+
+\subsection{Uses}
+\begin{itemize}
+  \item \hyperref[rest-api]{RESTAPICommunication}
+  \item \hyperref[maps]{Maps}
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+The module does not have any constants.
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{5cm} p{2cm} p{2cm} p{3cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    checkCurrAreaRestrict & None & $\mathbb{B}$ & None \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+There are no state variables for this module.
+
+\subsubsection{Environment Variables}
+
+There are no environment variables for this module.
+
+\subsubsection{Assumptions}
+
+There are no assumptions for this module.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent checkCurrAreaRestrict():
+\begin{itemize}
+\item transition: No transition
+\item output: Return a boolean indicating whether the user is in a restricted area (true if in a restricted area, otherwise false).
+\item exception: No exceptions
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{enumerate}
+  \item getUserLocation(): None $\rightarrow$ $\mathbb{Z}$\textbf{[3]}
+  \item getRestrictedAreas(): None $\rightarrow$ $\mathbb{Z}$\textbf{[ ]}\textbf{[3]}
+\end{enumerate}
+
+\section{MIS of WeatherHazardDetect} \label{weaather-haz}
+
+The Weather Hazard Detection module is used to detect if the user is in a hazardous weather condition. The module will get the current weather conditions and future warnings based on the user's current location. The module will determine if there is incoming or present hazardous weather conditions based on the information accessed.
+
+\subsection{Module}
+
+\textbf{Short Name: WeatherHazDet}
+
+\subsection{Uses}
+\begin{itemize}
+  \item \hyperref[rest-api]{RESTAPICommunication}
+\end{itemize}
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+DETECTION\_RADIUS = 30 (Radius in kilometers to detect weather hazards)
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+    \hline
+    \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+    \hline
+    checkWeatherHaz & None & str & - \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+LAST\_UPDATE : $\mathbb{N}$ (Number of minutes passed since last time the weather data was updated)
+CURR\_WEATHER : str (Current weather conditions)
+
+\subsubsection{Environment Variables}
+
+There are no environment variables for this module.
+
+\subsubsection{Assumptions}
+
+There are no assumptions for this module.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent checkWeatherHaz():
+\begin{itemize}
+\item transition: No transition
+\item output: Returns a string indicating the current weather conditions and any hazardous weather warnings.
+\item exception: No exceptions
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+\begin{enumerate}
+  \item getUserLocation: None $\rightarrow$ $\mathbb{Z}$\textbf{[3]}
+  \item updateWeather: None $\rightarrow$ $\mathbb{B}$
+  \item determineHaz: None $\rightarrow$ str
+\end{enumerate}
 
 \newpage
 
-\section{Appendix} \label{Appendix}
-
-\wss{Extra information if required}
-
-\newpage{}
+\bibliographystyle {plainnat}
+\bibliography {../../../refs/References}
 
 \section*{Appendix --- Reflection}
 
-\wss{Not required for CAS 741 projects}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Problem Analysis and Design.
-
-\input{../../Reflection.tex}
-
 \begin{enumerate}
   \item What went well while writing this deliverable? \\ \\
-        The modules were distributed relatively well according to what each group member seems most comfortable and experienced with.
+        The modules were distributed relatively well according to what each group member seems most comfortable and experienced with. \\
   \item What pain points did you experience during this deliverable, and how
         did you resolve them?\\ \\
-        Deciding the modules initially was a bit of a challenge, but after speaking with our TA, it helped us decide which modules to split and which ones to combine.
+        Deciding the modules initially was a bit of a challenge, but after speaking with our TA, it helped us decide which modules to split and which ones to combine. \\
   \item Which of your design decisions stemmed from speaking to your client(s)
         or a proxy (e.g. your peers, stakeholders, potential users)? For those that
         were not, why, and where did they come from?\\ \\
         Our design decisions came as a natural consequence of our requirements, many of which did stem from speaking to clients.
-        So while indirectly influenced, our design decisions were mostly made to be the easiest way to
-        meet the requirements we set out
+        So while indirectly influenced, our design decisions were mostly made to be the easiest way to meet the requirements we set out. \\
   \item While creating the design doc, what parts of your other documents (e.g.
         requirements, hazard analysis, etc), it any, needed to be changed, and why?\\ \\
-        We did not need to change any parts of other documents.
+        We did not need to change any parts of other documents. \\
 
   \item What are the limitations of your solution?  Put another way, given
         unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)\\ \\
         One of the key components of our design is the client server system for storing user data.
         If we had infinite resources, it would be beneficial to move more logic to the server to relieve the client from certain expensive computations.
-        The reason our current design has them on the client side is to reduce the complexity of client server communication to simplify the implementation.
+        The reason our current design has them on the client side is to reduce the complexity of client server communication to simplify the implementation. \\
 
   \item Give a brief overview of other design solutions you considered.  What
         are the benefits and tradeoffs of those other designs compared with the chosen
         design?  From all the potential options, why did you select the documented design?
         (LO\_Explores)\\ \\
-        In our initial solution, user content generation was meant to be internal,
-        and more components were designed to be on the server. This design would have been ideal for users, and more maintainable in the long run,
-        but came at an exorbiant cost for compute for object generation,
-        and a complex design that would be infeasible to build in the alloted time.
-        The driving force behind our changes since then were to make our app easier to implement,
-        and less expensive to run.
+        In our initial solution, user content generation was meant to be internal, and more components were designed to be on the server. This design would have been ideal for users, and more maintainable in the long run, but came at an exorbiant cost for compute for object generation, and a complex design that would be infeasible to build in the alloted time.
+        The driving force behind our changes since then were to make our app easier to implement, and less expensive to run. \\
 \end{enumerate}
 
 
