@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UserInterfaces/styles.uss?fileID=7433441132597879392&amp;guid=c4d86365f86db6f44a2a6ab2ff729e66&amp;type=3#styles" />
+    <engine:VisualElement enabled="true" style="flex-grow: 1; width: 90%; flex-direction: row; background-color: rgb(255, 255, 255); align-items: center; justify-content: space-around; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; visibility: visible; display: flex;">
+        <engine:Label text="Creation Name" name="CreationName" class="sub-title" />
+        <engine:Button text="Preview" name="InstancePreview" class="sub-title button" />
+    </engine:VisualElement>
+</engine:UXML>

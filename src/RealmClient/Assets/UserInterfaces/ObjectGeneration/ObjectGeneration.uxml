@@ -1,0 +1,18 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UserInterfaces/styles.uss?fileID=7433441132597879392&amp;guid=c4d86365f86db6f44a2a6ab2ff729e66&amp;type=3#styles" />
+    <engine:VisualElement name="Panel" enabled="true" class="full-panel" style="height: 5px;">
+        <engine:Label text="Object Creation" name="Title" class="title" />
+        <engine:VisualElement name="Container" class="span">
+            <engine:Label text="Your Creations" name="Subtitle" class="sub-title" style="margin-right: 400px;" />
+            <engine:Button text="+" name="PlusButton" class="sub-title button" style="width: 100px; height: 100%;" />
+        </engine:VisualElement>
+        <engine:VisualElement name="List" class="menu" style="margin-top: 75px; margin-right: 75px; margin-bottom: 75px; margin-left: 75px; height: 80%;">
+            <engine:Label text="Looks empty, try creating an object" name="EmptyText" class="form" style="font-size: 48px; color: rgba(27, 27, 27, 0.77); -unity-text-align: upper-center;" />
+            <engine:VisualElement enabled="true" name="Entry" class="span list-item">
+                <engine:Label text="Creation Name" name="CreationName" class="sub-title" />
+                <engine:Button text="Preview" name="InstancePreview" class="sub-title button" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:Button text="&lt;&lt; Back" name="BackButton" class="text-button back-button" />
+    </engine:VisualElement>
+</engine:UXML>
