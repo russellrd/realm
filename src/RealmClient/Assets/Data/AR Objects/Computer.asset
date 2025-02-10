@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f284e7ca7cb1b754d86f2e0ff3db07f3, type: 3}
+  m_Name: Computer
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Car
+  <Author>k__BackingField: russellrd
+  <Description>k__BackingField: Vrrrrm vrrrrm
+  <PreviewImage>k__BackingField: {fileID: 21300000, guid: d523d439eda5dcf4395f25c94c121821, type: 3}
+  <Model>k__BackingField: {fileID: 7999329307452758732, guid: 9f1faf73f95405a44a93306d6fa94d64, type: 3}
