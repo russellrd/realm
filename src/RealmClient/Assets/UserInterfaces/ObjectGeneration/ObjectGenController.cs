@@ -79,7 +79,8 @@ public class ObjectGenController : MonoBehaviour
         string name = creationName.text;
         ObjectGenRequestDTO data = new()
         {
-            Text = creationPrompt.text
+            Text = creationPrompt.text,
+            Texture = "true"
         };
 
         ObjectGenerationRequest req = new ObjectGenerationRequest(data, name);

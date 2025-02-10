@@ -7,4 +7,7 @@ public class ObjectGenRequestDTO
 
     [JsonProperty("image", NullValueHandling = NullValueHandling.Ignore)]
     public string Image { get; set; }
+
+    [JsonProperty("texture", NullValueHandling = NullValueHandling.Ignore)]
+    public string Texture { get; set; }
 }
