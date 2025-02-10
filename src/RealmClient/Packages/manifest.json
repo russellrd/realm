@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.sov3rain.pocketbase-unity": "https://github.com/Sov3rain/pocketbase-unity.git?path=/Assets/pocketbase-unity#0.22.1",
+    "com.unity.cloud.gltfast": "6.10.2",
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.feature.mobile": "1.0.0",
     "com.unity.ide.rider": "3.0.31",
