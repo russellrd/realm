@@ -1850,7 +1850,31 @@ Non-functional requirements pertaining to the quality of the product
           {\bf Rationale:} All apps published through \emph{Google Play} must first be reviewed by Google for compliance with the developer policy published on their website \cite{GooglePlay}.
     \item The app shall comply with \emph{App Store} review guidelines.\\
           {\bf Rationale:} For an app to be approved for dissemination on the \emph{App Store}, the app must be reviewed and approved by Apple in accordance with the acceptance criteria published on their website \cite{AppStore}.
+     \item The system shall comply with the \emph{Web Content Accessibility Guidelines (WCAG) 2.1 Level AA} and the \emph{Accessibility for Ontarians with Disabilities Act (AODA)}. \\
+        {\bf Rationale:} Ensuring compliance with these accessibility standards allows users with disabilities to fully engage with the system and meets legal requirements for accessibility in Ontario. \\
+
 \end{enumerate}
+
+\subsubsection{Accessibility Compliance}
+
+\begin{enumerate}[align=left, label=\textbf{QS-AC\arabic*.}]
+    \item The system shall comply with established accessibility standards, including \textbf{WCAG 2.1 Level AA} and the \textbf{Accessibility for Ontarians with Disabilities Act (AODA)}. \\
+          {\bf Rationale:} Ensuring compliance with accessibility standards allows users with disabilities to fully engage with the system. \\
+          {\bf Fit Criteria:} The app shall pass accessibility testing for compliance with WCAG 2.1 Level AA and AODA regulations.
+
+    \item The system shall offer a high-contrast mode and customizable text size for users with visual impairments. \\
+          {\bf Rationale:} High contrast and adjustable text improve readability for users with low vision. \\
+          {\bf Fit Criteria:} The app shall provide an accessibility setting to adjust contrast and font size.
+
+    \item The system shall avoid flashing visuals and rapid animations that could trigger seizures, as specified in \textbf{QS-SA2}. \\
+          {\bf Rationale:} Flashing content can cause seizures in users with photosensitive epilepsy. \\
+          {\bf Fit Criteria:} The app shall pass seizure safety tests and restrict flashing effects.
+
+    \item The system shall allow users to modify UI settings, including color themes, font scaling, and motion reduction. \\
+          {\bf Rationale:} Users with cognitive disabilities or visual impairments may require a more adaptable interface. \\
+          {\bf Fit Criteria:} The app shall provide an accessibility menu with UI customization options.
+\end{enumerate}
+
 
 \subsection{Design and Implementation}
 
