@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class AuthController : MonoBehaviour
 {
@@ -58,10 +59,11 @@ public class AuthController : MonoBehaviour
         returnToSignIn.clicked += goToSignIn;
     }
 
-    private void handleSignIn()
+    private async void handleSignIn()
     {
-        client.authUser(usernameSI.text, passwordSI.text);
-        goToMainScreen();
+        await client.authUser(usernameSI.text, passwordSI.text);
+        if (client.pb.AuthStore.IsValid())
+            goToMainScreen();
     }
 
     private void handleSignUp()
@@ -72,8 +74,7 @@ public class AuthController : MonoBehaviour
 
     private void goToMainScreen()
     {
-        // TODO
-        // disable signup and sign in screens, enable realm screen stuff probably.
+        SceneManager.LoadScene(1);
     }
 
     private void goToSignUp()
