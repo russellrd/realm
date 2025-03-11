@@ -127,9 +127,211 @@ The following section presents the results of our testing for uploading objects 
   \label{table:GR3}
 \end{table}
 
-\restoregeometry
+\subsection{Realm Testing}
+The following section presents the results of our testing of the realm interface.
 
+\begin{table}[H]
+  \caption{\bf Functional Requirements Evaluation Results for the Realm Interface}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Control} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-RI1 & 
+      Manual & 
+      Tester changes their position and angle in relation to an AR object. &
+      The AR object adjusts perspective appropriately, reflecting the new camera position and angle. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-RI2 & 
+      Manual & 
+      Tester moves camera over a crowded area where multiple AR objects are present. &
+      The interface selectively displays a manageable number of AR objects without overwhelming the user’s view. &
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-RI3 & 
+      Manual & 
+      Test AR object instance is placed with a known alignment in the real world, and reference screenshots. &
+      Test AR object appears in correct position and orientation as expected, matches stored object instance data. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-RI6 & 
+      Manual & 
+      Tester attempts to access the object placement workflow via the provided control. &
+      Tester is successfully redirected to the object placement workflow. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-RI8 & 
+      Manual & 
+      Tester moves within range of the tour start point. &
+      The interface displays a clear indication of the nearby tour and a link to the tour preview. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-RI9 & 
+      Manual & 
+      Tester moves closer to a hazard in real space. &
+      Interface displays a clear warning when the user approaches the hazard. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+    \end{tabular}}
+  \label{table:Realm_Interface_Tests}
+\end{table}
+
+\subsection{Object Placement Testing}
+The following section presents the results of our object placement testing.
+
+\begin{table}[H]
+  \caption{\bf Functional Requirements Evaluation Results for Object Placement Features}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Control} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-OP1 & 
+      Manual & 
+      Tester selects object from inventory or prompt generation. &
+      Interface successfully proceeds to the placement interface with the selected object. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-OP3 & 
+      Manual & 
+      Tester rotates, resizes, and translates the object in real space. &
+      Object is placed accurately in real space with correct orientation. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-OP4 & 
+      Manual & 
+      Tester checks the AR object instance database. &
+      Object instance is present with correct details (type, position, orientation). & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-OP5 & 
+      Automated and Manual & 
+      Tester attempts to place another object in an area with placement limit reached. &
+      System prevents additional placements, displaying a warning. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-OP6 & 
+      Automated and Manual & 
+      Tester attempts to place another object within a short period after the time-based limit is reached. &
+      System restricts further placements, displaying a warning. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-OP7 & 
+      Automated and Manual& 
+      Tester places an object, but the initial storage attempt fails. &
+      System automatically retries storage until success or retry limit is reached. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+    \end{tabular}}
+  \label{table:Object_Placement_Tests}
+\end{table}
+
+
+\subsection{Interactions with User Inventory}
+The following section presents the results of our testing of interactions with the user inventory.
+
+\begin{table}[H]
+  \caption{\bf Functional Requirements Evaluation Results for Inventory Features}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Control} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-IV1 & 
+      Manual & 
+      Tester selects an object and chooses the delete option. &
+      The selected object is removed from the inventory. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IV2 & 
+      Manual & 
+      Tester adds a new object to the inventory. &
+      The new object appears in the inventory. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IV3 & 
+      Automatic & 
+      Tester opens the inventory. &
+      Inventory contains the preloaded application-provided objects. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IV4 & 
+      Automatic & 
+      Tester attempts to add an additional object. &
+      The object is successfully added, but adding another would be prevented. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IV5 & 
+      Manual & 
+      Tester opens the inventory and inspects object origins. &
+      Each personal object is present. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IV6 & 
+      Automatic & 
+      Tester views the total count of objects. &
+      The app displays the correct total number of objects. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IV7 & 
+      Manual & 
+      Tester adds both 2D and 3D AR objects to their inventory. &
+      Both 2D and 3D objects are correctly stored in inventory. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IV9 & 
+      Manual & 
+      Tester sorts objects by usage or size. &
+      Objects are sorted as per user selection. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IV10 & 
+      Automatic & 
+      Tester selects option to view a 3D AR object. &
+      3D objects are displayed in a continuous rotating state. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+    \end{tabular}}
+  \label{table:Inventory_Tests}
+\end{table}
+
+\restoregeometry
 \section{Nonfunctional Requirements Evaluation}
+
 \subsection{Usability Testing}
 The following section presents the results of our usability testing.
 
@@ -177,14 +379,105 @@ The following section presents the results of our availability testing.
   \label{table:GR-Availability}
 \end{table}
 
+\subsection{Maintainability Testing}
+The following section presents the results of our maintainability testing.
 
-\subsection{Performance}
+\begin{table}[H]
+  \caption{\bf Maintainability Testing Evaluation Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Control} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-DI-M1 & 
+      Manual and Automated & 
+      Simulate common errors like database connection failure, invalid input data, service timeout in internal APIs. &
+      Error messages clearly indicate the source and nature of the error (90\% of the cases). & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+  \end{tabular}}
+  \label{table:Maintainability_Tests}
+\end{table}
 
-\subsection{etc.}
+\subsection{Compliance Testing}
+The following section presents the results of our compliance testing.
 
-\section{Comparison to Existing Implementation}
+\begin{table}[H]
+  \caption{\bf Compliance Testing Evaluation Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Control} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-CO1 & 
+      Manual & 
+      App is checked against the Personal Information and Electronic Documents Act (PIPEDA). &
+      The app complies with all sections of PIPEDA. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-CO2 & 
+      Manual & 
+      The app's revenue records are checked for purchases and ad-revenue spanning at least 6 years. &
+      The records go back at least 6 years. & 
+      N/A & 
+       \\
+      \hline
+      Test-CO3 & 
+      Manual & 
+      App is checked against the Google Play Developer Policy. &
+      The app complies with all sections of the Google Play Developer Policy. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-CO4 & 
+      Manual & 
+      App is checked against the App Store Review Guidelines. &
+      The app complies with all sections of the App Store Review Guidelines. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+  \end{tabular}}
+  \label{table:Compliance_Tests}
+\end{table}
 
-This section will not be appropriate for every project.
+\subsection{Reusability Testing}
+The following section presents the results of our reusability testing.
+
+\begin{table}[H]
+  \caption{\bf Reusability Testing Evaluation Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Control} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-DI-R1 & 
+      Static & 
+      All code is sent to a static analyzer that detects code duplication. &
+      The analysis shows metrics related to code sections with a high amount of duplication, suggesting areas for refactoring. & 
+      Some duplicate code was found. Refactoring to fix this issue. & 
+      \textcolor{Red}{Fail} \\
+      \hline
+  \end{tabular}}
+  \label{table:Reusability_Tests}
+\end{table}
+	
+\section{Comparison to Existing Implementation}	
+
+This section is not applicable to this project.
 
 \section{Unit Testing}
 
@@ -256,12 +549,182 @@ The following section presents the results of our Tour Proximity Module testing.
   \label{table:Unit-TourProximity}
 \end{table}
 
+
+\subsection{Notifications Module Testing}
+N/A
+
+\subsection{Access Hardware Testing}
+
+\begin{table}[H]
+  \caption{\bf Access Hardware Module Unit Test Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Type} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-AHM1 & 
+      Automated & 
+      Known simulator height value compared with simulator height. & 
+      The known height value should match the simulator's height. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-AHM2 & 
+      Automated & 
+      Known simulator width value compared with simulator width. & 
+      The known width value should match the simulator's width. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+  \end{tabular}}
+  \label{table:Access_Hardware_Module_Unit_Tests}
+\end{table}
+
+\subsection{Inventory Module Testing}
+
+\begin{table}[H]
+  \caption{\bf Inventory Module Unit Test Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Type} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-IM1 & 
+      Automated & 
+      Ensure the object count is less than or equal to the maximum allowed. & 
+      The object count should be less than or equal to the maximum object count (MAX\_OBJ\_COUNT). & TOTAL\_OBJ\_COUNT 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IM2 & 
+      Automated & 
+      Add an object to the inventory. & 
+      The TOTAL\_OBJ\_COUNT should increase by one, and the object should be added to the objects list. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IM3 & 
+      Automated & 
+      Retrieve an object from the inventory. & 
+      The object should be returned with its properties intact. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IM4 & 
+      Automated & 
+      Delete an object from the inventory. & 
+      The TOTAL\_OBJ\_COUNT should decrease by one, and the object should be removed from the objects list. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-IM5 & 
+      Automated & 
+      Retrieve the list of all objects in the inventory. & 
+      The list should contain exactly the number of objects corresponding to the TOTAL\_OBJ\_COUNT. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+  \end{tabular}}
+  \label{table:Inventory_Module_Unit_Tests}
+\end{table}
+
+\subsection{Object Placement Testing}
+N/A
+
+\subsection{Restricted Area Detect Testing}
+
+\begin{table}[H]
+  \caption{\bf Restricted Area Detect Module Unit Test Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Type} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-RADM1 & 
+      Automated & 
+      GPS coordinates of a known restricted area. & 
+      The module should detect that the area is restricted. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+      Test-RADM2 & 
+      Automated & 
+      GPS coordinates of a known unrestricted area. & 
+      The module should detect that the area is unrestricted. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+  \end{tabular}}
+  \label{table:Restricted_Area_Detect_Module_Unit_Tests}
+\end{table}
+
+\subsection{Weather Hazard Detect Testing}
+
+\begin{table}[H]
+  \caption{\bf Weather Hazard Detect Module Unit Test Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} &
+      \multicolumn{1}{|l|}{\bfseries Type} &
+      \multicolumn{1}{l|}{\bfseries Inputs} &
+      \multicolumn{1}{l|}{\bfseries Expected Result} &
+      \multicolumn{1}{l|}{\bfseries Actual Result} &
+      \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-WHDM1 & 
+      Automated & 
+      Make an external call to the weather API for the Toronto area. & 
+      The weather data returned by the external API request should match the data returned by the module. & 
+      Same as expected & 
+      \textcolor{Green}{Pass} \\
+      \hline
+  \end{tabular}}
+  \label{table:Weather_Hazard_Detect_Module_Unit_Tests}
+\end{table}
+
+
 \section{Changes Due to Testing}
 
 \wss{This section should highlight how feedback from the users and from
   the supervisor (when one exists) shaped the final product.  In particular
   the feedback from the Rev 0 demo to the supervisor (or to potential users)
   should be highlighted.}
+
+The following Tests for Functional Requirements (3.1 of VnVPlan) subsections where removed due to focus the project on tours instead of social media as advised in the Rev 0 demo:
+\begin{itemize}
+    \item 3.1.1
+    \item 3.1.2
+        \begin{itemize}
+            \item Test-RI4
+            \item Test-RI5
+            \item Test-RI7
+            \item Test-RI10
+        \end{itemize}
+    \item 3.1.3
+        \begin{itemize}
+            \item Test-OP2
+        \end{itemize}
+    \item 3.1.7
+    \item 3.1.8
+    \item 3.1.9
+    \item 3.1.11
+    \item 3.1.12
+        \begin{itemize}
+            \item Test-IV8
+        \end{itemize}
+\end{itemize}
 
 \section{Automated Testing}
 
