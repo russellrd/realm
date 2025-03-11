@@ -188,6 +188,74 @@ This section will not be appropriate for every project.
 
 \section{Unit Testing}
 
+This section provides the test reports for the unit tests performed on various modules of the system.
+
+\subsection{Settings Module Testing}
+
+The following section presents the results of our Settings Module testing. The tests verify that the settings module correctly validates input keys and ensures profile details match the expected schema.
+
+\begin{table}[H]
+  \caption{\bf Settings Module Unit Test Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result}    & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-SM1                           & Functional, Automated                & Valid and invalid settings keys       & Returns true for valid key, false for invalid key & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-SM2                           & Functional, Automated                & Valid user settings object            & Returns object matching expected schema           & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+    \end{tabular}}
+  \label{table:Unit-Settings}
+\end{table}
+
+\subsection{Help Module Testing}
+
+The following section presents the results of our Help Module testing. The test verifies that the search functionality correctly returns relevant help items when given partial and full keywords.
+
+\begin{table}[H]
+  \caption{\bf Help Module Unit Test Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}         & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-HM1                           & Functional, Automated                & Partial and full keywords matching help items & Outputs match expected search results          & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+    \end{tabular}}
+  \label{table:Unit-Help}
+\end{table}
+
+\subsection{Collision Detection Module Testing}
+
+The following section presents the results of our Collision Detection Module testing. The test ensures that the module correctly identifies potential collisions based on AR tracking and accelerometer data.
+
+\begin{table}[H]
+  \caption{\bf Collision Detection Module Unit Test Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}   & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-CD1                           & Functional, Automated                & Mock AR tracking and accelerometer data & Returns true for collisions, false otherwise   & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+    \end{tabular}}
+  \label{table:Unit-Collision}
+\end{table}
+
+\subsection{Tour Proximity Module Testing}
+
+The following section presents the results of our Tour Proximity Module testing. The test ensures that the module correctly detects and returns a list of nearby tours based on GPS data.
+
+\begin{table}[H]
+  \caption{\bf Tour Proximity Module Unit Test Results}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result}  & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-TP1                           & Functional, Automated                & Mock GPS data for device and tours    & Outputs list of tours within specified distance & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+    \end{tabular}}
+  \label{table:Unit-TourProximity}
+\end{table}
+
 \section{Changes Due to Testing}
 
 \wss{This section should highlight how feedback from the users and from
