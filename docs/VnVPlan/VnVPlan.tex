@@ -2020,131 +2020,213 @@ This section contains descriptions of the unit tests derived from the MIS.
 
 \end{enumerate}
 
-\begin{comment}
-\wss{This section should not be filled in until after the MIS (detailed design
-  document) has been completed.}
+\subsection{Authentication Module}
 
-\wss{Reference your MIS (detailed design document) and explain your overall
-  philosophy for test case selection.}
+\subsubsection{SendNotification}
 
-\wss{To save space and time, it may be an option to provide less detail in this section.
-  For the unit tests you can potentially layout your testing strategy here.  That is, you
-  can explain how tests will be selected for each module.  For instance, your test building
-  approach could be test cases for each access program, including one test for normal behaviour
-  and as many tests as needed for edge cases.  Rather than create the details of the input
-  and output here, you could point to the unit testing code.  For this to work, you code
-  needs to be well-documented, with meaningful names for all of the tests.}
-
-\subsection{Unit Testing Scope}
-
-\wss{What modules are outside of the scope.  If there are modules that are
-  developed by someone else, then you would say here if you aren't planning on
-  verifying them.  There may also be modules that are part of your software, but
-  have a lower priority for verification than others.  If this is the case,
-  explain your rationale for the ranking of module importance.}
-
-\subsection{Tests for Functional Requirements}
-
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
-
-\subsubsection{Module 1}
-
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
-
+\textbf{Name:} SendNotification \label{itm:Test-AM-SN} \\
+\textbf{Test ID:} Test-AM-SN \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, and the test environment has a known valid user ID. \\
+\textbf{Input/Condition:} User ID, notification message \\
+\textbf{Output/Result:}  Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that notifications are being sent. We also consider possible edge cases (e.g., invalid user ID or empty message) to ensure correct behavior or exception handling.\\
+\textbf{How test will be performed:}
 \begin{enumerate}
+    \item Manually invoke \textbf{SendNotification} with a valid user ID and a non-empty message.
+    \item Verify that the function returns true (success).
+    \item Repeat with an invalid user ID or empty message to ensure it returns false or throws an exception. 
+    \item Document all outcomes and compare against expected results.
+\end{enumerate}\\
 
-  \item{test-id1\\}
+\subsubsection{FetchNotifications}
+\noindent
+\textbf{Name:} FetchNotifications \label{itm:Test-AM-FN} \\
+\textbf{Test ID:} Test-AM-FN \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and the test environment has a known valid user ID. \\
+\textbf{Input/Condition:} User ID \\
+\textbf{Output/Result:} List of notifications \\
+\textbf{Test Case Derivation:} Testing that a list of notifications can be received. We also consider edge cases to ensure correct behavior or exception handling.\\
+\textbf{How test will be performed:} Manually invoke FetchNotifications with a valid user ID that is known to have notifications and verify that the function returns the expected list of notifications.
 
-  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-    be automatic}
+\subsubsection{MarkNotificationRead}
+\noindent
+\textbf{Name:} MarkNotificationRead \label{itm:Test-AM-MNR} \\
+\textbf{Test ID:} Test-AM-MNR \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and the test environment has a known valid notification ID. \\
+\textbf{Input/Condition:} Notification ID \\
+\textbf{Output/Result:} Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that a notification can be marked as read. We also consider edge cases to ensure correct behavior or exception handling.\\
+\textbf{How test will be performed:} Receive a notification and mark it as read. Check if the database reflected this notification as read. \\ \\
 
-  Initial State:
+\subsubsection{DeleteNotification}
+\textbf{Name:} DeleteNotification \label{itm:Test-AM-DN} \\
+\textbf{Test ID:} Test-AM-DN \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and the test environment has a known valid notification ID that can be deleted. \\
+\textbf{Input/Condition:} Notification ID \\
+\textbf{Output/Result:} Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that a notification can be deleted. We also consider edge cases (e.g., invalid notification ID) to ensure correct behavior or exception handling.\\
+\textbf{How test will be performed:} Receive a notification and then go in and delete it and see if it is still stored or if it is actually deleted. \\
 
-  Input:
+\subsubsection{UpdateNotificationSettings}
+\textbf{Name:} UpdateNotificationSettings \label{itm:Test-AM-UNS} \\
+\textbf{Test ID:} Test-AM-UNS \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and the test environment has a known valid user ID and default notification settings. \\
+\textbf{Input/Condition:} User ID, settings data \\
+\textbf{Output/Result:} Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that a user's notification settings can be updated. We also consider edge cases (e.g., invalid settings data) to ensure correct behavior or exception handling.\\
+\textbf{How test will be performed:} Modify some settings regarding notifications (such as notification sound), and then manually receive a notification and verify that the change worked. \\
 
-  Output: \wss{The expected result for the given inputs}
+\subsection{Object Render Module}
 
-  Test Case Derivation: \wss{Justify the expected value given in the Output field}
+\subsubsection{FetchRenderSettings}
 
-  How test will be performed:
-
-  \item{test-id2\\}
-
-  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-    be automatic}
-
-  Initial State:
-
-  Input:
-
-  Output: \wss{The expected result for the given inputs}
-
-  Test Case Derivation: \wss{Justify the expected value given in the Output field}
-
-  How test will be performed:
-
-  \item{...\\}
-
+\textbf{Name:} FetchRenderSettings \label{itm:Test-AM-FRS} \\
+\textbf{Test ID:} Test-AM-FRS \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running with a default or previously configured set of render settings. \\
+\textbf{Input/Condition:} - \\
+\textbf{Output/Result:} Dictionary of current render settings \\
+\textbf{Test Case Derivation:} Testing that the function retrieves the current render settings without requiring any input. We also consider the default configuration scenario to ensure correct behavior.\\
+\textbf{How test will be performed:}
+\begin{enumerate}
+    \item Invoke FetchRenderSettings in a running system.
+    \item Confirm that it returns a valid dictionary of render settings matching the current configuration.
 \end{enumerate}
 
-\subsubsection{Module 2}
+\subsection{Touring Module}
 
-...
-
-\subsection{Tests for Nonfunctional Requirements}
-
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
-
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
-
-\subsubsection{Module ?}
-
+\subsubsection{StartTour}
+\textbf{Name:} StartTour \label{itm:Test-TM-ST} \\
+\textbf{Test ID:} Test-TM-ST \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and a valid tour exists but has not started. \\
+\textbf{Input/Condition:} Tour ID \\
+\textbf{Output/Result:} Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that a tour can be started with a valid Tour ID. We also consider edge cases (e.g., invalid Tour ID) to ensure correct behavior or exception handling. \\
+\textbf{How test will be performed:}
 \begin{enumerate}
-
-  \item{test-id1\\}
-
-  Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-    be automatic}
-
-  Initial State:
-
-  Input/Condition:
-
-  Output/Result:
-
-  How test will be performed:
-
-  \item{test-id2\\}
-
-  Type: Functional, Dynamic, Manual, Static etc.
-
-  Initial State:
-
-  Input:
-
-  Output:
-
-  How test will be performed:
-
+    \item Invoke \textbf{StartTour} with a valid Tour ID and confirm it returns \texttt{true}.
+    \item Invoke \textbf{StartTour} with an invalid Tour ID and confirm it throws an InvalidTourIDException.
 \end{enumerate}
 
-\subsubsection{Module ?}
+\subsubsection{PauseTour}
+\textbf{Name:} PauseTour \label{itm:Test-TM-PT} \\
+\textbf{Test ID:} Test-TM-PT \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and a tour is currently active. \\
+\textbf{Input/Condition:} - \\
+\textbf{Output/Result:} Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that an active tour can be paused without any specific input. \\
+\textbf{How test will be performed:}
+\begin{enumerate}
+    \item Start a tour using \textbf{StartTour}.
+    \item Invoke \textbf{PauseTour} and confirm it returns \texttt{true}.
+    \item Verify that the tour’s state changes to a paused state in the system.
+\end{enumerate}
 
-...
+\subsubsection{EndTour}
+\textbf{Name:} EndTour \label{itm:Test-TM-ET} \\
+\textbf{Test ID:} Test-TM-ET \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and a tour is currently active or paused. \\
+\textbf{Input/Condition:} - \\
+\textbf{Output/Result:} Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that an active or paused tour can be ended. \\
+\textbf{How test will be performed:}
+\begin{enumerate}
+    \item Start a tour using \textbf{StartTour}
+    \item Invoke \textbf{EndTour} and confirm it returns true.
+\end{enumerate}
 
-\subsection{Traceability Between Test Cases and Modules}
+\subsubsection{FetchTourDetails}
+\textbf{Name:} FetchTourDetails \label{itm:Test-TM-FTD} \\
+\textbf{Test ID:} Test-TM-FTD \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and at least one valid tour ID is known. \\
+\textbf{Input/Condition:} Tour ID \\
+\textbf{Output/Result:} Tour Object \\
+\textbf{Test Case Derivation:} Testing that the function retrieves detailed information about a specific tour. \\
+\textbf{How test will be performed:} Invoke \textbf{FetchTourDetails} with a valid Tour ID and verify it returns the correct Tour Object.
 
-\wss{Provide evidence that all of the modules have been considered.}
+ \subsection{Tour LIst Module}
 
-\end{comment}
+ \subsubsection{FetchTourList}
+\textbf{Name:} FetchTourList \label{itm:Test-TM-FTL} \\
+\textbf{Test ID:} Test-TM-FTL \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in. \\
+\textbf{Input/Condition:} None \\
+\textbf{Output/Result:} Array of Tours \\
+\textbf{Test Case Derivation:} Testing that a list of all available tours can be fetched without any specific input. \\
+\textbf{How test will be performed:}
+\begin{enumerate}
+    \item Invoke \textbf{FetchTourList} in a running system.
+    \item Verify that it returns an \textit{Array of Tours} containing all currently available tours.
+\end{enumerate}
+
+\subsubsection{SearchTours}
+\textbf{Name:} SearchTours \label{itm:Test-TM-STQ} \\
+\textbf{Test ID:} Test-TM-STQ \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and there are multiple tours available. \\
+\textbf{Input/Condition:} Search Query \\
+\textbf{Output/Result:} Array of Tours \\
+\textbf{Test Case Derivation:} Testing that the function can return tours filtered by a given search query. We also consider edge cases, like an empty or irrelevant query. \\
+\textbf{How test will be performed:}
+\begin{enumerate}
+    \item Invoke \textbf{SearchTours} with a valid query (e.g., a known keyword).
+    \item Verify that the returned \textit{Array of Tours} matches the search criteria.
+    \item Invoke \textbf{SearchTours} with an empty or irrelevant query to ensure it returns an empty array or no matching results.
+\end{enumerate}
+
+\subsection{Tour Management Module}
+\subsubsection{CreateTour}
+\textbf{Name:} CreateTour \label{itm:Test-TM-CT} \\
+\textbf{Test ID:} Test-TM-CT \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and the environment allows creation of new tours. \\
+\textbf{Input/Condition:} Tour Object \\
+\textbf{Output/Result:} Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that a new tour can be created with valid tour data. We also consider edge cases (e.g., invalid tour data) to ensure correct behavior or exception handling (e.g., \textbf{InvalidTourDataException}).\\
+\textbf{How test will be performed:}
+\begin{enumerate}
+    \item Invoke \textbf{CreateTour} with a valid Tour Object and verify it returns true.
+    \item Invoke \textbf{CreateTour} with invalid tour data to ensure it throws InvalidTourDataException.
+\end{enumerate}
+
+\subsubsection{UpdateTour}
+\textbf{Name:} UpdateTour \label{itm:Test-TM-UT} \\
+\textbf{Test ID:} Test-TM-UT \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and at least one valid tour exists. \\
+\textbf{Input/Condition:} Tour ID, Updated Tour Data \\
+\textbf{Output/Result:} Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that an existing tour can be updated with new data. We also consider edge cases (e.g., invalid Tour ID) to ensure correct behavior or exception handling (e.g., \textbf{InvalidTourIDException}).\\
+\textbf{How test will be performed:}
+\begin{enumerate}
+    \item Invoke UpdateTour with a valid Tour ID and valid updated tour data. Verify it returns true.
+    \item Invoke UpdateTour with an invalid Tour ID to ensure it throws InvalidTourIDException.
+\end{enumerate}
+
+\subsubsection{DeleteTour}
+\textbf{Name:} DeleteTour \label{itm:Test-TM-DT} \\
+\textbf{Test ID:} Test-TM-DT \\
+\textbf{Type:} Manual \\
+\textbf{Initial State:} System is running, user is logged in, and at least one valid tour ID is known. \\
+\textbf{Input/Condition:} Tour ID \\
+\textbf{Output/Result:} Bool - Success or Fail \\
+\textbf{Test Case Derivation:} Testing that an existing tour can be deleted with a valid tour ID. We also consider edge cases (e.g., invalid Tour ID) to ensure correct behavior or exception handling (e.g., \textbf{InvalidTourIDException}).\\
+\textbf{How test will be performed:}
+\begin{enumerate}
+    \item Invoke DeleteTour with a valid Tour ID and confirm it returns true.
+    \item Invoke DeleteTour with an invalid Tour ID to ensure it throws InvalidTourIDException.
+\end{enumerate}
+
 
 \printbibliography
 
