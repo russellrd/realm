@@ -12,10 +12,8 @@
     urlcolor=blue
 }
 
-\usepackage{multibib}
+
 \usepackage[style=ieee]{biblatex}
-\newcites{doc}{Documentation Bibliography}
-\newcites{ref}{References}
 \addbibresource[datatype=bibtex]{bibliography/documentation.bib}
 \addbibresource[datatype=bibtex]{bibliography/references.bib}
 
@@ -1760,7 +1758,64 @@ Documents Act (PIPEDA) \cite{PIPEDA} compliance \label{itm:Test-CO1} \\
 
 \section{Unit Test Description}
 
-This section will contain descriptions of the unit tests derived from the MIS, which will be completed in a later iteration of this document
+This section contains descriptions of the unit tests derived from the MIS.
+
+\subsection{Settings Module Testing}
+\begin{enumerate}
+  \item \textbf{Name:} Key Validation \label{itm:Test-SM1} \\
+  \textbf{Test ID:} Test-SM1 \\
+  \textbf{Type:} Functional, Automated \\
+  \textbf{Initial State:} Settings module is initialized \\
+  \textbf{Input/Condition:} One key that is a valid settings key, and another that is not  \\
+  \textbf{Output/Result:} The function should return true for the valid key, and false for the invalid key  \\
+  \textbf{How test will be performed:} The \textbf{ValidateKey} method on the settings module will be called with the inputs
+
+  \item \textbf{Name:} Ensure Valid Profile Details \label{itm:Test-SM2} \\
+  \textbf{Test ID:} Test-SM2 \\
+  \textbf{Type:} Functional, Automated \\
+  \textbf{Initial State:} Settings module is initialized \\
+  \textbf{Input/Condition:} A valid user settings object  \\
+  \textbf{Output/Result:} The function should return an object matching the schema of the valid user settings object  \\
+  \textbf{How test will be performed:} The \textbf{FetchProfileDetails} method on the settings module will be called with the inputs
+
+\end{enumerate}
+
+\subsection{Help Module Testing}
+\begin{enumerate}
+  \item \textbf{Name:} String Search \label{itm:Test-HM1} \\
+  \textbf{Test ID:} Test-HM1 \\
+  \textbf{Type:} Functional, Automated \\
+  \textbf{Initial State:} Help module is initialized \\
+  \textbf{Input/Condition:} Partial and full keywords matching help items  \\
+  \textbf{Output/Result:} The search result outputs should match the precomputed expected search results for the provided search terms  \\
+  \textbf{How test will be performed:} The \textbf{SearchHelp} method on the help module will be called with the inputs
+
+\end{enumerate}
+
+
+\subsection{Collision Detection Module Testing}
+\begin{enumerate}
+  \item \textbf{Name:} Detect Collision \label{itm:Test-CD1} \\
+  \textbf{Test ID:} Test-CD1 \\
+  \textbf{Type:} Functional, Automated \\
+  \textbf{Initial State:} Collision detection module is initialized \\
+  \textbf{Input/Condition:} Mock AR tracking data and device accelerometer data representing hazardous and non-hazardous scenarios \\
+  \textbf{Output/Result:} The function should output true for potential collisions, and false otherwise \\
+  \textbf{How test will be performed:} The \textbf{DetectCollision} method on the collision detection module will be called with the inputs
+
+\end{enumerate}
+
+\subsection{Tour Proximity Module Testing}
+\begin{enumerate}
+  \item \textbf{Name:} Detect Nearby Tour \label{itm:Test-TP1} \\
+  \textbf{Test ID:} Test-TP1 \\
+  \textbf{Type:} Functional, Automated \\
+  \textbf{Initial State:} Tour proximity module is initialized \\
+  \textbf{Input/Condition:} Mock GPS data representing device, and tour positions \\
+  \textbf{Output/Result:} The function should output a list containing all tours within a certain distance, and excluding the rest \\
+  \textbf{How test will be performed:} The \textbf{DetectNearbyTours} method on the tour proximity module will be called with the inputs
+
+\end{enumerate}
 
 \begin{comment}
 \wss{This section should not be filled in until after the MIS (detailed design
