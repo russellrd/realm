@@ -284,13 +284,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e98d99b762c714d8f9773d21dc211f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InvManager: {fileID: 543126599}
+  DBController: {fileID: 1015253190}
+  GPSCon: {fileID: 700314382}
+  objectSpawner: {fileID: 1763584145}
+  helperText: {fileID: 1554272817}
+  CloudAnchorPrefab: {fileID: 9172579932562624880, guid: 094f78ab3135139468be820d08a415f3, type: 3}
+  MapQualityIndicatorPrefab: {fileID: 1627662587363780, guid: 7010630cc9661cc4c95f1da482f8ec18, type: 3}
+  m_DeleteButton: {fileID: 57717273}
+  m_ConfirmButton: {fileID: 1165999800}
+  m_CancelButton: {fileID: 824013257}
+  m_Interaction: {fileID: 1916437805}
+  m_TapStartPositionInput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Tap Start Position
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: 5f8c8c9c-c839-476a-8fa0-f73905ea22b9
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: 2494954584338170553, guid: 39a235d3075a8b442a6542452b5cb4f6, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: {x: 0, y: 0}
+  m_DragCurrentPositionInput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Drag Current Position
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: d3c190e0-5c8b-417f-893b-a43fcb7751a0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -7530398834462728267, guid: 39a235d3075a8b442a6542452b5cb4f6, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: {x: 0, y: 0}
   Origin: {fileID: 373260286}
   SessionCore: {fileID: 219992902}
   Extensions: {fileID: 137124121}
   AnchorManager: {fileID: 373260294}
   PlaneManager: {fileID: 373260292}
   RaycastManager: {fileID: 373260291}
-  DBController: {fileID: 1015253190}
   Step: 0
 --- !u!1 &137124120
 GameObject:
@@ -964,45 +1002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60165ae2c8401c946ba452f8457b7236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 121840790}
-  DBCon: {fileID: 1015253190}
-  GPSCon: {fileID: 700314382}
-  CloudAnchorPrefab: {fileID: 9172579932562624880, guid: 094f78ab3135139468be820d08a415f3, type: 3}
-  MapQualityIndicatorPrefab: {fileID: 1627662587363780, guid: 7010630cc9661cc4c95f1da482f8ec18, type: 3}
-  m_CreateButton: {fileID: 1262782066}
-  m_DeleteButton: {fileID: 57717273}
-  m_ConfirmButton: {fileID: 1165999800}
-  m_CancelButton: {fileID: 824013257}
-  m_Interaction: {fileID: 1916437805}
-  m_TapStartPositionInput:
-    m_InputSourceMode: 2
-    m_InputAction:
-      m_Name: Tap Start Position
-      m_Type: 0
-      m_ExpectedControlType: Vector2
-      m_Id: 0e583774-039f-487e-8ad3-c84d3dd23059
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReference: {fileID: 2494954584338170553, guid: 39a235d3075a8b442a6542452b5cb4f6, type: 3}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualValue: {x: 0, y: 0}
-  m_DragCurrentPositionInput:
-    m_InputSourceMode: 2
-    m_InputAction:
-      m_Name: Drag Current Position
-      m_Type: 0
-      m_ExpectedControlType: Vector2
-      m_Id: eadcb339-cc3c-4ae8-938e-605560a0d9f5
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReference: {fileID: -7530398834462728267, guid: 39a235d3075a8b442a6542452b5cb4f6, type: 3}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualValue: {x: 0, y: 0}
-  helperText: {fileID: 1554272817}
   uiInventory: {fileID: 3443966452150338082}
   inventoryData: {fileID: 11400000, guid: 8d47f2e0df1e7694eb31267235e09c1b, type: 2}
   HUD: {fileID: 1555021653}
@@ -1014,6 +1013,7 @@ MonoBehaviour:
   - arObjectPreview: {fileID: 11400000, guid: 8c3c7bffb68374340aa307941532379a, type: 2}
   - arObjectPreview: {fileID: 11400000, guid: a093ee961b87ae34c91bc37697226874, type: 2}
   - arObjectPreview: {fileID: 11400000, guid: ce8998c4b36ee1746a08059b66c609d1, type: 2}
+  m_CreateButton: {fileID: 1262782066}
 --- !u!1 &660527232
 GameObject:
   m_ObjectHideFlags: 0
