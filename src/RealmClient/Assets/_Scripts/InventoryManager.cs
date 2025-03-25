@@ -11,11 +11,18 @@ using UnityEngine.XR.ARSubsystems;
 using TMPro;
 using System.Threading.Tasks;
 using UnityEngine.XR.Interaction.Toolkit.Transformers;
+using Unity.VisualScripting;
 
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField]
     PlacementController controller;
+
+    [SerializeField]
+    DatabaseController DBCon;
+
+    [SerializeField]
+    GPSController GPSCon;
 
     [SerializeField]
     GameObject CloudAnchorPrefab;
@@ -115,6 +122,8 @@ public class InventoryManager : MonoBehaviour
 
     bool m_IsPointerOverUI;
     bool m_ShowObjectInventory;
+
+    private GPSCoordinate anchorCoordinates = null;
 
     private MapQualityIndicator _qualityIndicator = null;
 
@@ -517,8 +526,6 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        Debug.Log("V");
-
         controller.ResolvingSet.Clear();
     }
 
@@ -558,7 +565,15 @@ public class InventoryManager : MonoBehaviour
             GameObject go = getPrefab(getPlacementObject().gameObject.name);
             go.GetComponent<ARTransformer>().enabled = false;
             Instantiate(go, anchor.transform.position, anchor.transform.rotation);
-            controller.saveARObject("test", response, "9k02b8c701xv4w5", getPlacementObject().name, getPlacementObject().transform.localScale.x);
+            controller.saveARObject(
+                "test",
+                response,
+                DBCon.pb.AuthStore.Model.Id,
+                getPlacementObject().name,
+                getPlacementObject().transform.localScale.x,
+                anchorCoordinates.latitude,
+                anchorCoordinates.longitude
+            );
             Destroy(anchor);
             Destroy(getPlacementObject().gameObject);
             controller.Step = PlacementController.PlacementStep.None;
@@ -629,6 +644,7 @@ public class InventoryManager : MonoBehaviour
 
     public void ConfirmPlacement()
     {
+        anchorCoordinates = GPSCon.GetCurrentGPSCoordinates();
         controller.Step = PlacementController.PlacementStep.Anchor;
     }
 

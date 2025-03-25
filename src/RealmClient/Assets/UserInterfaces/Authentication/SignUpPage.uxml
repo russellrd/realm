@@ -6,6 +6,7 @@
             <engine:TextField placeholder-text="Name" name="Name" class="form" />
             <engine:TextField placeholder-text="Email" name="Username" class="form" />
             <engine:TextField placeholder-text="Password" name="Password" password="true" class="field form" />
+            <engine:DropdownField name="Type" choices="General,Organization" index="0" style="flex-direction: row; width: 90%; height: 100px; margin-top: 20px; font-size: 64px;" />
             <engine:Button text="Sign Up" name="SignUp" class="form button" />
             <engine:Label text="Already have an account?" class="separate-bottom-text" />
             <engine:Button text="Sign In" name="ReturnToSignIn" class="text-button" />

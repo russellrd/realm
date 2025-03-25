@@ -47,7 +47,7 @@ public class PlacementController : MonoBehaviour
         }
     }
 
-    public async void saveARObject(string name, string anchorId, string userId, string modelId, float scale)
+    public async void saveARObject(string name, string anchorId, string userId, string modelId, float scale, double latitude, double longitude)
     {
         AnchorDTO anchorDTO = new()
         {
@@ -55,7 +55,9 @@ public class PlacementController : MonoBehaviour
             AnchorId = anchorId,
             UserId = userId,
             ModelId = modelId,
-            Scale = scale
+            Scale = scale,
+            Latitude = latitude,
+            Longitude = longitude
         };
 
         try

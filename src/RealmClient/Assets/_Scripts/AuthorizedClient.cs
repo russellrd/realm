@@ -29,14 +29,15 @@ public class AuthorizedClient : MonoBehaviour
         return userData;
     }
 
-    public async void createNewUser(string name, string email, string password)
+    public async void createNewUser(string name, string email, string password, string type)
     {
         UserCreateDTO data = new()
         {
             Name = name,
             Email = email,
             Password = password,
-            PasswordConfirm = password
+            PasswordConfirm = password,
+            Type = type
         };
 
         try

@@ -965,6 +965,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 121840790}
+  DBCon: {fileID: 1015253190}
+  GPSCon: {fileID: 700314382}
   CloudAnchorPrefab: {fileID: 9172579932562624880, guid: 094f78ab3135139468be820d08a415f3, type: 3}
   MapQualityIndicatorPrefab: {fileID: 1627662587363780, guid: 7010630cc9661cc4c95f1da482f8ec18, type: 3}
   m_CreateButton: {fileID: 1262782066}
@@ -1045,6 +1047,51 @@ Transform:
   - {fileID: 1386026473}
   - {fileID: 219355475}
   m_Father: {fileID: 373260287}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &700314381
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 700314383}
+  - component: {fileID: 700314382}
+  m_Layer: 0
+  m_Name: GPS Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &700314382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700314381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3960a07fc888a084bbcc62f84d336066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gpsOn: 0
+--- !u!4 &700314383
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700314381}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &704710551
 GameObject:
@@ -3232,3 +3279,4 @@ SceneRoots:
   - {fileID: 373260287}
   - {fileID: 1015253189}
   - {fileID: 121840789}
+  - {fileID: 700314383}
