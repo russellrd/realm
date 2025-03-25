@@ -69,4 +69,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+Realm_BurstDebugInformation_DoNotShip
+.utmp
+
 !/[Aa]ssets/Samples/XR Interaction Toolkit/3.0.6

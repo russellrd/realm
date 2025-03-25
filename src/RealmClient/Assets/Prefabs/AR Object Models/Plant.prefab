@@ -370,14 +370,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 86607162793496018}
     m_Modifications:
+    - target: {fileID: 2489836559761890320, guid: eb9104ef66b7305468adb3697fdeed5e, type: 3}
+      propertyPath: m_AffordanceThemeDatum.m_Variable
+      value: 
+      objectReference: {fileID: 11400000, guid: d5504b88946c14d2b877dca02a8aecfc, type: 2}
+    - target: {fileID: 7396278978564332023, guid: eb9104ef66b7305468adb3697fdeed5e, type: 3}
+      propertyPath: m_Renderer
+      value: 
+      objectReference: {fileID: 3471538223933167219, guid: ebd7292e888c84f05924605e51048072, type: 3}
+    - target: {fileID: 8634317094661461186, guid: eb9104ef66b7305468adb3697fdeed5e, type: 3}
+      propertyPath: m_InteractableSource
+      value: 
+      objectReference: {fileID: 2996392715678626154, guid: ebd7292e888c84f05924605e51048072, type: 3}
     - target: {fileID: 2489836559761890320, guid: ec1f07175ab091349a262fefb6f865d5, type: 3}
       propertyPath: m_ColorPropertyName
-      value: _BaseColor
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2489836559761890320, guid: ec1f07175ab091349a262fefb6f865d5, type: 3}
       propertyPath: m_AffordanceThemeDatum.m_Variable
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d5504b88946c14d2b877dca02a8aecfc, type: 2}
     - target: {fileID: 3774509235512974894, guid: ec1f07175ab091349a262fefb6f865d5, type: 3}
       propertyPath: m_Name
       value: InteractionAffordance
@@ -425,19 +437,7 @@ PrefabInstance:
     - target: {fileID: 8634317094661461186, guid: ec1f07175ab091349a262fefb6f865d5, type: 3}
       propertyPath: m_InteractableSource
       value: 
-      objectReference: {fileID: 164355135085226006, guid: cec25213e5ba74da1ae7d3e2036e000d, type: 3}
-    - target: {fileID: 2489836559761890320, guid: eb9104ef66b7305468adb3697fdeed5e, type: 3}
-      propertyPath: m_AffordanceThemeDatum.m_Variable
-      value: 
-      objectReference: {fileID: 11400000, guid: d5504b88946c14d2b877dca02a8aecfc, type: 2}
-    - target: {fileID: 7396278978564332023, guid: eb9104ef66b7305468adb3697fdeed5e, type: 3}
-      propertyPath: m_Renderer
-      value: 
-      objectReference: {fileID: 3471538223933167219, guid: ebd7292e888c84f05924605e51048072, type: 3}
-    - target: {fileID: 8634317094661461186, guid: eb9104ef66b7305468adb3697fdeed5e, type: 3}
-      propertyPath: m_InteractableSource
-      value: 
-      objectReference: {fileID: 2996392715678626154, guid: ebd7292e888c84f05924605e51048072, type: 3}
+      objectReference: {fileID: 3835721450804031776}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

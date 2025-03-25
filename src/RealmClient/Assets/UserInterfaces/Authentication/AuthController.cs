@@ -23,6 +23,8 @@ public class AuthController : MonoBehaviour
     private Button createNewAccount;
     private Button returnToSignIn;
 
+    private DropdownField typeSU;
+
     private void Awake()
     {
         signInUI = signInPage.rootVisualElement;
@@ -39,6 +41,8 @@ public class AuthController : MonoBehaviour
         nameField = signUpUI.Q<TextField>("Name");
         usernameSU = signUpUI.Q<TextField>("Username");
         passwordSU = signUpUI.Q<TextField>("Password");
+
+        typeSU = signUpUI.Q<DropdownField>("Type");
 
         passwordSI.isPasswordField = true;
 
@@ -68,7 +72,7 @@ public class AuthController : MonoBehaviour
 
     private void handleSignUp()
     {
-        client.createNewUser(nameField.text, usernameSU.text, passwordSU.text);
+        client.createNewUser(nameField.text, usernameSU.text, passwordSU.text, typeSU.value);
         goToMainScreen();
     }
 
