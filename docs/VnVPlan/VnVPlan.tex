@@ -39,7 +39,9 @@
   \midrule
   2025/03/11          & 1.1           & Unit tests added \\
   \midrule
-  2025/03/25          & 1.2           & Refinements made based on critique \\
+  2025/03/24          & 1.2           & Refinements made based on critique \\
+  \midrule
+  2025/03/25          & 1.3           & Removed references to features we are no longer implemented; Fixed formatting issues \\
   \bottomrule
 \end{tabularx}
 
@@ -60,7 +62,7 @@ The section covers general information about the AR application, \textit{Realm},
 
 \subsection{Summary}
 
-The software being tested is "Realm", an AR social platform. The platform allows users to place AR objects in the real world for others to see and allows organizations to create AR tours to provide users with high-quality experiences. This document will include tests for all requirements as well as the design plan for validation and verification.
+The software being tested is "Realm", an AR touring platform. The platform allows users to place AR objects in the real world for others to see and allows organizations to create AR tours to provide users with high-quality experiences. This document will include tests for all requirements as well as the design plan for validation and verification.
 
 \subsection{Objectives}
 
@@ -71,7 +73,7 @@ The primary objectives for the validation and verification of Realm are as follo
 
   \item \textbf{Verify usability and engagement}: Usability testing will focus on confirming that users can seamlessly navigate through the app, and interact with AR objects and other users. This includes ease of use, intuitiveness of the AR controls, and overall satisfaction with the social sharing features. \\
 
-  \item \textbf{Data security and privacy assurance}: Given the app's social and AR elements, it's essential to ensure that all user data, including images and interaction history, is securely managed and protected from unauthorized access. \\
+  \item \textbf{Data security and privacy assurance}: Given the app's AR elements, it's essential to ensure that all user data, including images and interaction history, is securely managed and protected from unauthorized access. \\
 \end{itemize}
 
 Due to limited resources, the following objectives will not be prioritized in this phase: \\
@@ -97,11 +99,11 @@ This document contains information garnered from all the previous documentation 
 \endgroup
 
 \begin{itemize}
-  \item The Problem Statement \cite{ProblemStatement} is a good reference to understand the context in which all of the requirements come from. The plans in this document should reflect the goals outlined in the Problem Statement.
-  \item The Development Plan \cite{DevelopmentPlan} has a list of team member roles which are should be considered when writing about a team member's testing role.
-  \item The SRS \cite{SRS} contains all of the functional (FR) and non-functional (NFR) requirements that were found in the elicitation process and those that were found after the initial version. This document strives to have a plan for each of these requirements.
-  \item The HA \cite{HA} has many considerations for potential hazards and mitigation strategies to reduce the project risk. There are many new FRs and NFRs that were derived from this analysis that need to be verified and validated.
-  \item The VnV Plan \cite{VnV} itself is also subject to verification as outlined by the \nameref{ssub:vnv_plan_verificaiton_plan} sub-section.
+  \item The Problem Statement is a good reference to understand the context in which all of the requirements come from. The plans in this document should reflect the goals outlined in the Problem Statement.
+  \item The Development Plan has a list of team member roles which are should be considered when writing about a team member's testing role.
+  \item The SRS contains all of the functional (FR) and non-functional (NFR) requirements that were found in the elicitation process and those that were found after the initial version. This document strives to have a plan for each of these requirements.
+  \item The Hazard Analysis has many considerations for potential hazards and mitigation strategies to reduce the project risk. There are many new FRs and NFRs that were derived from this analysis that need to be verified and validated.
+  \item The VnV Plan itself is also subject to verification as outlined by the \nameref{ssub:vnv_plan_verificaiton_plan} sub-section.
 \end{itemize}
 
 \newrefsection
@@ -111,6 +113,7 @@ This document contains information garnered from all the previous documentation 
 
 This section outlines the structured plan for verifying and validating our project at each stage of development. It first lists the roles of the team members involved in verification, the strategies for ensuring the accuracy of our requirements, design, and implementation, as well as the tools we'll use for automated testing. Each part is designed to ensure our project meets quality standards and fulfills its intended purpose.
 
+\newpage
 \subsection{Verification and Validation Team}
 
 \begin{table}[h!]
@@ -275,23 +278,6 @@ This section focuses on verifying the user interactions with the app's built-in 
         \textbf{Output/Result:} Test AR object appears in correct position and orientation as expected from the known alignment and reference screenshots, position also matches stored object instance data \\
         \textbf{How test will be performed:} Automated tests will compare object instance data, while a manual test will involve the tester visually confirming the position accuracy in the camera view.
 
-
-  \item \textbf{Name:} Validate Sub-Realm Selection Indicator \label{itm:Test-RI4} \\
-        \textbf{Test ID:} Test-RI4 \\
-        \textbf{Type:} Functional, Manual \\
-        \textbf{Initial State:} Realm interface is open with a sub-realm selected. \\
-        \textbf{Input/Condition:} Tester views the interface with a sub-realm selected. \\
-        \textbf{Output/Result:} The current sub-realm is clearly indicated on the interface. \\
-        \textbf{How test will be performed:} Tester observes the interface to ensure that the active sub-realm is always visually indicated.
-
-  \item \textbf{Name:} Validate Sub-Realm Selection Change \label{itm:Test-RI5} \\
-        \textbf{Test ID:} Test-RI5 \\
-        \textbf{Type:} Functional, Manual \\
-        \textbf{Initial State:} Realm interface is open with a sub-realm selected, tester is in area with object instances from multiple sub-realms \\
-        \textbf{Input/Condition:} Tester attempts to change the sub-realm using the interface controls. \\
-        \textbf{Output/Result:} The interface updates to display the newly selected sub-realm, and the correct object instances appear. \\ \textbf{How test will be performed:} Tester selects a new sub-realm and observes if the displayed objects and interface reflect the new selection.
-
-
   \item \textbf{Name:} Validate Object Placement Workflow Control \label{itm:Test-RI6} \\
         \textbf{Test ID:} Test-RI6 \\
         \textbf{Type:} Functional, Manual \\
@@ -299,15 +285,6 @@ This section focuses on verifying the user interactions with the app's built-in 
         \textbf{Input/Condition:} Tester attempts to access the object placement workflow via the provided control. \\
         \textbf{Output/Result:} Tester is successfully redirected to the object placement workflow. \\
         \textbf{How test will be performed:} Tester selects the object placement control and verifies redirection to the appropriate workflow screen.
-
-  \item \textbf{Name:} Validate Object Scanning Workflow Control \label{itm:Test-RI7} \\
-        \textbf{Test ID:} Test-RI7 \\
-        \textbf{Type:} Functional, Manual \\
-        \textbf{Initial State:} Realm interface is open. \\
-        \textbf{Input/Condition:} Tester attempts to access the object scanning workflow via the provided control. \\
-        \textbf{Output/Result:} Tester is successfully redirected to the object scanning workflow. \\
-        \textbf{How test will be performed:} Tester selects the object scanning control and verifies redirection to the appropriate workflow screen.
-
 
   \item \textbf{Name:} Validate Nearby Tour Indication \label{itm:Test-RI8} \\
         \textbf{Test ID:} Test-RI8 \\
@@ -324,7 +301,6 @@ This section focuses on verifying the user interactions with the app's built-in 
         \textbf{Input/Condition:} Tester moves closer to a hazard in real space. \\
         \textbf{Output/Result:} Interface displays a clear warning when user approaches the hazard. \\
         \textbf{How test will be performed:} Tester approaches a wall with the realm interface open, and verifies that a warning appears.
-
 
   \item \textbf{Name:} Validate Offline Mode for Interactive Components \label{itm:Test-RI10} \\
         \textbf{Test ID:} Test-RI10 \\
@@ -349,14 +325,6 @@ This section focuses on verifying the user interactions with the app's built-in 
         \textbf{Output/Result:} Interface successfully proceeds to sub-realm selection step with the selected object \\
         \textbf{How test will be performed:} Tester initiates object placement workflow and progresses to object selection step. They then use one of the object selection methods to select an object and validate that the interface moves on to sub-realm selection with the selected object. They select the option to return to object selection, and repeat the process for all object selection methods.
 
-  \item \textbf{Name:} Validate Sub-Realm Selection Stage \label{itm:Test-OP2} \\
-        \textbf{Test ID:} Test-OP2 \\
-        \textbf{Type:} Functional, Manual \\
-        \textbf{Initial State:} Tester has progressed object placement workflow to sub-realm selection stage, and is part of multiple sub-realms \\
-        \textbf{Input/Condition:} Tester selects multiple sub-realms for sharing the object instance. \\
-        \textbf{Output/Result:} The system associates the selected sub-realms with the object instance upon placement. \\
-        \textbf{How test will be performed:} Tester initiates object placement workflow and progresses to sub-realm selection step. They then select multiple sub-realms before placing the object, verifying that the correct sub-realms are associated by checking the object instance database entries.
-
   \item \textbf{Name:} Validate Object Placement Stage \label{itm:Test-OP3} \\
         \textbf{Test ID:} Test-OP3 \\
         \textbf{Type:} Functional, Manual \\
@@ -372,8 +340,7 @@ This section focuses on verifying the user interactions with the app's built-in 
         \textbf{Input/Condition:} Tester checks the AR object instance database \\
         \textbf{Output/Result:} The AR object instance that the tester placed is present with correct details, including object type, sub-realm(s), position, and orientation. \\
         \textbf{How test will be performed:} Tester completes the object placement workflow then checks the AR object instance database and verifies the presence and correctness of their newly created object instance.
-
-
+        
   \item \textbf{Name:} Validate Area Based Placement Limit \label{itm:Test-OP5} \\
         \textbf{Test ID:} Test-OP5 \\
         \textbf{Type:} Functional, Automated and Manual \\
@@ -653,105 +620,6 @@ The Profile Screen Testing focuses on verifying user interactions related to pro
         \textbf{How test will be performed:} Tester navigates to the help page and verifies the presence and accuracy of the information.
 \end{enumerate}
 
-\subsubsection{Sub-Realm Testing}
-\label{sec:sub-realms_testing}
-
-The Sub-Realms Testing focuses on verifying user interactions related to creating, managing, and interacting within sub-realms. These tests ensure that users can efficiently create sub-realms, manage sub-realm members, and interact with sub-realm-specific content, which is essential for fostering collaboration and community engagement within the app.
-
-\begin{enumerate}
-
-  \item \textbf{Name:} {Create New Sub-Realm} \label{itm:Test-G1}\\
-        \textbf{Test ID:} Test-G1\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, on sub-realms page. \\
-        \textbf{Input:} User provides a sub-realm name, description, and invites members. \\
-        \textbf{Output:} The expected result is that a new sub-realm is created with the specified details, and invited members are notified. \\
-        \textbf{Test Case Derivation:} To verify that users can create new sub-realms with relevant details and invite members. \\
-        \textbf{How test will be performed:} Tester manually creates a sub-realm and verifies that the sub-realm is created with the correct details and members are notified.
-
-  \item \textbf{Name:} {Add or Remove Sub-Realm Members} \label{itm:Test-G2}\\
-        \textbf{Test ID:} Test-G2\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, viewing a sub-realm they manage. \\
-        \textbf{Input:} User adds or removes specific members from the sub-realm. \\
-        \textbf{Output:} The expected result is that sub-realm membership updates accordingly, reflecting added or removed members. \\
-        \textbf{Test Case Derivation:} Ensure the sub-realm manager can manage sub-realm membership. \\
-        \textbf{How test will be performed:} Tester adds and removes members from the sub-realm and verifies that the changes are reflected.
-
-  \item \textbf{Name:} {Edit Sub-Realm Settings} \label{itm:Test-G3}\\
-        \textbf{Test ID:} Test-G3\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, viewing a sub-realm they manage. \\
-        \textbf{Input:} User changes sub-realm name or description. \\
-        \textbf{Output:} The expected result is that sub-realm settings update with the new name or description. \\
-        \textbf{Test Case Derivation:} Verify that sub-realm settings can be modified by the sub-realm manager. \\
-        \textbf{How test will be performed:} Tester edits the sub-realm settings and checks that the changes are applied.
-
-  \item \textbf{Name:} {Delete Sub-Realm} \label{itm:Test-G4}\\
-        \textbf{Test ID:} Test-G4\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, viewing a sub-realm they manage. \\
-        \textbf{Input:} User selects the option to delete the sub-realm. \\
-        \textbf{Output:} The expected result is that the sub-realm and all associated data are removed from the system. \\
-        \textbf{Test Case Derivation:} Ensure that sub-realm managers can delete sub-realms and remove associated data. \\
-        \textbf{How test will be performed:} Tester deletes a sub-realm and verifies that it no longer exists in the system.
-
-  \item \textbf{Name:} {Interact with Sub-Realm AR Content} \label{itm:Test-G5}\\
-        \textbf{Test ID:} Test-G5\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, viewing a sub-realm. \\
-        \textbf{Input:} User interacts with sub-realm-specific AR content. \\
-        \textbf{Output:} The expected result is that sub-realm-specific AR content responds to user interactions. \\
-        \textbf{Test Case Derivation:} Verify that users can interact with shared AR content within the sub-realm. \\
-        \textbf{How test will be performed:} Tester interacts with sub-realm-specific AR content and observes responses.
-
-\end{enumerate}
-
-\subsubsection{Friends Testing}
-\label{sec:friends_screen_testing}
-
-The Friends Screen Testing focuses on verifying user interactions related to managing friends, including sending requests, accepting or rejecting requests, and viewing or removing friends. These tests ensure that users can effectively manage their friend connections within the app, which is important for social interaction and network building.
-
-\begin{enumerate}
-
-  \item \textbf{Name:} {Send Friend Request} \label{itm:Test-FS1}\\
-        \textbf{Test ID:} Test-FS1\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, viewing friends screen. \\
-        \textbf{Input:} User sends a friend request to another user. \\
-        \textbf{Output:} The expected result is that the friend request is sent, and the recipient receives a notification. \\
-        \textbf{Test Case Derivation:} To ensure users can initiate friend requests. \\
-        \textbf{How test will be performed:} Tester sends a friend request and verifies that it reaches the recipient.
-
-  \item \textbf{Name:} {Accept or Reject Friend Request} \label{itm:Test-FS2}\\
-        \textbf{Test ID:} Test-FS2\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, viewing pending friend requests. \\
-        \textbf{Input:} User accepts or rejects a friend request. \\
-        \textbf{Output:} The expected result is that the friend list updates with the accepted friend, or the request is removed if rejected. \\
-        \textbf{Test Case Derivation:} Confirm that users can manage incoming friend requests. \\
-        \textbf{How test will be performed:} Tester accepts and rejects friend requests, verifying updates to the friend list.
-
-  \item \textbf{Name:} {View Friend List} \label{itm:Test-FS3}\\
-        \textbf{Test ID:} Test-FS3\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, viewing friends screen. \\
-        \textbf{Input:} None \\
-        \textbf{Output:} The expected result is that a list of current friends is displayed. \\
-        \textbf{Test Case Derivation:} Ensure users can view their list of friends. \\
-        \textbf{How test will be performed:} Tester views the friends screen to check for an accurate friend list.
-
-  \item \textbf{Name:} {Remove Friend} \label{itm:Test-FS4}\\
-        \textbf{Test ID:} Test-FS4\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, viewing friends screen. \\
-        \textbf{Input:} User selects a friend to remove. \\
-        \textbf{Output:} The expected result is that the friend is removed from the user's friend list. \\
-        \textbf{Test Case Derivation:} To verify users can remove friends from their friend list. \\
-        \textbf{How test will be performed:} Tester removes a friend and verifies the friend list updates.
-
-\end{enumerate}
-
 \subsubsection{Settings Testing}
 \label{sec:settings_testing}
 
@@ -794,57 +662,6 @@ The Settings Testing focuses on verifying user interactions related to modifying
         \textbf{Output:} The expected result is that profile settings are updated and saved. \\
         \textbf{Test Case Derivation:} Ensure users can update personal profile information. \\
         \textbf{How test will be performed:} Tester updates profile settings and verifies changes.
-
-  \item \textbf{Name:} {Access Sub-Realm Settings} \label{itm:Test-S5}\\
-        \textbf{Test ID:} Test-S5\\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, viewing settings page. \\
-        \textbf{Input:} User navigates to sub-realm settings to modify sub-realm options. \\
-        \textbf{Output:} The expected result is that sub-realm settings are accessible and configurable. \\
-        \textbf{Test Case Derivation:} To confirm users can manage settings for sub-realms they belong to. \\
-        \textbf{How test will be performed:} Tester accesses and modifies sub-realm settings, verifying updates.
-
-\end{enumerate}
-
-\subsubsection{AR Object creation via Object Scan}
-
-\begin{enumerate}
-
-  \item \textbf{Name:} Surroundings Scan \label{itm:Test-OS1} \\
-        \textbf{Test ID:} Test-OS1 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} App is open and tester navigates to the Object Scanning interface and is ready to scan surroundings. \\
-        \textbf{Input:} Tester initiates a scan of their surroundings using the app. \\
-        \textbf{Output:} The app successfully scans the surroundings within the time limit of 120 seconds and begins creating a digital object. \\
-        \textbf{Test Case Derivation:} Scanning functionality should correctly capture and process environmental data, allowing an object to be generated. \\
-        \textbf{How test will be performed:} The tester will initiate a scan of the surroundings. They will observe the app's response to ensure that the scanning process is working and is being processed and confirm the creation of an object from the scan data.
-
-  \item \textbf{Name:} Object Type Selection \label{itm:Test-OS2} \\
-        \textbf{Test ID:} Test-OS2 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} App is open and tester is ready to begin scanning. Tester is prompted to select an object type. \\
-        \textbf{Input:} Tester selects either a 2D or 3D object scan option before starting the scan. \\
-        \textbf{Output:} The app enables scanning mode according to the selected option (2D or 3D). \\
-        \textbf{Test Case Derivation:} Proper selection should ensure the scanning mode aligns with user preferences and enables appropriate data capture. \\
-        \textbf{How test will be performed:} The tester will choose the 2D or 3D option, select option to begin scanning, and confirm that the app enters the correct mode (either 2D or 3D scan).
-
-  \item \textbf{Name:} Real-Time Render Display \label{itm:Test-OS3} \\
-        \textbf{Test ID:} Test-OS3 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} App is open, tester has navigated to object scanning interface and has began scanning. \\
-        \textbf{Input:} Tester scans their surroundings, and the app captures scan data in real-time via device sensors. \\
-        \textbf{Output:} A real-time render of the scanned portion of the target entity is displayed to the tester as the scan progresses. \\
-        \textbf{Test Case Derivation:} Real-time feedback during scanning helps users understand coverage and accuracy, essential for an intuitive scanning experience. \\
-        \textbf{How test will be performed:} Tester can verify that the rendering is accurate by comparing it to the real target entity as scan progresses. Tester can also verify of the render progrsses along with the real-time scan. \\
-
-  \item \textbf{Name:} Confirm Scanning Completion \label{itm:Test-OS4} \\
-        \textbf{Test ID:} Test-OS4 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} Tester has completed scanning. \\
-        \textbf{Input:} Tester has completed scanning and selects the option to terminate the scan. \\
-        \textbf{Output:} The scanning process is finished, and the app directs the tester to preview the saves or processes the scanned data accordingly. \\
-        \textbf{Test Case Derivation:} Confirmation allows users control over the finalization of the scan, preventing unintended data processing. \\
-        \textbf{How test will be performed:} The tester will complete a scan, then select the “confirm” option. They will observe the app's response to ensure the scanning process is finalized as expected and that the data is processed or saved correctly. \\
 
 \end{enumerate}
 
@@ -1133,7 +950,6 @@ The Settings Testing focuses on verifying user interactions related to modifying
 This section focuses on test cases pertaining to the non-functional requirements.
 
 \subsubsection{Usability Testing}
-
 
 \begin{enumerate}
 
@@ -1482,13 +1298,7 @@ This section focuses on test cases pertaining to the non-functional requirements
     \hline
     \hyperref[itm:Test-RI3]{Test-RI3}     & Validate AR Object Placement Accuracy              & RI-FR1.2              \\
     \hline
-    \hyperref[itm:Test-RI4]{Test-RI4}     & Validate Sub-Realm Selection Indicator             & RI-FR2.1              \\
-    \hline
-    \hyperref[itm:Test-RI5]{Test-RI5}     & Validate Sub-Realm Selection Change                & RI-FR2.2              \\
-    \hline
     \hyperref[itm:Test-RI6]{Test-RI6}     & Validate Object Placement Workflow Control         & RI-FR3                \\
-    \hline
-    \hyperref[itm:Test-RI7]{Test-RI7}     & Validate Object Scanning Workflow Control          & RI-FR4                \\
     \hline
     \hyperref[itm:Test-RI8]{Test-RI8}     & Validate Nearby Tour Indication                    & RI-FR5                \\
     \hline
@@ -1497,8 +1307,6 @@ This section focuses on test cases pertaining to the non-functional requirements
     \hyperref[itm:Test-RI10]{Test-RI10}   & Validate Offline Mode for Interactive Components   & RI-FR7                \\
     \hline
     \hyperref[itm:Test-OP1]{Test-OP1}     & Validate Object Selection Stage                    & OP-FR2.1              \\
-    \hline
-    \hyperref[itm:Test-OP2]{Test-OP2}     & Validate Sub-Realm Selection Stage                 & OP-FR2.2              \\
     \hline
     \hyperref[itm:Test-OP3]{Test-OP3}     & Validate Object Placement Stage                    & OP-FR2.3              \\
     \hline
@@ -1541,24 +1349,6 @@ This section focuses on test cases pertaining to the non-functional requirements
     \hline
     \hyperref[itm:Test-PS4]{Test-PS4} & Access Help Page                      & PS-FR6 \\
     \hline
-    \hyperref[itm:Test-G1]{Test-G1}   & Create New Group                      & G-FR1  \\
-    \hline
-    \hyperref[itm:Test-G2]{Test-G2}   & Add or Remove Group Members           & G-FR2  \\
-    \hline
-    \hyperref[itm:Test-G3]{Test-G3}   & Edit Group Settings                   & G-FR3  \\
-    \hline
-    \hyperref[itm:Test-G4]{Test-G4}   & Delete Group                          & G-FR4  \\
-    \hline
-    \hyperref[itm:Test-G5]{Test-G5}   & Interact with Group AR Content        & G-FR5  \\
-    \hline
-    \hyperref[itm:Test-FS1]{Test-FS1} & Send Friend Request                   & FS-FR1 \\
-    \hline
-    \hyperref[itm:Test-FS2]{Test-FS2} & Accept or Reject Friend Request       & FS-FR2 \\
-    \hline
-    \hyperref[itm:Test-FS3]{Test-FS3} & View Friend List                      & FS-FR3 \\
-    \hline
-    \hyperref[itm:Test-FS4]{Test-FS4} & Remove Friend                         & FS-FR4 \\
-    \hline
     \hyperref[itm:Test-S1]{Test-S1}   & Modify Accessibility Settings         & S-FR1  \\
     \hline
     \hyperref[itm:Test-S2]{Test-S2}   & Adjust Display Settings               & S-FR2  \\
@@ -1566,8 +1356,6 @@ This section focuses on test cases pertaining to the non-functional requirements
     \hyperref[itm:Test-S3]{Test-S3}   & Manage Privacy Settings               & S-FR3  \\
     \hline
     \hyperref[itm:Test-S4]{Test-S4}   & Update Profile Settings               & S-FR4  \\
-    \hline
-    \hyperref[itm:Test-S5]{Test-S5}   & Access Group Settings                 & S-FR5  \\
     \hline
     \hyperref[itm:Test-PT1]{Test-PT1} & Validate Cross-Platform Compatibility & DI-P1  \\
     \hline
@@ -1591,16 +1379,6 @@ This section focuses on test cases pertaining to the non-functional requirements
 \begin{table}[htpb!]
   \centering
   \begin{tabular}{|l|p{8cm}|p{3cm}|}
-    \hline
-    \hyperref[itm:Test-TU1]{Test-TU1} & Tutorial opens on account creation                                                                                    & TU-FR2   \\
-    \hline
-    \hyperref[itm:Test-TU2]{Test-TU2} & Tutorial can be opened through the settings screen                                                                    & TU-FR4   \\
-    \hline
-    \hyperref[itm:Test-TU3]{Test-TU3} & Tutorial involves all major features                                                                                  & TU-FR1   \\
-    \hline
-    \hyperref[itm:Test-TU4]{Test-TU4} & User can exit the tutorial at any time                                                                                & TU-FR3   \\
-    \hline
-    \hyperref[itm:Test-TU5]{Test-TU5} & The tutorial is interactive in a sandbox environment                                                                  & TU-FR5   \\
     \hline
     \hyperref[itm:Test-TM1]{Test-TM1} & \textit{Organization Users} can access tour management screen                                                         & TM-FR1   \\
     \hline
@@ -2261,7 +2039,6 @@ Their values are defined in this section for easy maintenance.
           \item Changing user settings is intuitive
           \item Interacting with other's objects is intuitive
           \item Reporting other's objects is intuitive
-          \item Adding friends, and creating and managing sub-realms is intuitive
           \item Using the app is generally satisfying
           \item Using the app is distracting from the surroundings
           \item The app is compatible with, and works well on, my device (Android or IOS)
