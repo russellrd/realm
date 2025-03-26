@@ -193,64 +193,6 @@ This section contains the descriptions of all system tests spanning functional a
 \subsection{Tests for Functional Requirements}
 This section focuses on test cases pertaining to the functional requirements.
 
-\subsubsection{Tutorial}
-
-This section focuses on verifying the user interactions with the app's built-in tutorial. These tests ensure that users will have a fluid experience when finding and completing the tutorial. Given that this is the main instruction method provided by the app, it must work well otherwise users will likely stop using the app. To make it as comprehensible as possible, the tutorial has an interactive experience for every major feature as relayed in (\textit{TU-FR1}) and (\textit{TU-FR5}).  All functional requirements listed under Tutorial (TU) in the SRS \cite{SRS} have at least one test plan below.
-
-\begin{enumerate}
-
-  \item
-        \textbf{Name:} Tutorial opens on account creation \label{itm:Test-TU1} \\
-        \textbf{Test ID:} Test-TU1 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User has opened the app. \\
-        \textbf{Input:} User creates an account. \\
-        \textbf{Output:} A pop-up appears that prompts the user to take the tutorial. \\
-        \textbf{Test Case Derivation:} Users who have just created an account are likely new to the app and should have some guidance on the features through the built-in tutorial. \\
-        \textbf{How test will be performed:} A tester will manually create an account within the app and check if the popup appears as expected.
-
-  \item
-        \textbf{Name:} Tutorial can be opened through the settings screen \label{itm:Test-TU2} \\
-        \textbf{Test ID:} Test-TU2 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in. \\
-        \textbf{Input:} User navigates to settings screen. \\
-        \textbf{Output:} There is an option to open the tutorial. \\
-        \textbf{Test Case Derivation:} Users may be having trouble with a major feature and need a refresher on how it works. They might also want to explore features they have not used yet. \\
-        \textbf{How test will be performed:} A tester will manually navigate to the settings screen using the in-built navigation and look for the tutorial option.
-
-  \item
-        \textbf{Name:} Tutorial involves all major features \label{itm:Test-TU3} \\
-        \textbf{Test ID:} Test-TU3 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, on tutorial screen. \\
-        \textbf{Input:} User traverses through every step of the tutorial. \\
-        \textbf{Output:} All major app features were seen in the tutorial. \\
-        \textbf{Test Case Derivation:} Ensure that the user has been introduced to the mechanics behind every major feature. \\
-        \textbf{How test will be performed:} A tester will manually go through all the tutorial steps marking off each major app feature in a checklist.
-
-  \item
-        \textbf{Name:} User can exit the tutorial at any time \label{itm:Test-TU4} \\
-        \textbf{Test ID:} Test-TU4 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, on tutorial screen. \\
-        \textbf{Input:} User repeatedly goes through the tutorial and attempts to exit at each unique state. \\
-        \textbf{Output:} The tutorial can exit in every state. \\
-        \textbf{Test Case Derivation:} A user may want to learn a subset of the major features instead of going through them all. As such, they should be able to leave the tutorial at any point instead of forcing them to complete it. \\
-        \textbf{How test will be performed:} A tester will manually go through all the tutorial states and marking off which states allow a user to leave the tutorial.
-
-  \item
-        \textbf{Name:} The tutorial is interactive in a sandbox environment \label{itm:Test-TU5} \\
-        \textbf{Test ID:} Test-TU5 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} User logged in, on tutorial screen. \\
-        \textbf{Input:} User partially attempts each step of the tutorial by interacting with the sandbox environment. \\
-        \textbf{Output:} Each step of the tutorial is interactive. \\
-        \textbf{Test Case Derivation:} The user experience is improved when they can directly interact with a major feature instead of the app just displaying text describing its function. \\
-        \textbf{How test will be performed:} A tester will manually go through the tutorial and attempt to interact with the specific feature at each step within the sandbox environment. They don't have to complete the interaction specified in the step but it should be apparent that the major feature is working properly in the environment.
-
-\end{enumerate}
-
 \subsubsection{Realm Testing}
 
 \begin{enumerate}
@@ -308,7 +250,7 @@ This section focuses on verifying the user interactions with the app's built-in 
         \textbf{Initial State:} Realm interface is open and disconnected from the internet. \\
         \textbf{Input/Condition:} Tester attempts to interact with various components of the interface in offline mode. \\
         \textbf{Output/Result:} Interactive components function normally, but location-based features are disabled. \\
-        \textbf{How test will be performed:} Tester verifies the functionality of object scanning and the unavailability of object placement, maps, and other internet-dependent features.
+        \textbf{How test will be performed:} Tester verifies the unavailability of object placement, maps, and other internet-dependent features.
 
 \end{enumerate}
 
@@ -321,9 +263,9 @@ This section focuses on verifying the user interactions with the app's built-in 
         \textbf{Test ID:} Test-OP1 \\
         \textbf{Type:} Functional, Manual \\
         \textbf{Initial State:} Tester has progressed object placement workflow to object selection stage \\
-        \textbf{Input/Condition:} Tester selects object from one of: inventory, new object scan, new prompt generation \\
-        \textbf{Output/Result:} Interface successfully proceeds to sub-realm selection step with the selected object \\
-        \textbf{How test will be performed:} Tester initiates object placement workflow and progresses to object selection step. They then use one of the object selection methods to select an object and validate that the interface moves on to sub-realm selection with the selected object. They select the option to return to object selection, and repeat the process for all object selection methods.
+        \textbf{Input/Condition:} Tester selects object from one of: inventory, new prompt generation \\
+        \textbf{Output/Result:} Interface successfully proceeds to realm interface with the selected object \\
+        \textbf{How test will be performed:} Tester initiates object placement workflow and progresses to object selection step. They then use one of the object selection methods to select an object and validate that the interface moves on to the realm interface with the selected object. They select the option to return to object selection, and repeat the process for all object selection methods.
 
   \item \textbf{Name:} Validate Object Placement Stage \label{itm:Test-OP3} \\
         \textbf{Test ID:} Test-OP3 \\
@@ -338,7 +280,7 @@ This section focuses on verifying the user interactions with the app's built-in 
         \textbf{Type:} Functional, Manual \\
         \textbf{Initial State:} Tester has just placed an AR object instance \\
         \textbf{Input/Condition:} Tester checks the AR object instance database \\
-        \textbf{Output/Result:} The AR object instance that the tester placed is present with correct details, including object type, sub-realm(s), position, and orientation. \\
+        \textbf{Output/Result:} The AR object instance that the tester placed is present with correct details, including object type, position, and orientation. \\
         \textbf{How test will be performed:} Tester completes the object placement workflow then checks the AR object instance database and verifies the presence and correctness of their newly created object instance.
         
   \item \textbf{Name:} Validate Area Based Placement Limit \label{itm:Test-OP5} \\
@@ -623,7 +565,7 @@ The Profile Screen Testing focuses on verifying user interactions related to pro
 \subsubsection{Settings Testing}
 \label{sec:settings_testing}
 
-The Settings Testing focuses on verifying user interactions related to modifying various settings, including accessibility, display, privacy, profile, and sub-realm settings. These tests ensure that users can customize their app experience according to their preferences and privacy requirements, enhancing usability and personalization.
+The Settings Testing focuses on verifying user interactions related to modifying various settings, including accessibility, display, privacy, and profile settings. These tests ensure that users can customize their app experience according to their preferences and privacy requirements, enhancing usability and personalization.
 
 \begin{enumerate}
 
@@ -685,7 +627,7 @@ The Settings Testing focuses on verifying user interactions related to modifying
         \textbf{Input:} Tester adds a new object to the inventory. \\
         \textbf{Output:} The new object appears in the inventory. \\
         \textbf{Test Case Derivation:} Users should be able to expand their inventory by adding objects. \\
-        \textbf{How test will be performed:} Tester will add a new object to the inventory and confirm its appearance. The object can be added through various means possible based on app features like AR object generation via prompt, scan and upload AR objects, acquiring via object sharing. \\
+        \textbf{How test will be performed:} Tester will add a new object to the inventory and confirm its appearance. The object can be added by AR object generation via prompt. \\
 
   \item \textbf{Name:} Application-Provided AR Objects in Inventory \label{itm:Test-IV3} \\
         \textbf{Test ID:} Test-IV3 \\
@@ -775,14 +717,14 @@ The Settings Testing focuses on verifying user interactions related to modifying
           \item User's current location is displayed on the map.
           \item Location markers appear for AR object clusters.
           \item Markers show the count of objects in each cluster.
-          \item All sub-realm objects associated with the user are indicated on the map.
+          \item All objects associated with the user are indicated on the map.
         \end{enumerate}
-        \textbf{Test Case Derivation:} Ensures that the map displays the user's location, object clusters, and relevant sub-realm data accurately. \\
+        \textbf{Test Case Derivation:} Ensures that the map displays the user's location, object clusters, and relevant realm data accurately. \\
         \textbf{How Test Will Be Performed:}
         \begin{enumerate}
           \item Open the map and verify that the user's location is displayed correctly.
           \item Confirm that AR object clusters are marked and each marker displays an accurate count of objects.
-          \item Check that all sub-realm objects connected to the user are visible on the map.
+          \item Check that all objects connected to the user are visible on the map.
         \end{enumerate}
 
   \item \textbf{Name:} Navigation and Directions on Map \label{itm:Test-MP2} \\
@@ -887,30 +829,9 @@ The Settings Testing focuses on verifying user interactions related to modifying
 
 \end{enumerate}
 
-\subsubsection{Uploading Objects to Inventory, Post Object Scan}
+\subsubsection{Uploading Objects to Inventory}
 
 \begin{enumerate}
-
-  \item \textbf{Name:} Object Render Display and Editing \label{itm:Test-OUI1} \\
-        \textbf{Test ID:} Test-OUI1 \\
-        \textbf{Control:} Manual \\
-        \textbf{Initial State:} Tester has completed a scan of an object, and the scan is ready for viewing/editing. \\
-        \textbf{Input:} Display the scanned object and allow for user interaction in editing mode. \\
-        \textbf{Output:}
-        \begin{enumerate}
-          \item Render of scanned object is displayed to the user.
-          \item Tester can remove unneeded features from the render.
-          \item Tester can crop and resize 2D objects in the edit interface.
-          \item Tester can confirm the creation of the AR object once satisfied with edits.
-        \end{enumerate}
-        \textbf{Test Case Derivation:} Ensures that the user can visualize and edit the scanned object before saving it to the inventory. \\
-        \textbf{How Test Will Be Performed:}
-        \begin{enumerate}
-          \item Display the scanned object render and prompt the tester to interact with it.
-          \item Attempt removal of unnecessary features, then save changes and confirm that edits are applied.
-          \item For 2D objects, perform cropping and resizing operations and confirm that modifications are correctly reflected.
-          \item Complete edits and confirm creation, ensuring that all final changes are saved.
-        \end{enumerate}
 
   \item \textbf{Name:} Object Naming and Storage \label{itm:Test-OUI2} \\
         \textbf{Test ID:} Test-OUI2 \\
@@ -933,7 +854,7 @@ The Settings Testing focuses on verifying user interactions related to modifying
   \item \textbf{Name:} Object Color Editing \label{itm:Test-OUI3} \\
         \textbf{Test ID:} Test-OUI3 \\
         \textbf{Control:} Manual \\
-        \textbf{Initial State:} Object is open in the edit interface after scanning has been completed. \\
+        \textbf{Initial State:} Object is open in the edit interface. \\
         \textbf{Input:} Select specific portions of the object and apply color changes. \\
         \textbf{Output:} Color changes are applied to selected portions of the object, and the final render reflects these edits accurately. \\
         \textbf{Test Case Derivation:} Verifies that users can apply color changes to specific parts of the object for customization. \\
@@ -1190,14 +1111,6 @@ This section focuses on test cases pertaining to the non-functional requirements
         \textbf{Output/Result:} The Inventory loads completely and can be interacted with within 1-10 seconds depending on the number of objects present in the Inventory. \\
         \textbf{How test will be performed:} Tester will access the Inventory section and the application will record the load time such that the time is recorded until the user is able to interact with the objects visible. Then, the tester can observe the recorded load times and verify if the times are below the maximum threshold (10 seconds). \\
 
-  \item \textbf{Name:} Real-Time Render Delay \label{itm:Test-QS-PE3} \\
-        \textbf{Test ID:} Test-QS-PE3 \\
-        \textbf{Type:} Non-Functional, Manual \\
-        \textbf{Initial State:} App is open, User has intialized process to scan and create an AR object. User is actively scanning the environment. \\
-        \textbf{Input/Condition:} Device settings and sensors are functioning properly. User initiates a scan of the environment. \\
-        \textbf{Output/Result:} Rendered results appear within 1 second of the initial scan data. \\
-        \textbf{How test will be performed:} Tester will initiate a scan to create AR object, start two timers, one for the render being displayed (\textit{Timer1}) and the other for the scan performed by the tester (\textit{Timer2}). Once the scanning process is finished, both timers are stopped. Then, the tester will take the difference of the two recorded times, and ensure that it does not exceed 1 second. \\
-
   \item \textbf{Name:} AR Object Generation \label{itm:Test-QS-PE4} \\
         \textbf{Test ID:} Test-QS-PE4 \\
         \textbf{Type:} Non-Functional, Automatic \\
@@ -1212,7 +1125,7 @@ This section focuses on test cases pertaining to the non-functional requirements
         \textbf{Initial State:} App is open on a low-performance device. \\
         \textbf{Input/Condition:} Tester attempts to view AR objects within the app. \\
         \textbf{Output/Result:} The app renders AR objects with minimal lag or provides a fallback mode (low-resolution objects) for accessibility. \\
-        \textbf{How test will be performed:} Tester will use a low-performance device to attempt rendering AR objects. Performance will be observed to confirm the app enables a fallback mode for compatibility such as lower resolution for AR objects and limited functionality in terms of app features (AR object generation, Scan and Upload AR objects). \\
+        \textbf{How test will be performed:} Tester will use a low-performance device to attempt rendering AR objects. Performance will be observed to confirm the app enables a fallback mode for compatibility such as lower resolution for AR objects and limited functionality in terms of app features. \\
 
 \end{enumerate}
 
@@ -1445,8 +1358,6 @@ This section focuses on test cases pertaining to the non-functional requirements
     \hline
     \hyperref[itm:Test-OS3]{Test-OS3}       & Real-Time Render Display                                                                  & OS-FR3         \\
     \hline
-    \hyperref[itm:Test-OS4]{Test-OS4}       & Confirm Scanning Completion                                                               & OS-FR5         \\
-    \hline
     \hyperref[itm:Test-IV1]{Test-IV1}       & Delete Object from Inventory                                                              & IV-FR1         \\
     \hline
     \hyperref[itm:Test-IV2]{Test-IV2}       & Add Object to Inventory                                                                   & IV-FR2         \\
@@ -1510,8 +1421,6 @@ This section focuses on test cases pertaining to the non-functional requirements
     \hyperref[itm:Test-QS-PE1]{Test-QS-PE1} & Map Rendering                       & QS-PE1 \\
     \hline
     \hyperref[itm:Test-QS-PE2]{Test-QS-PE2} & Inventory Load                      & QS-PE2 \\
-    \hline
-    \hyperref[itm:Test-QS-PE3]{Test-QS-PE3} & Real-Time Render Delay              & QS-PE3 \\
     \hline
     \hyperref[itm:Test-QS-PE4]{Test-QS-PE4} & AR Object Generation                & QS-PE4 \\
     \hline
@@ -2031,7 +1940,6 @@ Their values are defined in this section for easy maintenance.
         \begin{itemize}
           \item Navigating between interfaces is intuitive
           \item Placing objects is intuitive
-          \item Scanning objects is intuitive
           \item Generating objects by prompt is intuitive
           \item Embarking on tours is intuitive
           \item Creating tours is intuitive (ONLY FOR ORG USERS)
