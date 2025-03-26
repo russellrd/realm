@@ -41,7 +41,7 @@
 
 \author{\authname}
 
-\date{}
+\date{October 23, 2024}
 
 \input{../Comments}
 \input{../Common}
@@ -61,6 +61,10 @@
         \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Author(s)}} & {\textbf{Notes}} \\
         \midrule
         2024-10-23               & 1.0         & All      & Initial Hazard Analysis      \\
+        \midrule
+        2025-03-24               & 1.1         & Rafey Malik      & Refinements made based on critique      \\
+        \midrule
+        2025-03-25               & 1.2         & Rafey Malik      & Removed references to the social media aspect of the app      \\
         \bottomrule
     \end{tabularx}
 \end{table}
@@ -79,7 +83,7 @@ Hazard Analysis is a key step in the engineering process, which is used to ident
 
 \section{Scope and Purpose of Hazard Analysis}
 
-The scope of this Hazard Analysis covers the identification, evaluation, and mitigation of hazards as it relates to the entire development process of the Realm project. Hazards which are considered in this document include features within the app, and external hazards through the environment.\\
+The scope of this Hazard Analysis covers the identification, evaluation, and mitigation of hazards as it relates to the entire development process of the Realm project. A hazard is defined as a property or condition in the system, which when combined with a condition in the environment, has the potential to cause harm or damage. Hazards which are considered in this document include features within the app, and external hazards through the environment. The purpose of hazard analysis is to identify potential hazards in a system early in the design process to mitigate risks and ensure the safety and reliability of the system. \\
 
 Certain losses that could be incurred because of hazards are loss of privacy, including unauthorized tracking of users location and unauthorized sharing of personal data, such as email or password. Another loss is health risks from bright flashes within the app, which can trigger seizures in users that may be suffering from photosensitive epilepsy. Furthermore, human injury may occur from accidents because of users being distracted from AR content.
 
@@ -99,7 +103,7 @@ There are two types of sub-systems that make up the project:
 \begin{enumerate}[label=\textbf{\arabic*.}]
     \item \textbf{Realm App}
     \begin{enumerate}
-        \item Realm Interface / Sub-Realms
+        \item Realm Interface
         \item Tours
     \end{enumerate}
     \textbf{On Failure:} \emph{See \nameref{sub:fmea}}
