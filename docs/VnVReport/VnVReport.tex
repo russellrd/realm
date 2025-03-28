@@ -652,9 +652,9 @@ The following table presents the results of the installation testing:
       \hline
       \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                       & \multicolumn{1}{l|}{\bfseries Expected Result}                            & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
       \hline
-      Test-I1                            & Non-Functional, Manual               & Search for the app on the Apple App Store and Google Play Store.                            & The app is available for download on both app stores.                     & Same as expected                             & \textcolor{Green}{Pass}               \\
+      Test-I1                            & Non-Functional, Manual               & Search for the app on the Apple App Store and Google Play Store.                            & The app is available for download on both app stores.                     & Same as expected                             & \textcolor{Red}{Fail}               \\
       \hline
-      Test-I2                            & Non-Functional, Manual               & Attempt to install the app on a device from both the Apple App Store and Google Play Store. & The app installs directly without any additional steps or configurations. & Same as expected                             & \textcolor{Green}{Pass}               \\
+      Test-I2                            & Non-Functional, Manual               & Attempt to install the app on a device from both the Apple App Store and Google Play Store. & The app installs directly without any additional steps or configurations. & Same as expected                             & \textcolor{Red}{Fail}               \\
       \hline
     \end{tabular}}
   \label{table:NFR-Installation}
@@ -717,7 +717,7 @@ The following section presents the results of our distribution testing.
       \hline
       Test-DI-D1                         & Automated                            & Attempt to download and install the app on the user device.  & (a) The app installs successfully on devices running iOS 16.0+ and Android 12+.
       
-      (b) The app functions as expected post-installation on the device.      & Same as expected                             & \textcolor{Green}{Pass}               \\
+      (b) The app functions as expected post-installation on the device.      & Same as expected                             & \textcolor{Red}{Fail}               \\
       \hline
       Test-DI-D2                         & Manual                            & Review server locations where user data is stored.  & All user data is stored within North America.      & Same as expected                             & \textcolor{Green}{Pass}               \\
       \hline
