@@ -115,11 +115,9 @@ The following section presents the results of our testing for uploading objects 
       \hline
       \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Control} & \multicolumn{1}{l|}{\bfseries Inputs}                                      & \multicolumn{1}{l|}{\bfseries Expected Result}                                & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
       \hline
-      Test-OUI1                          & Manual                                  & Display the scanned object and allow for user interaction in editing mode. & Render of scanned object is displayed, user can edit and finalize the object. & Same as expected                             & \textcolor{Green}{Pass}               \\
+      Test-OUI1                          & Manual                                  & Provide a name for the object and save it with metadata.                   & Object name is stored (ASCII only), and all metadata is correctly saved.      & Same as expected                             & \textcolor{Green}{Pass}               \\
       \hline
-      Test-OUI2                          & Manual                                  & Provide a name for the object and save it with metadata.                   & Object name is stored (ASCII only), and all metadata is correctly saved.      & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-OUI3                          & Manual                                  & Select specific portions of the object and apply color changes.            & Color changes are applied accurately and reflected in the final render.       & Same as expected                             & \textcolor{Green}{Pass}               \\
+      Test-OUI2                          & Manual                                  & Select specific portions of the object and apply color changes.            & Color changes are applied accurately and reflected in the final render.       & Same as expected                             & \textcolor{Green}{Pass}               \\
       \hline
     \end{tabular}}
   \label{table:GR3}
@@ -1245,9 +1243,7 @@ The following table shows the traceability matrix for the functional requirement
     \hline
     Test-POG5        & Generated AR Object Preview                           & POG-FR10                                                        \\
     \hline
-    Test-OUI1        & Object Render Display and Editing                     & OUI-FR1, OUI-FR2, OUI-FR3, OUI-FR4                              \\
-    \hline
-    Test-OUI2        & Object Naming and Storage                             & OUI-FR5, OUI-FR6, OUI-FR7, OUI-FR8, OUI-FR9, OUI-FR10, OUI-FR11 \\
+    Test-OUI1        & Object Naming and Storage                             & OUI-FR5, OUI-FR6, OUI-FR7, OUI-FR8, OUI-FR9, OUI-FR10, OUI-FR11 \\
     \hline
   \end{tabular}
   \caption{Mapping of Tests to Requirements (V)}
