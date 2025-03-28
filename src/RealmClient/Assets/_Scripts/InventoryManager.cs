@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-
     [SerializeField]
     private UIInventory uiInventory;
 

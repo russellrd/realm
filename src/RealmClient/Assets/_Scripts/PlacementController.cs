@@ -24,7 +24,7 @@ public class PlacementController : MonoBehaviour
     DatabaseController DBController;
 
     [SerializeField]
-    GPSController GPSCon;
+    RealWorldController RWController;
 
     [SerializeField]
     ObjectSpawner objectSpawner;
@@ -519,8 +519,8 @@ public class PlacementController : MonoBehaviour
                 DBController.pb.AuthStore.Model.Id,
                 GetPlacementObject().name,
                 GetPlacementObject().transform.localScale.x,
-                anchorCoordinates.latitude,
-                anchorCoordinates.longitude
+                anchorCoordinates.Latitude,
+                anchorCoordinates.Longitude
             );
             Destroy(anchor);
             Destroy(GetPlacementObject().gameObject);
@@ -574,7 +574,7 @@ public class PlacementController : MonoBehaviour
 
     public void ConfirmPlacement()
     {
-        anchorCoordinates = GPSCon.GetCurrentGPSCoordinates();
+        anchorCoordinates = RWController.GetCurrentGPSCoordinates();
         Step = PlacementStep.Anchor;
     }
 
