@@ -419,6 +419,48 @@ option and changes all the inputs described in TM-FR4. & The tour is successfull
   \label{table:GR5}
 \end{table}
 
+\subsection{Maps Interface Testing}
+The following table presents the results of the our maps interface testing:
+
+\begin{table}[H]
+  \caption{\bf Functional Requirements Evaluation Results for Maps Interface Testing}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                                   & \multicolumn{1}{l|}{\bfseries Expected Result}                                                                                                                                                                                                                                         & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-MP1                           & Manual                               & Tester is present on the Map interface and is viewing the complete map and check displayed information. & \begin{enumerate} \item User's current location is displayed on the map. \item Location markers appear for AR object clusters. \item Markers show the count of objects in each cluster. \item All sub-realm objects associated with the user are indicated on the map. \end{enumerate} & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-MP2                           & Manual                               & Select a marker and initiate navigation. Terminate navigation mid-route.                                & \begin{enumerate} \item Directions to the selected marker are provided. \item Navigation terminates when requested by the user. \end{enumerate}                                                                                                                                        & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-MP3                           & Automated                            & Zoom in and out on the map and navigate toward restricted areas.                                        & \begin{enumerate} \item Objects are grouped to reduce clutter on the map. \item Restricted areas are identified, and navigation to these areas is disallowed. \end{enumerate}                                                                                                          & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+    \end{tabular}}
+  \label{table:MP}
+\end{table}
+
+\subsection{Settings Testing}
+The following table presents the results of the our settings testing:
+
+\begin{table}[H]
+  \caption{\bf Functional Requirements Evaluation Results for Settings Testing}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                               & \multicolumn{1}{l|}{\bfseries Expected Result}                                      & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-S1                            & Manual                               & User adjusts text size, enables/disables viewing of object names, or changes language.              & The expected result is that accessibility settings apply as configured by the user. & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-S2                            & Manual                               & User changes display settings such as light/dark mode or AR object visibility.                      & The expected result is that display settings reflect user preferences.              & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-S3                            & Manual                               & User modifies privacy settings to control visibility of profile, friends list, and AR interactions. & The expected result is that privacy settings update based on user preferences.      & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-S4                            & Manual                               & User changes username, password, profile picture, or status.                                        & The expected result is that profile settings are updated and saved.                 & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-S5                            & Manual                               & User navigates to sub-realm settings to modify sub-realm options.                                   & The expected result is that sub-realm settings are accessible and configurable.     & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+    \end{tabular}}
+  \label{table:ST}
+\end{table}
+
 \restoregeometry
 \section{Nonfunctional Requirements Evaluation}
 
@@ -563,48 +605,6 @@ The following section presents the results of our reusability testing.
       \hline
     \end{tabular}}
   \label{table:Reusability_Tests}
-\end{table}
-
-\subsection{Maps Interface Testing}
-The following table presents the results of the our maps interface testing:
-
-\begin{table}[H]
-  \caption{\bf Functional Requirements Evaluation Results for Maps Interface Testing}
-  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
-      \hline
-      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                                   & \multicolumn{1}{l|}{\bfseries Expected Result}                                                                                                                                                                                                                                         & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
-      \hline
-      Test-MP1                           & Manual                               & Tester is present on the Map interface and is viewing the complete map and check displayed information. & \begin{enumerate} \item User's current location is displayed on the map. \item Location markers appear for AR object clusters. \item Markers show the count of objects in each cluster. \item All sub-realm objects associated with the user are indicated on the map. \end{enumerate} & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-MP2                           & Manual                               & Select a marker and initiate navigation. Terminate navigation mid-route.                                & \begin{enumerate} \item Directions to the selected marker are provided. \item Navigation terminates when requested by the user. \end{enumerate}                                                                                                                                        & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-MP3                           & Automated                            & Zoom in and out on the map and navigate toward restricted areas.                                        & \begin{enumerate} \item Objects are grouped to reduce clutter on the map. \item Restricted areas are identified, and navigation to these areas is disallowed. \end{enumerate}                                                                                                          & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-    \end{tabular}}
-  \label{table:MP}
-\end{table}
-
-\subsection{Settings Testing}
-The following table presents the results of the our settings testing:
-
-\begin{table}[H]
-  \caption{\bf Functional Requirements Evaluation Results for Settings Testing}
-  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
-      \hline
-      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                               & \multicolumn{1}{l|}{\bfseries Expected Result}                                      & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
-      \hline
-      Test-S1                            & Manual                               & User adjusts text size, enables/disables viewing of object names, or changes language.              & The expected result is that accessibility settings apply as configured by the user. & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S2                            & Manual                               & User changes display settings such as light/dark mode or AR object visibility.                      & The expected result is that display settings reflect user preferences.              & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S3                            & Manual                               & User modifies privacy settings to control visibility of profile, friends list, and AR interactions. & The expected result is that privacy settings update based on user preferences.      & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S4                            & Manual                               & User changes username, password, profile picture, or status.                                        & The expected result is that profile settings are updated and saved.                 & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S5                            & Manual                               & User navigates to sub-realm settings to modify sub-realm options.                                   & The expected result is that sub-realm settings are accessible and configurable.     & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-    \end{tabular}}
-  \label{table:ST}
 \end{table}
 
 \subsection{Portability Testing}
