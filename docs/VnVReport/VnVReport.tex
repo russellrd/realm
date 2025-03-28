@@ -106,23 +106,6 @@ The following section presents the results of our custom AR object generation te
   \label{table:GR2}
 \end{table}
 
-\subsection{Uploading Objects to Inventory, Post Object Scan}
-The following section presents the results of our testing for uploading objects to inventory after scanning.
-
-\begin{table}[H]
-  \caption{\bf Functional Requirements Evaluation Results for Uploading Objects to Inventory}
-  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
-      \hline
-      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Control} & \multicolumn{1}{l|}{\bfseries Inputs}                                      & \multicolumn{1}{l|}{\bfseries Expected Result}                                & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
-      \hline
-      Test-OUI1                          & Manual                                  & Provide a name for the object and save it with metadata.                   & Object name is stored (ASCII only), and all metadata is correctly saved.      & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-OUI2                          & Manual                                  & Select specific portions of the object and apply color changes.            & Color changes are applied accurately and reflected in the final render.       & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-    \end{tabular}}
-  \label{table:GR3}
-\end{table}
-
 \subsection{Realm Testing}
 The following section presents the results of our testing of the realm interface.
 
@@ -426,7 +409,7 @@ The following table presents the results of the our maps interface testing:
       \hline
       \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                                   & \multicolumn{1}{l|}{\bfseries Expected Result}                                                                                                                                                                                                                                         & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
       \hline
-      Test-MP1                           & Manual                               & Tester is present on the Map interface and is viewing the complete map and check displayed information. & \begin{enumerate} \item User's current location is displayed on the map. \item Location markers appear for AR object clusters. \item Markers show the count of objects in each cluster. \item All sub-realm objects associated with the user are indicated on the map. \end{enumerate} & Same as expected                             & \textcolor{Green}{Pass}               \\
+      Test-MP1                           & Manual                               & Tester is present on the Map interface and is viewing the complete map and check displayed information. & \begin{enumerate} \item User's current location is displayed on the map. \item Location markers appear for AR object clusters. \item Markers show the count of objects in each cluster. \item All realm objects associated with the user are indicated on the map. \end{enumerate} & Same as expected                             & \textcolor{Green}{Pass}               \\
       \hline
       Test-MP2                           & Manual                               & Select a marker and initiate navigation. Terminate navigation mid-route.                                & \begin{enumerate} \item Directions to the selected marker are provided. \item Navigation terminates when requested by the user. \end{enumerate}                                                                                                                                        & Same as expected                             & \textcolor{Green}{Pass}               \\
       \hline
@@ -449,11 +432,7 @@ The following table presents the results of the our settings testing:
       \hline
       Test-S2                            & Manual                               & User changes display settings such as light/dark mode or AR object visibility.                      & The expected result is that display settings reflect user preferences.              & Same as expected                             & \textcolor{Green}{Pass}               \\
       \hline
-      Test-S3                            & Manual                               & User modifies privacy settings to control visibility of profile, friends list, and AR interactions. & The expected result is that privacy settings update based on user preferences.      & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S4                            & Manual                               & User changes username, password, profile picture, or status.                                        & The expected result is that profile settings are updated and saved.                 & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S5                            & Manual                               & User navigates to sub-realm settings to modify sub-realm options.                                   & The expected result is that sub-realm settings are accessible and configurable.     & Same as expected                             & \textcolor{Green}{Pass}               \\
+      Test-S3                            & Manual                               & User changes username, password, profile picture, or status.                                        & The expected result is that profile settings are updated and saved.                 & Same as expected                             & \textcolor{Green}{Pass}               \\
       \hline
     \end{tabular}}
   \label{table:ST}
@@ -1096,9 +1075,7 @@ The following table shows the traceability matrix for the functional requirement
     \hline
     Test-S2          & Adjust Display Settings               & S-FR2                 \\
     \hline
-    Test-S3          & Manage Privacy Settings               & S-FR3                 \\
-    \hline
-    Test-S4          & Update Profile Settings               & S-FR4                 \\
+    Test-S3          & Update Profile Settings               & S-FR4                 \\
     \hline
     Test-PT1         & Validate Cross-Platform Compatibility & DI-P1                 \\
     \hline
@@ -1124,16 +1101,6 @@ The following table shows the traceability matrix for the functional requirement
   \begin{tabular}{|l|p{8cm}|p{3cm}|}
     \hline
     \textbf{Test-ID} & \textbf{Test Name}                                                                                                    & \textbf{Requirements} \\
-    \hline
-    Test-TU1         & Tutorial opens on account creation                                                                                    & TU-FR2                \\
-    \hline
-    Test-TU2         & Tutorial can be opened through the settings screen                                                                    & TU-FR4                \\
-    \hline
-    Test-TU3         & Tutorial involves all major features                                                                                  & TU-FR1                \\
-    \hline
-    Test-TU4         & User can exit the tutorial at any time                                                                                & TU-FR3                \\
-    \hline
-    Test-TU5         & The tutorial is interactive in a sandbox environment                                                                  & TU-FR5                \\
     \hline
     Test-TM1         & \textit{Organization Users} can access tour management screen                                                         & TM-FR1                \\
     \hline
