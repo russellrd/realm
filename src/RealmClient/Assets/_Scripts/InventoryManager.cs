@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using GLTFast;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,9 +22,12 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     private ObjectSpawner objectSpawner;
 
-    public List<InventoryARObjectPreview> initialARObjectPreviews = new();
+    [SerializeField]
+    private DatabaseController databaseController;
 
-    public Dictionary<string, GameObject> modelsToPrefab;
+    public List<InventoryARObjectPreview> initialARObjectPreviews = new();
+    public ModelStore modelStore;
+
 
     bool isInventoryOpen;
 
@@ -36,16 +41,11 @@ public class InventoryManager : MonoBehaviour
         set => m_CreateButton = value;
     }
 
-    void OnEnable()
+    async Task OnEnable()
     {
         isInventoryOpen = false;
         m_CreateButton.onClick.AddListener(OpenInventory);
-
-        modelsToPrefab.Add("Plant", objectSpawner.objectPrefabs[0]);
-        modelsToPrefab.Add("Book", objectSpawner.objectPrefabs[1]);
-        modelsToPrefab.Add("Bench", objectSpawner.objectPrefabs[2]);
-        modelsToPrefab.Add("Hammer", objectSpawner.objectPrefabs[3]);
-        modelsToPrefab.Add("Lamp", objectSpawner.objectPrefabs[4]);
+        await databaseController.GetAllARObjects();
     }
 
     void OnDisable()
@@ -123,22 +123,10 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public GameObject GetPrefab(string model)
+    public GltfImport GetPrefab(string model)
     {
-        switch (model)
-        {
-            case "Plant(Clone)":
-                return objectSpawner.objectPrefabs[0];
-            case "Book(Clone)":
-                return objectSpawner.objectPrefabs[1];
-            case "Bench(Clone)":
-                return objectSpawner.objectPrefabs[2];
-            case "Hammer(Clone)":
-                return objectSpawner.objectPrefabs[3];
-            case "Lamp(Clone)":
-                return objectSpawner.objectPrefabs[4];
-            default:
-                return objectSpawner.objectPrefabs[0];
-        }
+        GltfImport gltfImport = new();
+        modelStore.modelObjects.TryGetValue(model, out gltfImport);
+        return gltfImport;
     }
 }

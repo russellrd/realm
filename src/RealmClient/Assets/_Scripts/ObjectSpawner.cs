@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Utilities;
+using GLTFast;
+using System.Linq;
+using System.Threading.Tasks;
 
 
 /// <summary>
@@ -30,17 +33,22 @@ public class ObjectSpawner : MonoBehaviour
     }
 
     [SerializeField]
-    [Tooltip("The list of prefabs available to spawn.")]
-    List<GameObject> m_ObjectPrefabs = new List<GameObject>();
+    ModelStore modelStore;
+
+    List<GltfImport> m_ObjectPrefabs;
 
     /// <summary>
     /// The list of prefabs available to spawn.
     /// </summary>
-    public List<GameObject> objectPrefabs
+    public List<GltfImport> objectPrefabs
     {
         get => m_ObjectPrefabs;
         set => m_ObjectPrefabs = value;
     }
+
+    [SerializeField]
+    DatabaseController databaseController;
+
 
     [SerializeField]
     [Tooltip("Optional prefab to spawn for each spawned object. Use a prefab with the Destroy Self component to make " +
@@ -163,6 +171,12 @@ public class ObjectSpawner : MonoBehaviour
         EnsureFacingCamera();
     }
 
+    async void Start()
+    {
+        await databaseController.loadAllModels();
+        m_ObjectPrefabs = modelStore.modelObjects.Values.ToList();
+    }
+
     void EnsureFacingCamera()
     {
         if (m_CameraToFace == null)
@@ -208,7 +222,7 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         var objectIndex = isSpawnOptionRandomized ? UnityEngine.Random.Range(0, m_ObjectPrefabs.Count) : m_SpawnOptionIndex;
-        var newObject = Instantiate(m_ObjectPrefabs[objectIndex]);
+        var newObject = GLTFUtils.InstantiateARObjectFromGltf(m_ObjectPrefabs[objectIndex]);
         if (m_SpawnAsChildren)
             newObject.transform.parent = transform;
 

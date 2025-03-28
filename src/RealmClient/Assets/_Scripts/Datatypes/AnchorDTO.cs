@@ -11,7 +11,7 @@ public class AnchorDTO : RecordModel
     [JsonProperty("userId")]
     public string UserId { get; set; }
 
-    [JsonProperty("modelId")]
+    [JsonProperty("modelRelId")]
     public string ModelId { get; set; }
 
     [JsonProperty("scale")]

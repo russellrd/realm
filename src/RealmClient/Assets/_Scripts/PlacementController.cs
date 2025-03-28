@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GLTFast;
 using Google.XR.ARCoreExtensions;
 using PocketBaseSdk;
 using TMPro;
@@ -492,9 +493,9 @@ public class PlacementController : MonoBehaviour
             Debug.Log("X: " + result.Anchor.transform.localScale.x);
             Debug.Log("Y: " + result.Anchor.transform.localScale.y);
             Debug.Log("Z: " + result.Anchor.transform.localScale.z);
-            GameObject go = InvManager.GetPrefab(arObject.ModelId);
+            GltfImport gltfImport = InvManager.GetPrefab(arObject.ModelId);
+            GameObject go = GLTFUtils.InstantiateARObjectFromGltf(gltfImport, result.Anchor.transform.position, result.Anchor.transform.rotation);
             go.GetComponent<ARTransformer>().enabled = false;
-            Instantiate(InvManager.GetPrefab(arObject.ModelId), result.Anchor.transform.position, result.Anchor.transform.rotation);
         }
         else
         {
@@ -510,9 +511,9 @@ public class PlacementController : MonoBehaviour
             UpdatePlaneVisibility(true);
             GetPlacementObject().SetActive(true);
             GameObject anchor = GameObject.FindGameObjectWithTag("anchor");
-            GameObject go = InvManager.GetPrefab(GetPlacementObject().gameObject.name);
+            GltfImport gltfImport = InvManager.GetPrefab(GetPlacementObject().gameObject.name);
+            GameObject go = GLTFUtils.InstantiateARObjectFromGltf(gltfImport, anchor.transform.position, anchor.transform.rotation);
             go.GetComponent<ARTransformer>().enabled = false;
-            Instantiate(go, anchor.transform.position, anchor.transform.rotation);
             saveARObject(
                 "test",
                 response,
