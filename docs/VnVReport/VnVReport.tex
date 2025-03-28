@@ -26,7 +26,7 @@
 
 \title{Verification and Validation Report: \progname}
 \author{\authname}
-\date{\today}
+\date{March 10, 2025}
 
 \maketitle
 
@@ -37,14 +37,16 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
   \toprule {\bf Date} & {\bf Version} & {\bf Notes} \\
   \midrule
-  Date 1              & 1.0           & Notes       \\
-  Date 2              & 1.1           & Notes       \\
+  2025-03-10              & 1.0           & Initial report\\
+  2025-03-28              & 1.1           & Modifications made based on review \\
   \bottomrule
 \end{tabularx}
 
 ~\newpage
 
 \section{Symbols, Abbreviations and Acronyms}
+
+See SRS Documentation \href{https://github.com/russellrd/realm/blob/main/docs/SRS-IEEE/SRS.pdf}{here} for a full list.\\
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l}
@@ -66,6 +68,8 @@
 \newpage
 
 \pagenumbering{arabic}
+
+This document lists the results of the test evaluations on the tests written in the VnV Plan.
 
 \section{Functional Requirements Evaluation}
 
@@ -102,25 +106,6 @@ The following section presents the results of our custom AR object generation te
       \hline
     \end{tabular}}
   \label{table:GR2}
-\end{table}
-
-\subsection{Uploading Objects to Inventory, Post Object Scan}
-The following section presents the results of our testing for uploading objects to inventory after scanning.
-
-\begin{table}[H]
-  \caption{\bf Functional Requirements Evaluation Results for Uploading Objects to Inventory}
-  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
-      \hline
-      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Control} & \multicolumn{1}{l|}{\bfseries Inputs}                                      & \multicolumn{1}{l|}{\bfseries Expected Result}                                & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
-      \hline
-      Test-OUI1                          & Manual                                  & Display the scanned object and allow for user interaction in editing mode. & Render of scanned object is displayed, user can edit and finalize the object. & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-OUI2                          & Manual                                  & Provide a name for the object and save it with metadata.                   & Object name is stored (ASCII only), and all metadata is correctly saved.      & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-OUI3                          & Manual                                  & Select specific portions of the object and apply color changes.            & Color changes are applied accurately and reflected in the final render.       & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-    \end{tabular}}
-  \label{table:GR3}
 \end{table}
 
 \subsection{Realm Testing}
@@ -417,6 +402,44 @@ option and changes all the inputs described in TM-FR4. & The tour is successfull
   \label{table:GR5}
 \end{table}
 
+\subsection{Maps Interface Testing}
+The following table presents the results of the our maps interface testing:
+
+\begin{table}[H]
+  \caption{\bf Functional Requirements Evaluation Results for Maps Interface Testing}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                                   & \multicolumn{1}{l|}{\bfseries Expected Result}                                                                                                                                                                                                                                         & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-MP1                           & Manual                               & Tester is present on the Map interface and is viewing the complete map and check displayed information. & \begin{enumerate} \item User's current location is displayed on the map. \item Location markers appear for AR object clusters. \item Markers show the count of objects in each cluster. \end{enumerate} & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-MP2                           & Manual                               & Select a marker and initiate navigation. Terminate navigation mid-route.                                & \begin{enumerate} \item Directions to the selected marker are provided. \item Navigation terminates when requested by the user. \end{enumerate}                                                                                                                                        & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-MP3                           & Automated                            & Zoom in and out on the map and navigate toward restricted areas.                                        & \begin{enumerate} \item Objects are grouped to reduce clutter on the map. \item Restricted areas are identified, and navigation to these areas is disallowed. \end{enumerate}                                                                                                          & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+    \end{tabular}}
+  \label{table:MP}
+\end{table}
+
+\subsection{Settings Testing}
+The following table presents the results of the our settings testing:
+
+\begin{table}[H]
+  \caption{\bf Functional Requirements Evaluation Results for Settings Testing}
+  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+      \hline
+      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                               & \multicolumn{1}{l|}{\bfseries Expected Result}                                      & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
+      \hline
+      Test-S1                            & Manual                               & User adjusts text size, enables/disables viewing of object names, or changes language.              & The expected result is that accessibility settings apply as configured by the user. & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-S2                            & Manual                               & User changes display settings such as light/dark mode or AR object visibility.                      & The expected result is that display settings reflect user preferences.              & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+      Test-S3                            & Manual                               & User changes username, password, profile picture, or status.                                        & The expected result is that profile settings are updated and saved.                 & Same as expected                             & \textcolor{Green}{Pass}               \\
+      \hline
+    \end{tabular}}
+  \label{table:ST}
+\end{table}
+
 \restoregeometry
 \section{Nonfunctional Requirements Evaluation}
 
@@ -563,48 +586,6 @@ The following section presents the results of our reusability testing.
   \label{table:Reusability_Tests}
 \end{table}
 
-\subsection{Maps Interface Testing}
-The following table presents the results of the our maps interface testing:
-
-\begin{table}[H]
-  \caption{\bf Functional Requirements Evaluation Results for Maps Interface Testing}
-  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
-      \hline
-      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                                   & \multicolumn{1}{l|}{\bfseries Expected Result}                                                                                                                                                                                                                                         & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
-      \hline
-      Test-MP1                           & Manual                               & Tester is present on the Map interface and is viewing the complete map and check displayed information. & \begin{enumerate} \item User's current location is displayed on the map. \item Location markers appear for AR object clusters. \item Markers show the count of objects in each cluster. \item All sub-realm objects associated with the user are indicated on the map. \end{enumerate} & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-MP2                           & Manual                               & Select a marker and initiate navigation. Terminate navigation mid-route.                                & \begin{enumerate} \item Directions to the selected marker are provided. \item Navigation terminates when requested by the user. \end{enumerate}                                                                                                                                        & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-MP3                           & Automated                            & Zoom in and out on the map and navigate toward restricted areas.                                        & \begin{enumerate} \item Objects are grouped to reduce clutter on the map. \item Restricted areas are identified, and navigation to these areas is disallowed. \end{enumerate}                                                                                                          & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-    \end{tabular}}
-  \label{table:MP}
-\end{table}
-
-\subsection{Settings Testing}
-The following table presents the results of the our settings testing:
-
-\begin{table}[H]
-  \caption{\bf Functional Requirements Evaluation Results for Settings Testing}
-  \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
-      \hline
-      \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                               & \multicolumn{1}{l|}{\bfseries Expected Result}                                      & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
-      \hline
-      Test-S1                            & Manual                               & User adjusts text size, enables/disables viewing of object names, or changes language.              & The expected result is that accessibility settings apply as configured by the user. & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S2                            & Manual                               & User changes display settings such as light/dark mode or AR object visibility.                      & The expected result is that display settings reflect user preferences.              & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S3                            & Manual                               & User modifies privacy settings to control visibility of profile, friends list, and AR interactions. & The expected result is that privacy settings update based on user preferences.      & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S4                            & Manual                               & User changes username, password, profile picture, or status.                                        & The expected result is that profile settings are updated and saved.                 & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-      Test-S5                            & Manual                               & User navigates to sub-realm settings to modify sub-realm options.                                   & The expected result is that sub-realm settings are accessible and configurable.     & Same as expected                             & \textcolor{Green}{Pass}               \\
-      \hline
-    \end{tabular}}
-  \label{table:ST}
-\end{table}
-
 \subsection{Portability Testing}
 The following table presents the results of the portability testing:
 
@@ -650,9 +631,9 @@ The following table presents the results of the installation testing:
       \hline
       \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs}                                                       & \multicolumn{1}{l|}{\bfseries Expected Result}                            & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result} \\
       \hline
-      Test-I1                            & Non-Functional, Manual               & Search for the app on the Apple App Store and Google Play Store.                            & The app is available for download on both app stores.                     & Same as expected                             & \textcolor{Green}{Pass}               \\
+      Test-I1                            & Non-Functional, Manual               & Search for the app on the Apple App Store and Google Play Store.                            & The app is available for download on both app stores.                     & Same as expected                             & \textcolor{Red}{Fail}               \\
       \hline
-      Test-I2                            & Non-Functional, Manual               & Attempt to install the app on a device from both the Apple App Store and Google Play Store. & The app installs directly without any additional steps or configurations. & Same as expected                             & \textcolor{Green}{Pass}               \\
+      Test-I2                            & Non-Functional, Manual               & Attempt to install the app on a device from both the Apple App Store and Google Play Store. & The app installs directly without any additional steps or configurations. & Same as expected                             & \textcolor{Red}{Fail}               \\
       \hline
     \end{tabular}}
   \label{table:NFR-Installation}
@@ -715,7 +696,7 @@ The following section presents the results of our distribution testing.
       \hline
       Test-DI-D1                         & Automated                            & Attempt to download and install the app on the user device.  & (a) The app installs successfully on devices running iOS 16.0+ and Android 12+.
       
-      (b) The app functions as expected post-installation on the device.      & Same as expected                             & \textcolor{Green}{Pass}               \\
+      (b) The app functions as expected post-installation on the device.      & Same as expected                             & \textcolor{Red}{Fail}               \\
       \hline
       Test-DI-D2                         & Manual                            & Review server locations where user data is stored.  & All user data is stored within North America.      & Same as expected                             & \textcolor{Green}{Pass}               \\
       \hline
@@ -1025,7 +1006,6 @@ We run these tests automatically on our continuous integration (CI) pipeline. Th
 
 \section{Trace to Requirements}
 
-\section{Trace to Modules}
 The following table shows the traceability matrix for the functional requirements:
 
 \begin{table}[htpb!]
@@ -1097,9 +1077,7 @@ The following table shows the traceability matrix for the functional requirement
     \hline
     Test-S2          & Adjust Display Settings               & S-FR2                 \\
     \hline
-    Test-S3          & Manage Privacy Settings               & S-FR3                 \\
-    \hline
-    Test-S4          & Update Profile Settings               & S-FR4                 \\
+    Test-S3          & Update Profile Settings               & S-FR4                 \\
     \hline
     Test-PT1         & Validate Cross-Platform Compatibility & DI-P1                 \\
     \hline
@@ -1125,16 +1103,6 @@ The following table shows the traceability matrix for the functional requirement
   \begin{tabular}{|l|p{8cm}|p{3cm}|}
     \hline
     \textbf{Test-ID} & \textbf{Test Name}                                                                                                    & \textbf{Requirements} \\
-    \hline
-    Test-TU1         & Tutorial opens on account creation                                                                                    & TU-FR2                \\
-    \hline
-    Test-TU2         & Tutorial can be opened through the settings screen                                                                    & TU-FR4                \\
-    \hline
-    Test-TU3         & Tutorial involves all major features                                                                                  & TU-FR1                \\
-    \hline
-    Test-TU4         & User can exit the tutorial at any time                                                                                & TU-FR3                \\
-    \hline
-    Test-TU5         & The tutorial is interactive in a sandbox environment                                                                  & TU-FR5                \\
     \hline
     Test-TM1         & \textit{Organization Users} can access tour management screen                                                         & TM-FR1                \\
     \hline
@@ -1244,9 +1212,7 @@ The following table shows the traceability matrix for the functional requirement
     \hline
     Test-POG5        & Generated AR Object Preview                           & POG-FR10                                                        \\
     \hline
-    Test-OUI1        & Object Render Display and Editing                     & OUI-FR1, OUI-FR2, OUI-FR3, OUI-FR4                              \\
-    \hline
-    Test-OUI2        & Object Naming and Storage                             & OUI-FR5, OUI-FR6, OUI-FR7, OUI-FR8, OUI-FR9, OUI-FR10, OUI-FR11 \\
+    Test-OUI1        & Object Naming and Storage                             & OUI-FR5, OUI-FR6, OUI-FR7, OUI-FR8, OUI-FR9, OUI-FR10, OUI-FR11 \\
     \hline
   \end{tabular}
   \caption{Mapping of Tests to Requirements (V)}
@@ -1436,6 +1402,8 @@ The following table shows the traceability matrix for unit tests to modules:
   \caption{Coverage Metrics by Module}
   \label{tab:coverage-metrics}
   \end{table}
+
+The lower percentages are mostly because we focused more on testing the main features and haven't fully covered some less common cases yet. Also, some modules interact with other parts of the system, which made them harder to fully test on their own.
   
 
 \bibliographystyle{plainnat}
