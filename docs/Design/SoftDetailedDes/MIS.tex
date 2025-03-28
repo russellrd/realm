@@ -118,15 +118,13 @@ The following table is taken directly from the Module Guide document for this pr
 {Hardware-Hiding Module} & Hardware Module\\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & Tutorial Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
 & Inventory Module\\
-& Sub-Realm Module\\
 & Touring Module\\
 & Tour List Module\\
 & Tour Management Module\\
 & Settings Module\\
 & Help Module\\
-& Friends Module\\
 & Maps Module\\
 & Realm Interface Module\\
 & Object Importer Module\\
@@ -152,95 +150,6 @@ The following table is taken directly from the Module Guide document for this pr
 \caption{Module Hierarchy}
 \label{TblMH}
 \end{table}
-
-\newpage
-
-\section{MIS of Tutorial} \label{Tutorial}
-
-The Tutorial module contains the methods needed to produce an interactive tutorial. Once a feature has been demonstrated, a user can choose to move on to the next feature. Once all the features have been shown, the user can quit the tutorial immediately or stay in the sandbox.
-
-\subsection{Module}
-
-TutorialModule
-
-\subsection{Uses}
-
-Realm Interface Module\\
-Maps Module\\
-Object Importer Module\\
-Object Placement Module\\
-Object Interaction Module\\
-REST API Connection Module
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-Full & - & - & - \\
-One & $\mathbb{Z}, string$ & - & - \\
-Close & $string$ & - & - \\
-Reset & - & - & - \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-page: $\mathbb{Z}$\\
-isLoaded: $\mathbb{B}$\\
-isNextAvailable: $\mathbb{B}$\\
-isLast: $\mathbb{B}$
-
-\subsubsection{Environment Variables}
-
-N/A
-
-\subsubsection{Assumptions}
-
-N/A
-
-\subsubsection{Access Routine Semantics}
-
-\noindent Full():
-\begin{itemize}
-\item transition: (isNextAvailable == True $\wedge$ button.pressed == True $\wedge$ isLast == True) $\Rightarrow$ Close("Realm Interface")
-\item output: N/A
-\item exception: N/A
-\end{itemize}
-
-\noindent One(page, prev):
-\begin{itemize}
-\item transition: (isNextAvailable == True $\wedge$ button.pressed == True) $\Rightarrow$ Close(prev)
-\item output: N/A
-\item exception: N/A
-\end{itemize}
-
-\noindent Close(nav\_screen):
-\begin{itemize}
-\item transition: button.pressed == True $\Rightarrow$ (Reset(), screen == nav\_screen)
-\item output: N/A
-\item exception: N/A
-\end{itemize}
-
-\noindent Reset():
-\begin{itemize}
-\item transition: page = 0
-\item output: N/A
-\item exception: N/A
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-N/A
 
 \newpage
 
@@ -419,7 +328,7 @@ Help Module
 \subsubsection{Environment Variables}
 
 \begin{itemize}
-  \item Content Storage: Stores the help documentation (e.g., FAQs, guides, tutorials).
+  \item Content Storage: Stores the help documentation (e.g., FAQs, guides).
   \item Device Network: Used for fetching online help content if local content is not available.
 \end{itemize}
 
@@ -462,120 +371,6 @@ Help Module
 
 
 \newpage
-
-\section{MIS of Friends Module} \label{Module_Friends}
-
-\subsection{Module}
-
-Friends Module
-
-\subsection{Uses}
-
-\begin{itemize}
-  \item User Interface Manager Module
-  \item Database Manager Module
-  \item Notification Module
-\end{itemize}
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-\begin{itemize}
-  \item None
-\end{itemize}
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-  \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
-    \hline
-    \textbf{Name}       & \textbf{In}              & \textbf{Out}           & \textbf{Exceptions}     \\
-    \hline
-    AddFriend           & User ID of friend        & Bool - Success or Fail & FriendRequestException  \\
-    \hline
-    RemoveFriend        & User ID of friend        & Bool - Success or Fail & FriendNotFoundException \\
-    \hline
-    FetchFriendList     & -                        & List of friends        & -                       \\
-    \hline
-    AcceptFriendRequest & Request ID               & Bool - Success or Fail & InvalidRequestException \\
-    \hline
-    RejectFriendRequest & Request ID               & Bool - Success or Fail & InvalidRequestException \\
-    \hline
-    BlockUser           & User ID of user to block & Bool - Success or Fail & BlockException          \\
-    \hline
-  \end{tabular}
-\end{center}
-
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-\begin{itemize}
-  \item friendsList: A list of user identifiers representing the user's current friends.
-  \item pendingRequests: A list of incoming and outgoing friend requests.
-\end{itemize}
-
-\subsubsection{Environment Variables}
-
-\begin{itemize}
-  \item Database: Stores the user’s friends and pending requests.
-  \item Notification System: Sends notifications for friend requests and updates.
-\end{itemize}
-
-\subsubsection{Assumptions}
-
-\begin{itemize}
-  \item All user identifiers provided are valid and correspond to registered users.
-  \item The database connection is available and operational during module use.
-\end{itemize}
-
-\subsubsection{Access Routine Semantics}
-
-\noindent AddFriend(userID):
-\begin{itemize}
-  \item \textbf{Transition:} Adds the specified user to the friends list if the request is valid and approved.
-  \item \textbf{Output:} Returns true if the friend is successfully added, false otherwise.
-  \item \textbf{Exception:} Throws UserNotFoundException if the specified userID does not exist.
-\end{itemize}
-
-\noindent RemoveFriend(userID):
-\begin{itemize}
-  \item \textbf{Transition:} Removes the specified user from the friends list.
-  \item \textbf{Output:} Returns true if the friend is successfully removed, false otherwise.
-  \item \textbf{Exception:} Throws UserNotFoundException if the specified userID does not exist.
-\end{itemize}
-
-\noindent FetchFriendsList():
-\begin{itemize}
-  \item \textbf{Output:} Returns a list of user identifiers representing the user’s current friends.
-  \item \textbf{Exception:} None
-\end{itemize}
-
-\noindent SendFriendRequest(userID):
-\begin{itemize}
-  \item \textbf{Transition:} Adds a new friend request to the pendingRequests list.
-  \item \textbf{Output:} Returns true if the request is successfully sent, false otherwise.
-  \item \textbf{Exception:} Throws UserNotFoundException if the specified userID does not exist.
-\end{itemize}
-
-\noindent RespondToFriendRequest(requestID, response):
-\begin{itemize}
-  \item \textbf{Transition:} Updates the status of the specified friend request (accept or reject).
-  \item \textbf{Output:} Returns true if the response is successfully recorded, false otherwise.
-  \item \textbf{Exception:} Throws RequestNotFoundException if the specified requestID does not exist.
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-\begin{itemize}
-  \item ValidateUserID(userID): Ensures the user identifier corresponds to a valid registered user.
-  \item NotifyUser(userID, message): Sends a notification to the specified user.
-\end{itemize}
-
-\newpage
-
 
 \section{MIS of Collision Hazard Detection Module} \label{Module_CollisionHazardDetection}
 
@@ -1324,121 +1119,6 @@ It is assumed that the database is functional and contains valid tour data.
 
 \newpage
 
-\section{MIS of Sub-Realms} \label{sub-realms}
-
-\subsection{Module}
-
-SubRealms
-
-\subsection{Uses}
-
-\hyperref[local-dbm]{Local Database Manager}
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-N/A
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-  \begin{tabular}{p{4cm} p{4cm} p{3cm} p{3cm}}
-    \hline
-    \textbf{Name}  & \textbf{In}                             & \textbf{Out}                            & \textbf{Exceptions}                     \\
-    \hline
-    getMembers     & $\mathbb{N}$                            & Array\textlangle$\mathbb{N}$\textrangle & SubRealmNotFound                        \\
-    addMember      & $\mathbb{N}$, $\mathbb{N}$              & -                                       & SubRealmNotFound, UserAlreadyInSubRealm \\
-    removeMember   & $\mathbb{N}$, $\mathbb{N}$              & -                                       & SubRealmNotFound, MemberNotFound        \\
-    createNew      & Array\textlangle$\mathbb{N}$\textrangle & $\mathbb{N}$                            & -                                       \\
-    deleteExisting & $\mathbb{N}$                            & -                                       & SubRealmNotFound                        \\
-    \hline
-  \end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-\begin{itemize}
-  \item \( subRealms \): A mapping of \( subRealmID \to subRealm \), where each \( subRealm \) contains a list of \( members \) (user IDs).
-\end{itemize}
-
-\subsubsection{Environment Variables}
-
-\begin{itemize}
-  \item \( localDB \): The local database used for storing sub-realm data temporarily.
-\end{itemize}
-
-\subsubsection{Assumptions}
-
-Sub-realm IDs (\( subRealmID \)) are unique, and all user IDs (\( userID \)) are valid.
-
-\subsubsection{Access Routine Semantics}
-
-\noindent getMembers(subRealmID):
-\begin{itemize}
-  \item \textbf{transition}: N/A
-  \item \textbf{output}: Returns the list of \( userIDs \) that are members of the sub-realm identified by \( subRealmID \).
-  \item \textbf{exception}:
-        \begin{itemize}
-          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
-        \end{itemize}
-\end{itemize}
-
-\noindent addMember(subRealmID, userID):
-\begin{itemize}
-  \item \textbf{transition}:
-        If \( subRealmID \in subRealms \) and \( userID \notin subRealms[subRealmID].members \), add \( userID \) to the members of the sub-realm identified by \( subRealmID \).
-  \item \textbf{output}: N/A
-  \item \textbf{exception}:
-        \begin{itemize}
-          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
-          \item \( UserAlreadyInSubRealm \): If \( userID \) is already a member of the sub-realm.
-        \end{itemize}
-\end{itemize}
-
-\noindent removeMember(subRealmID, userID):
-\begin{itemize}
-  \item \textbf{transition}:
-        If \( subRealmID \in subRealms \) and \( userID \in subRealms[subRealmID].members \), remove \( userID \) from the members of the sub-realm identified by \( subRealmID \).
-  \item \textbf{output}: N/A
-  \item \textbf{exception}:
-        \begin{itemize}
-          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
-          \item \( MemberNotFound \): If \( userID \) is not a member of the sub-realm.
-        \end{itemize}
-\end{itemize}
-
-\noindent createNew(memberList):
-\begin{itemize}
-  \item \textbf{transition}:
-        A new sub-realm is created with a unique \( subRealmID \), and its \( members \) are initialized to \( memberList \).
-        The new sub-realm is stored in both the local and server databases.
-  \item \textbf{output}: Returns the unique \( subRealmID \) of the newly created sub-realm.
-  \item \textbf{exception}: None
-\end{itemize}
-
-\noindent deleteExisting(subRealmID):
-\begin{itemize}
-  \item \textbf{transition}:
-        If \( subRealmID \in subRealms \), remove the sub-realm from both the local and server databases.
-  \item \textbf{output}: N/A
-  \item \textbf{exception}:
-        \begin{itemize}
-          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
-        \end{itemize}
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-\begin{itemize}
-  \item \texttt{syncWithLocalDB()}: Synchronizes sub-realm data with the local database.
-  \item \texttt{syncWithServerDB()}: Synchronizes sub-realm data with the server database.
-\end{itemize}
-
-\newpage
-
 \section{MIS of Maps} \label{maps}
 
 \subsection{Module}
@@ -2163,7 +1843,7 @@ RealmInterface
 
 \subsection{Uses}
 
-\ref{sub-realms}, \ref{maps}, 3D Renderer, AR Framework
+\ref{maps}, 3D Renderer, AR Framework
 
 \subsection{Syntax}
 
@@ -2178,11 +1858,9 @@ N/A
     \hline
     \textbf{Name}          & \textbf{In}                                           & \textbf{Out} & \textbf{Exceptions} \\
     \hline
-    displayObjectsInRealm  & $\mathbb{N}$                                          & -            & SubRealmNotFound    \\
+    displayObjectsInRealm  & $\mathbb{N}$                                          & -            & -   \\
     navigateToMap          & -                                                     & -            & -                   \\
-    updateDisplayedObjects & $\mathbb{N}$, Array\textlangle$\mathbb{N}$\textrangle & -            & SubRealmNotFound    \\
-    getActiveSubRealm      & -                                                     & $\mathbb{N}$ & NoActiveSubRealm    \\
-    setActiveSubRealm      & $\mathbb{N}$                                          & -            & SubRealmNotFound    \\
+    updateDisplayedObjects & $\mathbb{N}$, Array\textlangle$\mathbb{N}$\textrangle & -            & -   \\
     \hline
   \end{tabular}
 \end{center}
@@ -2192,7 +1870,6 @@ N/A
 \subsubsection{State Variables}
 
 \begin{itemize}
-  \item \( activeSubRealm \): The \( subRealmID \) of the currently selected sub-realm.
   \item \( displayedObjects \): A list of 3D objects being rendered in the current view.
 \end{itemize}
 
@@ -2205,19 +1882,15 @@ N/A
 
 \subsubsection{Assumptions}
 
-A valid \( subRealmID \) corresponds to an existing sub-realm, and all objects in the realm are properly loaded.
+All objects in the realm are properly loaded.
 
 \subsubsection{Access Routine Semantics}
 
-\noindent displayObjectsInRealm(subRealmID):
+\noindent displayObjectsInRealm():
 \begin{itemize}
   \item \textbf{transition}:
-        Retrieves the 3D objects associated with \( subRealmID \) and displays them in the AR view.
+        Retrieves the 3D objects and displays them in the AR view.
   \item \textbf{output}: N/A
-  \item \textbf{exception}:
-        \begin{itemize}
-          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
-        \end{itemize}
 \end{itemize}
 
 \noindent navigateToMap():
@@ -2228,43 +1901,17 @@ A valid \( subRealmID \) corresponds to an existing sub-realm, and all objects i
   \item \textbf{exception}: None
 \end{itemize}
 
-\noindent updateDisplayedObjects(subRealmID, objectIDs):
+\noindent updateDisplayedObjects(objectIDs):
 \begin{itemize}
   \item \textbf{transition}:
-        Updates the list of objects displayed in the AR view for the specified \( subRealmID \). Removes any previously displayed objects not in \( objectIDs \).
+        Updates the list of objects displayed in the AR view. Removes any previously displayed objects not in \( objectIDs \).
   \item \textbf{output}: N/A
-  \item \textbf{exception}:
-        \begin{itemize}
-          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
-        \end{itemize}
-\end{itemize}
-
-\noindent getActiveSubRealm():
-\begin{itemize}
-  \item \textbf{transition}: N/A
-  \item \textbf{output}:
-        Returns the \( subRealmID \) of the currently active sub-realm.
-  \item \textbf{exception}:
-        \begin{itemize}
-          \item \( NoActiveSubRealm \): If no sub-realm is currently active.
-        \end{itemize}
-\end{itemize}
-
-\noindent setActiveSubRealm(subRealmID):
-\begin{itemize}
-  \item \textbf{transition}:
-        Sets the \( subRealmID \) as the \( activeSubRealm \) and updates the displayed objects accordingly.
-  \item \textbf{output}: N/A
-  \item \textbf{exception}:
-        \begin{itemize}
-          \item \( SubRealmNotFound \): If \( subRealmID \) does not exist.
-        \end{itemize}
 \end{itemize}
 
 \subsubsection{Local Functions}
 
 \begin{itemize}
-  \item \texttt{loadObjects(subRealmID)}: Loads 3D object data for the given \( subRealmID \) from the local or server database.
+  \item \texttt{loadObjects()}: Loads 3D object data from the local or server database.
   \item \texttt{renderObjects(objectList)}: Renders the provided list of 3D objects in the AR view.
   \item \texttt{clearDisplay()}: Removes all objects currently displayed in the AR view.
 \end{itemize}
@@ -2721,7 +2368,7 @@ DETECTION\_RADIUS = 30 (Radius in kilometers to detect weather hazards)
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-  \begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+  \begin{tabular}{p{4cm} p{4cm} p{4cm} p{2cm}}
     \hline
     \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
     \hline
