@@ -142,10 +142,12 @@ PlayerSettings:
   tvOSBundleVersion: 1.0
   bundleVersion: 0.1.0
   preloadedAssets:
-  - {fileID: 8315550589394021754, guid: d1408fbd8ebb05d4b9ce07d4f2e7fe6b, type: 2}
-  - {fileID: 11400000, guid: 0d97aec9cc73c7a48bb2636e469b006b, type: 2}
   - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
   - {fileID: 4800000, guid: 0945859e5a1034c2cb6dce53cb4fb899, type: 3}
+  - {fileID: 5158635985908375257, guid: cc98ccdc40fc1d54e9b988ba07b15389, type: 2}
+  - {fileID: 11400000, guid: 48239d59787e8d040aa54d229d1877d5, type: 2}
+  - {fileID: 8315550589394021754, guid: d1408fbd8ebb05d4b9ce07d4f2e7fe6b, type: 2}
+  - {fileID: 11400000, guid: 0d97aec9cc73c7a48bb2636e469b006b, type: 2}
   - {fileID: 11400000, guid: 4b7312ebe9ffc794e94d604ff71d7cb8, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -185,7 +187,7 @@ PlayerSettings:
   stripEngineCode: 0
   iPhoneStrippingLevel: 0
   iPhoneScriptCallOptimization: 0
-  ForceInternetPermission: 0
+  ForceInternetPermission: 1
   ForceSDCardPermission: 0
   CreateWallpaper: 0
   androidSplitApplicationBinary: 0

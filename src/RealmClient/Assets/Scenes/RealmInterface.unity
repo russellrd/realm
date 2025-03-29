@@ -3315,11 +3315,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7226030647906010607, guid: 99ab5b542f8c91747b6e15f9cec2c5ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -330
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7226030647906010607, guid: 99ab5b542f8c91747b6e15f9cec2c5ad, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 670.42053
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8304562265429266311, guid: 99ab5b542f8c91747b6e15f9cec2c5ad, type: 3}
       propertyPath: m_VerticalScrollbarSpacing
