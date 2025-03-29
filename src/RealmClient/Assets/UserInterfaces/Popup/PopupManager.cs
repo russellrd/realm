@@ -1,30 +1,33 @@
 using UnityEngine.UIElements;
 using UnityEngine;
 
-public class PopupManager : MonoBehaviour
+namespace Realm.Popup
 {
-    [SerializeField]
-    private UIDocument popupUI;
-
-    public void ShowWeatherHazardPopup(string weatherCodeMsg)
+    public class PopupManager : MonoBehaviour
     {
-        PopupCustomControl popup = new(true);
-        popup.SetText($"Weather Hazard:\n {weatherCodeMsg}");
-        popup.SetPrimaryButtonText("OK");
+        [SerializeField]
+        private UIDocument popupUI;
 
-        popupUI.rootVisualElement.Add(popup);
+        public void ShowWeatherHazardPopup(string weatherCodeMsg)
+        {
+            PopupCustomControl popup = new(true);
+            popup.SetText($"Weather Hazard:\n {weatherCodeMsg}");
+            popup.SetPrimaryButtonText("OK");
 
-        popup.Primary += () => popupUI.rootVisualElement.Remove(popup);
-    }
+            popupUI.rootVisualElement.Add(popup);
 
-    public void ShowErrorPopup(string errorMsg)
-    {
-        PopupCustomControl popup = new(true);
-        popup.SetText($"Error:\n {errorMsg}");
-        popup.SetPrimaryButtonText("CLOSE");
+            popup.Primary += () => popupUI.rootVisualElement.Remove(popup);
+        }
 
-        popupUI.rootVisualElement.Add(popup);
+        public void ShowErrorPopup(string errorMsg)
+        {
+            PopupCustomControl popup = new(true);
+            popup.SetText($"Error:\n {errorMsg}");
+            popup.SetPrimaryButtonText("CLOSE");
 
-        popup.Primary += () => popupUI.rootVisualElement.Remove(popup);
+            popupUI.rootVisualElement.Add(popup);
+
+            popup.Primary += () => popupUI.rootVisualElement.Remove(popup);
+        }
     }
 }

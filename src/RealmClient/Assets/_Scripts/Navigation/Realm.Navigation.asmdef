@@ -1,0 +1,19 @@
+{
+    "name": "Realm.Navigation",
+    "rootNamespace": "Realm.Navigation",
+    "references": [
+        "GUID:3459f5a35563af946b431b39f8c06270",
+        "GUID:2f101f87087d58f4ba92ca00188e763d",
+        "GUID:f7898ee836234b98a20cbddc2a6e0b08",
+        "GUID:38b4ed194cd53fa42a8d392d02f556df"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
