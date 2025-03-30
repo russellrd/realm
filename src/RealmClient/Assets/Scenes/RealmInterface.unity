@@ -584,6 +584,7 @@ GameObject:
   - component: {fileID: 373260292}
   - component: {fileID: 373260291}
   - component: {fileID: 373260294}
+  - component: {fileID: 373260295}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -687,6 +688,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AnchorPrefab: {fileID: 0}
+--- !u!114 &373260295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373260285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b64bca96651214985e8152b1ac8841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,7 +960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &543126595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2451,6 +2464,7 @@ GameObject:
   - component: {fileID: 1595642432}
   - component: {fileID: 1595642431}
   - component: {fileID: 1595642433}
+  - component: {fileID: 1595642434}
   m_Layer: 0
   m_Name: UIDocument
   m_TagString: Untagged
@@ -2499,13 +2513,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595642430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 298dd1a88c016c2459e811d0503d639e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   uiDocument: {fileID: 1595642431}
-  graphViewAsset: {fileID: 11400000, guid: 8b536f5b0e7e9de4f8b7ab2f4ab084a4, type: 2}
+  graphViewAsset: {fileID: 11400000, guid: 315ba85c84e3e254e8ed163af06c40a1, type: 2}
+--- !u!114 &1595642434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595642430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4b3f9b90b95554e859cb4326f87bf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 1595642431}
 --- !u!1 &1720929082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2674,7 +2701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 121840790}
-  m_CameraToFace: {fileID: 0}
+  m_CameraToFace: {fileID: 1386026478}
   m_ObjectPrefabs:
   - {fileID: 7999329307452758732, guid: 03772bec5ccf1ce429bca07b20f88ae4, type: 3}
   - {fileID: 7999329307452758732, guid: bb9809307134d924993b4cb27a67b28d, type: 3}
