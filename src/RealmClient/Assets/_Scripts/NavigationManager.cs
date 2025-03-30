@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using Realm.Controller;
+using UnityEngine.SceneManagement;
 
 namespace Realm
 {
@@ -96,6 +97,12 @@ namespace Realm
             };
             bottomNavBar.Add(toursButton);
 
+            var mapsButton = new NewBottomNavBarItem(Resources.LoadAll<Sprite>("Sprites/MapToolIcon")[0], "Map", () => NavigationController.NavigateTo(NavigationController.Destinations.map))
+            {
+                isSelected = NavigationController.currentRoute == NavigationController.Destinations.map
+            };
+            bottomNavBar.Add(mapsButton);
+
             var profileButton = new NewBottomNavBarItem(Resources.LoadAll<Sprite>("Sprites/Profile")[0], "Profile", () => NavigationController.NavigateTo(NavigationController.Destinations.profile))
             {
                 isSelected = NavigationController.currentRoute == NavigationController.Destinations.profile
@@ -170,7 +177,7 @@ namespace Realm
             tourLabel.AddManipulator(tourPressable);
             Add(tourLabel);
 
-            var editIcon = new Icon(Resources.LoadAll<Sprite>("Sprites/Plumber")[0], 30)
+            var editIcon = new Icon(Resources.LoadAll<Sprite>("Sprites/Plumber")[0], 25)
             {
                 pickingMode = PickingMode.Position
             };
@@ -748,7 +755,8 @@ namespace Realm
             settings,
             create_tour,
             register,
-            edit_tour
+            edit_tour,
+            map
         }
 
         public static void NavigateTo(Destinations destination, Dictionary<string, string> data = null)
@@ -759,6 +767,9 @@ namespace Realm
 
             switch (destination)
             {
+                case Destinations.map:
+                    SceneManager.LoadScene("Map");
+                    break;
                 case Destinations.splash:
                     var splashScreen = new SplashScreen();
                     splashScreen.StretchToParentSize();
