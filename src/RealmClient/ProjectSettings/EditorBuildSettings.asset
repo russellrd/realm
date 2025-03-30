@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Authentication.unity
     guid: ea4c50590191ed843843d4b1aa90d8ea
   - enabled: 1
@@ -14,6 +14,10 @@ EditorBuildSettings:
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: fe2c657dbaa25e64dac8a625b1fbd67b, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: eb06c1f43c2260244b6be2b921ec853b, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 80d3b22586bf5cd43938847c15eb8bf0, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 7065dde32d6d41549ac67b14b354e642, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 16349481172d59a49ad5cb47a56e0261, type: 2}
+    com.unity.dt.app-ui: {fileID: 11400000, guid: e95723980359cb4478a71bb8e22ee0e3, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 0d97aec9cc73c7a48bb2636e469b006b, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: d1408fbd8ebb05d4b9ce07d4f2e7fe6b, type: 2}

@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UserInterfaces/Popup/Resources/PopupStylesheet.uss?fileID=7433441132597879392&amp;guid=24d19194da3662944afebd6e4383c0d8&amp;type=3#PopupStylesheet" />
+    <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/Sprites/Backward.png?fileID=21300000&amp;guid=b96350d8cb1db304cb74c6fb3c5e9d04&amp;type=3#Backward&quot;); width: 366px; height: 408px;" />
+</ui:UXML>

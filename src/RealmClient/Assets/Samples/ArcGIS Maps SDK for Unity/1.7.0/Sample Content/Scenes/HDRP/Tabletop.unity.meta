@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d595ab0abafd66840975e8b6d2801263
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258537
+  packageName: ArcGIS Maps SDK for Unity
+  packageVersion: 1.6.0
+  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Scenes/HDRP/Tabletop.unity
+  uploadId: 713734

@@ -1,0 +1,615 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8598944340514428862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e9866b5cc41e7ac482ba5fe89e09b, type: 3}
+  m_Name: profile
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1633, y: 467}
+  m_Guid: b31770c07cc33814787a191c8e400056
+  m_Parent: {fileID: -8584231431435899983}
+  m_Actions:
+  - {fileID: 2780411364777244043}
+  m_Label: Profile
+  m_Template: Realm.Navigation.ProfileScreen, Realm.Navigation, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  m_Arguments: []
+  m_ShowBottomNavBar: 1
+  m_ShowAppBar: 1
+  m_ShowBackButton: 1
+  m_ShowDrawer: 0
+  m_ShowNavigationRail: 0
+--- !u!114 &-8584231431435899983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac212c624cd4a46acc6d3430ae62e14, type: 3}
+  m_Name: profile_graph
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1849, y: 489}
+  m_Guid: 5c265fa5e56e1aa4ea422b3935f3a706
+  m_Parent: {fileID: -715733237560201496}
+  m_Actions: []
+  m_Label: 
+  m_StartDestination: {fileID: -8598944340514428862}
+--- !u!114 &-8380405004685714807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e9866b5cc41e7ac482ba5fe89e09b, type: 3}
+  m_Name: edit_tour
+  m_EditorClassIdentifier: 
+  m_Position: {x: 2323, y: 608}
+  m_Guid: f7174a5c2a74aee46921b83c56b2d723
+  m_Parent: {fileID: -3547225900042300475}
+  m_Actions: []
+  m_Label: Edit Tour
+  m_Template: Realm.Navigation.EditTourScreen, Realm.Navigation, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  m_Arguments: []
+  m_ShowBottomNavBar: 0
+  m_ShowAppBar: 1
+  m_ShowBackButton: 1
+  m_ShowDrawer: 0
+  m_ShowNavigationRail: 0
+--- !u!114 &-8061207325147187556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: splash_to_auth
+  m_EditorClassIdentifier: 
+  m_Position: {x: 961, y: -449}
+  m_Guid: e19302b4-8ec6-4c1a-8aac-fd0b30fd8149
+  m_Destination: {fileID: -6202755762156307755}
+  m_Options:
+    m_PopUpToStrategy: 1
+    m_PopUpToRoute: {fileID: 1485292498699936739}
+    m_PopUpToInclusive: 1
+    m_EnterAnim: 3
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 0
+    m_PopUpToSaveState: 0
+    m_RestoreState: 0
+    m_LaunchSingleTop: 0
+  m_DefaultArguments: []
+--- !u!114 &-7650560028556500421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e9866b5cc41e7ac482ba5fe89e09b, type: 3}
+  m_Name: tour_preview
+  m_EditorClassIdentifier: 
+  m_Position: {x: 2316, y: -208}
+  m_Guid: 7417462f5af9d0344acad0bddae72ed7
+  m_Parent: {fileID: -3547225900042300475}
+  m_Actions: []
+  m_Label: Tour Preview
+  m_Template: Realm.Navigation.TourPreviewScreen, Realm.Navigation, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  m_Arguments: []
+  m_ShowBottomNavBar: 0
+  m_ShowAppBar: 1
+  m_ShowBackButton: 1
+  m_ShowDrawer: 0
+  m_ShowNavigationRail: 0
+--- !u!114 &-6202755762156307755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac212c624cd4a46acc6d3430ae62e14, type: 3}
+  m_Name: auth_graph
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1849, y: -449}
+  m_Guid: 52b0612e7b470f7429c5d01fc118ed35
+  m_Parent: {fileID: -715733237560201496}
+  m_Actions: []
+  m_Label: 
+  m_StartDestination: {fileID: -1459018702668851485}
+--- !u!114 &-4592521019428337874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e9866b5cc41e7ac482ba5fe89e09b, type: 3}
+  m_Name: settings
+  m_EditorClassIdentifier: 
+  m_Position: {x: 2343, y: 467}
+  m_Guid: 4eb2f901a13f422419e7e84d2040e9da
+  m_Parent: {fileID: -8584231431435899983}
+  m_Actions: []
+  m_Label: Settings
+  m_Template: Realm.Navigation.SettingsScreen, Realm.Navigation, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  m_Arguments: []
+  m_ShowBottomNavBar: 0
+  m_ShowAppBar: 1
+  m_ShowBackButton: 1
+  m_ShowDrawer: 0
+  m_ShowNavigationRail: 0
+--- !u!114 &-4131064768957221099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: go_to_profile
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1435, y: 489}
+  m_Guid: 47605e3a-5977-4e10-9f2f-d8264818432c
+  m_Destination: {fileID: -8584231431435899983}
+  m_Options:
+    m_PopUpToStrategy: 2
+    m_PopUpToRoute: {fileID: -3231639307065614921}
+    m_PopUpToInclusive: 1
+    m_EnterAnim: 0
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 0
+    m_PopUpToSaveState: 1
+    m_RestoreState: 1
+    m_LaunchSingleTop: 1
+  m_DefaultArguments: []
+--- !u!114 &-3547225900042300475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac212c624cd4a46acc6d3430ae62e14, type: 3}
+  m_Name: tours_graph
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1849, y: -29}
+  m_Guid: 8d6da6309f2c1bc409919d437988b5fd
+  m_Parent: {fileID: -715733237560201496}
+  m_Actions: []
+  m_Label: 
+  m_StartDestination: {fileID: -3231639307065614921}
+--- !u!114 &-3231639307065614921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e9866b5cc41e7ac482ba5fe89e09b, type: 3}
+  m_Name: tours
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1523, y: 198}
+  m_Guid: 9861f902df36e9e408fcea5827e3be8a
+  m_Parent: {fileID: -3547225900042300475}
+  m_Actions:
+  - {fileID: 7651219179439010112}
+  - {fileID: 1048224840824557354}
+  - {fileID: 3013250867280111906}
+  m_Label: Tour List
+  m_Template: Realm.Navigation.ToursScreen, Realm.Navigation, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  m_Arguments: []
+  m_ShowBottomNavBar: 1
+  m_ShowAppBar: 1
+  m_ShowBackButton: 1
+  m_ShowDrawer: 0
+  m_ShowNavigationRail: 0
+--- !u!114 &-1459018702668851485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e9866b5cc41e7ac482ba5fe89e09b, type: 3}
+  m_Name: login
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1118, y: -124}
+  m_Guid: bd4af3f7f7523f64cbeeae039eb41a6f
+  m_Parent: {fileID: -6202755762156307755}
+  m_Actions:
+  - {fileID: 4418338860101402570}
+  m_Label: Login
+  m_Template: Realm.Navigation.LoginScreen, Realm.Navigation, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  m_Arguments: []
+  m_ShowBottomNavBar: 0
+  m_ShowAppBar: 0
+  m_ShowBackButton: 0
+  m_ShowDrawer: 0
+  m_ShowNavigationRail: 0
+--- !u!114 &-715733237560201496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ac212c624cd4a46acc6d3430ae62e14, type: 3}
+  m_Name: nav_graph
+  m_EditorClassIdentifier: 
+  m_Position: {x: 0, y: 0}
+  m_Guid: d4c4e963-6802-4759-b499-21522acaaf98
+  m_Parent: {fileID: 0}
+  m_Actions:
+  - {fileID: -4131064768957221099}
+  - {fileID: 554075115003276504}
+  - {fileID: 8738356922321485901}
+  m_Label: 
+  m_StartDestination: {fileID: 1485292498699936739}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d5b7fe0491446cbd625fd576a3105e, type: 3}
+  m_Name: NavigationGraph
+  m_EditorClassIdentifier: 
+  m_Nodes:
+  - {fileID: -715733237560201496}
+  - {fileID: 1485292498699936739}
+  - {fileID: -6202755762156307755}
+  - {fileID: -1459018702668851485}
+  - {fileID: -8061207325147187556}
+  - {fileID: 3995224273536255821}
+  - {fileID: -3547225900042300475}
+  - {fileID: -3231639307065614921}
+  - {fileID: -4131064768957221099}
+  - {fileID: -8584231431435899983}
+  - {fileID: -8598944340514428862}
+  - {fileID: 554075115003276504}
+  - {fileID: 8738356922321485901}
+  - {fileID: -7650560028556500421}
+  - {fileID: 7651219179439010112}
+  - {fileID: -4592521019428337874}
+  - {fileID: 2780411364777244043}
+  - {fileID: 5142961818439425208}
+  - {fileID: 1048224840824557354}
+  - {fileID: 4418338860101402570}
+  - {fileID: 5167409613206396488}
+  - {fileID: -8380405004685714807}
+  - {fileID: 3013250867280111906}
+--- !u!114 &554075115003276504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: go_to_tours
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1432, y: 74}
+  m_Guid: 7f947436-0157-4a94-adeb-584e53632b43
+  m_Destination: {fileID: -3547225900042300475}
+  m_Options:
+    m_PopUpToStrategy: 2
+    m_PopUpToRoute: {fileID: -8598944340514428862}
+    m_PopUpToInclusive: 1
+    m_EnterAnim: 0
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 0
+    m_PopUpToSaveState: 1
+    m_RestoreState: 1
+    m_LaunchSingleTop: 1
+  m_DefaultArguments: []
+--- !u!114 &1048224840824557354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: tours_to_create_tour
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1951, y: 198}
+  m_Guid: 4c3170ae-ff55-4b77-a12d-1348f14398d3
+  m_Destination: {fileID: 5142961818439425208}
+  m_Options:
+    m_PopUpToStrategy: 0
+    m_PopUpToRoute: {fileID: 0}
+    m_PopUpToInclusive: 0
+    m_EnterAnim: 2
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 1
+    m_PopUpToSaveState: 0
+    m_RestoreState: 0
+    m_LaunchSingleTop: 0
+  m_DefaultArguments: []
+--- !u!114 &1485292498699936739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e9866b5cc41e7ac482ba5fe89e09b, type: 3}
+  m_Name: splash_screen
+  m_EditorClassIdentifier: 
+  m_Position: {x: 582, y: -134}
+  m_Guid: 091a8ba5ee6a0054183fdfca548dd778
+  m_Parent: {fileID: -715733237560201496}
+  m_Actions:
+  - {fileID: -8061207325147187556}
+  - {fileID: 3995224273536255821}
+  m_Label: '@UI:SplashScreen'
+  m_Template: Realm.Navigation.SplashScreen, Realm.Navigation, Version=0.0.0.0, Culture=neutral,
+    PublicKeyToken=null
+  m_Arguments: []
+  m_ShowBottomNavBar: 0
+  m_ShowAppBar: 0
+  m_ShowBackButton: 0
+  m_ShowDrawer: 0
+  m_ShowNavigationRail: 0
+--- !u!114 &2780411364777244043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: profile_to_settings
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1991, y: 467}
+  m_Guid: 4dbc2937-eafc-4fc1-9aa5-c28d5579709f
+  m_Destination: {fileID: -4592521019428337874}
+  m_Options:
+    m_PopUpToStrategy: 0
+    m_PopUpToRoute: {fileID: 0}
+    m_PopUpToInclusive: 0
+    m_EnterAnim: 2
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 1
+    m_PopUpToSaveState: 0
+    m_RestoreState: 0
+    m_LaunchSingleTop: 0
+  m_DefaultArguments: []
+--- !u!114 &3013250867280111906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: tours_to_edit_tour
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1951, y: 608}
+  m_Guid: 8be40b70-ca0a-463c-ae7f-05182f851c4d
+  m_Destination: {fileID: -8380405004685714807}
+  m_Options:
+    m_PopUpToStrategy: 0
+    m_PopUpToRoute: {fileID: 0}
+    m_PopUpToInclusive: 0
+    m_EnterAnim: 2
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 1
+    m_PopUpToSaveState: 0
+    m_RestoreState: 0
+    m_LaunchSingleTop: 0
+  m_DefaultArguments: []
+--- !u!114 &3995224273536255821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: splash_to_tours
+  m_EditorClassIdentifier: 
+  m_Position: {x: 961, y: -29}
+  m_Guid: bd2f3bbb-5fea-46c3-a3a8-42beec0932fc
+  m_Destination: {fileID: -3547225900042300475}
+  m_Options:
+    m_PopUpToStrategy: 1
+    m_PopUpToRoute: {fileID: 1485292498699936739}
+    m_PopUpToInclusive: 1
+    m_EnterAnim: 3
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 0
+    m_PopUpToSaveState: 0
+    m_RestoreState: 0
+    m_LaunchSingleTop: 1
+  m_DefaultArguments: []
+--- !u!114 &4418338860101402570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: login_to_register
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1471, y: -124}
+  m_Guid: 18ac8819-9426-4afa-a39e-de9a9a2b6001
+  m_Destination: {fileID: 5167409613206396488}
+  m_Options:
+    m_PopUpToStrategy: 0
+    m_PopUpToRoute: {fileID: 0}
+    m_PopUpToInclusive: 0
+    m_EnterAnim: 2
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 1
+    m_PopUpToSaveState: 0
+    m_RestoreState: 0
+    m_LaunchSingleTop: 0
+  m_DefaultArguments: []
+--- !u!114 &5142961818439425208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e9866b5cc41e7ac482ba5fe89e09b, type: 3}
+  m_Name: create_tour
+  m_EditorClassIdentifier: 
+  m_Position: {x: 2323, y: 198}
+  m_Guid: fd9d8950fa4af9643b90207f8a4ffaa1
+  m_Parent: {fileID: -3547225900042300475}
+  m_Actions: []
+  m_Label: Create Tour
+  m_Template: Realm.Navigation.CreateTourScreen, Realm.Navigation, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  m_Arguments: []
+  m_ShowBottomNavBar: 0
+  m_ShowAppBar: 1
+  m_ShowBackButton: 1
+  m_ShowDrawer: 0
+  m_ShowNavigationRail: 0
+--- !u!114 &5167409613206396488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e9866b5cc41e7ac482ba5fe89e09b, type: 3}
+  m_Name: register
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1816, y: -124}
+  m_Guid: 48f560f1fd5c743469ed41680a052dc2
+  m_Parent: {fileID: -6202755762156307755}
+  m_Actions: []
+  m_Label: Register
+  m_Template: Realm.Navigation.RegisterScreen, Realm.Navigation, Version=0.0.0.0,
+    Culture=neutral, PublicKeyToken=null
+  m_Arguments: []
+  m_ShowBottomNavBar: 0
+  m_ShowAppBar: 0
+  m_ShowBackButton: 0
+  m_ShowDrawer: 0
+  m_ShowNavigationRail: 0
+--- !u!114 &7651219179439010112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: tours_to_tour_preview
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1951, y: -208}
+  m_Guid: a12924be-be8c-4379-9567-2e0a791ea1dc
+  m_Destination: {fileID: -7650560028556500421}
+  m_Options:
+    m_PopUpToStrategy: 0
+    m_PopUpToRoute: {fileID: 0}
+    m_PopUpToInclusive: 0
+    m_EnterAnim: 2
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 1
+    m_PopUpToSaveState: 0
+    m_RestoreState: 0
+    m_LaunchSingleTop: 0
+  m_DefaultArguments: []
+--- !u!114 &8738356922321485901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78073c03d6154685bf631e4ad244b9b8, type: 3}
+  m_Name: go_to_login
+  m_EditorClassIdentifier: 
+  m_Position: {x: 1435, y: -351}
+  m_Guid: dcfd23a3-1895-447c-b5d8-6fb395dc31d0
+  m_Destination: {fileID: -6202755762156307755}
+  m_Options:
+    m_PopUpToStrategy: 2
+    m_PopUpToRoute: {fileID: -8598944340514428862}
+    m_PopUpToInclusive: 1
+    m_EnterAnim: 0
+    m_ExitAnim: 0
+    m_PopEnterAnim: 0
+    m_PopExitAnim: 0
+    m_PopUpToSaveState: 0
+    m_RestoreState: 0
+    m_LaunchSingleTop: 0
+  m_DefaultArguments: []

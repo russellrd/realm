@@ -2,143 +2,145 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryManager : MonoBehaviour
+namespace Realm
 {
-
-    [SerializeField]
-    private UIInventory uiInventory;
-
-    [SerializeField]
-    private InventorySO inventoryData;
-
-    [SerializeField]
-    private GameObject HUD;
-
-    [SerializeField]
-    private Image previewerImage;
-
-    [SerializeField]
-    private ObjectSpawner objectSpawner;
-
-    public List<InventoryARObjectPreview> initialARObjectPreviews = new();
-
-    public Dictionary<string, GameObject> modelsToPrefab;
-
-    bool isInventoryOpen;
-
-    [SerializeField]
-    [Tooltip("Button that opens the inventory.")]
-    Button m_CreateButton;
-
-    public Button createButton
+    public class InventoryManager : MonoBehaviour
     {
-        get => m_CreateButton;
-        set => m_CreateButton = value;
-    }
+        [SerializeField]
+        private UIInventory uiInventory;
 
-    void OnEnable()
-    {
-        isInventoryOpen = false;
-        m_CreateButton.onClick.AddListener(OpenInventory);
+        [SerializeField]
+        private InventorySO inventoryData;
 
-        modelsToPrefab.Add("Plant", objectSpawner.objectPrefabs[0]);
-        modelsToPrefab.Add("Book", objectSpawner.objectPrefabs[1]);
-        modelsToPrefab.Add("Bench", objectSpawner.objectPrefabs[2]);
-        modelsToPrefab.Add("Hammer", objectSpawner.objectPrefabs[3]);
-        modelsToPrefab.Add("Lamp", objectSpawner.objectPrefabs[4]);
-    }
+        [SerializeField]
+        private GameObject HUD;
 
-    void OnDisable()
-    {
-        m_CreateButton.onClick.RemoveListener(OpenInventory);
-    }
+        [SerializeField]
+        private Image previewerImage;
 
-    void Start()
-    {
-        CloseInventory();
-        uiInventory.InitInventory(inventoryData.Size);
-        uiInventory.OnDescriptionRequested += HandleDescriptionRequest;
+        [SerializeField]
+        private ObjectSpawner objectSpawner;
 
-        inventoryData.Initialize();
-        inventoryData.OnInventoryUpdated += UpdateInventoryUI;
-        foreach (InventoryARObjectPreview arObjectPreview in initialARObjectPreviews)
+        public List<InventoryARObjectPreview> initialARObjectPreviews = new();
+
+        public Dictionary<string, GameObject> modelsToPrefab;
+
+        bool isInventoryOpen;
+
+        [SerializeField]
+        [Tooltip("Button that opens the inventory.")]
+        Button m_CreateButton;
+
+        public Button createButton
         {
-            if (arObjectPreview.IsEmpty)
-                continue;
-            inventoryData.AddARObjectPreview(arObjectPreview);
+            get => m_CreateButton;
+            set => m_CreateButton = value;
         }
-    }
 
-    private void UpdateInventoryUI(Dictionary<int, InventoryARObjectPreview> inventoryState)
-    {
-        uiInventory.ResetAllARObjectPreviews();
-        foreach (var arObjectPreview in inventoryState)
+        void OnEnable()
         {
-            uiInventory.UpdateData(arObjectPreview.Key, arObjectPreview.Value.arObjectPreview.PreviewImage);
+            isInventoryOpen = false;
+            m_CreateButton.onClick.AddListener(OpenInventory);
+
+            modelsToPrefab.Add("Plant", objectSpawner.objectPrefabs[0]);
+            modelsToPrefab.Add("Book", objectSpawner.objectPrefabs[1]);
+            modelsToPrefab.Add("Bench", objectSpawner.objectPrefabs[2]);
+            modelsToPrefab.Add("Hammer", objectSpawner.objectPrefabs[3]);
+            modelsToPrefab.Add("Lamp", objectSpawner.objectPrefabs[4]);
         }
-    }
 
-    private void HandleDescriptionRequest(int index)
-    {
-        SetObjectToSpawn(index);
-        InventoryARObjectPreview inventoryARObjectPreview = inventoryData.GetARObjectPreviewAt(index);
-        if (inventoryARObjectPreview.IsEmpty)
+        void OnDisable()
         {
-            uiInventory.DeselectAllARObjectPreviews();
-            return;
+            m_CreateButton.onClick.RemoveListener(OpenInventory);
         }
-        ARObjectPreviewSO arObjectPreview = inventoryARObjectPreview.arObjectPreview;
-        previewerImage.sprite = arObjectPreview.PreviewImage;
-        uiInventory.UpdateDescription(index, arObjectPreview.PreviewImage, arObjectPreview.Name, arObjectPreview.Description);
-    }
 
-    public void OpenInventory()
-    {
-        isInventoryOpen = true;
-        uiInventory.Show();
-        foreach (var arObjectPreview in inventoryData.GetCurrentInventoryState())
+        void Start()
         {
-            uiInventory.UpdateData(arObjectPreview.Key, arObjectPreview.Value.arObjectPreview.PreviewImage);
+            CloseInventory();
+            uiInventory.InitInventory(inventoryData.Size);
+            uiInventory.OnDescriptionRequested += HandleDescriptionRequest;
+
+            inventoryData.Initialize();
+            inventoryData.OnInventoryUpdated += UpdateInventoryUI;
+            foreach (InventoryARObjectPreview arObjectPreview in initialARObjectPreviews)
+            {
+                if (arObjectPreview.IsEmpty)
+                    continue;
+                inventoryData.AddARObjectPreview(arObjectPreview);
+            }
         }
-        HUD.SetActive(false);
-    }
 
-    public void CloseInventory()
-    {
-        isInventoryOpen = false;
-        uiInventory.Hide();
-        HUD.SetActive(true);
-    }
-
-    public bool IsInventoryOpen()
-    {
-        return isInventoryOpen;
-    }
-
-    public void SetObjectToSpawn(int index)
-    {
-        if (objectSpawner.objectPrefabs.Count > index)
+        private void UpdateInventoryUI(Dictionary<int, InventoryARObjectPreview> inventoryState)
         {
-            objectSpawner.spawnOptionIndex = index;
+            uiInventory.ResetAllARObjectPreviews();
+            foreach (var arObjectPreview in inventoryState)
+            {
+                uiInventory.UpdateData(arObjectPreview.Key, arObjectPreview.Value.arObjectPreview.PreviewImage);
+            }
         }
-    }
 
-    public GameObject GetPrefab(string model)
-    {
-        switch (model)
+        private void HandleDescriptionRequest(int index)
         {
-            case "Plant(Clone)":
-                return objectSpawner.objectPrefabs[0];
-            case "Book(Clone)":
-                return objectSpawner.objectPrefabs[1];
-            case "Bench(Clone)":
-                return objectSpawner.objectPrefabs[2];
-            case "Hammer(Clone)":
-                return objectSpawner.objectPrefabs[3];
-            case "Lamp(Clone)":
-                return objectSpawner.objectPrefabs[4];
-            default:
-                return objectSpawner.objectPrefabs[0];
+            SetObjectToSpawn(index);
+            InventoryARObjectPreview inventoryARObjectPreview = inventoryData.GetARObjectPreviewAt(index);
+            if (inventoryARObjectPreview.IsEmpty)
+            {
+                uiInventory.DeselectAllARObjectPreviews();
+                return;
+            }
+            ARObjectPreviewSO arObjectPreview = inventoryARObjectPreview.arObjectPreview;
+            previewerImage.sprite = arObjectPreview.PreviewImage;
+            uiInventory.UpdateDescription(index, arObjectPreview.PreviewImage, arObjectPreview.Name, arObjectPreview.Description);
+        }
+
+        public void OpenInventory()
+        {
+            isInventoryOpen = true;
+            uiInventory.Show();
+            foreach (var arObjectPreview in inventoryData.GetCurrentInventoryState())
+            {
+                uiInventory.UpdateData(arObjectPreview.Key, arObjectPreview.Value.arObjectPreview.PreviewImage);
+            }
+            HUD.SetActive(false);
+        }
+
+        public void CloseInventory()
+        {
+            isInventoryOpen = false;
+            uiInventory.Hide();
+            HUD.SetActive(true);
+        }
+
+        public bool IsInventoryOpen()
+        {
+            return isInventoryOpen;
+        }
+
+        public void SetObjectToSpawn(int index)
+        {
+            if (objectSpawner.objectPrefabs.Count > index)
+            {
+                objectSpawner.spawnOptionIndex = index;
+            }
+        }
+
+        public GameObject GetPrefab(string model)
+        {
+            switch (model)
+            {
+                case "Plant(Clone)":
+                    return objectSpawner.objectPrefabs[0];
+                case "Book(Clone)":
+                    return objectSpawner.objectPrefabs[1];
+                case "Bench(Clone)":
+                    return objectSpawner.objectPrefabs[2];
+                case "Hammer(Clone)":
+                    return objectSpawner.objectPrefabs[3];
+                case "Lamp(Clone)":
+                    return objectSpawner.objectPrefabs[4];
+                default:
+                    return objectSpawner.objectPrefabs[0];
+            }
         }
     }
 }

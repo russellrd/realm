@@ -1,0 +1,91 @@
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--appui-backgrounds-100);
+}
+
+.sub-container {
+    margin: var(--appui-spacing-200) var(--appui-spacing-100) var(--appui-spacing-200) var(--appui-spacing-100);
+}
+
+.error-text {
+    color: rgb(255, 0, 0);
+    margin: 0 0 var(--appui-spacing-500) 0;
+}
+
+.spaced-below {
+    margin: 0 0 var(--appui-spacing-200) 0;
+}
+
+.large-spaced-below {
+    margin: 0 0 var(--appui-spacing-1000) 0;
+}
+
+.completed-button {
+    color: var(--appui-primary-1300);
+    background-color: rgb(66, 118, 56);
+}
+
+.pressable-row {
+    cursor: var(--appui-alias-control-cursor-pointer);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--appui-primary-1000);
+    background-color: rgb(50, 50, 50);
+    border-radius: var(--appui-alias-control-border-radius);
+    margin: 0 0 var(--appui-spacing-200) 0;
+}
+
+.pressable-row.is-hovered {
+    background-color: var(--appui-backgrounds-300);
+}
+
+.pressable-row.is-active {
+    background-color: var(--appui-backgrounds-50);
+}
+
+.pressable-row .pressable-row-title {
+    flex-grow: 1;
+}
+
+.pressable-row-title {
+    height: 100%;
+    font-size: 16px;
+    padding: var(--appui-spacing-100);
+}
+
+.pressable-row-chevron {
+    padding: 0 var(--appui-spacing-200) 0 0;
+}
+
+.pressable-row-chevron-end {
+    margin-right: var(--appui-spacing-100);
+}
+
+.bottom-nav {
+    overflow: hidden;
+    position: absolute;
+    bottom: var(--appui-spacing-300);
+    width: 100%;
+}
+
+.button {
+    background-color: rgb(58, 58, 58);
+    border-width: 3px;
+}
+
+.back-button {
+    width: 20%;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0 0 var(--appui-spacing-100) 0;
+}
+
+.icon {
+    color: aliceblue;
+}

@@ -17,6 +17,8 @@ public class UserCreateDTO
     [JsonProperty("type")]
     public string Type { get; set; }
 
-    // public static UserCreateDTO FromRecord(RecordModel record) => JsonConvert.DeserializeObject<UserCreateDTO>(record.ToString());
+    [JsonProperty("organizationId")]
+    public string OrganizationId { get; set; }
+
     public string ToRecord() => JsonConvert.SerializeObject(this);
 }

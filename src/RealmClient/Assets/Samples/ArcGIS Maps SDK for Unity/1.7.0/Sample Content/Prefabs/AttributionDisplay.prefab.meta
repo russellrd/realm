@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a2ad7d4c7933e094f982b0e83ad422e3
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258537
+  packageName: ArcGIS Maps SDK for Unity
+  packageVersion: 1.6.0
+  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Prefabs/AttributionDisplay.prefab
+  uploadId: 713734

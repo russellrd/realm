@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="../Styles/AttributionDisplay.uss" />
+    <ui:VisualElement name="attributionDisplay">
+        <ui:VisualElement picking-mode="Ignore" name="background">
+            <ui:Label name="attributionLabel" />
+            <ui:Label text="Powered by Esri" name="esriLabel" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

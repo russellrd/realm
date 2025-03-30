@@ -9,7 +9,7 @@ public class InputManager : MonoBehaviour
 
     public ARRaycastManager _raycaseManager;
 
-    List<ARRaycastHit> _hits = new List<ARRaycastHit>();
+    List<ARRaycastHit> _hits = new();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

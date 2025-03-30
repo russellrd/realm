@@ -1,0 +1,22 @@
+#attributionDisplay {
+    flex-grow: 1;
+    flex-direction: column-reverse;
+}
+
+#background {
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+Label {
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    align-self: flex-start;
+    flex-basis: initial;
+}
+
+#attributionLabel {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
