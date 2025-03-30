@@ -1,3 +1,4 @@
+using GLTFast;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -26,7 +27,7 @@ public class ObjectGenController : MonoBehaviour
 
 
 
-    private ObjectGenerationRequest generatedObject;
+    private GltfImport generatedObject;
 
     private void Awake()
     {
@@ -85,7 +86,7 @@ public class ObjectGenController : MonoBehaviour
 
         ObjectGenerationRequest req = new ObjectGenerationRequest(data, name);
         await req.promptGeneration();
-        generatedObject = req;
+        generatedObject = req.gltf;
 
         listItem.style.display = DisplayStyle.Flex;
         goToMainScreen();
@@ -93,7 +94,7 @@ public class ObjectGenController : MonoBehaviour
 
     private async void previewObject()
     {
-        if (generatedObject.gltf != null)
+        if (generatedObject != null)
         {
             creationName.SetValueWithoutNotify("");
             creationPrompt.SetValueWithoutNotify("");
@@ -102,7 +103,7 @@ public class ObjectGenController : MonoBehaviour
             previewUI.style.display = DisplayStyle.Flex;
 
             var previewObject = new GameObject("previewObject");
-            await generatedObject.gltf.InstantiateMainSceneAsync(previewObject.transform);
+            await generatedObject.InstantiateMainSceneAsync(previewObject.transform);
             previewCamera.transform.position = previewObject.transform.position + new Vector3 { x = 0, y = 5, z = -5 };
 
             previewCamera.transform.rotation = Quaternion.Euler(new Vector3 { x = 45, y = 0, z = 0 });
