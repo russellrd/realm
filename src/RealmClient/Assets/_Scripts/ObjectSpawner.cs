@@ -54,9 +54,6 @@ namespace Realm
         }
 
         [SerializeField]
-        DatabaseController databaseController;
-
-        [SerializeField]
         [Tooltip("Optional prefab to spawn for each spawned object. Use a prefab with the Destroy Self component to make " +
             "sure the visualization only lives temporarily.")]
         GameObject m_SpawnVisualizationPrefab;

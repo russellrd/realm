@@ -282,8 +282,8 @@ namespace Realm
             Debug.Log("UPDATE MODELS (4)");
 
             GameObject cameraObject = new();
-            Camera previewCam = cameraObject.AddComponent<Camera>();
-            Camera main = Camera.main;
+            // Camera previewCam = cameraObject.AddComponent<Camera>();
+            // Camera main = Camera.main;
             // previewCam.gameObject.transform.position = new Vector3(10000, 10000);
             // main.gameObject.transform.position = new Vector3(10000, 10000);
 
@@ -291,10 +291,10 @@ namespace Realm
             // main.gameObject.transform.rotation = Quaternion.identity;
 
             int spriteSize = 128;
-            RenderTexture renderTexture = new(spriteSize, spriteSize, 24);
-            previewCam.targetTexture = renderTexture;
+            // RenderTexture renderTexture = new(spriteSize, spriteSize, 24);
+            // previewCam.targetTexture = renderTexture;
 
-            RenderTexture.active = renderTexture;
+            // RenderTexture.active = renderTexture;
 
             Debug.Log("UPDATE MODELS (5)");
 
@@ -315,34 +315,34 @@ namespace Realm
 
                 GameObject prefabObject = await GLTFUtils.InstantiateARObjectFromGltf(g);
 
-                GameObject previewObject = new();
-                await g.InstantiateMainSceneAsync(previewObject.transform);
-                previewObject.SetActive(true);
+                // GameObject previewObject = new();
+                // await g.InstantiateMainSceneAsync(previewObject.transform);
+                // previewObject.SetActive(true);
 
-                previewObject.transform.position = previewCam.gameObject.transform.position + previewCam.gameObject.transform.forward * 5;
-                previewCam.transform.LookAt(previewObject.transform);
+                // previewObject.transform.position = previewCam.gameObject.transform.position + previewCam.gameObject.transform.forward * 5;
+                // previewCam.transform.LookAt(previewObject.transform);
 
-                Debug.Log($"UPDATE MODELS (5.{i}.3)");
+                // Debug.Log($"UPDATE MODELS (5.{i}.3)");
 
-                Texture2D texture = new Texture2D(spriteSize, spriteSize, TextureFormat.RGB24, false);
-                Rect rect = new Rect(0, 0, spriteSize, spriteSize);
+                // Texture2D texture = new Texture2D(spriteSize, spriteSize, TextureFormat.RGB24, false);
+                // Rect rect = new Rect(0, 0, spriteSize, spriteSize);
 
-                previewCam.Render();
-                // await Task.Delay(2000);
+                // previewCam.Render();
+                // // await Task.Delay(2000);
 
 
-                texture.ReadPixels(rect, 0, 0);
-                texture.Apply();
+                // texture.ReadPixels(rect, 0, 0);
+                // texture.Apply();
 
 
                 Debug.Log($"UPDATE MODELS (5.{i}.4)");
-                Sprite sprite = Sprite.Create(texture, rect, Vector2.zero);
+                // Sprite sprite = Sprite.Create(texture, rect, Vector2.zero);
                 Debug.Log($"UPDATE MODELS (5.{i}.5)");
-                Debug.Log($"modelId: {models[i].ID}, sprite: {sprite == null}");
+                // Debug.Log($"modelId: {models[i].ID}, sprite: {sprite == null}");
 
-                Destroy(previewObject);
+                // Destroy(previewObject);
                 // modelStore.sprites.Add(models[i].ID, sprite);
-                modelStore.sprites.TryAdd(models[i].ID, sprite);
+                // modelStore.sprites.TryAdd(models[i].ID, sprite);
 
                 modelStore.modelObjects.Add(models[i].ID, prefabObject);
                 modelStore.modelData.Add(models[i].ID, models[i]);

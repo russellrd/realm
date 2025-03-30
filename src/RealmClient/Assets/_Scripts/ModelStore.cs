@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using GLTFast;
 using UnityEngine;
 
 public class ModelStore : MonoBehaviour

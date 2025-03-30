@@ -4,15 +4,21 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Realm.Controller;
 
-namespace Realm.Navigation
+namespace Realm
 {
     public class NavigationManager : MonoBehaviour
     {
         [SerializeField]
         private UIDocument uiDocument;
 
+        [SerializeField]
+        private SwitchController switchController;
+
         public static VisualElement main;
+
+        public static VisualElement container;
 
         public static VisualElement panel;
 
@@ -20,7 +26,13 @@ namespace Realm.Navigation
         {
             main = uiDocument.rootVisualElement;
 
-            var container = new VisualElement();
+            Show(NavigationController.Destinations.splash, null);
+        }
+
+        public void Show(NavigationController.Destinations dest, Dictionary<string, string> data)
+        {
+            Debug.Log("Show" + dest.ToString());
+            container = new VisualElement();
             container.AddToClassList("container");
             container.StretchToParentSize();
             main.Add(container);
@@ -30,7 +42,18 @@ namespace Realm.Navigation
             panel.StretchToParentSize();
             container.Add(panel);
 
-            NavigationController.NavigateTo(NavigationController.Destinations.splash);
+            NavigationController.NavigateTo(dest, data);
+        }
+
+        public static void SwitchToRealm(NavigationController.Destinations uiScreen, Dictionary<string, string> data = null)
+        {
+            Debug.Log("SwitchToRealm");
+            SwitchController.uiScreen = uiScreen;
+            SwitchController.data = data;
+            SwitchController.editMode = false;
+            NavigationController.ClearScreen();
+            main.Remove(container);
+            main.Clear();
         }
     }
 
@@ -119,13 +142,6 @@ namespace Realm.Navigation
     {
         public SplashScreen()
         {
-            // var content = new Preloader();
-            // content.StretchToParentSize();
-
-            // var theme = SettingsScreen.themeOptions[PlayerPrefs.GetInt("SETTING_THEME", 0)].ToLower();
-
-            // hierarchy.Add(content);
-
             schedule.Execute((timer) =>
             {
                 // this.GetContextProvider<ThemeContext>().ProvideContext(new ThemeContext(theme));
@@ -220,6 +236,7 @@ namespace Realm.Navigation
                 {
                     // TODO: Hide UI
                     // TODO: Start tour in General User mode
+                    NavigationManager.SwitchToRealm(NavigationController.Destinations.tour_preview, data);
                 };
                 Add(startButton);
             }
@@ -717,7 +734,7 @@ namespace Realm.Navigation
         }
     }
 
-    class NavigationController
+    public class NavigationController
     {
         private static VisualElement lastScreen;
         private static BottomNav bottomNav;
@@ -811,7 +828,7 @@ namespace Realm.Navigation
             }
         }
 
-        static void ClearScreen()
+        static public void ClearScreen()
         {
             if (lastScreen != null)
             {
