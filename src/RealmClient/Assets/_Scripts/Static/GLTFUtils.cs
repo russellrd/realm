@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using GLTFast;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,30 +7,26 @@ using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
 public static class GLTFUtils
 {
-    public static GameObject InstantiateARObjectFromGltf(GltfImport gltf)
+    public static async Task<GameObject> InstantiateARObjectFromGltf(GltfImport gltf)
     {
         GameObject newObject = new();
-        gltf.InstantiateMainSceneAsync(newObject.transform);
+        await gltf.InstantiateMainSceneAsync(newObject.transform);
         ARTransformer aRTransformer = newObject.AddComponent<ARTransformer>();
         XRGrabInteractable xRGrabInteractable = newObject.GetOrAddComponent<XRGrabInteractable>();
+        ARObjectManager aRObjectManager = newObject.AddComponent<ARObjectManager>();
+        BoxCollider boxCollider = newObject.AddComponent<BoxCollider>();
         Rigidbody rigidbody = newObject.GetOrAddComponent<Rigidbody>();
-        Debug.Log($"Rigid body props:\nmass: {rigidbody.mass}\n");
-        Debug.Log($"AR transformer props:\nscale sensitivity: {aRTransformer.scaleSensitivity}\nelastic break limit: {aRTransformer.elasticBreakLimit}\n");
-        Debug.Log($"XR grab interactable props:\nattach ease-in time: {xRGrabInteractable.attachEaseInTime}\n");
+        newObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+
+        newObject.SetActive(false);
+
         return newObject;
     }
-    public static GameObject InstantiateARObjectFromGltf(GltfImport gltf, Vector3 position, Quaternion rotation)
+    public static async Task<GameObject> InstantiateARObjectFromGltf(GltfImport gltf, Vector3 position, Quaternion rotation)
     {
-        GameObject newObject = new();
-        gltf.InstantiateMainSceneAsync(newObject.transform);
-        ARTransformer aRTransformer = newObject.AddComponent<ARTransformer>();
-        XRGrabInteractable xRGrabInteractable = newObject.GetOrAddComponent<XRGrabInteractable>();
-        Rigidbody rigidbody = newObject.GetOrAddComponent<Rigidbody>();
+        var newObject = await InstantiateARObjectFromGltf(gltf);
         newObject.transform.position = position;
         newObject.transform.rotation = rotation;
-        Debug.Log($"Rigid body props:\nmass: {rigidbody.mass}\n");
-        Debug.Log($"AR transformer props:\nscale sensitivity: {aRTransformer.scaleSensitivity}\nelastic break limit: {aRTransformer.elasticBreakLimit}\n");
-        Debug.Log($"XR grab interactable props:\nattach ease-in time: {xRGrabInteractable.attachEaseInTime}\n");
         return newObject;
     }
 }

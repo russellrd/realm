@@ -35,15 +35,24 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField]
     ModelStore modelStore;
 
-    List<GltfImport> m_ObjectPrefabs;
+    List<GameObject> m_ObjectPrefabs = new();
 
     /// <summary>
     /// The list of prefabs available to spawn.
     /// </summary>
-    public List<GltfImport> objectPrefabs
+    public List<GameObject> objectPrefabs
     {
         get => m_ObjectPrefabs;
         set => m_ObjectPrefabs = value;
+    }
+
+    public string selectedObjectId = "3913g8n0q00e6c3"; // defaulting to some object
+
+    List<string> m_objectPrefabIds = new();
+
+    public List<string> objectPrefabIds
+    {
+        get => m_objectPrefabIds;
     }
 
     [SerializeField]
@@ -166,15 +175,24 @@ public class ObjectSpawner : MonoBehaviour
     /// <summary>
     /// See <see cref="MonoBehaviour"/>.
     /// </summary>
-    void Awake()
+    async void Awake()
     {
         EnsureFacingCamera();
+
     }
 
     async void Start()
     {
-        await databaseController.loadAllModels();
-        m_ObjectPrefabs = modelStore.modelObjects.Values.ToList();
+        while (!modelStore.initialized)
+        {
+            await Task.Delay(1000);
+        }
+        Debug.Log($"OBJECT SPAWNER START - keys contains e0a1khy0514cahw?: {modelStore.sprites.ContainsKey("e0a1khy0514cahw")}");
+        foreach (string key in modelStore.getKeys())
+        {
+            m_objectPrefabIds.Add(key);
+            m_ObjectPrefabs.Add(modelStore.modelObjects.GetValueOrDefault(key));
+        }
     }
 
     void EnsureFacingCamera()
@@ -222,7 +240,9 @@ public class ObjectSpawner : MonoBehaviour
         }
 
         var objectIndex = isSpawnOptionRandomized ? UnityEngine.Random.Range(0, m_ObjectPrefabs.Count) : m_SpawnOptionIndex;
-        var newObject = GLTFUtils.InstantiateARObjectFromGltf(m_ObjectPrefabs[objectIndex]);
+        var newObject = Instantiate(m_ObjectPrefabs[objectIndex]);
+        selectedObjectId = m_objectPrefabIds[objectIndex];
+        newObject.SetActive(true);
         if (m_SpawnAsChildren)
             newObject.transform.parent = transform;
 

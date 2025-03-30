@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using GLTFast;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +27,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField]
     private DatabaseController databaseController;
 
-    public List<InventoryARObjectPreview> initialARObjectPreviews = new();
+    List<InventoryARObjectPreview> initialARObjectPreviews = new();
     public ModelStore modelStore;
 
 
@@ -41,11 +43,10 @@ public class InventoryManager : MonoBehaviour
         set => m_CreateButton = value;
     }
 
-    async Task OnEnable()
+    void OnEnable()
     {
         isInventoryOpen = false;
         m_CreateButton.onClick.AddListener(OpenInventory);
-        await databaseController.GetAllARObjects();
     }
 
     void OnDisable()
@@ -53,8 +54,39 @@ public class InventoryManager : MonoBehaviour
         m_CreateButton.onClick.RemoveListener(OpenInventory);
     }
 
+    async void Awake()
+    {
+        while (!modelStore.initialized)
+        {
+            await Task.Delay(1000);
+        }
+        Debug.Log($"INVENTORY MANAGER START (1)");
+        Debug.Log($"INVENTORY MANAGER START - keys contains e0a1khy0514cahw?: {modelStore.sprites.ContainsKey("e0a1khy0514cahw")}");
+        foreach (string modelId in modelStore.getKeys())
+        {
+            ARObjectPreviewSO aRObjectPreviewSO = new();
+            ModelDTO modelData = null;
+            Sprite sprite = null;
+            modelStore.modelData.TryGetValue(modelId, out modelData);
+            modelStore.sprites.TryGetValue(modelId, out sprite);
+            Debug.Log($"INVENTORY MANAGER AWAKE model: {modelId}, sprite: {sprite != null}");
+            aRObjectPreviewSO.Name = modelData.Name;
+            aRObjectPreviewSO.Author = modelData.Creator;
+            aRObjectPreviewSO.Description = modelData.Name;
+            aRObjectPreviewSO.PreviewImage = sprite;
+
+            initialARObjectPreviews.Add(
+                new InventoryARObjectPreview
+                {
+                    arObjectPreview = aRObjectPreviewSO
+                }
+            );
+        }
+    }
+
     void Start()
     {
+
         CloseInventory();
         uiInventory.InitInventory(inventoryData.Size);
         uiInventory.OnDescriptionRequested += HandleDescriptionRequest;
@@ -123,10 +155,10 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public GltfImport GetPrefab(string model)
+    public GameObject GetPrefab(string model)
     {
-        GltfImport gltfImport = new();
-        modelStore.modelObjects.TryGetValue(model, out gltfImport);
-        return gltfImport;
+        GameObject gameObject = new();
+        modelStore.modelObjects.TryGetValue(model, out gameObject);
+        return gameObject;
     }
 }

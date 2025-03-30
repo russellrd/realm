@@ -1008,12 +1008,6 @@ MonoBehaviour:
   previewerImage: {fileID: 1963209976}
   objectSpawner: {fileID: 1763584145}
   databaseController: {fileID: 1015253190}
-  initialARObjectPreviews:
-  - arObjectPreview: {fileID: 11400000, guid: c5954bb183f65da498c3f030a3f70db1, type: 2}
-  - arObjectPreview: {fileID: 11400000, guid: f513b7b3ee80ec743b82e8989424af6e, type: 2}
-  - arObjectPreview: {fileID: 11400000, guid: 8c3c7bffb68374340aa307941532379a, type: 2}
-  - arObjectPreview: {fileID: 11400000, guid: a093ee961b87ae34c91bc37697226874, type: 2}
-  - arObjectPreview: {fileID: 11400000, guid: ce8998c4b36ee1746a08059b66c609d1, type: 2}
   modelStore: {fileID: 2125359992}
   m_CreateButton: {fileID: 1262782066}
 --- !u!1 &660527232
@@ -1049,6 +1043,37 @@ Transform:
   - {fileID: 1386026473}
   - {fileID: 219355475}
   m_Father: {fileID: 373260287}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &688411119
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 688411120}
+  m_Layer: 0
+  m_Name: glTF-StableFramerate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &688411120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688411119}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &700314381
 GameObject:
@@ -1606,6 +1631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d656b54d4070734e94e38687eed5174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sampleSprite: {fileID: 21300000, guid: 7e586965efd5271438d24035bbbcaeb2, type: 3}
   modelStore: {fileID: 2125359992}
 --- !u!1 &1165999796
 GameObject:
@@ -2550,6 +2576,7 @@ MonoBehaviour:
   controller: {fileID: 121840790}
   m_CameraToFace: {fileID: 0}
   modelStore: {fileID: 2125359992}
+  selectedObjectId: 3913g8n0q00e6c3
   databaseController: {fileID: 1015253190}
   m_SpawnVisualizationPrefab: {fileID: 0}
   m_SpawnOptionIndex: 0
@@ -2997,6 +3024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff9282ba7e912140bb05489069e07eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialized: 0
 --- !u!4 &2125359993
 Transform:
   m_ObjectHideFlags: 0
@@ -3376,3 +3404,4 @@ SceneRoots:
   - {fileID: 700314383}
   - {fileID: 1769281450}
   - {fileID: 2125359993}
+  - {fileID: 688411120}

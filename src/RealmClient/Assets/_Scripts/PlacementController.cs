@@ -493,8 +493,9 @@ public class PlacementController : MonoBehaviour
             Debug.Log("X: " + result.Anchor.transform.localScale.x);
             Debug.Log("Y: " + result.Anchor.transform.localScale.y);
             Debug.Log("Z: " + result.Anchor.transform.localScale.z);
-            GltfImport gltfImport = InvManager.GetPrefab(arObject.ModelId);
-            GameObject go = GLTFUtils.InstantiateARObjectFromGltf(gltfImport, result.Anchor.transform.position, result.Anchor.transform.rotation);
+            GameObject prefab = InvManager.GetPrefab(arObject.ModelId);
+            GameObject go = Instantiate(prefab, result.Anchor.transform.position, result.Anchor.transform.rotation);
+            go.SetActive(true);
             go.GetComponent<ARTransformer>().enabled = false;
         }
         else
@@ -511,8 +512,9 @@ public class PlacementController : MonoBehaviour
             UpdatePlaneVisibility(true);
             GetPlacementObject().SetActive(true);
             GameObject anchor = GameObject.FindGameObjectWithTag("anchor");
-            GltfImport gltfImport = InvManager.GetPrefab(GetPlacementObject().gameObject.name);
-            GameObject go = GLTFUtils.InstantiateARObjectFromGltf(gltfImport, anchor.transform.position, anchor.transform.rotation);
+            GameObject prefab = InvManager.GetPrefab(GetPlacementObjectID());
+            GameObject go = Instantiate(prefab, anchor.transform.position, anchor.transform.rotation);
+            go.SetActive(true);
             go.GetComponent<ARTransformer>().enabled = false;
             saveARObject(
                 "test",
@@ -571,6 +573,11 @@ public class PlacementController : MonoBehaviour
     public GameObject GetPlacementObject()
     {
         return objectSpawner.gameObject.transform.GetChild(0).gameObject;
+    }
+
+    public string GetPlacementObjectID()
+    {
+        return objectSpawner.selectedObjectId;
     }
 
     public void ConfirmPlacement()
