@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4ae3d85c5f0806b4889d6f742bfe2226
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258537
+  packageName: ArcGIS Maps SDK for Unity
+  packageVersion: 1.6.0
+  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Scenes/Settings/ComponenSampleSettings/GlobalVolumeProfile.asset
+  uploadId: 713734

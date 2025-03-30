@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 98f11907cbe36024698dcea692c6ad66
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258537
+  packageName: ArcGIS Maps SDK for Unity
+  packageVersion: 1.6.0
+  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Resources/AttributionPanelSettings.asset
+  uploadId: 713734

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 63abf1566775e8a48a866e94ce68487b
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258537
+  packageName: ArcGIS Maps SDK for Unity
+  packageVersion: 1.6.0
+  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Scenes/HDRP/ComponentLocal.unity
+  uploadId: 713734

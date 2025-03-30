@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 60a538faad7081a4c9db274e73161032
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258537
+  packageName: ArcGIS Maps SDK for Unity
+  packageVersion: 1.6.0
+  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Scenes/URP/API.unity
+  uploadId: 713734

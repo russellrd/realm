@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a837895da185cd246a1fc6b3f0331ad0
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258537
+  packageName: ArcGIS Maps SDK for Unity
+  packageVersion: 1.6.0
+  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Scenes/URP/Tabletop.unity
+  uploadId: 713734

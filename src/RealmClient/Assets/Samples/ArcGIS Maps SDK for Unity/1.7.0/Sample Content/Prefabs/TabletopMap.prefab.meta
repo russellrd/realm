@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 40fd44c3349d3d2498d731ce3339d522
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 258537
+  packageName: ArcGIS Maps SDK for Unity
+  packageVersion: 1.6.0
+  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Prefabs/TabletopMap.prefab
+  uploadId: 713734
