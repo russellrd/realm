@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 namespace Realm.Controller
 {
@@ -10,7 +13,13 @@ namespace Realm.Controller
         private NavigationManager navigationManager;
 
         [SerializeField]
+        private GameObject objectSpawner;
+
+        [SerializeField]
         private Button openUIButton;
+
+        [SerializeField]
+        private ARPlaneManager planeManager;
 
         private bool uiOpen = true;
 
@@ -18,7 +27,7 @@ namespace Realm.Controller
 
         public static Dictionary<string, string> data;
 
-        public static bool editMode;
+        public static bool editMode = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -29,10 +38,7 @@ namespace Realm.Controller
         // Update is called once per frame
         void Update()
         {
-            // if (uiScreen != NavigationController.Destinations.none)
-            // {
-            //     navigationManager.gameObject.SetActive(false);
-            // }
+            SetMode();
         }
 
         public void SwitchToUI()
@@ -40,7 +46,7 @@ namespace Realm.Controller
             Debug.Log("SwitchToUI");
             Debug.Log(uiScreen);
             Debug.Log(data);
-            // navigationManager.gameObject.SetActive(true);
+            Debug.Log(editMode);
             navigationManager.Show(uiScreen, data);
             Clear();
         }
@@ -49,6 +55,35 @@ namespace Realm.Controller
         {
             uiScreen = NavigationController.Destinations.none;
             data = null;
+        }
+
+        public void SetMode()
+        {
+            List<GameObject> objectSpawnerChildren = new();
+            GameObjectUtils.GetChildGameObjects(objectSpawner, objectSpawnerChildren);
+            Debug.Log(objectSpawnerChildren.Count);
+            if (editMode)
+            {
+                foreach (var plane in planeManager.trackables)
+                {
+                    plane.gameObject.SetActive(true);
+                }
+                // foreach (var o in objectSpawnerChildren)
+                // {
+                //     o.GetComponent<XRGrabInteractable>().enabled = true;
+                // }
+            }
+            else
+            {
+                foreach (var plane in planeManager.trackables)
+                {
+                    plane.gameObject.SetActive(false);
+                }
+                // foreach (var o in objectSpawnerChildren)
+                // {
+                //     o.GetComponent<XRGrabInteractable>().enabled = false;
+                // }
+            }
         }
     }
 }

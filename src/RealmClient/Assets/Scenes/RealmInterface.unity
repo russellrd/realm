@@ -433,7 +433,7 @@ PrefabInstance:
     - target: {fileID: 774100038497631397, guid: 069266f272f67eb43b7e9423a4e669d2, type: 3}
       propertyPath: m_ControllerCamera
       value: 
-      objectReference: {fileID: 1386026478}
+      objectReference: {fileID: 859268252}
     - target: {fileID: 774100038497631397, guid: 069266f272f67eb43b7e9423a4e669d2, type: 3}
       propertyPath: m_ScreenTouchCountInput.m_InputActionReference
       value: 
@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Camera: {fileID: 1386026478}
+  m_Camera: {fileID: 859268252}
   m_OriginBaseGameObject: {fileID: 373260285}
   m_CameraFloorOffsetObject: {fileID: 660527232}
   m_RequestedTrackingOriginMode: 1
@@ -2300,7 +2300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 488046489eefe4d10b386a257204a3e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b96350d8cb1db304cb74c6fb3c5e9d04, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2919,7 +2919,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navigationManager: {fileID: 1595642434}
+  objectSpawner: {fileID: 1763584142}
   openUIButton: {fileID: 2135391673}
+  planeManager: {fileID: 373260292}
 --- !u!1 &1754141083
 GameObject:
   m_ObjectHideFlags: 0
@@ -3052,7 +3054,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 121840790}
-  m_CameraToFace: {fileID: 1386026478}
+  m_CameraToFace: {fileID: 859268252}
   modelStore: {fileID: 1964602098}
   selectedObjectId: 3913g8n0q00e6c3
   m_SpawnVisualizationPrefab: {fileID: 0}

@@ -45,12 +45,12 @@ namespace Realm
             NavigationController.NavigateTo(dest, data);
         }
 
-        public static void SwitchToRealm(NavigationController.Destinations uiScreen, Dictionary<string, string> data = null)
+        public static void SwitchToRealm(NavigationController.Destinations uiScreen, bool editMode, Dictionary<string, string> data = null)
         {
             Debug.Log("SwitchToRealm");
             SwitchController.uiScreen = uiScreen;
             SwitchController.data = data;
-            SwitchController.editMode = false;
+            SwitchController.editMode = editMode;
             NavigationController.ClearScreen();
             main.Remove(container);
             main.Clear();
@@ -234,9 +234,7 @@ namespace Realm
                 var startButton = new Unity.AppUI.UI.Button { title = "Start" };
                 startButton.clicked += () =>
                 {
-                    // TODO: Hide UI
-                    // TODO: Start tour in General User mode
-                    NavigationManager.SwitchToRealm(NavigationController.Destinations.tour_preview, data);
+                    NavigationManager.SwitchToRealm(NavigationController.Destinations.tour_preview, false, data);
                 };
                 Add(startButton);
             }
@@ -287,7 +285,7 @@ namespace Realm
             enterRealmButton.clicked += () =>
             {
                 // TODO: Hide UI
-                // TODO: Create a tour in Organization User mode
+                NavigationManager.SwitchToRealm(NavigationController.Destinations.create_tour, true);
             };
             enterRealmButton.AddToClassList("large-spaced-below");
             Add(enterRealmButton);
@@ -384,8 +382,7 @@ namespace Realm
             var enterRealmButton = new Unity.AppUI.UI.Button { title = "Enter the Realm" };
             enterRealmButton.clicked += () =>
             {
-                // TODO: Hide UI
-                // TODO: Edit existing tour in Organization User mode
+                NavigationManager.SwitchToRealm(NavigationController.Destinations.edit_tour, true, data);
             };
             enterRealmButton.AddToClassList("large-spaced-below");
             Add(enterRealmButton);
