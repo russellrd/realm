@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Utilities;
+using GLTFast;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Realm
 {
@@ -28,8 +31,9 @@ namespace Realm
         }
 
         [SerializeField]
-        [Tooltip("The list of prefabs available to spawn.")]
-        List<GameObject> m_ObjectPrefabs = new List<GameObject>();
+        ModelStore modelStore;
+
+        List<GameObject> m_ObjectPrefabs = new();
 
         /// <summary>
         /// The list of prefabs available to spawn.
@@ -39,6 +43,18 @@ namespace Realm
             get => m_ObjectPrefabs;
             set => m_ObjectPrefabs = value;
         }
+
+        public string selectedObjectId = "3913g8n0q00e6c3"; // defaulting to some object
+
+        List<string> m_objectPrefabIds = new();
+
+        public List<string> objectPrefabIds
+        {
+            get => m_objectPrefabIds;
+        }
+
+        [SerializeField]
+        DatabaseController databaseController;
 
         [SerializeField]
         [Tooltip("Optional prefab to spawn for each spawned object. Use a prefab with the Destroy Self component to make " +
@@ -161,6 +177,20 @@ namespace Realm
             EnsureFacingCamera();
         }
 
+        async void Start()
+        {
+            while (!modelStore.initialized)
+            {
+                await Task.Delay(1000);
+            }
+            Debug.Log($"OBJECT SPAWNER START - keys contains e0a1khy0514cahw?: {modelStore.sprites.ContainsKey("e0a1khy0514cahw")}");
+            foreach (string key in modelStore.getKeys())
+            {
+                m_objectPrefabIds.Add(key);
+                m_ObjectPrefabs.Add(modelStore.modelObjects.GetValueOrDefault(key));
+            }
+        }
+
         void EnsureFacingCamera()
         {
             if (m_CameraToFace == null)
@@ -207,6 +237,9 @@ namespace Realm
 
             var objectIndex = isSpawnOptionRandomized ? UnityEngine.Random.Range(0, m_ObjectPrefabs.Count) : m_SpawnOptionIndex;
             var newObject = Instantiate(m_ObjectPrefabs[objectIndex]);
+            selectedObjectId = m_objectPrefabIds[objectIndex];
+            newObject.SetActive(true);
+
             if (m_SpawnAsChildren)
                 newObject.transform.parent = transform;
 

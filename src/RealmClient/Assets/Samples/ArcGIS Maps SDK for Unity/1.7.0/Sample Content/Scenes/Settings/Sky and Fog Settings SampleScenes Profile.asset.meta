@@ -11,6 +11,6 @@ AssetOrigin:
   productId: 258537
   packageName: ArcGIS Maps SDK for Unity
   packageVersion: 1.6.0
-  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Scenes/Settings/Sky and Fog
-    Settings SampleScenes Profile.asset
+  assetPath: Assets/Samples/ArcGIS Maps SDK for Unity/1.7.0/Sample Content/Scenes/Settings/Sky
+    and Fog Settings SampleScenes Profile.asset
   uploadId: 713734

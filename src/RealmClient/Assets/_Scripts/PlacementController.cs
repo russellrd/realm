@@ -488,9 +488,8 @@ namespace Realm
                 Debug.Log("X: " + result.Anchor.transform.localScale.x);
                 Debug.Log("Y: " + result.Anchor.transform.localScale.y);
                 Debug.Log("Z: " + result.Anchor.transform.localScale.z);
-                GameObject go = InvManager.GetPrefab(arObject.ModelId);
+                GameObject go = Instantiate(InvManager.GetPrefab(arObject.ModelId), result.Anchor.transform.position, result.Anchor.transform.rotation);
                 go.GetComponent<ARTransformer>().enabled = false;
-                Instantiate(InvManager.GetPrefab(arObject.ModelId), result.Anchor.transform.position, result.Anchor.transform.rotation);
             }
             else
             {
@@ -506,9 +505,10 @@ namespace Realm
                 UpdatePlaneVisibility(true);
                 GetPlacementObject().SetActive(true);
                 GameObject anchor = GameObject.FindGameObjectWithTag("anchor");
-                GameObject go = InvManager.GetPrefab(GetPlacementObject().gameObject.name);
+
+                GameObject go = Instantiate(InvManager.GetPrefab(GetPlacementObjectID()), anchor.transform.position, anchor.transform.rotation);
                 go.GetComponent<ARTransformer>().enabled = false;
-                Instantiate(go, anchor.transform.position, anchor.transform.rotation);
+
                 saveARObject(
                     "test",
                     response,
@@ -566,6 +566,11 @@ namespace Realm
         public GameObject GetPlacementObject()
         {
             return objectSpawner.gameObject.transform.GetChild(0).gameObject;
+        }
+
+        public string GetPlacementObjectID()
+        {
+            return objectSpawner.selectedObjectId;
         }
 
         public void ConfirmPlacement()
