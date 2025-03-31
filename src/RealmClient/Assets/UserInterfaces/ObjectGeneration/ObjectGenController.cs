@@ -123,6 +123,7 @@ public class ObjectGenController : MonoBehaviour
     {
         // TODO
         // disable all screens and go back to realm screen prolly
+        gameObject.SetActive(false);
     }
 
     private void endPreview()

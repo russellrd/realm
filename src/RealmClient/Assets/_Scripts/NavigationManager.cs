@@ -234,10 +234,17 @@ namespace Realm
                 var tour = await DatabaseController.GetTourFromId(tourId);
 
                 var text = new Unity.AppUI.UI.Text(tour.Name);
-                text.style.fontSize = 40;
+                text.style.fontSize = 20;
+                text.AddToClassList("spaced-below");
                 Add(text);
 
+                var description = new Unity.AppUI.UI.Text(tour.Description);
+                description.style.fontSize = 14;
+                description.AddToClassList("spaced-below");
+                Add(description);
+
                 // TODO: Add Map Preivew
+
                 var startButton = new Unity.AppUI.UI.Button { title = "Start" };
                 startButton.clicked += () =>
                 {
@@ -527,7 +534,7 @@ namespace Realm
 
         public RegisterScreen()
         {
-            Add(new BackButton(NavigationController.Destinations.profile));
+            Add(new BackButton(NavigationController.Destinations.login));
 
             Add(new Unity.AppUI.UI.Heading("Register"));
 
@@ -667,6 +674,10 @@ namespace Realm
     {
         public ProfileScreen()
         {
+            var heading = new Unity.AppUI.UI.Heading(DatabaseController.GetCurrentUserName());
+            heading.AddToClassList("spaced-below");
+            Add(heading);
+
             var settingsButton = new PressableRow("Settings");
             settingsButton.AddToClassList("spaced-below");
             Add(settingsButton);

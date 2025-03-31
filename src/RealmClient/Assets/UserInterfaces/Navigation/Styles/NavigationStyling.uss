@@ -9,7 +9,7 @@
 }
 
 .sub-container {
-    margin: var(--appui-spacing-200) var(--appui-spacing-100) var(--appui-spacing-200) var(--appui-spacing-100);
+    margin: var(--appui-spacing-300) var(--appui-spacing-100) var(--appui-spacing-200) var(--appui-spacing-100);
 }
 
 .error-text {
@@ -22,7 +22,7 @@
 }
 
 .large-spaced-below {
-    margin: 0 0 var(--appui-spacing-1000) 0;
+    margin: 0 0 var(--appui-spacing-400) 0;
 }
 
 .completed-button {
@@ -72,7 +72,7 @@
     overflow: hidden;
     position: absolute;
     margin-left: -10%;
-    bottom: var(--appui-spacing-300);
+    bottom: var(--appui-spacing-100);
     width: 120%;
 }
 

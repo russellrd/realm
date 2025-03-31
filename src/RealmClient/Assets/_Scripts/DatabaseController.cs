@@ -100,6 +100,11 @@ namespace Realm
             return pb.AuthStore.Model["organizationId"].ToString();
         }
 
+        public static string GetCurrentUserName()
+        {
+            return pb.AuthStore.Model["name"].ToString();
+        }
+
         //============================AR Objects============================
 
         public static async Task<List<AnchorDTO>> GetAllARObjects()
