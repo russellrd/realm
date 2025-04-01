@@ -4,15 +4,22 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Realm.Controller;
+using UnityEngine.SceneManagement;
 
-namespace Realm.Navigation
+namespace Realm
 {
     public class NavigationManager : MonoBehaviour
     {
         [SerializeField]
         private UIDocument uiDocument;
 
+        [SerializeField]
+        private SwitchController switchController;
+
         public static VisualElement main;
+
+        public static VisualElement container;
 
         public static VisualElement panel;
 
@@ -20,7 +27,13 @@ namespace Realm.Navigation
         {
             main = uiDocument.rootVisualElement;
 
-            var container = new VisualElement();
+            Show(NavigationController.Destinations.splash, null);
+        }
+
+        public void Show(NavigationController.Destinations dest, Dictionary<string, string> data)
+        {
+            Debug.Log("Show" + dest.ToString());
+            container = new VisualElement();
             container.AddToClassList("container");
             container.StretchToParentSize();
             main.Add(container);
@@ -30,7 +43,18 @@ namespace Realm.Navigation
             panel.StretchToParentSize();
             container.Add(panel);
 
-            NavigationController.NavigateTo(NavigationController.Destinations.splash);
+            NavigationController.NavigateTo(dest, data);
+        }
+
+        public static void SwitchToRealm(NavigationController.Destinations uiScreen, bool editMode, Dictionary<string, string> data = null)
+        {
+            Debug.Log("SwitchToRealm");
+            SwitchController.uiScreen = uiScreen;
+            SwitchController.data = data;
+            SwitchController.editMode = editMode;
+            NavigationController.ClearScreen();
+            main.Remove(container);
+            main.Clear();
         }
     }
 
@@ -72,6 +96,12 @@ namespace Realm.Navigation
                 isSelected = NavigationController.currentRoute == NavigationController.Destinations.tours
             };
             bottomNavBar.Add(toursButton);
+
+            var mapsButton = new NewBottomNavBarItem(Resources.LoadAll<Sprite>("Sprites/MapToolIcon")[0], "Map", () => NavigationController.NavigateTo(NavigationController.Destinations.map))
+            {
+                isSelected = NavigationController.currentRoute == NavigationController.Destinations.map
+            };
+            bottomNavBar.Add(mapsButton);
 
             var profileButton = new NewBottomNavBarItem(Resources.LoadAll<Sprite>("Sprites/Profile")[0], "Profile", () => NavigationController.NavigateTo(NavigationController.Destinations.profile))
             {
@@ -119,13 +149,6 @@ namespace Realm.Navigation
     {
         public SplashScreen()
         {
-            // var content = new Preloader();
-            // content.StretchToParentSize();
-
-            // var theme = SettingsScreen.themeOptions[PlayerPrefs.GetInt("SETTING_THEME", 0)].ToLower();
-
-            // hierarchy.Add(content);
-
             schedule.Execute((timer) =>
             {
                 // this.GetContextProvider<ThemeContext>().ProvideContext(new ThemeContext(theme));
@@ -154,7 +177,7 @@ namespace Realm.Navigation
             tourLabel.AddManipulator(tourPressable);
             Add(tourLabel);
 
-            var editIcon = new Icon(Resources.LoadAll<Sprite>("Sprites/Plumber")[0], 30)
+            var editIcon = new Icon(Resources.LoadAll<Sprite>("Sprites/Plumber")[0], 25)
             {
                 pickingMode = PickingMode.Position
             };
@@ -211,15 +234,21 @@ namespace Realm.Navigation
                 var tour = await DatabaseController.GetTourFromId(tourId);
 
                 var text = new Unity.AppUI.UI.Text(tour.Name);
-                text.style.fontSize = 40;
+                text.style.fontSize = 20;
+                text.AddToClassList("spaced-below");
                 Add(text);
 
+                var description = new Unity.AppUI.UI.Text(tour.Description);
+                description.style.fontSize = 14;
+                description.AddToClassList("spaced-below");
+                Add(description);
+
                 // TODO: Add Map Preivew
+
                 var startButton = new Unity.AppUI.UI.Button { title = "Start" };
                 startButton.clicked += () =>
                 {
-                    // TODO: Hide UI
-                    // TODO: Start tour in General User mode
+                    NavigationManager.SwitchToRealm(NavigationController.Destinations.tour_preview, false, data);
                 };
                 Add(startButton);
             }
@@ -270,7 +299,7 @@ namespace Realm.Navigation
             enterRealmButton.clicked += () =>
             {
                 // TODO: Hide UI
-                // TODO: Create a tour in Organization User mode
+                NavigationManager.SwitchToRealm(NavigationController.Destinations.create_tour, true);
             };
             enterRealmButton.AddToClassList("large-spaced-below");
             Add(enterRealmButton);
@@ -367,8 +396,7 @@ namespace Realm.Navigation
             var enterRealmButton = new Unity.AppUI.UI.Button { title = "Enter the Realm" };
             enterRealmButton.clicked += () =>
             {
-                // TODO: Hide UI
-                // TODO: Edit existing tour in Organization User mode
+                NavigationManager.SwitchToRealm(NavigationController.Destinations.edit_tour, true, data);
             };
             enterRealmButton.AddToClassList("large-spaced-below");
             Add(enterRealmButton);
@@ -506,7 +534,7 @@ namespace Realm.Navigation
 
         public RegisterScreen()
         {
-            Add(new BackButton(NavigationController.Destinations.profile));
+            Add(new BackButton(NavigationController.Destinations.login));
 
             Add(new Unity.AppUI.UI.Heading("Register"));
 
@@ -646,6 +674,10 @@ namespace Realm.Navigation
     {
         public ProfileScreen()
         {
+            var heading = new Unity.AppUI.UI.Heading(DatabaseController.GetCurrentUserName());
+            heading.AddToClassList("spaced-below");
+            Add(heading);
+
             var settingsButton = new PressableRow("Settings");
             settingsButton.AddToClassList("spaced-below");
             Add(settingsButton);
@@ -717,7 +749,7 @@ namespace Realm.Navigation
         }
     }
 
-    class NavigationController
+    public class NavigationController
     {
         private static VisualElement lastScreen;
         private static BottomNav bottomNav;
@@ -734,7 +766,8 @@ namespace Realm.Navigation
             settings,
             create_tour,
             register,
-            edit_tour
+            edit_tour,
+            map
         }
 
         public static void NavigateTo(Destinations destination, Dictionary<string, string> data = null)
@@ -745,6 +778,9 @@ namespace Realm.Navigation
 
             switch (destination)
             {
+                case Destinations.map:
+                    SceneManager.LoadScene("Map");
+                    break;
                 case Destinations.splash:
                     var splashScreen = new SplashScreen();
                     splashScreen.StretchToParentSize();
@@ -811,7 +847,7 @@ namespace Realm.Navigation
             }
         }
 
-        static void ClearScreen()
+        static public void ClearScreen()
         {
             if (lastScreen != null)
             {

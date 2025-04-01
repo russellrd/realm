@@ -14,5 +14,5 @@ AssetOrigin:
   productId: 258537
   packageName: ArcGIS Maps SDK for Unity
   packageVersion: 1.6.0
-  assetPath: Packages/com.esri.arcgis-maps-sdk/Samples~/Scenes/Scripts/Security/OAuthChallengeHandlersInitializer.cs
+  assetPath: Assets/Samples/ArcGIS Maps SDK for Unity/1.7.0/Sample Content/Scenes/Scripts/Security/OAuthChallengeHandlersInitializer.cs
   uploadId: 713734

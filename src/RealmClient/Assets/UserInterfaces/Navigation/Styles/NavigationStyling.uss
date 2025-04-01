@@ -9,7 +9,7 @@
 }
 
 .sub-container {
-    margin: var(--appui-spacing-200) var(--appui-spacing-100) var(--appui-spacing-200) var(--appui-spacing-100);
+    margin: var(--appui-spacing-300) var(--appui-spacing-100) var(--appui-spacing-200) var(--appui-spacing-100);
 }
 
 .error-text {
@@ -22,7 +22,7 @@
 }
 
 .large-spaced-below {
-    margin: 0 0 var(--appui-spacing-1000) 0;
+    margin: 0 0 var(--appui-spacing-400) 0;
 }
 
 .completed-button {
@@ -56,7 +56,7 @@
 
 .pressable-row-title {
     height: 100%;
-    font-size: 16px;
+    font-size: 12px;
     padding: var(--appui-spacing-100);
 }
 
@@ -71,8 +71,9 @@
 .bottom-nav {
     overflow: hidden;
     position: absolute;
-    bottom: var(--appui-spacing-300);
-    width: 100%;
+    margin-left: -10%;
+    bottom: var(--appui-spacing-100);
+    width: 120%;
 }
 
 .button {

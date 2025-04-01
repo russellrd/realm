@@ -7,8 +7,8 @@ using System.Collections;
 
 public class UserMarkerManager : MonoBehaviour
 {
-    // const float altitudeOffset = -175f;
-    const float altitudeOffset = 10f;
+    const float altitudeOffset = -175f;
+    // const float altitudeOffset = 10f;
     const float camAltitude = 1000f;
     private Marker userMarker;
     private ArcGISMapComponent arcGISMap;

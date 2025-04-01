@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,9 +22,11 @@ namespace Realm
         [SerializeField]
         private ObjectSpawner objectSpawner;
 
-        public List<InventoryARObjectPreview> initialARObjectPreviews = new();
+        [SerializeField]
+        private DatabaseController databaseController;
 
-        public Dictionary<string, GameObject> modelsToPrefab;
+        List<InventoryARObjectPreview> initialARObjectPreviews = new();
+        public ModelStore modelStore;
 
         bool isInventoryOpen;
 
@@ -41,17 +44,41 @@ namespace Realm
         {
             isInventoryOpen = false;
             m_CreateButton.onClick.AddListener(OpenInventory);
-
-            modelsToPrefab.Add("Plant", objectSpawner.objectPrefabs[0]);
-            modelsToPrefab.Add("Book", objectSpawner.objectPrefabs[1]);
-            modelsToPrefab.Add("Bench", objectSpawner.objectPrefabs[2]);
-            modelsToPrefab.Add("Hammer", objectSpawner.objectPrefabs[3]);
-            modelsToPrefab.Add("Lamp", objectSpawner.objectPrefabs[4]);
         }
 
         void OnDisable()
         {
             m_CreateButton.onClick.RemoveListener(OpenInventory);
+        }
+
+        async void Awake()
+        {
+            while (!modelStore.initialized)
+            {
+                await Task.Delay(1000);
+            }
+            Debug.Log($"INVENTORY MANAGER START (1)");
+            Debug.Log($"INVENTORY MANAGER START - keys contains e0a1khy0514cahw?: {modelStore.sprites.ContainsKey("e0a1khy0514cahw")}");
+            foreach (string modelId in modelStore.getKeys())
+            {
+                ARObjectPreviewSO aRObjectPreviewSO = new();
+                ModelDTO modelData = null;
+                Sprite sprite = null;
+                modelStore.modelData.TryGetValue(modelId, out modelData);
+                modelStore.sprites.TryGetValue(modelId, out sprite);
+                Debug.Log($"INVENTORY MANAGER AWAKE model: {modelId}, sprite: {sprite != null}");
+                aRObjectPreviewSO.Name = modelData.Name;
+                aRObjectPreviewSO.Author = modelData.Creator;
+                aRObjectPreviewSO.Description = modelData.Name;
+                aRObjectPreviewSO.PreviewImage = sprite;
+
+                initialARObjectPreviews.Add(
+                    new InventoryARObjectPreview
+                    {
+                        arObjectPreview = aRObjectPreviewSO
+                    }
+                );
+            }
         }
 
         void Start()
@@ -126,21 +153,9 @@ namespace Realm
 
         public GameObject GetPrefab(string model)
         {
-            switch (model)
-            {
-                case "Plant(Clone)":
-                    return objectSpawner.objectPrefabs[0];
-                case "Book(Clone)":
-                    return objectSpawner.objectPrefabs[1];
-                case "Bench(Clone)":
-                    return objectSpawner.objectPrefabs[2];
-                case "Hammer(Clone)":
-                    return objectSpawner.objectPrefabs[3];
-                case "Lamp(Clone)":
-                    return objectSpawner.objectPrefabs[4];
-                default:
-                    return objectSpawner.objectPrefabs[0];
-            }
+            GameObject gameObject = new();
+            modelStore.modelObjects.TryGetValue(model, out gameObject);
+            return gameObject;
         }
     }
 }
