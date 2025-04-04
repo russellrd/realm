@@ -9,6 +9,23 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 
+\usepackage{amsmath, mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{colortbl}
+\usepackage{xr}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{placeins}
+\usepackage{amsthm,letltxmacro,changepage}
+\usepackage[shortlabels]{enumitem} % Kept because of the [shortlabels] option
+\usepackage[round]{natbib}
+
+
 % From: https://tex.stackexchange.com/questions/438876/how-to-cross-reference-text-with-a-custom-label-reference-text
 \makeatletter
 \newcommand{\labeltext}[3][]{%
@@ -29,7 +46,7 @@
 
 \author{\authname}
 
-\date{}
+\date{November 4, 2024}
 
 \input{../Comments}
 \input{../Common}
@@ -46,14 +63,19 @@
 \section*{Revision History}
 
 \begin{table}[hp]
-    \caption{Revision History} \label{rev_history_table}
     \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
         \toprule {\textbf{Date}} & {\textbf{Version}} & {\textbf{Notes}}                                                \\
         \midrule
         2024-10-11               & 1.0                & Initial SRS                                                     \\
+        \midrule
         2024-10-29               & 1.1                & Reorganization and addition of NFRs, Completed missing sections \\
+        \midrule
+        2025-03-29               & 1.2                & Removed content relating to sub-realms, tutorials, friends, object scanning \\
+        \midrule
+        2025-04-04               & 1.3                & Added Traceability Matrix \\
         \bottomrule
     \end{tabularx}
+    \caption{Revision History} \label{rev_history_table}
 \end{table}
 
 \section{Introduction}
@@ -64,9 +86,9 @@ The purpose of this document is to outline key functional and non-functional req
 
 \subsection{Product Scope}
 
-Realm (version 1.4) is an AR platform that aims to create a cohesive augmented reality experience that enables users to engage in social, educational and entertaining activities through the use of AR content. The app will allow users to place AR objects, react to them, interact with friends, and participate in educational tours.
+Realm (version 1.4) is an AR platform that aims to create a cohesive augmented reality experience that enables users to engage in educational and entertaining activities through the use of AR content. The app will allow users to interact with AR content and participate in tours.
 
-The key objectives of this platform include fostering social interactions through shared and customizable AR experiences and promoting educational content via AR tours.
+The key objectives of this platform include fostering customizable AR experiences and promoting educational content via AR tours.
 
 \subsection{Definitions, Acronyms and Abbreviations}
 \label{sub:def_acr_abb}
@@ -83,7 +105,6 @@ The key objectives of this platform include fostering social interactions throug
     \item \labeltext{Organization users}{def:org_user}: Users who belong to an organization that have the ability to create tours. They are affiliated with a particular approved organization who have the ability to modify tours within their organization’s domain.
     \item \labeltext{General users}{def:gen_user}: Users that can access most of the app functionalities except creating tours.
     \item \labeltext{Admins}{def:admin}: People who have access to nothing else but the admin interface within the app.
-    \item \labeltext{Sub-Realm}{def:sub_realm}: A construct that specifies a set of users that are it’s members, and a set of AR objects that are shared between its members
     \item \labeltext{Encryption standard}{def:encryption_standard}: A set of algorithms used to encode data to ensure that it can be viewed by authorized users only.
     \item \labeltext{Restricted Area}{def:restricted_area}: A space that should not be accessible to the general public.
 \end{itemize}
@@ -102,9 +123,9 @@ The key objectives of this platform include fostering social interactions throug
 
 \subsection{Product Perspective}
 
-Realm, as specified in this SRS document, is a self-contained product designed to provide users with an immersive social, educational, and entertainment experience with the help of AR. This product is not part of an existing product family and does not replace any current systems. Instead, it is developed as a standalone system that allows users to create, interact with, and share virtual objects, such as 2D stickers and 3D artifacts, in real-world environments.\\
+Realm, as specified in this SRS document, is a self-contained product designed to provide users with an immersive educational, and entertaining experience with the help of AR. This product is not part of an existing product family and does not replace any current systems. Instead, it is developed as a standalone system that allows users to create, interact with, and share virtual objects, such as 2D stickers and 3D artifacts, in real-world environments.\\
 
-The app operates independently but may collaborate with third-party content providers, such as educational institutions or businesses, to offer //customized AR experiences. If needed, Realm could integrate with larger systems in the future, such as educational platforms or entertainment networks, by establishing appropriate interfaces for data sharing and interaction.\\
+The app operates independently but may collaborate with third-party content providers, such as educational institutions or businesses, to offer customized AR experiences. If needed, Realm could integrate with larger systems in the future, such as educational platforms or entertainment networks, by establishing appropriate interfaces for data sharing and interaction.\\
 
 The app is to be compatible with most smartphone devices, as long as they have a camera.
 
@@ -112,11 +133,6 @@ The app is to be compatible with most smartphone devices, as long as they have a
 \subsection{Product Functions}
 
 \begin{itemize}
-    \item Tutorial
-          \begin{itemize}
-              \item The user will be able to complete a walkthrough tutorial of all major app features.
-          \end{itemize}
-
     \item Tour Management
           \begin{itemize}
               \item \textit{Organization users} will be able to create/modify/delete AR tours owned by their organization.
@@ -134,19 +150,14 @@ The app is to be compatible with most smartphone devices, as long as they have a
 
     \item AR Object Interaction
           \begin{itemize}
-              \item Users will be able to place, edit, and interact with 2D stickers and 3D artifacts within the \hyperref[def:sub_realm]{sub-realm}.
+              \item Users will be able to place, edit, and interact with 2D stickers and 3D artifacts within the realm interface.
               \item Users can react to and engage with objects placed by other users.
-          \end{itemize}
-
-    \item Social Interaction
-          \begin{itemize}
-              \item Users will be able to create, edit, and add/remove friends to a \hyperref[def:sub_realm]{sub-realm}, where they can each share AR objects within the \hyperref[def:sub_realm]{sub-realm}.
           \end{itemize}
 
     \item Object Creation
           \begin{itemize}
               \item Allow users to create their own AR objects and share them with others.
-              \item Objects can be created via a 'Scan and Upload' option or generate one using a user prompt.
+              \item Objects can be created via generation using a user prompt.
           \end{itemize}
 
     \item Reporting and Moderation
@@ -156,17 +167,17 @@ The app is to be compatible with most smartphone devices, as long as they have a
 
     \item Managing Settings
           \begin{itemize}
-              \item Manage a variety of settings including accessibility settings, display settings, privacy settings, profile settings, and \hyperref[def:sub_realm]{sub-realm} settings.
+              \item Manage a variety of settings including accessibility settings, display settings, privacy settings, and profile settings.
           \end{itemize}
 \end{itemize}
 \subsection{Product Constraints}
 
 \begin{itemize}
-    \item \textbf{Interfaces to Users}: The platform must be compatible with both Android and iOS devices, meaning the design must accommodate different screen sizes and operating system guidelines. Additionally, the app requires user-friendly interfaces for interacting with AR objects and managing \hyperref[def:sub_realm]{sub-realms}.
+    \item \textbf{Interfaces to Users}: The platform must be compatible with both Android and iOS devices, meaning the design must accommodate different screen sizes and operating system guidelines. Additionally, the app requires user-friendly interfaces for interacting with AR objects and managing tours.
 
     \item \textbf{Hardware Constraints}: The app depends on mobile devices with AR capabilities (e.g., cameras, GPS, accelerometers). Users with older or less powerful devices might experience limited functionality or performance issues.
 
-    \item \textbf{Quality of Service}: Realm needs to have a smooth interaction, with little to no lag. It must also handle multiple users within a shared AR space (sub-realm).
+    \item \textbf{Quality of Service}: Realm needs to have a smooth interaction, with little to no lag. It must also handle multiple users within a shared AR space.
 
     \item \textbf{Standards Compliance}: The app has to comply with relevant privacy laws and app store requirements for both Android and iOS.
 
@@ -177,12 +188,12 @@ The app is to be compatible with most smartphone devices, as long as they have a
 
 \subsection{User Characteristics}
 
-There are three types of users.\\
+There are three types of users. The system has three primary user types: General Users, Organizational Users, and Admins, each with distinct roles and needs. General Users are everyday users who use the app by placing, viewing, and engaging with objects in the app. Organizational Users are businesses, educational institutions, or other groups that create and manage AR tours, requiring tools for content creation, collaboration, and moderation. Admins oversee the platform’s integrity, ensuring compliance with policies through content moderation, user management, and security enforcement. Each user type affects different aspects of the system’s design, ensuring a seamless and functional experience for all stakeholders.\\
 
 \textbf{General Users:}
 \begin{itemize}
     \item Frequency of Use: Occasional to frequent.
-    \item Functions Used: Creating, interacting with, and sharing AR objects; joining \hyperref[def:sub_realm]{sub-realms}; participating in AR tours.
+    \item Functions Used: Creating, interacting with, and sharing AR objects; participating in AR tours.
     \item Technical Expertise: Moderate; basic understanding of mobile apps and social platforms.
     \item Security/Privilege Level: Standard user access with limited permissions (e.g., cannot create tours or manage content).
     \item Importance: Most important user class, as they represent the primary user base for the platform.
@@ -191,7 +202,7 @@ There are three types of users.\\
 \textbf{Organizational Users:}
 \begin{itemize}
     \item Frequency of Use: Frequent.
-    \item Functions Used: Creating and managing AR tours, educational content, and \hyperref[def:sub_realm]{sub-realms} for public or private use.
+    \item Functions Used: Creating and managing AR tours and educational content for public or private use.
     \item Technical Expertise: Moderate to advanced; comfortable with content creation tools and AR platforms.
     \item Security/Privilege Level: Higher-level access to manage and publish content for users.
     \item Importance: Highly important, as they provide some of the platform’s key content.
@@ -230,14 +241,21 @@ There are three types of users.\\
         AR Object Interaction    & 1                 &                             \\ \hline
         Tour Management          & 2                 & \multirow{3}{*}{2025-12-01} \\
         Touring                  & 2                 &                             \\
-        Social Interaction       & 2                 &                             \\
         Reporting and Moderation & 2                 & \multirow{4}{*}{2025-01-15} \\ \hline
         User Profile Management  & 3                 &                             \\
         Managing Settings        & 3                 &                             \\
-        Tutorial                 & 3                 &                             \\
         \hline
     \end{tabular}
 \end{table}
+
+\subsection{Out of Scope}
+
+The following features are considered out of scope for this version of the system:
+
+\begin{itemize}
+    \item \textbf{AR Glasses Support:} The system will not be optimized for AR headsets or smart glasses in this release.
+    \item \textbf{Offline Mode:} The system requires an active internet connection and will not support full offline functionality.
+\end{itemize}
 
 \section{Requirements}
 
@@ -259,12 +277,10 @@ There are three types of users.\\
               \item \textbf{Tour Editor:} Allows organization users to edit tours and publish changes.
           \end{itemize}
     \item \textbf{Maps:} Map view displaying objects placed around you
-    \item \textbf{Inventory:} A display of available AR objects (personal objects, objects mapped to a \hyperref[def:sub_realm]{sub-realm} and application preset objects)
+    \item \textbf{Inventory:} A display of available AR objects (personal objects and application preset objects)
     \item \textbf{Profile:}
           \begin{itemize}
-              \item \textbf{Sub-Realms:} Ability to add, edit and interact with \hyperref[def:sub_realm]{sub-realm} settings
-              \item \textbf{Friends:} Managing friends
-              \item \textbf{Settings:} Accessibility settings, Display settings, Privacy settings, Profile Settings, \ref{def:sub_realm} settings
+              \item \textbf{Settings:} Accessibility settings, Display settings, Privacy settings, Profile Settings
               \item \textbf{Help:} FAQ and request org account
           \end{itemize}
     \item \textbf{Placement Editor:} Able to move, rotate, resize the object prior to confirming placement.
@@ -316,7 +332,7 @@ The functional requirements of the system broken down by the features they speci
     \item The map should display location markers for \ref{def:ar_obj} clusters
     \item The marker should display the count of objects present in a tight cluster
     \item The map should display location markers for \ref{def:ar_obj_cls}
-    \item The map should display indications of objects from all \hyperref[def:sub_realm]{sub-realms} that the user is a part of
+    \item The map should display indications of objects visible to the user
     \item When a marker is selected, the option to provide directions should be available
     \item The map should give directions to the user for a selected marker
     \item The objects shown on the map should be grouped to avoid clutter
@@ -341,33 +357,6 @@ The functional requirements of the system broken down by the features they speci
     \item The user can change the inventory background color
 \end{enumerate}
 
-\subsubsection{Object Scan}
-\label{ssub:obj_scan}
-\begin{enumerate}[align=left, label=\textbf{OS-FR\arabic*:}]
-    \item The user should be able to scan their surroundings to create objects.
-    \item The user should select whether a 2D or 3D object is being scanned.
-    \item While scanning, a real-time render of the scanned portion will be shown to the user.
-    \item The scanning state should not be longer than 120 seconds.
-    \item When the user has completed scanning, they should be able to confirm that the scanning process is finished.
-\end{enumerate}
-
-\subsubsection{Object Upload to Inventory}
-\label{ssub:obj_upload_inv}
-\begin{enumerate}[align=left, label=\textbf{OUI-FR\arabic*:}]
-    \item The object render provided by the scan would be displayed to the user.
-    \item The user should be able to remove unneeded features of the render after the target is done being scanned.
-    \item For 2D objects, the user can crop and resize the object in the edit interface.
-    \item Once the user is satisfied with the scanned object, they should be able to confirm the creation of the \ref{def:ar_obj}.
-    \item The user should be able to name their created object.
-    \item The name should only contain ASCII characters.
-    \item The user-created name of the object should be stored along with the \ref{def:ar_obj}.
-    \item The date and time of creation should be stored with the \ref{def:ar_obj}.
-    \item The user information should be stored with the \ref{def:ar_obj}.
-    \item The storage size should be stored with the \ref{def:ar_obj}.
-    \item The type (2D or 3D) of the object should be stored with the \ref{def:ar_obj}.
-    \item The user should be able to select portions of the object and change its color.
-\end{enumerate}
-
 \subsubsection{Custom AR Object Generation via prompt}
 \label{ssub:prompt_obj_gen}
 
@@ -382,22 +371,6 @@ The functional requirements of the system broken down by the features they speci
     \item After objects are generated, the user should be able to select an object from one of the provided options.
     \item Once the user has chosen an object, they should be able to add it to their personal inventory.
     \item The objects can be previewed by rotating them.
-\end{enumerate}
-
-\subsubsection{Tutorial}
-\label{ssub:tutorial}
-
-\begin{enumerate}[align=left, label=\textbf{TU-FR\arabic*:}]
-    \item The app shall have a step-by-step interactive guide of how to use all major app features.
-    \item The app shall prompt the user to complete the app tutorial after they create an account.
-    \item The app shall allow the user to leave the tutorial at any time.
-    \item The tutorial shall be available at any time through the app's help page in the \textbf{Settings screen}.
-    \item The tutorial will involve user participation to directly use functionality in a sandbox environment.
-\end{enumerate}
-
-\begin{enumerate}[align=left, label=\textbf{TU-NFR\arabic*:}]
-    \item Each interaction step should not take the user more than 15 seconds to figure out.
-    \item The entire tutorial shall not take longer than 5 minutes to complete for 80\% of users.
 \end{enumerate}
 
 \subsubsection{Tour Management}
@@ -483,14 +456,12 @@ The functional requirements of the system broken down by the features they speci
     \item The system must have the capability to store object instances that specify the following details:
           \begin{itemize}
               \item The AR object that was placed.
-              \item The \hyperref[def:sub_realm]{sub-realm}(s) in which the object instance will be shared.
               \item All data required to precisely reproduce the position and orientation of the object in real space.
           \end{itemize}
 
     \item The system must provide a way for a user to place AR objects in the space around them, creating object instances.
           \begin{enumerate}[align=left, label=\textbf{OP-FR2.\arabic*:}]
               \item The system must provide a way for a user to select an object either from their inventory or by generating a new object.
-              \item The system must provide a way for the user to select one or more \hyperref[def:sub_realm]{sub-realms} of which they are a member.
               \item The system must provide a way for the user to position an AR object in real space.
           \end{enumerate}
 
@@ -514,14 +485,7 @@ The functional requirements of the system broken down by the features they speci
               \item AR object instances reproduced on the Realm interface must be in the correct position and orientation as defined by the object placement.
           \end{enumerate}
 
-    \item The Realm interface must keep track of a selected \hyperref[def:sub_realm]{sub-realm} which determines which object instances are displayed.
-          \begin{enumerate}[align=left, label=\textbf{RI-FR2.\arabic*:}]
-              \item The Realm interface must provide an indication of what \hyperref[def:sub_realm]{sub-realm} is currently selected.
-              \item The Realm interface must provide a way for the user to change the selected \hyperref[def:sub_realm]{sub-realm}.
-          \end{enumerate}
-
     \item The Realm interface must provide a control to allow the user to enter the object placement workflow.
-    \item The Realm interface must provide a control to allow the user to enter the object scanning workflow.
     \item When the user is near the starting point of a tour, the Realm interface must provide an indication that there is a tour nearby as well as a link to the tour preview.
     \item The interface must display warnings to alert users of going outside during dangerous weather conditions. \\
     \item The interface must provide ample warning to users if they are close to a real-world hazard and on track to collide with it. \\
@@ -548,27 +512,7 @@ The functional requirements of the system broken down by the features they speci
     \item The system shall provide a multi-factor authentication option for user accounts to enhance security. \\
     \item Allow the user to change their password.
     \item The user must be able to view their profile information including username, password, profile picture, and status.
-    \item The user must be able to view all \hyperref[def:sub_realm]{sub-realms} that they are part of.
     \item The user shall be able to view a help page with frequently asked questions and additional help.
-\end{enumerate}
-
-\subsubsection{Sub-Realms}
-\label{ssub:sub-realms}
-\begin{enumerate}[align=left, label=\textbf{G-FR\arabic*:}]
-    \item The user must be able to create a new \hyperref[def:sub_realm]{sub-realm} with a \hyperref[def:sub_realm]{sub-realm} name, description, and also allow inviting members.
-    \item Allow users to add or remove members from a \hyperref[def:sub_realm]{sub-realm}.
-    \item The user must be able to edit \hyperref[def:sub_realm]{sub-realm} settings, including \hyperref[def:sub_realm]{sub-realm} name and description.
-    \item The user must be able to delete a \hyperref[def:sub_realm]{sub-realm}, and all associated data should be removed.
-    \item All users within a \hyperref[def:sub_realm]{sub-realm} must be able to interact with \hyperref[def:sub_realm]{sub-realm}-specific AR content, including shared AR objects and experiences.
-\end{enumerate}
-
-\subsubsection{Friends screen}
-\label{ssub:friends_screen}
-\begin{enumerate}[align=left, label=\textbf{FS-FR\arabic*:}]
-    \item The user shall be able to send friend requests to other users within the platform.
-    \item The user must be able to accept or reject incoming friend requests.
-    \item The user shall be able to view their list of friends.
-    \item The user must be able to remove friends.
 \end{enumerate}
 
 \subsubsection{Settings}
@@ -576,9 +520,8 @@ The functional requirements of the system broken down by the features they speci
 \begin{enumerate}[align=left, label=\textbf{S-FR\arabic*:}]
     \item The user shall be able to access and modify Accessibility Settings, including text size, enabling/disabling viewing of object names, and changing language.
     \item The user shall be able to adjust Display Settings, including light/dark mode, AR object visibility.
-    \item The user must be able to manage Privacy Settings, including controlling who can see their profile, friends list, and AR interactions.
+    \item The user must be able to manage Privacy Settings, including controlling who can see their profile and AR interactions.
     \item Allow the user to manage Profile Settings, such as changing their username, password, profile picture, and status.
-    \item The user must be able to access \hyperref[def:sub_realm]{sub-realm} Settings, as mentioned in the \ref{ssub:sub-realms} section of the requirements.
     \item The system must provide a setting to set the app theme to \textbf{Dark} or \textbf{Light}, with the option to automatically match the system theme \\
 \end{enumerate}
 
@@ -598,41 +541,6 @@ The functional requirements of the system broken down by the features they speci
 \end{center}
 
 \begin{enumerate}[label=\textbf{UC\arabic*}]
-    \item \label{uc:1} Complete the Tutorial \\
-          \textbf{Actor}: \ref{def:user} \\
-          \textbf{Pre-condition:} User has opened the app \\
-
-          \textbf{Main Success Scenario:}
-          \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User creates an account (\ref{uc:23})
-              \item System prompts user to complete the tutorial (\hyperref[ssub:tutorial]{TU-FR2})
-              \item User indicates they would like to do the tutorial
-              \item System opens the \textbf{Tutorial Interface}
-              \item System provides directions to use a feature
-              \item User tries the feature (\hyperref[ssub:tutorial]{TU-FR5})
-              \item User goes to next feature when satisfied
-              \item Repeat steps \textbf{5}-\textbf{7} for all major app features (\hyperref[ssub:tutorial]{TU-FR1})
-              \item System prompts user to leave and end tutorial
-              \item User ends tutorial (\hyperref[ssub:tutorial]{TU-FR3})
-              \item System redirects to \textbf{Home Interface}
-          \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[{\bf 1.1:}] User already has an account
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item User logs into account (\ref{uc:24})
-                        \item User navigates to \textbf{Help Interface} (\hyperref[ssub:tutorial]{TU-FR4})
-                        \item Go to step \textbf{2}
-                    \end{enumerate}
-              \item[{\bf 10.1:}] User chooses to stay in sandbox environment
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item System closes prompt and allows user to use sandbox environment
-                        \item User indicates they want to leave tutorial
-                        \item Go to step \textbf{11}
-                    \end{enumerate}
-          \end{itemize}
-          \textbf{Success Postcondition:} The user has a general idea of how all the app’s major features work.
 
     \item \label{uc:2} Create a Tour \\
           \textbf{Actor}: \ref{def:org_user} \\
@@ -657,7 +565,7 @@ The functional requirements of the system broken down by the features they speci
               \item System gives the option to move on to the inventory setup
               \item User goes to the inventory setup (\hyperref[ssub:tour_management]{TM-FR4[4]})
               \item System opens the \textbf{Inventory Interface}
-              \item User scans and uploads a new \ref{def:ar_obj} (\ref{uc:5})
+              \item User generates and uploads a new \ref{def:ar_obj} (\ref{uc:5})
               \item User repeats step \textbf{12} until all desired \ref{def:ar_obj}s are uploaded
               \item User indicates they would like to move on to object placement
               \item System opens the \textbf{Realm Interface} and allows the user to place \ref{def:ar_obj}s and historical information popups in an isolated environment.
@@ -681,10 +589,6 @@ The functional requirements of the system broken down by the features they speci
               \item[{\bf 4.1.2:}] System determines input fails validation
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Go to step \textbf{3}
-                    \end{enumerate}
-              \item[{\bf 12.1:}] User does not have any \ref{def:ar_obj}s to scan
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Go to step \textbf{14}
                     \end{enumerate}
               \item[{\bf 20.1:}] User selects draft option
                     \begin{enumerate}[label=\textbf{\arabic*.}]
@@ -722,7 +626,7 @@ The functional requirements of the system broken down by the features they speci
               \item System gives the option to move on to the inventory setup
               \item User goes to the inventory setup (\hyperref[ssub:tour_management]{TM-FR4[4]})
               \item System opens the \textbf{Inventory Interface}
-              \item User scans and uploads a new \ref{def:ar_obj} (\ref{uc:5})
+              \item User prompts and generates a new \ref{def:ar_obj} (\ref{uc:5})
               \item User repeats step \textbf{12} until all desired \ref{def:ar_obj}s are uploaded
               \item User indicates they would like to move on to object placement
               \item System opens the \textbf{Realm Interface} and allows the user to place/edit \ref{def:ar_obj}s and historical information popups in an isolated environment.
@@ -747,7 +651,7 @@ The functional requirements of the system broken down by the features they speci
                         \item System determines input passes validation
                         \item Go to step \textbf{9}
                     \end{enumerate}
-              \item[{\bf 16.1:}] User decides not to scan and upload any new \ref{def:ar_obj}s
+              \item[{\bf 16.1:}] User decides not to prompt and generate any new \ref{def:ar_obj}s
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Go to step \textbf{18}
                     \end{enumerate}
@@ -831,68 +735,6 @@ The functional requirements of the system broken down by the features they speci
           \end{itemize}
           \textbf{Success Postcondition:} One of the \ref{def:gen_user} has completed a tour
 
-    \item \label{uc:5} Scan and upload \ref{def:ar_obj} to the user inventory \\
-          \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Pre-condition:} User has an account on the application \textbf{AND} is logged into the application \textbf{AND} navigates to the Realm display \\
-
-          \textbf{Main Success Scenario:}
-          \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item System displays Realm screen to user
-              \item User selects control to scan and create an \ref{def:ar_obj}
-              \item System presents user with the option to scan a 2D or 3D \ref{def:ar_obj}
-              \item User selects one of the provided options
-                    \begin{enumerate}[label=(\alph*)]
-                        \item User selects 2D \ref{def:ar_obj} option
-                        \item User selects 3D \ref{def:ar_obj} option
-                    \end{enumerate}
-              \item System displays a scanning interface
-              \item User performs motions to scan the targeted object
-              \item System provides a render for the scanned portion (happens concurrently with step \textbf{6})
-              \item User selects the option to confirm that the scanning process is complete
-              \item System navigates user to an editor with the complete render of the target entity
-              \item User performs actions to edit the render to meet their needs
-                    \begin{enumerate}[label=(\alph*)]
-                        \item User removes unneeded parts of the render
-                        \item User changes the colour of selected portions
-                    \end{enumerate}
-              \item System applies the changes to the \ref{def:ar_obj} intended by the user
-              \item User confirms that the editing process is completed
-              \item System receives the user confirmation and provides a preview of the final \ref{def:ar_obj} with the options to discard or add it to their inventory
-              \item User selects what they would want to do with the new \ref{def:ar_obj}
-                    \begin{enumerate}[label=(\alph*)]
-                        \item User returns to the editing interface for further customization (Go to step \textbf{10})
-                        \item User selects control to add the object to their inventory
-                        \item User wants to discard the object (Go to Secondary Scenario 2)
-                    \end{enumerate}
-              \item System adds the new \ref{def:ar_obj} to the User's inventory and notifies the User about adding the object to their inventory
-              \item System returns to the Realm screen
-          \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[\textbf{\textbf{(3.1, 5.1)}}] User cancels scanning process
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario steps \textit{1-3 or 1-5}
-                        \item User selects option to cancel the scanning process
-                        \item System receives User's request to cancel scanning process and returns to the Realm screen
-                    \end{enumerate}
-
-              \item[9.1] User discards the scanned \ref{def:ar_obj}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario steps \textit{1-9}
-                        \item User selects option to discard the scanned object
-                        \item System receives User's request and presents confirmation prompt for discarding object
-                        \item User interacts with confirmation prompt
-                              \begin{enumerate}[label=(\alph*)]
-                                  \item User selects to discard object
-                                  \item User selects to not discard object (Go back to Main scenario step \textbf{13})
-                              \end{enumerate}
-                        \item System receives User response and deletes object and returns to the Realm screen
-                    \end{enumerate}
-
-          \end{itemize}
-          \textbf{Success Postcondition:} The User can view the new object in their inventory
-
     \item \label{uc:6} Generate a custom \ref{def:ar_obj} via a user prompt \\
           \textbf{Actor}: \ref{def:gen_user} \\
           \textbf{Pre-condition:} User has an account on the application \textbf{AND} is logged in to the app \textbf{AND} has navigated to the \textbf{Realm Interface} \\
@@ -972,8 +814,6 @@ The functional requirements of the system broken down by the features they speci
               \item User performs control to initiate object placement.
               \item System presents the \textbf{Object Selection Menu} (\hyperref[ssub:object_placement]{OP-FR2.1}).
               \item User selects an existing AR object for placement.
-              \item System presents the \textbf{Sub-Realm Selection Menu} (\hyperref[ssub:object_placement]{OP-FR2.2}).
-              \item User selects the \hyperref[def:sub_realm]{sub-realm}(s) in which they wish for their object instance to be shared.
               \item System presents the \textbf{Object Positioning Interface} (\hyperref[ssub:object_placement]{OP-FR2.3}).
               \item User positions the AR object using given controls and confirms when done.
               \item System returns to Realm screen.
@@ -990,15 +830,6 @@ The functional requirements of the system broken down by the features they speci
                         \item Main scenario steps 5-9.
                     \end{enumerate}
 
-              \item[{\bf 3.2:}] User creates a new object with object scanning:
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario steps 1-3.
-                        \item User selects the option to generate an object via object scan.
-                        \item System presents the \textbf{Object Scanning Interface}.
-                        \item User completes object scanning workflow.
-                        \item Main scenario steps 5-9.
-                    \end{enumerate}
-
               \item[{\bf 3.3, 5.1, 7.1:}] User cancels object placement:
                     \begin{enumerate}[label=\textbf{\arabic*.}]
                         \item Main scenario steps 1-3, or 1-5, or 1-7.
@@ -1012,16 +843,9 @@ The functional requirements of the system broken down by the features they speci
                         \item User selects option to return to \textbf{Object Selection Menu} (\hyperref[ssub:object_placement]{OP-FR2.1}).
                         \item Main scenario resumes from step 3.
                     \end{enumerate}
-
-              \item[{\bf 7.2:}] User reselects \hyperref[def:sub_realm]{sub-realms}:
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario steps 1-7.
-                        \item User selects option to return to \textbf{Sub-Realm Selection Menu} (\hyperref[ssub:object_placement]{OP-FR2.2}).
-                        \item Main scenario resumes from step 5.
-                    \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} Users that are members of the \hyperref[def:sub_realm]{sub-realm} in which the object instance has been shared can see the object instance from the \textbf{Realm interface}.
+          \textbf{Success Postcondition:} Users can see the object instance from the \textbf{Realm interface}.
 
     \item \label{uc:8} Place an AR object from the Inventory \\
           \textbf{Actor}: General User \\
@@ -1033,8 +857,6 @@ The functional requirements of the system broken down by the features they speci
               \item User selects an object they wish to place.
               \item System presents object details.
               \item User selects option to initiate object placement.
-              \item System presents the \textbf{Sub-Realm Selection Menu} (\hyperref[ssub:object_placement]{OP-FR2.1}).
-              \item User selects the \hyperref[def:sub_realm]{sub-realm}(s) in which they wish for their object instance to be shared.
               \item System presents the \textbf{Object Positioning Interface} (\hyperref[ssub:object_placement]{OP-FR2.3}).
               \item User positions the AR object using given controls and confirms when done.
               \item System returns to Realm screen.
@@ -1049,15 +871,9 @@ The functional requirements of the system broken down by the features they speci
                         \item System returns to the Inventory screen.
                     \end{enumerate}
 
-              \item[{\bf 7.2:}] User reselects \hyperref[def:sub_realm]{sub-realm}:
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario steps 1-7.
-                        \item User selects option to return to \textbf{Sub-Realm Selection} (\hyperref[ssub:object_placement]{OP-FR2.2}).
-                        \item Main scenario resumes from step 5.
-                    \end{enumerate}
           \end{itemize}
 
-          \textbf{Success Postcondition:} Users that are members of the \hyperref[def:sub_realm]{sub-realm} in which the object instance has been shared can see the object instance from the \textbf{Realm Interface}.
+          \textbf{Success Postcondition:} Users can see the object instance from the \textbf{Realm Interface}.
 
     \item \label{uc:9} Preview AR objects from the Inventory \\
           \textbf{Actor}: \ref{def:gen_user} \\
@@ -1087,31 +903,19 @@ The functional requirements of the system broken down by the features they speci
           \textbf{Success Postcondition:} User is able to view an \ref{def:ar_obj} in their inventory from different angles
 
 
-    \item \label{uc:10} View object instances that are shared in a \hyperref[def:sub_realm]{sub-realm} in the \textbf{Realm interface} \\
+    \item \label{uc:10} View object instances that are shared in the \textbf{Realm interface} \\
           \textbf{Actor}: General User \\
           \textbf{Pre-condition:} User is logged in to the app \textbf{AND} has navigated to the \textbf{Realm Interface} (\hyperref[ssub:realm_interface]{RI-FR1}) \\
 
           \textbf{Main Success Scenario:}
           \begin{enumerate}[label=\textbf{\arabic*.}]
               \item System presents the \textbf{Realm Interface}.
-              \item User selects a \hyperref[def:sub_realm]{sub-realm} to see objects from.
-              \item System only presents object instances in the selected \hyperref[def:sub_realm]{sub-realm}.
+              \item System  presents object instances.
               \item User moves their device to see any angle of the object instance.
               \item System continuously presents the object instance with the correct perspective relative to the user’s camera.
           \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[{\bf 10.1:}] User is not a member of any \hyperref[def:sub_realm]{sub-realms}:
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item System presents \textbf{Realm Interface} (\hyperref[ssub:realm_interface]{RI-FR1}).
-                        \item System presents only public object instances.
-                        \item User moves their device to see any angle of the object instance.
-                        \item System continuously presents the object instance with the correct perspective relative to the user’s camera.
-                    \end{enumerate}
-          \end{itemize}
-
-          \textbf{Success Postcondition:} The user can see any AR object instances that are in any \hyperref[def:sub_realm]{sub-realm} that they are a part of correctly positioned in real space.
+          
+          \textbf{Success Postcondition:} The user can see any AR object instances correctly positioned in real space.
 
     \item \label{uc:11} Check the map to see where objects are placed in the world \\
           \textbf{Actor}: \ref{def:gen_user} \\
@@ -1296,257 +1100,6 @@ The functional requirements of the system broken down by the features they speci
 
           \textbf{Success Postcondition:} The user’s desired object is available in the user’s inventory for preview and placement.
 
-
-    \item \label{uc:17} \textbf{Create a \ref{def:sub_realm}} \\
-          \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app.
-
-          \textbf{Main Success Scenario:}
-          \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to the "Create \ref{def:sub_realm}" page from the app’s main interface.
-              \item System presents the \ref{def:sub_realm} Creation Page.
-              \item User provides a name and description for the \hyperref[def:sub_realm]{sub-realm}.
-              \item System presents the option to “Add users to \hyperref[def:sub_realm]{sub-realm}.”
-              \item User selects the option to add users.
-              \item System displays the user’s friend list.
-              \item User selects the friends they want to add to the \hyperref[def:sub_realm]{sub-realm}.
-              \item User confirms that they are done adding friends.
-              \item User confirms creation of the \hyperref[def:sub_realm]{sub-realm}.
-              \item System saves the \hyperref[def:sub_realm]{sub-realm} with the provided information and friends list.
-              \item System returns to the Realm interface, displaying the newly created \hyperref[def:sub_realm]{sub-realm}.
-          \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[{}] \textbf{User cancels the creation before confirming:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-8
-                        \item User selects the option to cancel \hyperref[def:sub_realm]{sub-realm} creation.
-                        \item System discards the \hyperref[def:sub_realm]{sub-realm} creation process and returns to the Realm interface.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User reselects friends:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-7
-                        \item User selects the option to go back to the friends list.
-                        \item Main scenario resumes from step 6.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User does not add any friends:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-5
-                        \item User selects the option to skip adding friends.
-                        \item Main scenario resumes from step 9.
-                    \end{enumerate}
-          \end{itemize}
-
-          \textbf{Success Postcondition:} A new \hyperref[def:sub_realm]{sub-realm} is created and linked to the user’s account with the chosen settings and added friends.
-
-    \item \label{uc:18} \textbf{Leave a \ref{def:sub_realm}} \\
-          \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND is a member of the \hyperref[def:sub_realm]{sub-realm}.
-
-          \textbf{Main Success Scenario:}
-          \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to the \hyperref[def:sub_realm]{sub-realm} and opens the \ref{def:sub_realm} Settings.
-              \item System presents the \ref{def:sub_realm} Settings Menu.
-              \item User selects the "Leave \ref{def:sub_realm}" option.
-              \item System prompts the user to confirm the action.
-              \item User confirms that they wish to leave the \hyperref[def:sub_realm]{sub-realm}.
-              \item System removes the user from the \hyperref[def:sub_realm]{sub-realm}.
-              \item System returns the user to the Realm Interface, with the \hyperref[def:sub_realm]{sub-realm} no longer visible.
-          \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[{}] \textbf{User cancels leaving the \hyperref[def:sub_realm]{sub-realm}:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-4
-                        \item User selects the option to cancel leaving the \hyperref[def:sub_realm]{sub-realm}.
-                        \item System returns to the \ref{def:sub_realm} Settings without making any changes.
-                    \end{enumerate}
-          \end{itemize}
-
-          \textbf{Success Postcondition:} The user is no longer part of the \hyperref[def:sub_realm]{sub-realm}, and the \hyperref[def:sub_realm]{sub-realm} is no longer accessible or visible to the user.
-
-    \item \label{uc:19} \textbf{Join an Existing\ref{def:sub_realm}} \\
-          \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND has received an invite to the \hyperref[def:sub_realm]{sub-realm}.
-
-          \textbf{Main Success Scenario:}
-          \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User receives a notification of a \hyperref[def:sub_realm]{sub-realm} invitation.
-              \item System presents the \hyperref[def:sub_realm]{sub-realm} invitation details.
-              \item User selects the \hyperref[def:sub_realm]{sub-realm} they wish to join.
-              \item System presents a confirmation prompt.
-              \item User confirms their request to join the \hyperref[def:sub_realm]{sub-realm}.
-              \item System adds the user to the selected \hyperref[def:sub_realm]{sub-realm}.
-              \item System returns to the Realm Interface, now displaying the newly joined \hyperref[def:sub_realm]{sub-realm}.
-          \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[{}] \textbf{Sub-realm is invite-only, and approval is required:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-5
-                        \item System notifies the user that their request to join is pending approval.
-                        \item User must wait for an admin’s approval before being added to the \hyperref[def:sub_realm]{sub-realm}.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User cancels the request before joining:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-4
-                        \item User selects the option to cancel the request to join.
-                        \item System returns to the main interface, and no further action is taken.
-                    \end{enumerate}
-          \end{itemize}
-
-          \textbf{Success Postcondition:} The user is successfully added to the \hyperref[def:sub_realm]{sub-realm} and can now access it from within the Realm Interface.
-
-    \item \label{uc:20} \textbf{Add a Friend} \\
-          \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND the friend has created an account on the app.
-
-          \textbf{Main Success Scenario:}
-          \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to the "Add Friend" option in the app's interface.
-              \item System presents the "Add Friend" search interface.
-              \item User searches for the friend’s username.
-              \item System displays matching search results.
-              \item User selects the friend's username from the results.
-              \item User sends a friend request.
-              \item System sends the friend request and notifies the friend.
-              \item System returns the user to the friend management screen.
-          \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[{}] \textbf{Friend accepts or rejects the request:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 6-7
-                        \item Friend receives the request and either accepts or rejects it.
-                        \item System notifies the user if their request was accepted or rejected.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User cancels the friend request before sending:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-5
-                        \item User cancels the request, and no action is taken.
-                        \item System returns the user to the previous screen.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User cancels the friend request after sending:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 6-7
-                        \item User cancels the sent request before the friend responds.
-                        \item System withdraws the request.
-                    \end{enumerate}
-          \end{itemize}
-
-          \textbf{Success Postcondition:} The user has successfully added the friend as a connection, and the friend now appears in their friends list.
-
-    \item \label{uc:21} \textbf{Add a Friend to a\ref{def:sub_realm}} \\
-          \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND is a member of the \hyperref[def:sub_realm]{sub-realm} AND has the friend already added to their friend list.
-
-          \textbf{Main Success Scenario:}
-          \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to the desired \hyperref[def:sub_realm]{sub-realm} from the Realm Interface.
-              \item System presents the \hyperref[def:sub_realm]{sub-realm} view.
-              \item User opens the\ref{def:sub_realm} Settings.
-              \item System presents the\ref{def:sub_realm} Settings Menu.
-              \item User selects the option to “Add a Friend to\ref{def:sub_realm}.”
-              \item System displays the user's friend list.
-              \item User selects the friend they wish to add to the \hyperref[def:sub_realm]{sub-realm}.
-              \item System presents a confirmation prompt.
-              \item User confirms adding the friend.
-              \item System adds the friend to the \hyperref[def:sub_realm]{sub-realm}.
-              \item System returns to the\ref{def:sub_realm} Interface, now displaying the updated member list.
-          \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[{}] \textbf{User cancels adding the friend:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-8
-                        \item User selects the option to cancel adding the friend.
-                        \item System discards the action and returns to the\ref{def:sub_realm} Settings Menu.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User selects a friend who is already a \hyperref[def:sub_realm]{sub-realm} member:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-7
-                        \item System notifies the user that the selected friend is already a member of the \hyperref[def:sub_realm]{sub-realm}.
-                        \item User can return to the friend list and select another friend.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User reselects a friend:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-7
-                        \item User decides to reselect a different friend from the list.
-                        \item System returns to the friend selection interface.
-                        \item Main scenario resumes from step 7.
-                    \end{enumerate}
-          \end{itemize}
-
-          \textbf{Success Postcondition:} The user has successfully added the friend to the \hyperref[def:sub_realm]{sub-realm}, and the updated member list is displayed in the\ref{def:sub_realm} Interface.
-
-    \item \label{uc:22} \textbf{Remove a Friend from a\ref{def:sub_realm}} \\
-          \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND is a member of the \hyperref[def:sub_realm]{sub-realm} AND has the friend added to the \hyperref[def:sub_realm]{sub-realm}.
-
-          \textbf{Main Success Scenario:}
-          \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to the desired \hyperref[def:sub_realm]{sub-realm} from the Realm Interface.
-              \item System presents the \hyperref[def:sub_realm]{sub-realm} view.
-              \item User opens the\ref{def:sub_realm} Settings.
-              \item System presents the\ref{def:sub_realm} Settings Menu.
-              \item User selects the option to “Remove a Friend from\ref{def:sub_realm}.”
-              \item System displays the current list of members in the \hyperref[def:sub_realm]{sub-realm}.
-              \item User selects the friend they wish to remove.
-              \item System presents a confirmation prompt.
-              \item User confirms the removal.
-              \item System removes the friend from the \hyperref[def:sub_realm]{sub-realm}.
-              \item System returns to the\ref{def:sub_realm} Interface, displaying the updated member list without the removed friend.
-          \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[{}] \textbf{User removes the friend from settings:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item User navigates to the settings page in the app.
-                        \item System presents the settings display.
-                        \item User navigates to the \hyperref[def:sub_realm]{sub-realm} settings.
-                        \item System displays a list of \hyperref[def:sub_realm]{sub-realms}.
-                        \item User selects the desired \hyperref[def:sub_realm]{sub-realm}.
-                        \item Main scenario 4-11
-                    \end{enumerate}
-
-              \item[{}] \textbf{User cancels removing the friend:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-8
-                        \item User selects the option to cancel the removal.
-                        \item System discards the action and returns to the\ref{def:sub_realm} Settings Menu.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User attempts to remove a friend who is not in the \hyperref[def:sub_realm]{sub-realm}:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-7
-                        \item System notifies the user that the selected friend is not a member of the \hyperref[def:sub_realm]{sub-realm}.
-                        \item User returns to the member list to reselect another friend.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User reselects a friend to remove:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-7
-                        \item User decides to reselect a different friend from the list.
-                        \item System returns to the member selection interface.
-                        \item Main scenario resumes from step 7.
-                    \end{enumerate}
-          \end{itemize}
-
-          \textbf{Success Postcondition:} The selected friend is successfully removed from the \hyperref[def:sub_realm]{sub-realm} and no longer has access to the \hyperref[def:sub_realm]{sub-realm} content.
-
     \item \label{uc:23} \textbf{Create an Account} \\
           \textbf{Actor}: \ref{def:gen_user} \\
           \textbf{Precondition:} User has installed the app AND is on the login screen without an existing account.
@@ -1721,42 +1274,6 @@ The functional requirements of the system broken down by the features they speci
           \end{itemize}
           \textbf{Success Postcondition:} An \ref{def:org_user} account request is resolved (approved or denied).
 
-    \item \label{uc:28} \textbf{Unfriend a Friend} \\
-          \textbf{Actor}: \ref{def:gen_user} \\
-          \textbf{Precondition:} User is logged into the app AND the friend is currently on the user's friend list.
-
-          \textbf{Main Success Scenario:}
-          \begin{enumerate}[label=\textbf{\arabic*.}]
-              \item User navigates to friend list from the app’s main interface.
-              \item System presents the list of friends.
-              \item User selects a friend.
-              \item System shows list of actions with the friend.
-              \item User selects the "Unfriend" option.
-              \item System presents confirmation prompt.
-              \item User confirms to unfriend the person.
-              \item System removes the friend from the user’s friend list.
-              \item System returns the user to the friend list.
-          \end{enumerate}
-
-          \textbf{Secondary Scenarios:}
-          \begin{itemize}
-              \item[{}] \textbf{User cancels unfriending the friend:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-7
-                        \item User selects the option to cancel.
-                        \item System discards action and returns to the friend list.
-                    \end{enumerate}
-
-              \item[{}] \textbf{User reselects a friend to unfriend:}
-                    \begin{enumerate}[label=\textbf{\arabic*.}]
-                        \item Main scenario 1-6
-                        \item User decides to reselect a different friend from the list.
-                        \item System returns to the friend list interface.
-                        \item Main scenario resumes from step 3.
-                    \end{enumerate}
-          \end{itemize}
-
-          \textbf{Success Postcondition:} The selected friend is successfully unfriended and removed from the user's friend list.
 
 \end{enumerate}
 
@@ -1771,7 +1288,6 @@ Non-functional requirements pertaining to the quality of the product
 \begin{enumerate}[align=left, label=\textbf{QS-P\arabic*.}]
     \item The map rendering should be completed quickly
     \item The inventory should load quickly when viewing the user’s profile
-    \item The real-time render should be delayed from the actual scan by at most ~1 second.
     \item The object generation should not take longer than 30 seconds.
     \item The system must provide fallback modes for rendering AR objects on low-performance devices to ensure accessibility for all users. \\
           {\bf Rationale:} This allows for a wider user base as hardware is less of a restriction. \\
@@ -1850,7 +1366,31 @@ Non-functional requirements pertaining to the quality of the product
           {\bf Rationale:} All apps published through \emph{Google Play} must first be reviewed by Google for compliance with the developer policy published on their website \cite{GooglePlay}.
     \item The app shall comply with \emph{App Store} review guidelines.\\
           {\bf Rationale:} For an app to be approved for dissemination on the \emph{App Store}, the app must be reviewed and approved by Apple in accordance with the acceptance criteria published on their website \cite{AppStore}.
+     \item The system shall comply with the \emph{Web Content Accessibility Guidelines (WCAG) 2.1 Level AA} and the \emph{Accessibility for Ontarians with Disabilities Act (AODA)}. \\
+        {\bf Rationale:} Ensuring compliance with these accessibility standards allows users with disabilities to fully engage with the system and meets legal requirements for accessibility in Ontario. \\
+
 \end{enumerate}
+
+\subsubsection{Accessibility Compliance}
+
+\begin{enumerate}[align=left, label=\textbf{QS-AC\arabic*.}]
+    \item The system shall comply with established accessibility standards, including \textbf{WCAG 2.1 Level AA} and the \textbf{Accessibility for Ontarians with Disabilities Act (AODA)}. \\
+          {\bf Rationale:} Ensuring compliance with accessibility standards allows users with disabilities to fully engage with the system. \\
+          {\bf Fit Criteria:} The app shall pass accessibility testing for compliance with WCAG 2.1 Level AA and AODA regulations.
+
+    \item The system shall offer a high-contrast mode and customizable text size for users with visual impairments. \\
+          {\bf Rationale:} High contrast and adjustable text improve readability for users with low vision. \\
+          {\bf Fit Criteria:} The app shall provide an accessibility setting to adjust contrast and font size.
+
+    \item The system shall avoid flashing visuals and rapid animations that could trigger seizures, as specified in \textbf{QS-SA2}. \\
+          {\bf Rationale:} Flashing content can cause seizures in users with photosensitive epilepsy. \\
+          {\bf Fit Criteria:} The app shall pass seizure safety tests and restrict flashing effects.
+
+    \item The system shall allow users to modify UI settings, including color themes, font scaling, and motion reduction. \\
+          {\bf Rationale:} Users with cognitive disabilities or visual impairments may require a more adaptable interface. \\
+          {\bf Fit Criteria:} The app shall provide an accessibility menu with UI customization options.
+\end{enumerate}
+
 
 \subsection{Design and Implementation}
 
@@ -1933,13 +1473,213 @@ As part of the proof of concept for this product, the following functional requi
     \item \hyperref[ssub:obj_scan]{OS-FR5}
 \end{itemize}
 
+\section{Traceability Matrix}
+\newpage
+
+\vspace*{-110pt}
+\begin{table}[H]
+\begin{adjustwidth}{-1.25in}{0in}
+\scalebox{0.9}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-21}
+            \textbf{ FR \textbackslash NFR}                          & \textbf{QS-P1} & \textbf{QS-P2} & \textbf{QS-P3} & \textbf{QS-P4} & \textbf{QS-U1} & \textbf{QS-U2} & \textbf{QS-SC1} & \textbf{QS-SC2} & \textbf{QS-SA1} & \textbf{QS-SA2} & \textbf{QS-R1} \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR1}} & X & & & & & X & X & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR2}} & X & & & & & X & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR3}} & & X & & & & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR4}} & X & & & & & X & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR5}} & & & X & & X & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR6}} & & & & X & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR7}} & X & & & & & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR8}} & X & & & & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR9}} & X & & & & & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR10}} & X & & & & & & & X & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR1}} & & X & & & & X & X & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR2}} & X & & & X & X & X & X & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR3}} & & & & & & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR4}} & X & X & X & & & & X & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR5}} & X & & X & & & & X & X & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR6}} & & & X & & & X & & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR7}} & X & X & & X & & & X & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR8}} & X & & & & & & & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR9}} & & & X & X & X & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR10}} & & & & X & & & & X & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR11}} & X & & X & & X & X & & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR1}} & X & & X & & & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR2}} & & & X & & X & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR3}} & & & X & & X & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR4}} & & X & & & X & X & X & X & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR5}} & X & & X & & & & X & X & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR6}} & & X & X & X & X & & & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR7}} & X & & & & & X & X & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR8}} & & & X & X & & & X & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR9}} & & & & X & & X & X & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR10}} & & X & X & X & X & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR1}} & X & X & & & & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR2}} & X & & & & X & & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR3}} & X & & & & & X & & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR4}} & X & X & & X & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR5}} & & & X & & & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR6}} & & & X & & & X & X & & X & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR1}} & X & X & X & X & X & X & & X & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR2}} & X & & X & X & & X & X & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR3}} & & & & & & & X & X & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR4.1}} & & X & X & & X & X & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR4.2}} & & & & & & & & X & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR1}} & X & & & & & X & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR2}} & X & & & & & X & X & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR3}} & & X & & & & X & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR4}} & & X & X & X & X & & & X & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR1}} & & X & & & & & & X & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR2}} & & X & & & & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR3}} & X & & X & X & X & X & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR4}} & & X & & & & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR5}} & X & & X & & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR6}} & X & X & & & & & & X & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR1}} & X & & & & X & X & & X & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR2.1}} & & & X & & & X & X & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR2.2}} & & & X & & & & X & & & & \\ \hline
+\end{tabular}
+}
+\begin{center}
+    \textbf{Table 1.1}
+\end{center}
+\end{adjustwidth}
+\end{table}
+
+
+\vspace*{-110pt}
+\begin{table}[H]
+\begin{adjustwidth}{-1.25in}{0in}
+\scalebox{0.9}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-21}
+            \textbf{ FR \textbackslash NFR}                          & \textbf{QS-P1} & \textbf{QS-P2} & \textbf{QS-P3} & \textbf{QS-P4} & \textbf{QS-U1} & \textbf{QS-U2} & \textbf{QS-SC1} & \textbf{QS-SC2} & \textbf{QS-SA1} & \textbf{QS-SA2} & \textbf{QS-R1} \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR1}} & & X & & & X & X & & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR2}} & & X & X & & X & & & X & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR3}} & X & X & & & X & & & X & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR4}} & & X & & & & & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR5}} & & X & & X & & & X & & X & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR1}} & & & X & X & X & & X & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR2}} & & & & & & & X & X & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR3}} & & X & X & X & & X & X & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR4}} & & X & X & X & & & & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR5}} & & & & X & X & & & X & X & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{DB-FR1}} & & & & & X & & X & X & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{DB-FR2}} & & & & X & & & X & & X & & \\ \hline
+\end{tabular}
+}
+\begin{center}
+    \textbf{Table 1.2}
+\end{center}
+\end{adjustwidth}
+\end{table}
+
+\vspace*{-110pt}
+\begin{table}[H]
+\begin{adjustwidth}{-1in}{0in}
+\scalebox{1}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-21}
+               \textbf{ FR \textbackslash NFR}                     & \textbf{QS-A1} & \textbf{CO1} & \textbf{CO2} & \textbf{CO3} & \textbf{CO4} & \textbf{CO5} & \textbf{QS-AC1} &\textbf{QS-AC2} & \textbf{QS-AC3} & \textbf{QS-AC4} \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR1}} & X & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR2}} & X & & & & & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR3}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR4}} & & & & & & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR5}} & & & & & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR6}} & X & & & & & & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR7}} & & & & & & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR8}} & & & & & & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR9}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR10}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR1}} & & & X & & & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR2}} & X & & X & X & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR3}} & & & & X & & X & X & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR4}} & X & & & & X & & X & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR5}} & & & & & & X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR6}} & & & X & & & & X & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR7}} & & & & & & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR8}} & X & & & & X & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR9}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR10}} & & & & & & & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR11}} & X & X & & X & & X & & X & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR1}} & & & & & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR2}} & & & & X & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR3}} & X & & X & X & & X & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR4}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR5}} & & & & & X & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR6}} & & & & X & X & & X & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR7}} & X & & & & & X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR8}} & & & X & X & & X & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR9}} & X & & & X & & & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR10}} & & & X & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR1}} & & & & & X & X & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR2}} & & X & & & & & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR3}} & & & X & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR4}} & & X & X & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR5}} & & X & & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR6}} & & X & & X & & & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR1}} & X & & & X & & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR2}} & & X & X & X & X & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR3}} & & & & X & X & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR4.1}} & & & & & & X & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR4.2}} & X & & & X & X & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR1}} & & & & X & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR2}} & X & & X & X & X & X & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR3}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR4}} & X & & & & & X & & X & & \\ \hline
+
+\end{tabular}
+
+}
+\begin{center}
+   \textbf{ Table 1.3}
+\end{center}
+\end{adjustwidth}
+\end{table}
+
+\begin{table}
+\begin{adjustwidth}{-1in}{0in}
+\scalebox{1}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-21}
+               \textbf{ FR \textbackslash NFR}                     & \textbf{QS-A1} & \textbf{CO1} & \textbf{CO2} & \textbf{CO3} & \textbf{CO4} & \textbf{CO5} & \textbf{QS-AC1} &\textbf{QS-AC2} & \textbf{QS-AC3} & \textbf{QS-AC4} \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR1}} & & & X & X & & X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR2}} & X & & & & & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR3}} & & & & & & & X & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR4}} & & & & X & X & X & & X & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR5}} & & & & & X & X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR6}} & & & X & & X & X & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR1}} & X & & X & & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR2.1}} & & X & X & X & X & X & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR2.2}} & & & & & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR1}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR2}} & & & X & X & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR3}} & X & & & & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR4}} & X & X & & & & & X & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR5}} & X & & & & & X & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR1}} & X & & & & & & X & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR2}} & X & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR3}} & X & X & & & X & & & X & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR4}} & X & & X & & & X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR5}} & & & & X & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{DB-FR1}} & & & & & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{DB-FR2}} & & X & & X & X & & & & X & X \\ \hline
+\end{tabular}
+
+}
+\begin{center}
+    \textbf{Table 1.4}
+\end{center}
+\end{adjustwidth}
+\end{table}
+
+\newpage
+
 \section{Verification}
 
 See the \href{https://github.com/russellrd/realm/blob/main/docs/VnVPlan/VnVPlan.pdf}{Verification and Validation Plan}.
 
 \section{Appendixes}
-
-Supplemental documentation
 
 \subsection{Activity Diagrams}
 \label{sub:activity_diagrams}
@@ -1953,7 +1693,6 @@ Supplemental documentation
     \includegraphics[scale=0.4]{SequenceDiagrams/uc7.png}\\
     \textbf{Figure 3: UC7}
 \end{center}
-
 
 
 \end{document}
