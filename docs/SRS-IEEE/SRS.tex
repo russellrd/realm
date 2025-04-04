@@ -9,6 +9,23 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 
+\usepackage{amsmath, mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{colortbl}
+\usepackage{xr}
+\usepackage{longtable}
+\usepackage{xfrac}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{placeins}
+\usepackage{amsthm,letltxmacro,changepage}
+\usepackage[shortlabels]{enumitem} % Kept because of the [shortlabels] option
+\usepackage[round]{natbib}
+
+
 % From: https://tex.stackexchange.com/questions/438876/how-to-cross-reference-text-with-a-custom-label-reference-text
 \makeatletter
 \newcommand{\labeltext}[3][]{%
@@ -54,6 +71,8 @@
         2024-10-29               & 1.1                & Reorganization and addition of NFRs, Completed missing sections \\
         \midrule
         2025-03-29               & 1.2                & Removed content relating to sub-realms, tutorials, friends, object scanning \\
+        \midrule
+        2025-04-04               & 1.3                & Added Traceability Matrix \\
         \bottomrule
     \end{tabularx}
     \caption{Revision History} \label{rev_history_table}
@@ -1454,13 +1473,213 @@ As part of the proof of concept for this product, the following functional requi
     \item \hyperref[ssub:obj_scan]{OS-FR5}
 \end{itemize}
 
+\section{Traceability Matrix}
+\newpage
+
+\vspace*{-110pt}
+\begin{table}[H]
+\begin{adjustwidth}{-1.25in}{0in}
+\scalebox{0.9}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-21}
+            \textbf{ FR \textbackslash NFR}                          & \textbf{QS-P1} & \textbf{QS-P2} & \textbf{QS-P3} & \textbf{QS-P4} & \textbf{QS-U1} & \textbf{QS-U2} & \textbf{QS-SC1} & \textbf{QS-SC2} & \textbf{QS-SA1} & \textbf{QS-SA2} & \textbf{QS-R1} \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR1}} & X & & & & & X & X & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR2}} & X & & & & & X & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR3}} & & X & & & & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR4}} & X & & & & & X & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR5}} & & & X & & X & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR6}} & & & & X & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR7}} & X & & & & & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR8}} & X & & & & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR9}} & X & & & & & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR10}} & X & & & & & & & X & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR1}} & & X & & & & X & X & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR2}} & X & & & X & X & X & X & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR3}} & & & & & & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR4}} & X & X & X & & & & X & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR5}} & X & & X & & & & X & X & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR6}} & & & X & & & X & & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR7}} & X & X & & X & & & X & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR8}} & X & & & & & & & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR9}} & & & X & X & X & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR10}} & & & & X & & & & X & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR11}} & X & & X & & X & X & & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR1}} & X & & X & & & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR2}} & & & X & & X & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR3}} & & & X & & X & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR4}} & & X & & & X & X & X & X & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR5}} & X & & X & & & & X & X & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR6}} & & X & X & X & X & & & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR7}} & X & & & & & X & X & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR8}} & & & X & X & & & X & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR9}} & & & & X & & X & X & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR10}} & & X & X & X & X & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR1}} & X & X & & & & & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR2}} & X & & & & X & & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR3}} & X & & & & & X & & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR4}} & X & X & & X & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR5}} & & & X & & & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR6}} & & & X & & & X & X & & X & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR1}} & X & X & X & X & X & X & & X & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR2}} & X & & X & X & & X & X & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR3}} & & & & & & & X & X & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR4.1}} & & X & X & & X & X & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR4.2}} & & & & & & & & X & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR1}} & X & & & & & X & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR2}} & X & & & & & X & X & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR3}} & & X & & & & X & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR4}} & & X & X & X & X & & & X & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR1}} & & X & & & & & & X & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR2}} & & X & & & & & & & X & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR3}} & X & & X & X & X & X & & & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR4}} & & X & & & & X & & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR5}} & X & & X & & & X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR6}} & X & X & & & & & & X & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR1}} & X & & & & X & X & & X & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR2.1}} & & & X & & & X & X & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR2.2}} & & & X & & & & X & & & & \\ \hline
+\end{tabular}
+}
+\begin{center}
+    \textbf{Table 1.1}
+\end{center}
+\end{adjustwidth}
+\end{table}
+
+
+\vspace*{-110pt}
+\begin{table}[H]
+\begin{adjustwidth}{-1.25in}{0in}
+\scalebox{0.9}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-21}
+            \textbf{ FR \textbackslash NFR}                          & \textbf{QS-P1} & \textbf{QS-P2} & \textbf{QS-P3} & \textbf{QS-P4} & \textbf{QS-U1} & \textbf{QS-U2} & \textbf{QS-SC1} & \textbf{QS-SC2} & \textbf{QS-SA1} & \textbf{QS-SA2} & \textbf{QS-R1} \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR1}} & & X & & & X & X & & & & & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR2}} & & X & X & & X & & & X & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR3}} & X & X & & & X & & & X & & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR4}} & & X & & & & & & & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR5}} & & X & & X & & & X & & X & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR1}} & & & X & X & X & & X & & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR2}} & & & & & & & X & X & X & X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR3}} & & X & X & X & & X & X & X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR4}} & & X & X & X & & & & & & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR5}} & & & & X & X & & & X & X & X & X \\ \hline
+\multicolumn{1}{|l|}{\textbf{DB-FR1}} & & & & & X & & X & X & X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{DB-FR2}} & & & & X & & & X & & X & & \\ \hline
+\end{tabular}
+}
+\begin{center}
+    \textbf{Table 1.2}
+\end{center}
+\end{adjustwidth}
+\end{table}
+
+\vspace*{-110pt}
+\begin{table}[H]
+\begin{adjustwidth}{-1in}{0in}
+\scalebox{1}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-21}
+               \textbf{ FR \textbackslash NFR}                     & \textbf{QS-A1} & \textbf{CO1} & \textbf{CO2} & \textbf{CO3} & \textbf{CO4} & \textbf{CO5} & \textbf{QS-AC1} &\textbf{QS-AC2} & \textbf{QS-AC3} & \textbf{QS-AC4} \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR1}} &X & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR2}} &X & & & & & &X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR3}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR4}} & & & & & & &X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR5}} & & & & & & & & &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR6}} &X & & & & & & & & &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR7}} & & & & & & & &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR8}} & & & & & & &X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR9}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP-FR10}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR1}} & & &X & & & &X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR2}} &X & &X &X & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR3}} & & & &X & &X &X &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR4}} &X & & & &X & &X & &X &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR5}} & & & & & &X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR6}} & & &X & & & &X & &X &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR7}} & & & & & & & &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR8}} &X & & & &X & & & &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR9}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR10}} & & & & & & & &X &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{IV-FR11}} &X &X & &X & &X & &X &X &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR1}} & & & & & & & &X & &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR2}} & & & &X &X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR3}} &X & &X &X & &X & & &X &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR4}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR5}} & & & & &X & & &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR6}} & & & &X &X & &X & & &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR7}} &X & & & & &X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR8}} & & &X &X & &X & & & &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR9}} &X & & &X & & & &X &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{POG-FR10}} & & &X & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR1}} & & & & &X &X & & &X &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR2}} & &X & & & & & &X &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR3}} & & &X & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR4}} & &X &X & &X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR5}} & &X & & &X & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TM-FR6}} & &X & &X & & & & & &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR1}} &X & & &X & & & &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR2}} & &X &X &X &X & & &X & &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR3}} & & & &X &X & & & &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR4.1}} & & & & & &X &X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{TR-FR4.2}} &X & & &X &X & & &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR1}} & & & &X & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR2}} &X & &X &X &X &X &X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR3}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{OP-FR4}} &X & & & & &X & &X & & \\ \hline
+
+\end{tabular}
+
+}
+\begin{center}
+   \textbf{ Table 1.3}
+\end{center}
+\end{adjustwidth}
+\end{table}
+
+\begin{table}
+\begin{adjustwidth}{-1in}{0in}
+\scalebox{1}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-21}
+               \textbf{ FR \textbackslash NFR}                     & \textbf{QS-A1} & \textbf{CO1} & \textbf{CO2} & \textbf{CO3} & \textbf{CO4} & \textbf{CO5} & \textbf{QS-AC1} &\textbf{QS-AC2} & \textbf{QS-AC3} & \textbf{QS-AC4} \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR1}} & & &X &X & &X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR2}} &X & & & & & & &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR3}} & & & & & & &X &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR4}} & & & &X &X &X & &X &X &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR5}} & & & & &X &X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{RI-FR6}} & & &X & &X &X & & &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR1}} &X & &X & & & & & &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR2.1}} & &X &X &X &X &X & &X &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{AI-FR2.2}} & & & & &X & &X & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR1}} & & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR2}} & & &X &X & & & &X & &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR3}} &X & & & & & & & &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR4}} &X &X & & & & &X &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{PS-FR5}} &X & & & & &X & &X & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR1}} &X & & & & & &X & & &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR2}} &X & & & & & & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR3}} &X &X & & &X & & &X &X &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR4}} &X & &X & & &X & & & & \\ \hline
+\multicolumn{1}{|l|}{\textbf{S-FR5}} & & & &X & & & &X & &X \\ \hline
+\multicolumn{1}{|l|}{\textbf{DB-FR1}} & & & & & & & & &X & \\ \hline
+\multicolumn{1}{|l|}{\textbf{DB-FR2}} & &X & &X &X & & & &X &X \\ \hline
+\end{tabular}
+
+}
+\begin{center}
+    \textbf{Table 1.4}
+\end{center}
+\end{adjustwidth}
+\end{table}
+
+\newpage
+
 \section{Verification}
 
 See the \href{https://github.com/russellrd/realm/blob/main/docs/VnVPlan/VnVPlan.pdf}{Verification and Validation Plan}.
 
 \section{Appendixes}
-
-Supplemental documentation
 
 \subsection{Activity Diagrams}
 \label{sub:activity_diagrams}
