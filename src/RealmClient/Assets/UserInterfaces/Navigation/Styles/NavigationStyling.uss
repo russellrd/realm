@@ -90,3 +90,8 @@
 .icon {
     color: aliceblue;
 }
+
+.text-center {
+    -unity-text-align: middle-center;
+    text-align: center;
+}

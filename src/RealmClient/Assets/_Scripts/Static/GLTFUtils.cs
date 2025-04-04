@@ -1,26 +1,25 @@
 using System.Threading.Tasks;
 using GLTFast;
-
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Interactables;
-using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
 public static class GLTFUtils
 {
     public static async Task<GameObject> InstantiateARObjectFromGltf(GltfImport gltf)
     {
-        GameObject newObject = new();
-        await gltf.InstantiateMainSceneAsync(newObject.transform);
-        ARTransformer aRTransformer = newObject.AddComponent<ARTransformer>();
-        XRGrabInteractable xRGrabInteractable = newObject.AddComponent<XRGrabInteractable>();
-        ARObjectManager aRObjectManager = newObject.AddComponent<ARObjectManager>();
-        BoxCollider boxCollider = newObject.AddComponent<BoxCollider>();
-        Rigidbody rigidbody = newObject.AddComponent<Rigidbody>();
-        newObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+        var arObject = (GameObject)UnityEngine.GameObject.Instantiate(Resources.Load("ARObject"), Vector3.zero, Quaternion.identity);
+        await gltf.InstantiateMainSceneAsync(arObject.transform);
+        var world = arObject.transform.Find("world").gameObject;
+        var model = world.transform.GetChild(0).gameObject;
+        var boxCollider = model.AddComponent<BoxCollider>();
+        Vector3 offsetPos = model.transform.position;
+        offsetPos.y = boxCollider.center.y + boxCollider.size.y / 2;
+        model.transform.position = offsetPos;
 
-        newObject.SetActive(false);
+        arObject.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
 
-        return newObject;
+        arObject.SetActive(false);
+
+        return arObject;
     }
     public static async Task<GameObject> InstantiateARObjectFromGltf(GltfImport gltf, Vector3 position, Quaternion rotation)
     {

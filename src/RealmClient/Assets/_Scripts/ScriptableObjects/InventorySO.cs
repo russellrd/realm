@@ -58,11 +58,6 @@ public class InventorySO : ScriptableObject
     {
         return inventoryARObjectPreviews[index];
     }
-
-    private void InformAboutChange()
-    {
-        OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
-    }
 }
 
 [Serializable]

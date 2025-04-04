@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Realm.Popup;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -11,6 +11,9 @@ namespace Realm
     {
         private const int MAX_WAIT_TIME = 15;
         private const int WEATHER_UPDATE_PERIOD_MINUTES = 5;
+        private const int TOUR_PROXIMITY_UPDATE_PERIOD_SECONDS = 10;
+        private const int TOUR_PROXIMITY_DISTANCE_METERS = 50;
+
         private readonly Dictionary<int, string> HAZARD_WEATHER_CODES = new()
         {
             {0, "TEST HAZARD0"},
@@ -38,7 +41,8 @@ namespace Realm
 
         private bool gpsOn = false;
 
-        private float timer = 0;
+        private float weatherCheckTimer = 0;
+        private float tourProximityCheckTimer = 0;
 
         IEnumerator Start()
         {
@@ -77,19 +81,26 @@ namespace Realm
         {
             if (gpsOn)
             {
-                if (timer > WEATHER_UPDATE_PERIOD_MINUTES * 60)
-                {
-                    StartCoroutine(GetWeather());
-                    timer = 0;
-                }
-                else
-                {
-                    timer += Time.deltaTime;
-                }
+                UpdateCheckWeather();
+                UpdateCheckTourProximity();
 
                 gps.Latitude = Input.location.lastData.latitude;
                 gps.Longitude = Input.location.lastData.longitude;
             }
+        }
+
+        private void UpdateCheckWeather()
+        {
+            if (weatherCheckTimer % (WEATHER_UPDATE_PERIOD_MINUTES * 60) == 0)
+                StartCoroutine(GetWeather());
+            weatherCheckTimer += Time.deltaTime;
+        }
+
+        private void UpdateCheckTourProximity()
+        {
+            if (tourProximityCheckTimer % TOUR_PROXIMITY_UPDATE_PERIOD_SECONDS == 0)
+                StartCoroutine(GetTourProximity());
+            tourProximityCheckTimer += Time.deltaTime;
         }
 
         public IEnumerator GetWeather()
@@ -101,12 +112,22 @@ namespace Realm
                 yield break;
             }
 
-            using UnityWebRequest www = UnityWebRequest.Get($"https://api.open-meteo.com/v1/forecast?latitude={Input.location.lastData.latitude}&longitude={Input.location.lastData.longitude}&hourly=weather_code,temperature_2m,precipitation,precipitation_probability&current=temperature_2m,weather_code,cloud_cover,precipitation&timezone=auto");
+            GPSCoordinate coordinate = new();
+            if (Input.location.lastData.latitude == 0 || Input.location.lastData.longitude == 0)
+            {
+                coordinate = new GPSCoordinate(43.651070, -79.347015);
+            }
+            else
+            {
+                coordinate.Latitude = Input.location.lastData.latitude;
+                coordinate.Longitude = Input.location.lastData.longitude;
+            }
+
+            using UnityWebRequest www = UnityWebRequest.Get($"https://api.open-meteo.com/v1/forecast?latitude={coordinate.Latitude}&longitude={coordinate.Longitude}&hourly=weather_code,temperature_2m,precipitation,precipitation_probability&current=temperature_2m,weather_code,cloud_cover,precipitation&timezone=auto");
             yield return www.SendWebRequest();
 
             if (www.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("SUCCESS: " + www.downloadHandler.text);
                 weather = WeatherDTO.FromJSON(www.downloadHandler.text);
                 Debug.Log($"Current Temperature (C): {weather.Current.Temperature}");
                 Debug.Log($"Current Weather Code: {weather.Current.WeatherCode}");
@@ -119,6 +140,40 @@ namespace Realm
             }
         }
 
+        public IEnumerator GetTourProximity()
+        {
+            Task<TourDTO> task = IsTourInProximityAsync();
+
+            while (!task.IsCompleted)
+            {
+                yield return null;
+            }
+
+            if (task.Result != null)
+            {
+                popupManager.ShowTourProximityPopup(task.Result);
+            }
+        }
+
+        public async Task<TourDTO> IsTourInProximityAsync(GPSCoordinate coord = null)
+        {
+            var tours = await DatabaseController.GetAllTours();
+            foreach (TourDTO tourDTO in tours)
+            {
+                var distance = GPSCoordinate.CalculateGPSDistance(
+                        new GPSCoordinate(tourDTO.StartLatitude, tourDTO.StartLongitude),
+                        coord ?? gps
+                    );
+
+                if (distance < TOUR_PROXIMITY_DISTANCE_METERS)
+                {
+                    Debug.Log($"Tour {tourDTO.Name} found {Math.Round(distance, 3)}m away");
+                    return tourDTO;
+                }
+            }
+            return null;
+        }
+
         public static GPSCoordinate GetCurrentGPSCoordinates()
         {
             return gps.Clone();
@@ -129,13 +184,15 @@ namespace Realm
             Input.location.Stop();
         }
 
-        private void CheckForWeatherHazards()
+        public int CheckForWeatherHazards()
         {
             if (HAZARD_WEATHER_CODES.TryGetValue(weather.Current.WeatherCode, out string codeMsg))
             {
                 Debug.Log("WEATHER HAZARD: " + codeMsg);
                 popupManager.ShowWeatherHazardPopup(codeMsg);
+                return weather.Current.WeatherCode;
             }
+            return -1;
         }
     }
 
@@ -169,6 +226,29 @@ namespace Realm
         public string ToString(int dec)
         {
             return $"({Math.Round(Latitude, dec)}, {Math.Round(Longitude, dec)})";
+        }
+
+        public static double CalculateGPSDistance(GPSCoordinate coord1, GPSCoordinate coord2)
+        {
+            double lat1Rad = DegreesToRadians(coord1.Latitude);
+            double lon1Rad = DegreesToRadians(coord1.Longitude);
+            double lat2Rad = DegreesToRadians(coord2.Latitude);
+            double lon2Rad = DegreesToRadians(coord2.Longitude);
+
+            double deltaLat = lat2Rad - lat1Rad;
+            double deltaLon = lon2Rad - lon1Rad;
+
+            double a = Math.Sin(deltaLat / 2) * Math.Sin(deltaLat / 2) +
+                    Math.Cos(lat1Rad) * Math.Cos(lat2Rad) *
+                    Math.Sin(deltaLon / 2) * Math.Sin(deltaLon / 2);
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+
+            return c * 6371000;
+        }
+
+        private static double DegreesToRadians(double degrees)
+        {
+            return degrees * (Math.PI / 180);
         }
     }
 }

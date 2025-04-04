@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Realm;
 using UnityEngine;
 
 public class UIInventory : MonoBehaviour
@@ -16,6 +17,7 @@ public class UIInventory : MonoBehaviour
 
     public void InitInventory(int size)
     {
+        var invSize = size > InventoryManager.MAX_OBJ_COUNT ? InventoryManager.MAX_OBJ_COUNT : size;
         for (int i = 0; i < size; i++)
         {
             UIInventoryARObjectPreview arObjectPreview = Instantiate(arObjectPreviewPrefab, Vector3.zero, Quaternion.identity);

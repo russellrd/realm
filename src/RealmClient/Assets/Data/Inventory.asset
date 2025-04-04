@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   inventoryARObjectPreviews:
-  - arObjectPreview: {fileID: 11400000, guid: c5954bb183f65da498c3f030a3f70db1, type: 2}
-  - arObjectPreview: {fileID: 11400000, guid: c5954bb183f65da498c3f030a3f70db1, type: 2}
-  - arObjectPreview: {fileID: 11400000, guid: c5954bb183f65da498c3f030a3f70db1, type: 2}
+  - arObjectPreview: {fileID: 11400000, guid: 8c3c7bffb68374340aa307941532379a, type: 2}
+  - arObjectPreview: {fileID: 11400000, guid: 8c3c7bffb68374340aa307941532379a, type: 2}
+  - arObjectPreview: {fileID: 0}
   - arObjectPreview: {fileID: 0}
   - arObjectPreview: {fileID: 0}
   - arObjectPreview: {fileID: 0}

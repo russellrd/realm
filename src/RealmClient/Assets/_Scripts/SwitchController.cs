@@ -9,7 +9,7 @@ namespace Realm.Controller
     public class SwitchController : MonoBehaviour
     {
         [SerializeField]
-        private NavigationManager navigationManager;
+        private NavigationDisplay navigationDisplay;
 
         [SerializeField]
         private GameObject objectSpawner;
@@ -42,11 +42,7 @@ namespace Realm.Controller
 
         public void SwitchToUI()
         {
-            Debug.Log("SwitchToUI");
-            Debug.Log(uiScreen);
-            Debug.Log(data);
-            Debug.Log(editMode);
-            navigationManager.Show(uiScreen, data);
+            navigationDisplay.Show(uiScreen, data);
             Clear();
         }
 
@@ -60,7 +56,6 @@ namespace Realm.Controller
         {
             List<GameObject> objectSpawnerChildren = new();
             GameObjectUtils.GetChildGameObjects(objectSpawner, objectSpawnerChildren);
-            Debug.Log(objectSpawnerChildren.Count);
             if (editMode)
             {
                 foreach (var plane in planeManager.trackables)

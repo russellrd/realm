@@ -7,6 +7,8 @@ namespace Realm
 {
     public class InventoryManager : MonoBehaviour
     {
+        public static readonly int MAX_OBJ_COUNT = 15;
+
         [SerializeField]
         private UIInventory uiInventory;
 
@@ -22,10 +24,8 @@ namespace Realm
         [SerializeField]
         private ObjectSpawner objectSpawner;
 
-        [SerializeField]
-        private DatabaseController databaseController;
+        // List<InventoryARObjectPreview> initialARObjectPreviews = new();
 
-        List<InventoryARObjectPreview> initialARObjectPreviews = new();
         public ModelStore modelStore;
 
         bool isInventoryOpen;
@@ -72,12 +72,12 @@ namespace Realm
                 aRObjectPreviewSO.Description = modelData.Name;
                 aRObjectPreviewSO.PreviewImage = sprite;
 
-                initialARObjectPreviews.Add(
-                    new InventoryARObjectPreview
-                    {
-                        arObjectPreview = aRObjectPreviewSO
-                    }
-                );
+                // initialARObjectPreviews.Add(
+                //     new InventoryARObjectPreview
+                //     {
+                //         arObjectPreview = aRObjectPreviewSO
+                //     }
+                // );
             }
         }
 
@@ -89,12 +89,12 @@ namespace Realm
 
             inventoryData.Initialize();
             inventoryData.OnInventoryUpdated += UpdateInventoryUI;
-            foreach (InventoryARObjectPreview arObjectPreview in initialARObjectPreviews)
-            {
-                if (arObjectPreview.IsEmpty)
-                    continue;
-                inventoryData.AddARObjectPreview(arObjectPreview);
-            }
+            // foreach (InventoryARObjectPreview arObjectPreview in initialARObjectPreviews)
+            // {
+            //     if (arObjectPreview.IsEmpty)
+            //         continue;
+            //     inventoryData.AddARObjectPreview(arObjectPreview);
+            // }
         }
 
         private void UpdateInventoryUI(Dictionary<int, InventoryARObjectPreview> inventoryState)
@@ -153,8 +153,7 @@ namespace Realm
 
         public GameObject GetPrefab(string model)
         {
-            GameObject gameObject = new();
-            modelStore.modelObjects.TryGetValue(model, out gameObject);
+            modelStore.modelObjects.TryGetValue(model, out GameObject gameObject);
             return gameObject;
         }
     }
