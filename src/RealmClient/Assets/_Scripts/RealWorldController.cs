@@ -84,8 +84,11 @@ namespace Realm
                 UpdateCheckWeather();
                 UpdateCheckTourProximity();
 
-                gps.Latitude = Input.location.lastData.latitude;
-                gps.Longitude = Input.location.lastData.longitude;
+                if (Input.location.status == LocationServiceStatus.Running)
+                {
+                    gps.Latitude = Input.location.lastData.latitude;
+                    gps.Longitude = Input.location.lastData.longitude;
+                }
             }
         }
 

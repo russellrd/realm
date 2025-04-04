@@ -31,8 +31,14 @@ public class UIInventoryARObjectPreview : MonoBehaviour, IPointerClickHandler
 
     public void SetData(Sprite sprite)
     {
+        Debug.Log("DATA SET" + sprite.name);
         previewImage.gameObject.SetActive(true);
         previewImage.sprite = sprite;
+    }
+
+    public Sprite GetData()
+    {
+        return previewImage.sprite;
     }
 
     public void Select()

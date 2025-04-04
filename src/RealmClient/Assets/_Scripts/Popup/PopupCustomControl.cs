@@ -35,21 +35,11 @@ namespace Realm.Popup
 
         public PopupCustomControl(bool isError = false, bool isMultiButton = false)
         {
-            Init();
+            Init(isMultiButton);
 
             if (isError)
             {
                 window.AddToClassList(CLASS_POPUP_ERROR);
-            }
-
-            if (isMultiButton)
-            {
-                secondaryButton = new() { text = "CANCEL" };
-                secondaryButton.AddToClassList(CLASS_BUTTON_SECONDARY);
-                secondaryButton.AddToClassList(CLASS_POPUP_BUTTON);
-                buttonContainer.Add(secondaryButton);
-
-                secondaryButton.clicked += OnSecondaryClicked;
             }
         }
 
@@ -78,7 +68,7 @@ namespace Realm.Popup
             Secondary?.Invoke();
         }
 
-        private void Init()
+        private void Init(bool isMultiButton = false)
         {
             styleSheets.Add(Resources.Load<StyleSheet>(STYLE_RESOURCE));
             AddToClassList(CLASS_POPUP_CONTAINER);
@@ -98,6 +88,16 @@ namespace Realm.Popup
             buttonContainer = new();
             buttonContainer.AddToClassList(CLASS_CONTAINER);
             window.Add(buttonContainer);
+
+            if (isMultiButton)
+            {
+                secondaryButton = new() { text = "CANCEL" };
+                secondaryButton.AddToClassList(CLASS_BUTTON_SECONDARY);
+                secondaryButton.AddToClassList(CLASS_POPUP_BUTTON);
+                buttonContainer.Add(secondaryButton);
+
+                secondaryButton.clicked += OnSecondaryClicked;
+            }
 
             primaryButton = new() { text = "CONFIRM" };
             primaryButton.AddToClassList(CLASS_BUTTON_PRIMARY);

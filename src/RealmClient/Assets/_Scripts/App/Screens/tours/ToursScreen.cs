@@ -45,7 +45,7 @@ namespace Realm
             tourLabel.AddManipulator(tourPressable);
             Add(tourLabel);
 
-            var editIcon = new Icon(Resources.LoadAll<Sprite>("Sprites/Plumber")[0], 25)
+            var editIcon = new Icon(Resources.Load<Sprite>("Sprites/Plumber"), 25)
             {
                 pickingMode = PickingMode.Position
             };

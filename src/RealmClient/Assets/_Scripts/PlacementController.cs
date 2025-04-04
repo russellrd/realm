@@ -239,14 +239,14 @@ namespace Realm
                 case PlacementStep.None:
                     if (InvManager.IsInventoryOpen())
                     {
-                        if (!m_IsPointerOverUI && (m_TapStartPositionInput.TryReadValue(out _) || m_DragCurrentPositionInput.TryReadValue(out _)))
-                        {
+                        // if (!m_IsPointerOverUI && (m_TapStartPositionInput.TryReadValue(out _) || m_DragCurrentPositionInput.TryReadValue(out _)))
+                        // {
 
-                            if (InvManager.IsInventoryOpen())
-                                InvManager.CloseInventory();
-                        }
+                        //     if (InvManager.IsInventoryOpen())
+                        //         InvManager.CloseInventory();
+                        // }
 
-                        m_IsPointerOverUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(-1);
+                        // m_IsPointerOverUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(-1);
                     }
                     else
                     {

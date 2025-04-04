@@ -36,19 +36,19 @@ namespace Realm
         public BottomNav()
         {
             bottomNavBar = new();
-            var toursButton = new NewBottomNavBarItem(Resources.LoadAll<Sprite>("Sprites/WalkMode")[0], "Tours", () => NavigationController.NavigateTo(NavigationController.Destinations.tours))
+            var toursButton = new NewBottomNavBarItem(Resources.Load<Sprite>("Sprites/WalkMode"), "Tours", () => NavigationController.NavigateTo(NavigationController.Destinations.tours))
             {
                 isSelected = NavigationController.currentRoute == NavigationController.Destinations.tours
             };
             bottomNavBar.Add(toursButton);
 
-            var mapsButton = new NewBottomNavBarItem(Resources.LoadAll<Sprite>("Sprites/MapToolIcon")[0], "Map", () => NavigationController.NavigateTo(NavigationController.Destinations.map))
+            var mapsButton = new NewBottomNavBarItem(Resources.Load<Sprite>("Sprites/MapToolIcon"), "Map", () => NavigationController.NavigateTo(NavigationController.Destinations.map))
             {
                 isSelected = NavigationController.currentRoute == NavigationController.Destinations.map
             };
             bottomNavBar.Add(mapsButton);
 
-            var profileButton = new NewBottomNavBarItem(Resources.LoadAll<Sprite>("Sprites/Profile")[0], "Profile", () => NavigationController.NavigateTo(NavigationController.Destinations.profile))
+            var profileButton = new NewBottomNavBarItem(Resources.Load<Sprite>("Sprites/Profile"), "Profile", () => NavigationController.NavigateTo(NavigationController.Destinations.profile))
             {
                 isSelected = NavigationController.currentRoute == NavigationController.Destinations.profile
             };

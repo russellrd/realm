@@ -13,12 +13,11 @@ The folders and files within the Unity project are as follows:
     │   │   │   ├── Components/
     │   │   │   └── Screens/
     │   │   ├── DataTypes/
+    │   │   ├── Inventory/
     │   │   ├── Maps/
     │   │   ├── Placement/
     │   │   ├── Popup/
-    │   │   ├── ScriptableObjects/
-    │   │   ├── Static/
-    │   │   └── UI/
+    │   │   └── Static/
     │   ├── ARCore_Extensions/ (Configuration for ARCore Extensions library)
     │   ├── AffordanceThemes/ (Theme for shading selected objects)
     │   ├── Data/ (Data for default AR Objects)

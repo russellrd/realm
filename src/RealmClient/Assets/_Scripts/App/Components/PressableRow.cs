@@ -20,7 +20,7 @@ namespace Realm
             titleLabel.AddToClassList("pressable-row-title");
             Add(titleLabel);
 
-            var chevronIcon = new Icon(Resources.LoadAll<Sprite>("Sprites/CaretRight")[0], 30) { pickingMode = PickingMode.Ignore };
+            var chevronIcon = new Icon(Resources.Load<Sprite>("Sprites/CaretRight"), 30) { pickingMode = PickingMode.Ignore };
             chevronIcon.AddToClassList("pressable-row-chevron");
             chevronIcon.AddToClassList("pressable-row-chevron-end");
             chevronIcon.style.paddingRight = 5;

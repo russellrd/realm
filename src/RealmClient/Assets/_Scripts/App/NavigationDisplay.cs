@@ -45,6 +45,7 @@ namespace Realm
             SwitchController.uiScreen = uiScreen;
             SwitchController.data = data;
             SwitchController.editMode = editMode;
+            SwitchController.switched = true;
             NavigationController.ClearScreen();
             main.Remove(container);
             main.Clear();

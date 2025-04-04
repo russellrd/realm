@@ -37,6 +37,4 @@ public class InventoryTest
         var modelStoreObject = GameObject.Find("ModelStore").gameObject;
         Assert.LessOrEqual(modelStoreObject.transform.childCount, InventoryManager.MAX_OBJ_COUNT);
     }
-
-
 }

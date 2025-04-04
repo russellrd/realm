@@ -26,18 +26,19 @@ namespace Realm
 
         public void ShowTourProximityPopup(TourDTO tour)
         {
+            Debug.Log($"********{tour.Name}");
             PopupCustomControl popup = new(false, true);
             popup.SetText($"{tour.Name}\n{tour.Description}\nPreview Tour?");
-            popup.SetPrimaryButtonText("NO");
-            popup.SetSecondaryButtonText("YES");
+            popup.SetPrimaryButtonText("YES");
+            popup.SetSecondaryButtonText("NO");
 
             popupUI.rootVisualElement.Add(popup);
 
-            popup.Primary += () => popupUI.rootVisualElement.Remove(popup);
-            popup.Secondary += () => navigationDisplay.Show(
+            popup.Primary += () => navigationDisplay.Show(
                 NavigationController.Destinations.tour_preview,
                 new Dictionary<string, string> { { "tourId", tour.Id } }
             );
+            popup.Secondary += () => popupUI.rootVisualElement.Remove(popup);
         }
 
         public void ShowErrorPopup(string errorMsg)

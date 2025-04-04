@@ -10,7 +10,7 @@ namespace Realm
             AddToClassList("pressable-row");
             AddToClassList("back-button");
 
-            var chevronIcon = new Icon(Resources.LoadAll<Sprite>("Sprites/Backward")[0], 30) { pickingMode = PickingMode.Ignore };
+            var chevronIcon = new Icon(Resources.Load<Sprite>("Sprites/Backward"), 30) { pickingMode = PickingMode.Ignore };
             chevronIcon.AddToClassList("pressable-row-chevron");
             Add(chevronIcon);
 

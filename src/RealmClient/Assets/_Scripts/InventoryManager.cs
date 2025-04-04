@@ -13,9 +13,6 @@ namespace Realm
         private UIInventory uiInventory;
 
         [SerializeField]
-        private InventorySO inventoryData;
-
-        [SerializeField]
         private GameObject HUD;
 
         [SerializeField]
@@ -59,75 +56,53 @@ namespace Realm
             }
             Debug.Log($"INVENTORY MANAGER START (1)");
             Debug.Log($"INVENTORY MANAGER START - keys contains e0a1khy0514cahw?: {modelStore.sprites.ContainsKey("e0a1khy0514cahw")}");
-            foreach (string modelId in modelStore.getKeys())
-            {
-                ARObjectPreviewSO aRObjectPreviewSO = new();
-                ModelDTO modelData = null;
-                Sprite sprite = null;
-                modelStore.modelData.TryGetValue(modelId, out modelData);
-                modelStore.sprites.TryGetValue(modelId, out sprite);
-                Debug.Log($"INVENTORY MANAGER AWAKE model: {modelId}, sprite: {sprite != null}");
-                aRObjectPreviewSO.Name = modelData.Name;
-                aRObjectPreviewSO.Author = modelData.Creator;
-                aRObjectPreviewSO.Description = modelData.Name;
-                aRObjectPreviewSO.PreviewImage = sprite;
+            // foreach (string modelId in modelStore.getKeys())
+            // {
+            //     ARObjectPreviewSO aRObjectPreviewSO = new();
+            //     ModelDTO modelData = null;
+            //     Sprite sprite = null;
+            //     modelStore.modelData.TryGetValue(modelId, out modelData);
+            //     modelStore.sprites.TryGetValue(modelId, out sprite);
+            //     Debug.Log($"INVENTORY MANAGER AWAKE model: {modelId}, sprite: {sprite != null}");
+            //     aRObjectPreviewSO.Name = modelData.Name;
+            //     aRObjectPreviewSO.Author = modelData.Creator;
+            //     aRObjectPreviewSO.Description = modelData.Name;
+            //     aRObjectPreviewSO.PreviewImage = sprite;
 
-                // initialARObjectPreviews.Add(
-                //     new InventoryARObjectPreview
-                //     {
-                //         arObjectPreview = aRObjectPreviewSO
-                //     }
-                // );
-            }
+            //     initialARObjectPreviews.Add(
+            //         new InventoryARObjectPreview
+            //         {
+            //             arObjectPreview = aRObjectPreviewSO
+            //         }
+            //     );
+            // }
         }
 
         void Start()
         {
             CloseInventory();
-            uiInventory.InitInventory(inventoryData.Size);
-            uiInventory.OnDescriptionRequested += HandleDescriptionRequest;
-
-            inventoryData.Initialize();
-            inventoryData.OnInventoryUpdated += UpdateInventoryUI;
-            // foreach (InventoryARObjectPreview arObjectPreview in initialARObjectPreviews)
-            // {
-            //     if (arObjectPreview.IsEmpty)
-            //         continue;
-            //     inventoryData.AddARObjectPreview(arObjectPreview);
-            // }
-        }
-
-        private void UpdateInventoryUI(Dictionary<int, InventoryARObjectPreview> inventoryState)
-        {
-            uiInventory.ResetAllARObjectPreviews();
-            foreach (var arObjectPreview in inventoryState)
-            {
-                uiInventory.UpdateData(arObjectPreview.Key, arObjectPreview.Value.arObjectPreview.PreviewImage);
-            }
+            uiInventory.InitInventory();
+            uiInventory.OnSelected += HandleDescriptionRequest;
         }
 
         private void HandleDescriptionRequest(int index)
         {
             SetObjectToSpawn(index);
-            InventoryARObjectPreview inventoryARObjectPreview = inventoryData.GetARObjectPreviewAt(index);
-            if (inventoryARObjectPreview.IsEmpty)
-            {
-                uiInventory.DeselectAllARObjectPreviews();
-                return;
-            }
-            ARObjectPreviewSO arObjectPreview = inventoryARObjectPreview.arObjectPreview;
-            previewerImage.sprite = arObjectPreview.PreviewImage;
-            uiInventory.UpdateDescription(index, arObjectPreview.PreviewImage, arObjectPreview.Name, arObjectPreview.Description);
+            // InventoryARObjectPreview inventoryARObjectPreview = inventoryData.GetARObjectPreviewAt(index);
+            // if (inventoryARObjectPreview.IsEmpty)
+            // {
+            //     uiInventory.DeselectAllARObjectPreviews();
+            //     return;
+            // }
+            // ARObjectPreviewSO arObjectPreview = inventoryARObjectPreview.arObjectPreview;
+            previewerImage.sprite = uiInventory.GetPreviewSpriteAtIndex(index);
+            uiInventory.Select(index);
         }
 
         public void OpenInventory()
         {
             isInventoryOpen = true;
             uiInventory.Show();
-            foreach (var arObjectPreview in inventoryData.GetCurrentInventoryState())
-            {
-                uiInventory.UpdateData(arObjectPreview.Key, arObjectPreview.Value.arObjectPreview.PreviewImage);
-            }
             HUD.SetActive(false);
         }
 
