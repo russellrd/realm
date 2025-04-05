@@ -1,5 +1,3 @@
 # Automated tests
 
-The folders and files for this folder are as follows:
-
-Describe ...
+See _src/RealmClient/Tests

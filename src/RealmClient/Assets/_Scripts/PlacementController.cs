@@ -227,19 +227,26 @@ namespace Realm
         public void Update()
         {
             m_IsPointerOverUI = false;
+
+            List<ARRaycastHit> hits = new();
+            if (m_TapStartPositionInput.TryReadValue(out Vector2 pos))
+            {
+                RaycastManager.Raycast(pos, hits, TrackableType.PlaneWithinPolygon);
+            }
+
             switch (Step)
             {
                 case PlacementStep.None:
                     if (InvManager.IsInventoryOpen())
                     {
-                        if (!m_IsPointerOverUI && (m_TapStartPositionInput.TryReadValue(out _) || m_DragCurrentPositionInput.TryReadValue(out _)))
-                        {
+                        // if (!m_IsPointerOverUI && (m_TapStartPositionInput.TryReadValue(out _) || m_DragCurrentPositionInput.TryReadValue(out _)))
+                        // {
 
-                            if (InvManager.IsInventoryOpen())
-                                InvManager.CloseInventory();
-                        }
+                        //     if (InvManager.IsInventoryOpen())
+                        //         InvManager.CloseInventory();
+                        // }
 
-                        m_IsPointerOverUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(-1);
+                        // m_IsPointerOverUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(-1);
                     }
                     else
                     {
@@ -255,6 +262,7 @@ namespace Realm
                     objectSpawner.GetComponent<ARInteractorSpawnTriggerNew>().enabled = true;
                     break;
                 case PlacementStep.Interact:
+                    m_IsPointerOverUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(-1);
                     m_ConfirmButton.gameObject.SetActive(true);
                     m_CancelButton.gameObject.SetActive(true);
                     m_DeleteButton.gameObject.SetActive(false);
@@ -262,15 +270,7 @@ namespace Realm
                 case PlacementStep.Anchor:
                     if (_anchor == null)
                     {
-                        Vector2 pos;
-                        // Debug.Log(m_IsPointerOverUI);
-                        // Debug.Log(m_TapStartPositionInput.TryReadValue(out _));
-                        // Debug.Log(m_DragCurrentPositionInput.TryReadValue(out _));
-                        if (m_TapStartPositionInput.TryReadValue(out pos))
-                        {
-                            PerformHitTest(pos);
-                        }
-                        m_IsPointerOverUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(-1);
+                        PlaceAnchor(hits[0]);
                     }
 
                     helperText.gameObject.SetActive(true);
@@ -279,38 +279,24 @@ namespace Realm
                     InvManager.createButton.gameObject.SetActive(false);
 
                     HostingCloudAnchor();
+
                     break;
             }
         }
 
-        private void PerformHitTest(Vector2 touchPos)
+        private void PlaceAnchor(ARRaycastHit ray)
         {
-            List<ARRaycastHit> hitResults = new List<ARRaycastHit>();
-            RaycastManager.Raycast(touchPos, hitResults, TrackableType.PlaneWithinPolygon);
-
             // If there was an anchor placed, then instantiate the corresponding object.
-            var planeType = PlaneAlignment.HorizontalUp;
-            if (hitResults.Count > 0)
+            ARPlane plane = PlaneManager.GetPlane(ray.trackableId);
+            if (plane == null)
             {
-                ARPlane plane = PlaneManager.GetPlane(hitResults[0].trackableId);
-                if (plane == null)
-                {
-                    Debug.LogWarningFormat("Failed to find the ARPlane with TrackableId {0}",
-                        hitResults[0].trackableId);
-                    return;
-                }
-
-                planeType = plane.alignment;
-                var hitPose = hitResults[0].pose;
-                // if (Application.platform == RuntimePlatform.IPhonePlayer)
-                // {
-                //     // Point the hitPose rotation roughly away from the raycast/camera
-                //     // to match ARCore.
-                //     hitPose.rotation.eulerAngles = new Vector3(0.0f, controller.MainCamera.transform.eulerAngles.y, 0.0f);
-                // }
-
-                _anchor = AnchorManager.AttachAnchor(plane, hitPose);
+                Debug.LogWarningFormat("Failed to find the ARPlane with TrackableId {0}",
+                    ray.trackableId);
+                return;
             }
+            var hitPose = ray.pose;
+
+            _anchor = AnchorManager.AttachAnchor(plane, hitPose);
 
             if (_anchor != null)
             {
@@ -320,7 +306,7 @@ namespace Realm
                 // Attach map quality indicator to this anchor.
                 var indicatorGO = Instantiate(MapQualityIndicatorPrefab, _anchor.transform);
                 _qualityIndicator = indicatorGO.GetComponent<MapQualityIndicator>();
-                _qualityIndicator.DrawIndicator(planeType, MainCamera);
+                _qualityIndicator.DrawIndicator(plane.alignment, MainCamera);
 
                 helperText.text = " To save this location, walk around the object to " +
                     "capture it from different angles";
@@ -349,8 +335,7 @@ namespace Realm
             }
             Debug.Log("2");
 
-            // Update map quality:
-            int qualityState = 2;
+            int qualityState;
             // Can pass in ANY valid camera pose to the mapping quality API.
             // Ideally, the pose should represent users’ expected perspectives.
             FeatureMapQuality quality =
@@ -450,9 +435,7 @@ namespace Realm
                 return;
             }
 
-            Debug.LogFormat("Attempting to resolve {0} Cloud Anchor(s): {1}",
-                ResolvingSet.Count,
-                string.Join(",", new List<string>(ResolvingSet).ToArray()));
+            Debug.Log($"Attempting to resolve {ResolvingSet.Count} Cloud Anchor(s): {string.Join(",", new List<string>(ResolvingSet).ToArray())}");
             foreach (string cloudId in ResolvingSet)
             {
                 var promise = AnchorManager.ResolveCloudAnchorAsync(cloudId);
@@ -484,12 +467,11 @@ namespace Realm
             {
                 OnAnchorResolvedFinished(true, arObject.AnchorId);
                 result.Anchor.transform.localScale = new Vector3(arObject.Scale, arObject.Scale, arObject.Scale);
-                Debug.Log(arObject.ModelId);
+                Debug.Log("Model: " + arObject.ModelId);
                 Debug.Log("X: " + result.Anchor.transform.localScale.x);
                 Debug.Log("Y: " + result.Anchor.transform.localScale.y);
                 Debug.Log("Z: " + result.Anchor.transform.localScale.z);
-                GameObject go = Instantiate(InvManager.GetPrefab(arObject.ModelId), result.Anchor.transform.position, result.Anchor.transform.rotation);
-                go.GetComponent<ARTransformer>().enabled = false;
+                CreateARObjectAtTransform(arObject.ModelId, result.Anchor.transform);
             }
             else
             {
@@ -506,18 +488,26 @@ namespace Realm
                 GetPlacementObject().SetActive(true);
                 GameObject anchor = GameObject.FindGameObjectWithTag("anchor");
 
-                GameObject go = Instantiate(InvManager.GetPrefab(GetPlacementObjectID()), anchor.transform.position, anchor.transform.rotation);
-                go.GetComponent<ARTransformer>().enabled = false;
+                CreateARObjectAtTransform(GetPlacementObjectID(), anchor.transform);
 
+                Debug.Log("ATTEMPT TO SAVE OBJECT");
+                Debug.Log("test");
+                Debug.Log(response);
+                Debug.Log(DatabaseController.pb.AuthStore.Model.Id);
+                Debug.Log(GetPlacementObjectID());
+                Debug.Log(GetPlacementObject().transform.localScale.x);
+                Debug.Log(anchorCoordinates.Latitude);
+                Debug.Log(anchorCoordinates.Longitude);
                 saveARObject(
                     "test",
                     response,
                     DatabaseController.pb.AuthStore.Model.Id,
-                    GetPlacementObject().name,
+                    GetPlacementObjectID(),
                     GetPlacementObject().transform.localScale.x,
                     anchorCoordinates.Latitude,
                     anchorCoordinates.Longitude
                 );
+                Debug.Log("Object saved");
                 Destroy(anchor);
                 Destroy(GetPlacementObject().gameObject);
                 Step = PlacementStep.None;
@@ -555,6 +545,13 @@ namespace Realm
             Destroy(GameObject.FindGameObjectWithTag("indicator"));
         }
 
+        public void CreateARObjectAtTransform(string modelId, Transform transform)
+        {
+            GameObject go = Instantiate(InvManager.GetPrefab(modelId), transform.position, transform.rotation);
+            go.SetActive(true);
+            go.GetComponent<ARTransformer>().enabled = false;
+        }
+
         private void UpdatePlaneVisibility(bool visible)
         {
             foreach (var plane in PlaneManager.trackables)
@@ -576,6 +573,7 @@ namespace Realm
         public void ConfirmPlacement()
         {
             anchorCoordinates = RealWorldController.GetCurrentGPSCoordinates();
+
             Step = PlacementStep.Anchor;
         }
 

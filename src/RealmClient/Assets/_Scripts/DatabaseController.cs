@@ -14,15 +14,19 @@ namespace Realm
 
         public ModelStore modelStore;
 
-        private async void Awake()
-        {
-
-        }
-
         private async void Start()
         {
             pb = new PocketBase("https://pocketbase.midnightstudio.me", "en-US", AsyncAuthStore.PlayerPrefs);
+            PopulateSettings();
             await updateModels();
+        }
+
+        private void PopulateSettings()
+        {
+            if (!PlayerPrefs.HasKey("SETTING_THEME"))
+                PlayerPrefs.SetString("SETTING_THEME", "Dark");
+            if (!PlayerPrefs.HasKey("SETTING_LANGUAGE"))
+                PlayerPrefs.SetString("SETTING_LANGUAGE", "English");
         }
 
         // public static void Logout()
@@ -98,6 +102,17 @@ namespace Realm
         public static string GetCurrentUserOrganizationId()
         {
             return pb.AuthStore.Model["organizationId"].ToString();
+        }
+
+        public static string GetCurrentUserType()
+        {
+            return pb.AuthStore.Model["type"].ToString();
+        }
+
+        public static async Task<string> GetCurrentUserOrganizationNameAsync()
+        {
+            var organization = await GetOrganizationFromId(GetCurrentUserOrganizationId());
+            return organization.Name;
         }
 
         public static string GetCurrentUserName()
@@ -295,7 +310,7 @@ namespace Realm
             // previewCam.gameObject.transform.rotation = Quaternion.identity;
             // main.gameObject.transform.rotation = Quaternion.identity;
 
-            int spriteSize = 128;
+            // int spriteSize = 128;
             // RenderTexture renderTexture = new(spriteSize, spriteSize, 24);
             // previewCam.targetTexture = renderTexture;
 
@@ -305,7 +320,9 @@ namespace Realm
 
             Debug.Log($"model count: {models.Count}");
 
-            for (int i = 0; i < models.Count; i++)
+            var numberOfModels = models.Count > InventoryManager.MAX_OBJ_COUNT ? InventoryManager.MAX_OBJ_COUNT : models.Count;
+
+            for (int i = 0; i < numberOfModels; i++)
             {
                 var uri = pb.Files.GetUrl(modelRecords[i], models[i].Model);
                 var g = new GltfImport();
@@ -318,8 +335,9 @@ namespace Realm
                 }
                 Debug.Log($"UPDATE MODELS (5.{i}.2)");
 
-                GameObject prefabObject = await GLTFUtils.InstantiateARObjectFromGltf(g);
-
+                var prefabObject = await GLTFUtils.InstantiateARObjectFromGltf(g);
+                if (modelStore != null)
+                    prefabObject.transform.SetParent(modelStore.gameObject.transform);
                 // GameObject previewObject = new();
                 // await g.InstantiateMainSceneAsync(previewObject.transform);
                 // previewObject.SetActive(true);

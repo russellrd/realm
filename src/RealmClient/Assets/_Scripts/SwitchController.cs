@@ -9,7 +9,10 @@ namespace Realm.Controller
     public class SwitchController : MonoBehaviour
     {
         [SerializeField]
-        private NavigationManager navigationManager;
+        private NavigationDisplay navigationDisplay;
+
+        [SerializeField]
+        private PlacementController placementController;
 
         [SerializeField]
         private GameObject objectSpawner;
@@ -20,7 +23,11 @@ namespace Realm.Controller
         [SerializeField]
         private ARPlaneManager planeManager;
 
-        private bool uiOpen = true;
+        [SerializeField]
+        private GameObject HUD;
+
+        [SerializeField]
+        private XROrigin xrOrigin;
 
         public static NavigationController.Destinations uiScreen;
 
@@ -28,25 +35,28 @@ namespace Realm.Controller
 
         public static bool editMode = false;
 
+        public static bool switched = false;
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             openUIButton.onClick.AddListener(SwitchToUI);
+
         }
 
         // Update is called once per frame
         void Update()
         {
-            SetMode();
+            if (switched)
+            {
+                SetMode();
+                switched = false;
+            }
         }
 
         public void SwitchToUI()
         {
-            Debug.Log("SwitchToUI");
-            Debug.Log(uiScreen);
-            Debug.Log(data);
-            Debug.Log(editMode);
-            navigationManager.Show(uiScreen, data);
+            navigationDisplay.Show(uiScreen, data);
             Clear();
         }
 
@@ -60,29 +70,25 @@ namespace Realm.Controller
         {
             List<GameObject> objectSpawnerChildren = new();
             GameObjectUtils.GetChildGameObjects(objectSpawner, objectSpawnerChildren);
-            Debug.Log(objectSpawnerChildren.Count);
-            if (editMode)
+
+            if (!editMode)
+                placementController.CancelPlacement();
+
+            var trackablesTransform = xrOrigin.gameObject.transform.Find("Trackables");
+            trackablesTransform?.gameObject.SetActive(editMode);
+
+            HUD.SetActive(editMode);
+
+            foreach (var plane in planeManager.trackables)
             {
-                foreach (var plane in planeManager.trackables)
-                {
-                    plane.gameObject.SetActive(true);
-                }
-                // foreach (var o in objectSpawnerChildren)
-                // {
-                //     o.GetComponent<XRGrabInteractable>().enabled = true;
-                // }
+                plane.gameObject.SetActive(editMode);
             }
-            else
-            {
-                foreach (var plane in planeManager.trackables)
-                {
-                    plane.gameObject.SetActive(false);
-                }
-                // foreach (var o in objectSpawnerChildren)
-                // {
-                //     o.GetComponent<XRGrabInteractable>().enabled = false;
-                // }
-            }
+            planeManager.enabled = editMode;
+
+            // foreach (var o in objectSpawnerChildren)
+            // {
+            //     o.GetComponent<XRGrabInteractable>().enabled = true;
+            // }
         }
     }
 }
