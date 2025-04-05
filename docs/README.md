@@ -29,4 +29,45 @@ the unnecessary folders and rename your folder to SRS.>
 
 The folders and files for this folder are as follows:
 
-Describe ...
+```bash
+.
+├── Checklists/
+│   ├── Code-Checklist
+│   ├── MG-Checklist
+│   ├── MIS-Checklist
+│   ├── POC-Checklist
+│   ├── ProbState-Checklist
+│   ├── SRS-Checklist
+│   ├── VnV-Checklist
+│   └── Writing-Checklist
+├── Design/
+│   ├── SoftArchitecture/
+│   │   ├── MG.pdf
+│   │   └── MG.tex
+│   └── SoftDetailedDes/
+│       ├── MIS.pdf
+│       └── MIS.tex
+├── DevelopmentPlan/
+│   └── DevelopmentPlan
+├── HazardAnalysis/
+│   └── HazardAnalysis
+├── Presentations
+├── ProblemStatementAndGoals/
+│   └── ProblemStatement
+├── projMngmnt/
+│   ├── Final_Team_Contrib
+│   ├── POC_Team_Contrib
+│   └── Rev0_Team_Contrib
+├── ReflectAndTrace/
+│   └── ReflectAndTrace
+├── SRS-IEEE/
+│   └── SRS
+├── UsabilityTesting/
+│   └── UsabilityTesting
+├── UserGuide/
+│   └── UserGuide
+├── VnVPlan/
+│   └── VnVPlan
+└── VnVReport/
+    └── VnVReport
+```

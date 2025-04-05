@@ -160,7 +160,7 @@ change.
 \item[\refstepcounter{acnum} \actheacnum \label{acAPI}:] The API endpoints on the server.
 \item[\refstepcounter{acnum} \actheacnum \label{acSettings}:] The supported in-app settings.
 \item[\refstepcounter{acnum} \actheacnum \label{acTour}:] The tour creation workflow.
-\item[\refstepcounter{acnum} \actheacnum \label{acObjectImport}:] The supported object files that can be imported to generate AR Objects.
+\item[\refstepcounter{acnum} \actheacnum \label{acObjectGen}:] The algorithm to generate AR Objects.
 \item[\refstepcounter{acnum} \actheacnum \label{acPerformance}:] The features available on different devices due to performance or hardware limitations.
 \item[\refstepcounter{acnum} \actheacnum \label{acMaps}:] The provider of the maps/routing functionality
 \item[\refstepcounter{acnum} \actheacnum \label{acRenderNumber}:] The algorithm used to determine which AR Objects should be rendered in the Realm Screen.
@@ -196,18 +196,14 @@ actually be implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHardware}:] Hardware Module
-\item [\refstepcounter{mnum} \mthemnum \label{mTutorial}:] Tutorial Module
 \item [\refstepcounter{mnum} \mthemnum \label{mInventory}:] Inventory Module
-\item [\refstepcounter{mnum} \mthemnum \label{mSubRealm}:] Sub-Realm Module
 \item [\refstepcounter{mnum} \mthemnum \label{mTouring}:] Touring Module
 \item [\refstepcounter{mnum} \mthemnum \label{mTourList}:] Tour List Module
 \item [\refstepcounter{mnum} \mthemnum \label{mTourManagement}:] Tour Management Module
 \item [\refstepcounter{mnum} \mthemnum \label{mSettings}:] Settings Module
-\item [\refstepcounter{mnum} \mthemnum \label{mHelp}:] Help Module
-\item [\refstepcounter{mnum} \mthemnum \label{mFriends}:] Friends Module
 \item [\refstepcounter{mnum} \mthemnum \label{mMaps}:] Maps Module
 \item [\refstepcounter{mnum} \mthemnum \label{mRealm}:] Realm Interface Module
-\item [\refstepcounter{mnum} \mthemnum \label{mImporter}:] Object Importer Module
+\item [\refstepcounter{mnum} \mthemnum \label{mPromptGen}:] Object Prompt Generation Module
 \item [\refstepcounter{mnum} \mthemnum \label{mPlacement}:] Object Placement Module
 \item [\refstepcounter{mnum} \mthemnum \label{mInteraction}:] Object Interaction Module
 \item [\refstepcounter{mnum} \mthemnum \label{mRender}:] Object Render Module
@@ -215,7 +211,7 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mRA}:] Restricted Area Detection Module
 \item [\refstepcounter{mnum} \mthemnum \label{mWeather}:] Weather Detection Module
 \item [\refstepcounter{mnum} \mthemnum \label{mTourProx}:] Tour Proximity Detection Module
-\item [\refstepcounter{mnum} \mthemnum \label{mNotifs}:] Notifications Module
+\item [\refstepcounter{mnum} \mthemnum \label{mPopup}:] Popup Module
 \item [\refstepcounter{mnum} \mthemnum \label{mRESTAPI}:] REST API Connection Module
 \item [\refstepcounter{mnum} \mthemnum \label{mLocalDB}:] Local Database Manager Module
 \item [\refstepcounter{mnum} \mthemnum \label{mDataSync}:] Data Sync Module
@@ -233,18 +229,15 @@ actually be implemented.
 {Hardware-Hiding Module} & Hardware Module\\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & Tutorial Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
 & Inventory Module\\
-& Sub-Realm Module\\
 & Touring Module\\
 & Tour List Module\\
 & Tour Management Module\\
 & Settings Module\\
-& Help Module\\
-& Friends Module\\ 
 & Maps Module\\
 & Realm Interface Module\\
-& Object Importer Module\\
+& Object Prompt Generation Module\\
 & Object Placement Module\\
 & Object Interaction Module\\
 & Object Render Module\\
@@ -252,7 +245,7 @@ actually be implemented.
 & Restricted Area Detection Module\\
 & Weather Detection Module\\
 & Tour Proximity Detection Module\\
-& Notifications Module\\
+& Popup Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} & REST API Connection Module\\
@@ -323,29 +316,11 @@ to be implemented.
 % \item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
   % [Information to include for leaf modules in the decomposition by secrets tree.]
 
-\subsubsection{Tutorial Module (\mref{mTutorial})}
-
-\begin{description}
-\item[Secrets:]The format and structure of the tutorial.
-\item[Services:]Provides an interactive tutorial for a user to experiment with the core features of the app. The tutorial for individual features are also accessible.
-\item[Implemented By:]REALM
-\item[Type of Module:]Abstract Object
-\end{description}
-
 \subsubsection{Inventory Module (\mref{mInventory})}
 
 \begin{description}
 \item[Secrets:]The format and structure of the inventory interface.
 \item[Services:]Display's a list of available objects and allows for detailed previews of AR Objects and their associated metadata.
-\item[Implemented By:]REALM
-\item[Type of Module:]Abstract Object
-\end{description}
-
-\subsubsection{Sub-Realm Module (\mref{mSubRealm})}
-
-\begin{description}
-\item[Secrets:]The format and structure of the Sub-Realms.
-\item[Services:]Allows users to join and leave custom environments with controlled access management. Users with adequate permissions in a Sub-Realm can invite or remove other users. The default Sub-Realm is common between all users.
 \item[Implemented By:]REALM
 \item[Type of Module:]Abstract Object
 \end{description}
@@ -386,24 +361,6 @@ to be implemented.
 \item[Type of Module:]Abstract Object
 \end{description}
 
-\subsubsection{Help Module (\mref{mHelp})}
-
-\begin{description}
-\item[Secrets:]The format and structure of the help page.
-\item[Services:]Aides the user in understanding specific features or report issues within the app. The tutorial can also be launched from this module.
-\item[Implemented By:]REALM
-\item[Type of Module:]Abstract Object
-\end{description}
-
-\subsubsection{Friends Module (\mref{mFriends})}
-
-\begin{description}
-\item[Secrets:]The format and structure of the friends functionality.
-\item[Services:]Allows users to manage their friends. These friends can be added to Sub-Realms with the right permissions.
-\item[Implemented By:]REALM
-\item[Type of Module:]Abstract Object
-\end{description}
-
 \subsubsection{Maps Module (\mref{mMaps})}
 
 \begin{description}
@@ -417,16 +374,16 @@ to be implemented.
 
 \begin{description}
 \item[Secrets:]The structure and interaction of the Realm Interface.
-\item[Services:]This is the primary interface that the user interacts with to start the placement or interaction with AR Objects and switch between Sub-Realms.
+\item[Services:]This is the primary interface that the user interacts with to start the placement or interaction with AR Objects.
 \item[Implemented By:]REALM
 \item[Type of Module:]Abstract Object
 \end{description}
 
-\subsubsection{Object Importer Module (\mref{mImporter})}
+\subsubsection{Object Prompt Generation Module (\mref{mPromptGen})}
 
 \begin{description}
-\item[Secrets:]The structure and workflow of object importing.
-\item[Services:]Scans of objects from external apps can be imported and turned into AR objects with the required additional metadata.
+\item[Secrets:]The structure and workflow of object prompt generation.
+\item[Services:]Allows the user to generate AR objects through a specified prompt.
 \item[Implemented By:]REALM
 \item[Type of Module:]Abstract Object
 \end{description}
@@ -467,15 +424,6 @@ to be implemented.
 \item[Type of Module:]Abstract Object
 \end{description}
 
-\subsubsection{Restricted Area Detection Module (\mref{mRA})}
-
-\begin{description}
-\item[Secrets:]The format and algorithm to achieve restricted area detection.
-\item[Services:]Display's places on the map where access to a certain area is restricted.
-\item[Implemented By:]REALM
-\item[Type of Module:]Abstract Object
-\end{description}
-
 \subsubsection{Weather Detection Module (\mref{mWeather})}
 
 \begin{description}
@@ -494,11 +442,11 @@ to be implemented.
 \item[Type of Module:]Abstract Object
 \end{description}
 
-\subsubsection{Notifications Module (\mref{mNotifs})}
+\subsubsection{Popup Module (\mref{mPopup})}
 
 \begin{description}
-\item[Secrets:]The structure and format of notifications.
-\item[Services:]Sends notifications to the device if enabled.
+\item[Secrets:]The structure and format of popups.
+\item[Services:]Shows a popup on device.
 \item[Implemented By:]REALM
 \item[Type of Module:]Abstract Object
 \end{description}
@@ -581,17 +529,16 @@ MP-FR1 & \mref{mMaps}\\
 MP-FR2 & \mref{mMaps}, \mref{mRESTAPI}\\
 MP-FR3 & \mref{mMaps}\\
 MP-FR4 & \mref{mMaps}\\
-MP-FR5 & \mref{mMaps}, \mref{mSubRealm}\\
 MP-FR6 & \mref{mMaps}\\
 MP-FR7 & \mref{mMaps}\\
 MP-FR8 & \mref{mMaps}\\
 MP-FR9 & \mref{mMaps}\\
 MP-FR10 & \mref{mMaps}, \mref{mRA}\\
 IV-FR1 & \mref{mInventory}, \mref{mRESTAPI}\\
-IV-FR2 & \mref{mInventory}, \mref{mRESTAPI}, \mref{mImporter}, \mref{mInteraction}\\
+IV-FR2 & \mref{mInventory}, \mref{mRESTAPI}, \mref{mPromptGen}, \mref{mInteraction}\\
 IV-FR3 & \mref{mInventory}\\
 IV-FR4 & \mref{mInventory}\\
-IV-FR5 & \mref{mInventory}, \mref{mRESTAPI}, \mref{mImporter}, \mref{mInteraction}\\
+IV-FR5 & \mref{mInventory}, \mref{mRESTAPI}, \mref{mPromptGen}, \mref{mInteraction}\\
 IV-FR6 & \mref{mInventory}\\
 IV-FR7 & \mref{mInventory}\\
 IV-FR8 & \mref{mInventory}\\
@@ -610,23 +557,18 @@ IV-FR11 & \mref{mInventory}, \mref{mSettings}\\
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-OUI-FR1 & \mref{mImporter}\\
-OUI-FR2 & \mref{mImporter}\\
-OUI-FR3 & \mref{mImporter}\\
-OUI-FR4 & \mref{mImporter}, \mref{mRESTAPI}\\ 
-OUI-FR5 & \mref{mImporter}\\
-OUI-FR6 & \mref{mImporter}\\
-OUI-FR7 & \mref{mImporter}, \mref{mRESTAPI}\\
-OUI-FR8 & \mref{mImporter}, \mref{mRESTAPI}\\
-OUI-FR9 & \mref{mImporter}, \mref{mRESTAPI}\\
-OUI-FR10 & \mref{mImporter}, \mref{mRESTAPI}\\
-OUI-FR11 & \mref{mImporter}, \mref{mRESTAPI}\\
-OUI-FR12 & \mref{mImporter}\\
-TU-FR1 & \mref{mTutorial}\\
-TU-FR2 & \mref{mTutorial}\\
-TU-FR3 & \mref{mTutorial}\\
-TU-FR4 & \mref{mTutorial}, \mref{mSettings}\\
-TU-FR5 & \mref{mTutorial}\\
+OUI-FR1 & \mref{mPromptGen}\\
+OUI-FR2 & \mref{mPromptGen}\\
+OUI-FR3 & \mref{mPromptGen}\\
+OUI-FR4 & \mref{mPromptGen}, \mref{mRESTAPI}\\ 
+OUI-FR5 & \mref{mPromptGen}\\
+OUI-FR6 & \mref{mPromptGen}\\
+OUI-FR7 & \mref{mPromptGen}, \mref{mRESTAPI}\\
+OUI-FR8 & \mref{mPromptGen}, \mref{mRESTAPI}\\
+OUI-FR9 & \mref{mPromptGen}, \mref{mRESTAPI}\\
+OUI-FR10 & \mref{mPromptGen}, \mref{mRESTAPI}\\
+OUI-FR11 & \mref{mPromptGen}, \mref{mRESTAPI}\\
+OUI-FR12 & \mref{mPromptGen}\\
 TM-FR1 & \mref{mTourManagement}, \mref{mAuth}\\
 TM-FR2 & \mref{mTourManagement}, \mref{mRESTAPI}, \mref{mAuth}\\
 TM-FR3 & \mref{mTourManagement}, \mref{mRESTAPI}\\
@@ -634,11 +576,11 @@ TM-FR4 & \mref{mTourManagement}, \mref{mAuth}\\
 TM-FR5 & \mref{mTourManagement}, \mref{mAuth}\\
 TM-FR6 & \mref{mTourManagement}, \mref{mRESTAPI}, \mref{mAuth}\\
 TR-FR1 & \mref{mTouring}, \mref{mAuth}\\
-TR-FR2 & \mref{mTouring}, \mref{mAuth}, \mref{mTourList} \mref{mTourProx}, \mref{mNotifs}\\
+TR-FR2 & \mref{mTouring}, \mref{mAuth}, \mref{mTourList} \mref{mTourProx}, \mref{mPopup}\\
 TR-FR3 & \mref{mTouring}\\
 TR-FR4 & \mref{mTouring}, \mref{mMaps}, \mref{mRealm}\\
-OP-FR1 & \mref{mPlacement}, \mref{mRESTAPI}, \mref{mSubRealm}\\
-OP-FR2 & \mref{mPlacement}, \mref{mRESTAPI}, \mref{mSubRealm}\\
+OP-FR1 & \mref{mPlacement}, \mref{mRESTAPI}\\
+OP-FR2 & \mref{mPlacement}, \mref{mRESTAPI}\\
 OP-FR3 & \mref{mPlacement}\\
 OP-FR4 & \mref{mPlacement}, \mref{mRESTAPI}\\
 \bottomrule
@@ -654,9 +596,8 @@ OP-FR4 & \mref{mPlacement}, \mref{mRESTAPI}\\
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
 RI-FR1 & \mref{mRealm}, \mref{mHardware}\\
-RI-FR2 & \mref{mRealm}, \mref{mSubRealm}\\
 RI-FR3 & \mref{mRealm}, \mref{mPlacement}\\
-RI-FR4 & \mref{mRealm}, \mref{mImporter}\\
+RI-FR4 & \mref{mRealm}, \mref{mPromptGen}\\
 RI-FR5 & \mref{mRealm}, \mref{mTourManagement}\\
 RI-FR6 & \mref{mRealm}, \mref{mWeather}\\
 RI-FR7 & \mref{mRealm}, \mref{mCollision}\\
@@ -667,22 +608,16 @@ PS-FR1 & \mref{mAuth}, \mref{mRESTAPI}\\
 PS-FR2 & \mref{mAuth}, \mref{mRESTAPI}\\
 PS-FR3 & \mref{mAuth}, \mref{mRESTAPI}\\
 PS-FR4 & \mref{mAuth}, \mref{mRESTAPI}\\
-PS-FR5 & \mref{mAuth}, \mref{mSubRealm}\\
-PS-FR6 & \mref{mAuth}, \mref{mHelp}\\
-G-FR1 & \mref{mSubRealm}, \mref{mRESTAPI}\\
-G-FR2 & \mref{mSubRealm}, \mref{mRESTAPI}\\
-G-FR3 & \mref{mSubRealm}, \mref{mRESTAPI}\\
-G-FR4 & \mref{mSubRealm}, \mref{mRESTAPI}\\
-G-FR5 & \mref{mSubRealm}, \mref{mRESTAPI}\\
-FS-FR1 & \mref{mFriends}, \mref{mRESTAPI}\\
-FS-FR2 & \mref{mFriends}, \mref{mRESTAPI}\\
-FS-FR3 & \mref{mFriends}, \mref{mRESTAPI}\\
-FS-FR4 & \mref{mFriends}, \mref{mRESTAPI}\\
+G-FR1 & \mref{mRESTAPI}\\
+G-FR2 & \mref{mRESTAPI}\\
+G-FR3 & \mref{mRESTAPI}\\
+G-FR4 & \mref{mRESTAPI}\\
+G-FR5 & \mref{mRESTAPI}\\
 S-FR1 & \mref{mSettings}, \mref{mLocalDB}\\
 S-FR2 & \mref{mSettings}, \mref{mLocalDB}\\
 S-FR3 & \mref{mSettings}, \mref{mRESTAPI}\\
 S-FR4 & \mref{mSettings}, \mref{mRESTAPI}\\
-S-FR5 & \mref{mSettings}, \mref{mRESTAPI}, \mref{mSubRealm}\\
+S-FR5 & \mref{mSettings}, \mref{mRESTAPI}\\
 S-FR6 & \mref{mSettings}, \mref{mLocalDB}\\
 DB-FR1 & \mref{mLocalDB}, \mref{mServerDB}, \mref{mDataSync}\\
 DB-FR2 & \mref{mLocalDB}, \mref{mServerDB}, \mref{mDataSync}\\
@@ -701,7 +636,7 @@ DB-FR2 & \mref{mLocalDB}, \mref{mServerDB}, \mref{mDataSync}\\
 QS-P1 & \mref{mMaps}\\
 QS-P2 & \mref{mInventory}\\
 QS-P3 & \mref{mRender}\\
-QS-P4 & \mref{mImporter}\\
+QS-P4 & \mref{mPromptGen}\\
 QS-P5 & \mref{mRender}\\
 QS-U1 & \mref{mSettings}\\
 QS-U2 & \textit{All}\\
@@ -718,7 +653,7 @@ DI-D2 & \mref{mHardware}\\
 DI-D3 & \mref{mHardware}\\
 DI-D4 & \mref{mHardware}\\
 DI-M1 & \mref{mRESTAPI}\\
-DI-R1 & \mref{mInventory}, \mref{mSubRealm}, \mref{mTouring}, \mref{mTourManagement}, \mref{mSettings}, \mref{mHelp}, \mref{mHelp}, \mref{mFriends}, \mref{mRealm}, \mref{mMaps}, \mref{mImporter}, \mref{mPlacement}, \mref{mInteraction}\\
+DI-R1 & \mref{mInventory}, \mref{mTouring}, \mref{mTourManagement}, \mref{mSettings}, \mref{mRealm}, \mref{mMaps}, \mref{mPromptGen}, \mref{mPlacement}, \mref{mInteraction}\\
 DI-P1 & \mref{mHardware}\\
 DI-P2 & \mref{mHardware}\\
 \bottomrule
@@ -737,12 +672,12 @@ DI-P2 & \mref{mHardware}\\
 \acref{acAPI} & \mref{mDataSync}, \mref{mRESTAPI}\\
 \acref{acSettings} & \mref{mSettings}\\
 \acref{acTour} & \mref{mTourManagement}\\
-\acref{acObjectImport} & \mref{mHardware}, \mref{mImporter}\\
+\acref{acObjectImport} & \mref{mHardware}, \mref{mPromptGen}\\
 \acref{acPerformance} & \mref{mHardware}\\
 \acref{acMaps} & \mref{mMaps}\\
 \acref{acRenderNumber} & \mref{mRender}\\
 \acref{acRenderStyle} & \mref{mRender}\\
-\acref{acInterfaces} & \mref{mInventory}, \mref{mSubRealm}, \mref{mTouring}, \mref{mTourManagement}, \mref{mSettings}, \mref{mHelp}, \mref{mHelp}, \mref{mFriends}, \mref{mRealm}, \mref{mMaps}, \mref{mImporter}, \mref{mPlacement}, \mref{mInteraction}\\
+\acref{acInterfaces} & \mref{mInventory}, \mref{mTouring}, \mref{mTourManagement}, \mref{mSettings}, \mref{mRealm}, \mref{mMaps}, \mref{mPromptGen}, \mref{mPlacement}, \mref{mInteraction}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
@@ -810,18 +745,14 @@ Below is a schedule for our implementation and work distribution of the modules.
 \hline
 \multicolumn{1}{|l|}{\textbf{Due Date}}                & \multicolumn{1}{l|}{\textbf{Work to be Completed}}            & \multicolumn{1}{l|}{\textbf{Assigned Member}} \\ \hline
 \multicolumn{1}{|l|}{\multirow{3}{*}{Jan 15 - Jan 20}} & \multicolumn{1}{l|}{Hardware Module}                          & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
-\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tutorial Module}                          & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Inventory Module}                         & \multicolumn{1}{l|}{Avanish}                  \\ \hline
-\multicolumn{1}{|l|}{\multirow{4}{*}{Jan 20 - Jan 25}} & \multicolumn{1}{l|}{Sub-Realm Module}                         & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Touring Module}                           & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tour List Module}                         & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tour Management Module}                   & \multicolumn{1}{l|}{Russell}                  \\ \hline
 \multicolumn{1}{|l|}{\multirow{4}{*}{Jan 25 - Feb 1}}  & \multicolumn{1}{l|}{Settings Module}                          & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
-\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Help Module}                              & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
-\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Friends Module}                           & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Maps Module}                              & \multicolumn{1}{l|}{Abdul}                    \\ \hline
-\multicolumn{1}{|l|}{\multirow{5}{*}{Jan 30 - Feb 5}}  & \multicolumn{1}{l|}{Realm Interface Module}                   & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3} 
-\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Importer Module}                   & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{\multirow{5}{*}{Jan 30 - Feb 5}}  & \multicolumn{1}{l|}{Realm Interface Module}                   & \multicolumn{1}{l|}{Russell}                  \\ \cline{2-3}  
+\multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Prompt Generation Module}          & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Placement Module}                  & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Interaction Module}                & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Object Render Module}                     & \multicolumn{1}{l|}{Abdul}                    \\ \hline
@@ -829,7 +760,7 @@ Below is a schedule for our implementation and work distribution of the modules.
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Restricted Area Detection Module}          & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Weather Hazard Detection Module}           & \multicolumn{1}{l|}{Avanish}                  \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Tour Proximity Detection Module}           & \multicolumn{1}{l|}{Rafey}                    \\ \hline
-\multicolumn{1}{|l|}{\multirow{4}{*}{Feb 6 - Feb 10}}  & \multicolumn{1}{l|}{Notifications Module}                     & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
+\multicolumn{1}{|l|}{\multirow{4}{*}{Feb 6 - Feb 10}}  & \multicolumn{1}{l|}{Popup Module}                     & \multicolumn{1}{l|}{Rafey}                    \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{REST API Module}                          & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Local Database Manager Module}             & \multicolumn{1}{l|}{Abdul}                    \\ \cline{2-3} 
 \multicolumn{1}{|l|}{}                                 & \multicolumn{1}{l|}{Data Sync Module}                         & \multicolumn{1}{l|}{Russell}                  \\ \hline

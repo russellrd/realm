@@ -124,10 +124,9 @@ The following table is taken directly from the Module Guide document for this pr
 & Tour List Module\\
 & Tour Management Module\\
 & Settings Module\\
-& Help Module\\
 & Maps Module\\
 & Realm Interface Module\\
-& Object Importer Module\\
+& Object Prompt Generation Module\\
 & Object Placement Module\\
 & Object Interaction Module\\
 & Object Render Module\\
@@ -162,9 +161,9 @@ Settings Module
 \subsection{Uses}
 
 \begin{itemize}
-  \item Database/Network Manager Module
+  \item \hyperref[local-dbm]{Local Database Manager}
   \item Error Manager Module
-  \item Authentication Module
+  \item \hyperref[Module_Authentication]{Authentication Module}
 \end{itemize}
 
 \subsection{Syntax}
@@ -270,105 +269,6 @@ Settings Module
   \item ValidateKey(key): Ensures the provided key is predefined and valid for the settings or profileDetails dictionaries.
   \item EncryptData(data): Applies encryption to sensitive data before storage or transmission.
 \end{itemize}
-
-
-\newpage
-
-\section{MIS of Help Module} \label{Module_Help}
-
-\subsection{Module}
-
-Help Module
-
-\subsection{Uses}
-
-\begin{itemize}
-  \item User Interface Manager Module
-  \item Content Storage Module
-\end{itemize}
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-\begin{itemize}
-  \item None
-\end{itemize}
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-  \begin{tabular}{p{3cm} p{4cm} p{4cm} p{5cm}}
-    \hline
-    \textbf{Name}  & \textbf{In}                     & \textbf{Out}                       & \textbf{Exceptions}         \\
-    \hline
-    ViewHelpTopics & -                               & List of help topics                & -                           \\
-    \hline
-    SearchHelp     & Query string                    & Relevant help content              & InvalidQueryException       \\
-    \hline
-    FetchFAQ       & -                               & List of frequently asked questions & -                           \\
-    \hline
-    ContactSupport & User message, user contact info & Confirmation of message sent       & MessageDeliveryException    \\
-    \hline
-    SubmitFeedback & Feedback message                & Bool - Success or Fail             & FeedbackSubmissionException \\
-    \hline
-  \end{tabular}
-\end{center}
-
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-\begin{itemize}
-  \item helpSections: A collection of predefined help sections, each identified by a unique ID and containing text, images, or links.
-  \item searchIndex: An index to facilitate quick searches within help content.
-\end{itemize}
-
-\subsubsection{Environment Variables}
-
-\begin{itemize}
-  \item Content Storage: Stores the help documentation (e.g., FAQs, guides).
-  \item Device Network: Used for fetching online help content if local content is not available.
-\end{itemize}
-
-\subsubsection{Assumptions}
-
-\begin{itemize}
-  \item All help content is preloaded in the Content Storage or accessible via a network connection.
-  \item The section identifiers used are valid and correspond to existing help sections.
-\end{itemize}
-
-\subsubsection{Access Routine Semantics}
-
-\noindent FetchHelpContent(sectionID):
-\begin{itemize}
-  \item \textbf{Transition:} None
-  \item \textbf{Output:} Returns the help content associated with the given section identifier.
-  \item \textbf{Exception:} Throws ContentNotFoundException if the sectionID is invalid or not found.
-\end{itemize}
-
-\noindent SearchHelpContent(query):
-\begin{itemize}
-  \item \textbf{Transition:} None
-  \item \textbf{Output:} Returns a list of section identifiers that are relevant to the search query.
-  \item \textbf{Exception:} None
-\end{itemize}
-
-\noindent NavigateToHelpSection(sectionID):
-\begin{itemize}
-  \item \textbf{Transition:} Updates the displayed help section in the user interface to the section corresponding to the given identifier.
-  \item \textbf{Output:} Returns true if navigation is successful, false otherwise.
-  \item \textbf{Exception:} Throws InvalidSectionException if the sectionID is invalid.
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-\begin{itemize}
-  \item ValidateSectionID(sectionID): Ensures the section identifier is valid and corresponds to an existing help section.
-  \item PerformSearch(query): Matches the search query against the searchIndex and returns relevant section identifiers.
-\end{itemize}
-
 
 \newpage
 
@@ -1119,7 +1019,7 @@ It is assumed that the database is functional and contains valid tour data.
 
 \newpage
 
-\section{MIS of Maps} \label{maps}
+\section{MIS of Maps Module} \label{maps}
 
 \subsection{Module}
 
@@ -1729,11 +1629,11 @@ The REST API server follows standard HTTP and REST conventions, and the API endp
 
 \newpage
 
-\section{MIS of Object Importer Module} \label{object-importer}
+\section{MIS of Object Prompt Generation Module} \label{object-prompt-gen}
 
 \subsection{Module}
 
-ObjectImporter
+ObjectPromptGen
 
 \subsection{Uses}
 
@@ -1752,7 +1652,7 @@ N/A
     \hline
     \textbf{Name}        & \textbf{In} & \textbf{Out}                       & \textbf{Exceptions}            \\
     \hline
-    importObject         & FilePath    & ObjectID                           & InvalidFileFormat, ImportError \\
+    importObject         & FilePath    & ObjectID                           & InvalidFileFormat, PromptGenerationError \\
     validateObject       & FilePath    & Boolean                            & InvalidFileFormat              \\
     addObjectToInventory & ObjectID    & -                                  & ObjectAlreadyExists            \\
     listSupportedFormats & -           & Array\textlangle String\textrangle & -                              \\
@@ -1791,7 +1691,7 @@ The file paths provided are accessible, and the objects being imported are in fo
   \item \textbf{exception}:
         \begin{itemize}
           \item \( InvalidFileFormat \): If the file format is not supported.
-          \item \( ImportError \): If the file cannot be read or parsed due to corruption or other issues.
+          \item \( PromptGenerationError \): If the file cannot be read or parsed due to corruption or other issues.
         \end{itemize}
 \end{itemize}
 
