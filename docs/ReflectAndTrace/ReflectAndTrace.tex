@@ -7,7 +7,7 @@
 
 \author{\authname}
 
-\date{}
+\date{April 4, 2024}
 
 \input{../Comments}
 \input{../Common}
@@ -16,129 +16,170 @@
 
 \maketitle
 
-\plt{Reflection is an important component of getting the full benefits from a
-learning experience.  Besides the intrinsic benefits of reflection, this
-document will be used to help the TAs grade how well your team responded to
-feedback.  Therefore, traceability between Revision 0 and Revision 1 is and
-important part of the reflection exercise.  In addition, several CEAB (Canadian
-Engineering Accreditation Board) Learning Outcomes (LOs) will be assessed based
-on your reflections.}
-
 \section{Changes in Response to Feedback}
 
-\plt{Summarize the changes made over the course of the project in response to
-feedback from TAs, the instructor, teammates, other teams, the project
-supervisor (if present), and from user testers.}
-
-\plt{For those teams with an external supervisor, please highlight how the feedback 
-from the supervisor shaped your project.  In particular, you should highlight the 
-supervisor's response to your Rev 0 demonstration to them.}
-
-\plt{Version control can make the summary relatively easy, if you used issues
-and meaningful commits.  If you feedback is in an issue, and you responded in
-the issue tracker, you can point to the issue as part of explaining your
-changes.  If addressing the issue required changes to code or documentation, you
-can point to the specific commit that made the changes.  Although the links are
-helpful for the details, you should include a label for each item of feedback so
-that the reader has an idea of what each item is about without the need to click
-on everything to find out.}
-
-\plt{If you were not organized with your commits, traceability between feedback
-and commits will not be feasible to capture after the fact.  You will instead
-need to spend time writing down a summary of the changes made in response to
-each item of feedback.}
-
-\plt{You should address EVERY item of feedback.  A table or itemized list is
-recommended.  You should record every item of feedback, along with the source of
-that feedback and the change you made in response to that feedback.  The
-response can be a change to your documentation, code, or development process.
-The response can also be the reason why no changes were made in response to the
-feedback.  To make this information manageable, you will record the feedback and
-response separately for each deliverable in the sections that follow.}
-
-\plt{If the feedback is general or incomplete, the TA (or instructor) will not
-be able to grade your response to feedback.  In that case your grade on this
-document, and likely the Revision 1 versions of the other documents will be
-low.} 
+We held check ins with the TA in which he gave advice and feedback about our reports and project. These changes were incorporated and changes were made. Additionally, during the Rev 0 meeting with Dr. Smith and Chris, they made it known that our project seemed to have too large of a scope and advised that we should cut out the social media aspect of the app and simply make the target to be AR tours.
 
 \subsection{SRS and Hazard Analysis}
 
+Modifications made for \href{https://github.com/russellrd/realm/issues/157}{SRS} and \href{https://github.com/russellrd/realm/pull/143}{HA} are linked.\\
+
+\textbf{SRS Feedback:}
+\begin{itemize}
+    \item Feedback given by other team and changes made: Add a traceability matrix. This was added in the document.
+    \item Feedback given by other team and changes made: Add accessibility compliance to ensure compliance with WCAG (Web Content Accessibility Guidelines) and AODA (Accessibility for Ontarians with Disabilities Act). This was added in the document.
+    \item Feedback given by other team and changes made: Add out of scope section (2.7). This was added in the document.
+    \item Feedback given by other team and changes made: Add a paragraph clarifying the distinct roles of the stakeholders and user groups. This was added in the document.
+    \item Feedback given by our team and changes made: Fix the date on the title page and update the revision history. This change was added.
+    \item Feedback given by Professor, TA, and our team and changes made: Remove references to friends, object scan, sub-realm, etc. This change was added.
+\end{itemize}
+
+\textbf{Hazard Analysis Feedback:}
+\begin{itemize}
+    \item Feedback given by other team and changes made: Add reliable internet connection as an assumption. This change was added.
+    \item Feedback given by other team and changes made: Add a rationale for each safety and security requirement. This change was deemed not needed.
+    \item Feedback given by other team and changes made: Consider adding general hazards to the FMEA table. This change was not added as the FMEA table already contained system failure.
+    \item Feedback given by other team and changes made: Add the definition of Hazard in the Introduction. This change was added.
+    \item Feedback given by other team and changes made: Consider writing more about the purpose of Hazard Analysis. This change was added.
+    \item Feedback given by other team and changes made: Consider user account management as a component as well to include account creation, deletion and frequent updates. This change was not added as that was already covered under privacy and data protection hazards, and we wanted to focus more on the core features of the app.
+    \item Feedback given by our team and changes made: Fix the date on the title page and update the revision history. This change was added.
+    \item Feedback given by Professor, TA, and our team and changes made: Remove references to friends, object scan, sub-realm, etc. This change was added.
+\end{itemize}
+
 \subsection{Design and Design Documentation}
 
+Modifications made for \href{https://github.com/russellrd/realm/issues/112}{MG} and \href{https://github.com/russellrd/realm/pull/150}{MIS} are linked.\\
+
+\textbf{MG Feedback:}
+\begin{itemize}
+    \item Feedback given by other team and changes made: you're missing anticipated and unlikely changes in the Module Guide document. No changes were necessary since these were actually there in the MG doc.
+    \item Feedback given by our team and changes made: Fix the date on the title page and update the revision history. This change was added.
+\end{itemize}
+
+\textbf{MIS Feedback:}
+\begin{itemize}
+    \item Feedback given by other team and changes made: Move REST API Connection Module under behaviour hiding module. This change was made.
+    \item Feedback given by other team and changes made: Add anticipated and unlikely changes This change was not necessary as those were already included.
+    \item Feedback given by other team and changes made: Remove transitions and outputs in notifications module. This change was not made as those transitions were deemed vital.
+    \item Feedback given by other team and changes made: Add communication modules. This change was not made as that was already included.
+    \item Feedback given by other team and changes made: Missing figure in section 9. This change was not needed as we decided to remove that section entirely given that we removed the friends feature.
+    \item Feedback given by other team and changes made: Add abbreviations table. This change was not made as that is already linked in the SRS document.
+    \item Feedback given by other team and changes made:  This change was made.
+    \item Feedback given by our team and changes made: Fix the date on the title page and update the revision history. This change was added.
+    \item Feedback given by our team and changes made: Fix formatting issues in the document. This change was added.
+    \item Feedback given by Professor, TA, and our team and changes made: Remove references to friends, object scan, sub-realm, etc. This change was added.
+\end{itemize}
+
 \subsection{VnV Plan and Report}
+
+Modifications made for \href{https://github.com/russellrd/realm/pull/144}{VnV Plan} and \href{https://github.com/russellrd/realm/pull/151}{VnV Report} are linked.\\
+
+\textbf{VnV Plan Feedback:}
+\begin{itemize}
+    \item Feedback given by other team and changes made: Add to the summary that the document will include all tests for requirements and the design plan. This was added into the summary.
+    \item Feedback given by other team and changes made: Add hardware compatibility to usability testing. This was added as a question in the usability survey.
+    \item Feedback given by other team and changes made: Add tests for creating and deleting a user's account and updating user info. We chose not to add these as we wanted to focus more on the actual tours part of the app, and these things are to be done manually by the admins for now. Perhaps we will add functionality for this in the future.
+    \item Feedback given by other team and changes made: Add reasoning behind why we chose our extras. This was added in the VnV Plan.
+    \item Feedback given by other team and changes made: Many abbrevations were used in this document, so add an abbreviations table. We chose not to add this, but referenced the abbreviations table in the SRS document instead.
+    \item Feedback given by other team and changes made: Add specific inputs to each test. These were already given with the tests.
+    \item Feedback given by our team and changes made: Fix formatting issues. These were resolved.
+    \item Feedback given by our team and changes made: Fix the date on the title page and update the revision history. This change was added.
+    \item Feedback given by Professor, TA, and our team and changes made: Remove references to friends, object scan, sub-realm, etc. This change was added.
+\end{itemize}
+
+\textbf{VnV Report Feedback:}
+\begin{itemize}
+    \item Feedback given by other team and changes made:  Consider updating section 2 with the abreviations used for clarity. Remove the extra heading under section 9. Changes made.
+    \item Feedback given by other team and changes made:  Add context for lower coverage metrics. Context added.
+    \item Feedback given by other team and changes made:  Mention the initial state for each tests. Decided not to add it since that is already in MIS.
+    \item Feedback given by other team and changes made:  Add explanation for why tests did not pass. Decided not to add it.
+    \item Feedback given by other team and changes made:  Consider adding what part is covered or not covered such that the completeness of your testing can be evaluated. Decided not to make any changes as the tests are already split by section.
+    \item Feedback given by other team and changes made:  Require more details about state, what was the load, which use cases were used either way. Decided not to add any changes as this was already mentioned in VnV Plan.
+    \item Feedback given by our team and changes made: Fix formatting issues. These were resolved.
+    \item Feedback given by our team and changes made: Fix the date on the title page and update the revision history. This change was done.
+    \item Feedback given by Professor, TA, and our team and changes made: Remove references to friends, object scan, sub-realm, etc. This change was added.
+   \item Feedback given by our team and changes made: Remove Test-OUI1 from VnVReport and VnVPlan. This change was added.
+    \item Feedback given by our team and changes made: Move maps and settings tests from NFR tests to FR tests. This change was added.
+    \item Feedback given by our team and changes made: Set Test-I1 to fail. This change was added.
+    \item Feedback given by our team and changes made: Set Test-I2 to fail. This change was added.
+    \item Feedback given by our team and changes made: Set Test-DI-D1 to fail. This change was added.
+    \item Feedback given by our team and changes made: Remove Test-s3. This change was added.
+    \item Feedback given by our team and changes made: Remove Test-s5. This change was added.
+\end{itemize}
 
 \section{Challenge Level and Extras}
 
 \subsection{Challenge Level}
 
-\plt{State the challenge level (advanced, general, basic) for your project.  Your challenge level should exactly match what is included in your problem statement.  This should be the challenge level agreed on between you and the course instructor.}
+The challenge level of our project is general.
 
 \subsection{Extras}
 
-\plt{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.}
+The extras that we used in our project were user documentation to explain how to use the app, and usability testing to gather feedback and help improve our design.
 
 \section{Design Iteration (LO11 (PrototypeIterate))}
 
-\plt{Explain how you arrived at your final design and implementation.  How did
-the design evolve from the first version to the final version?} 
-
-\plt{Don't just say what you changed, say why you changed it.  The needs of the
-client should be part of the explanation.  For example, if you made changes in
-response to usability testing, explain what the testing found and what changes
-it led to.}
+A large part of our initial plan revolved around social media functionality within the app where users can join groups, make friends, and see AR objects placed in groups they are a part of. Tours was also part of this plan as well. However, after talking with the Professor and the TA during the Rev 0 demo,  they mentioned that the \textit{why} behind our project was not very clear. They had advised that we cut out the social media aspect and just make it simply about having AR tours, and we made that change accordingly for Rev 1. This helped us narrow our scope quite a bit and focus on making our project more impactful rather than merely larger.
 
 \section{Design Decisions (LO12)}
 
-\plt{Reflect and justify your design decisions.  How did limitations,
- assumptions, and constraints influence your decisions?  Discuss each of these
- separately.}
+Throughout the project, our design decisions were mostly influenced by limitations, assumptions, and constraints that we had to work within. \\
+
+\textbf{Limitations:} One of the biggest limitations we faced was time. Since this was a school project, we only had a couple of months to deliver a working app, so we had to be very selective about which features to implement. Another limitation was our familiarity with certain technologies—we were learning Unity, ARCore, and PocketBase as we went, which meant that we had to be realistic about what we could pull off within the time we had. \\
+
+\textbf{Assumptions:} Early on, we assumed that users would be using relatively modern smartphones with decent camera and AR capabilities. That allowed us to focus on ARCore features without worrying too much about fallback support. We also assumed that users would want a lightweight experience—something they could pick up and use without needing to create an account or go through too many steps. \\
+
+\textbf{Constraints:} Our main constraint was technical—working with Unity and PocketBase meant we had to follow certain patterns in how we handled data, authentication, and AR rendering. We were also limited to free or student-accessible tools, so that ruled out some third-party APIs or paid services. Lastly, because we had to pivot away from the social media aspect mid-project, we were forced to re-scope and simplify the app design to focus more on the tours functionality. \\
+
+Overall, these factors pushed us toward a simpler, more streamlined design that focused on delivering the core idea as reliably as possible, even if that meant sacrificing some of the initial vision.
+
 
 \section{Economic Considerations (LO23)}
 
-\plt{Is there a market for your product? What would be involved in marketing your 
-product? What is your estimate of the cost to produce a version that you could 
-sell?  What would you charge for your product?  How many units would you have to 
-sell to make money? If your product isn't something that would be sold, like an 
-open source project, how would you go about attracting users?  How many potential 
-users currently exist?}
+There is very likely a market for this app, especially in tourist spots, campuses, and museums. Based on our usability survery, many people would be interested in self-guided and interactive experiences, which Realm offers a perfect solution for. To market our product, we would reach out to local museums, national parks and other tourist destinations to pitch them the app. \\
+
+In terms of cost, we estimate that developing a production-ready version of the app would range between \$15,000 to \$25,000 CAD. This would cover finalizing the UI, thorough bug testing, proper deployment, and recurring expenses such as cloud services and analytics. If we were to monetize the app, a freemium model would likely be the most effective approach—offering basic functionality such as being able to go on a tour for free, while charging around \$3.99 to \$5.99 for access to premium features which would enable one to go on a tour. \\
+
+If we go with that pricing, we’d need to sell around 4,000 to 5,000 tours in order to. That said, we could also offer subscription-based plans for organizations that want to create or host tours on the app, and that could help us hit those numbers faster. \\
+
+If we decided to go open source instead, then we’d focus on building a small community around it and releasing exciting demos that people could play with. From there, we would get contributors and\/ or get the project some visibility online. Between tourists, students, educators, or just people who like exploring, there’s potentially a decent number of potential users.
+
+
 
 \section{Reflection on Project Management (LO24)}
 
-\plt{This question focuses on processes and tools used for project management.}
-
 \subsection{How Does Your Project Management Compare to Your Development Plan}
 
-\plt{Did you follow your Development plan, with respect to the team meeting plan, 
-team communication plan, team member roles and workflow plan.  Did you use the 
-technology you planned on using?}
+In terms of team meeting plan, we initially planned to meet every Monday and Wednesday at the very least, and this went very well during the course of the first semester. However, in the second semester, we ended up meeting much less frequently and worked mostly asynchronous, with ocassional meetups if necessary. As for team communication, then that went mostly as expected. With regards to team member roles, then we sort of settled into our roles naturally during the course of the project, and things went smoothly regarding that. We did end up using the technology we planned on, which was Unity and C\#.
 
 \subsection{What Went Well?}
 
-\plt{What went well for your project management in terms of processes and 
-technology?}
+Distributing work amongst teammates went well. Over time, we built good team chemistry and were able to manage each others strengths to know how to delegate and rely on others. If a team member felt they needed some help in a specific area of work, others would mostly be willing to jump in and help.
 
 \subsection{What Went Wrong?}
 
-\plt{What went wrong in terms of processes and technology?}
+In the second semester, we stopped meeting weekly, and we often left the project off for a few weeks at a time until a deadline would roll around. Instead of being proactive in getting our project done, we ended up leaving it until the last minute, and often were not able to complete the app features as intended. Additionally, we had to pivot the project a little bit from a social media app focus to just a tours focus. Our scope initially was too broad, which made the project too large.
 
 \subsection{What Would you Do Differently Next Time?}
 
-\plt{What will you do differently for your next project?}
+We would make sure that we keep holding weekly meetings, with at least one in person meeting per week, so as to ensure that all group members can be on the same page with regards to the progression of the project, and so that we can keep each other accountable for work that needs to be done. We would also make sure that the scope and the \textit{why} of a project is defined very clearly from the beginning. It is better to aim for something small but impactful, rather than add in a whole bunch of features with no real reason.
 
 \section{Reflection on Capstone}
 
-\plt{This question focuses on what you learned during the course of the capstone project.}
-
 \subsection{Which Courses Were Relevant}
 
-\plt{Which of the courses you have taken were relevant for the capstone project?}
+The following courses were of use during this project:
+\begin{itemize}
+    \item SFWRENG 3DB3: Databases
+    \item SFWRENG 3RA3: Software Requirements
+    \item SFWRENG 3S03: Software Testing
+    \item SFWRENG 2AA4: Software Design I
+    \item SFWRENG 3A04: Sofware Design III
+    \item SFWRENG 4HC3: Human Computer Interfaces
+\end{itemize}
 
 \subsection{Knowledge/Skills Outside of Courses}
 
-\plt{What skills/knowledge did you need to acquire for your capstone project
-that was outside of the courses you took?}
+Most of the technologies used in this project were learned outside such as Unity, C\#, ARCore, PocketBase, tencent Hunyuan, ArcGIS. However, prior skills learned in school were easily transferred over. For example, knowing how to code in Java translated easily to C\#, and the fundamental knowledge of databases and SQL in SFWRENG 3DB3 helped us use PocketBase.
 
 \end{document}
