@@ -325,6 +325,7 @@ namespace Realm
             for (int i = 0; i < numberOfModels; i++)
             {
                 var uri = pb.Files.GetUrl(modelRecords[i], models[i].Model);
+                Debug.Log($"URI: {uri}");
                 var g = new GltfImport();
                 Debug.Log($"UPDATE MODELS (5.{i}.1)");
 

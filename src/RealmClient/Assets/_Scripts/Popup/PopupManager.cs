@@ -26,7 +26,6 @@ namespace Realm
 
         public void ShowTourProximityPopup(TourDTO tour)
         {
-            Debug.Log($"********{tour.Name}");
             PopupCustomControl popup = new(false, true);
             popup.SetText($"{tour.Name}\n{tour.Description}\nPreview Tour?");
             popup.SetPrimaryButtonText("YES");

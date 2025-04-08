@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +6,7 @@ namespace Realm
 {
     public class InventoryManager : MonoBehaviour
     {
-        public static readonly int MAX_OBJ_COUNT = 15;
+        public static readonly int MAX_OBJ_COUNT = 20;
 
         [SerializeField]
         private UIInventory uiInventory;

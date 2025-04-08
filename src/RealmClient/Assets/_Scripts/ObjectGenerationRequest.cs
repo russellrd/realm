@@ -12,7 +12,7 @@ public class ObjectGenerationRequest
 {
     public GltfImport gltf;
     public string creationName;
-    private string url = "http://73.97.179.179:55481/generate";
+    private string url = "http://64.38.158.67:50090/generate";
     private ObjectGenRequestDTO data;
     private string filepath;
 

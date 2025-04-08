@@ -16,10 +16,10 @@ namespace Realm
 
         private readonly Dictionary<int, string> HAZARD_WEATHER_CODES = new()
         {
-            {0, "TEST HAZARD0"},
-            {1, "TEST HAZARD1"},
-            {2, "TEST HAZARD2"},
-            {3, "TEST HAZARD3"},
+            // {0, "TEST HAZARD0"},
+            // {1, "TEST HAZARD1"},
+            // {2, "TEST HAZARD2"},
+            // {3, "TEST HAZARD3"},
             {57, "Freezing Drizzle"},
             {67, "Freezing Rain"},
             {74, "Heavy Snow"},

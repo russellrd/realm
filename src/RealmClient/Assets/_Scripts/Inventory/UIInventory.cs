@@ -13,21 +13,33 @@ public class UIInventory : MonoBehaviour
 
     List<UIInventoryARObjectPreview> arObjectPreviewPrefabList = new();
 
-    private readonly List<Sprite> previewSprites = new();
+    private List<Sprite> previewSprites;
 
     public event Action<int> OnSelected;
 
     public void InitInventory()
     {
-        previewSprites.Add(Resources.Load<Sprite>("Sprites/ARObjectPreview/bowl_of_freshly_cut_fruit"));
-        previewSprites.Add(Resources.Load<Sprite>("Sprites/ARObjectPreview/coffee_mug_with_pattern"));
-        previewSprites.Add(Resources.Load<Sprite>("Sprites/ARObjectPreview/blue_ceramic_plate_with_pizza"));
-        previewSprites.Add(Resources.Load<Sprite>("Sprites/ARObjectPreview/classic_red_telephone"));
-        previewSprites.Add(Resources.Load<Sprite>("Sprites/ARObjectPreview/colorful_crayons"));
-        previewSprites.Add(Resources.Load<Sprite>("Sprites/ARObjectPreview/classic_wristwatch_leather_strap"));
-        previewSprites.Add(Resources.Load<Sprite>("Sprites/ARObjectPreview/colorful_balloons"));
-        previewSprites.Add(Resources.Load<Sprite>("Sprites/ARObjectPreview/bicycle_with_basket"));
-        previewSprites.Add(Resources.Load<Sprite>("Sprites/ARObjectPreview/black_umbrella"));
+        previewSprites = new List<Sprite>
+        {
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/fruit_bowl"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/umbrella"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/tree"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/coffee_mug"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/lamp"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/balloons"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/rocket"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/house"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/crayons"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/pizza"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/guitar"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/ring"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/classic_phone"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/backpack"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/bicycle"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/plane"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/wristwatch"),
+            Resources.Load<Sprite>("Sprites/ARObjectPreview/arrow_sign"),
+        };
 
         var invSize = previewSprites.Count > InventoryManager.MAX_OBJ_COUNT ? InventoryManager.MAX_OBJ_COUNT : previewSprites.Count;
         Debug.Log(invSize);

@@ -12,6 +12,7 @@ using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 using UnityEngine.XR.Interaction.Toolkit.Inputs.Readers;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Transformers;
 
@@ -466,12 +467,8 @@ namespace Realm
             if (result.CloudAnchorState == CloudAnchorState.Success)
             {
                 OnAnchorResolvedFinished(true, arObject.AnchorId);
-                result.Anchor.transform.localScale = new Vector3(arObject.Scale, arObject.Scale, arObject.Scale);
                 Debug.Log("Model: " + arObject.ModelId);
-                Debug.Log("X: " + result.Anchor.transform.localScale.x);
-                Debug.Log("Y: " + result.Anchor.transform.localScale.y);
-                Debug.Log("Z: " + result.Anchor.transform.localScale.z);
-                CreateARObjectAtTransform(arObject.ModelId, result.Anchor.transform);
+                CreateARObjectAtTransform(arObject.ModelId, result.Anchor.transform, new Vector3(arObject.Scale, arObject.Scale, arObject.Scale));
             }
             else
             {
@@ -488,7 +485,7 @@ namespace Realm
                 GetPlacementObject().SetActive(true);
                 GameObject anchor = GameObject.FindGameObjectWithTag("anchor");
 
-                CreateARObjectAtTransform(GetPlacementObjectID(), anchor.transform);
+                CreateARObjectAtTransform(GetPlacementObjectID(), anchor.transform, GetPlacementObject().transform.localScale);
 
                 Debug.Log("ATTEMPT TO SAVE OBJECT");
                 Debug.Log("test");
@@ -545,11 +542,15 @@ namespace Realm
             Destroy(GameObject.FindGameObjectWithTag("indicator"));
         }
 
-        public void CreateARObjectAtTransform(string modelId, Transform transform)
+        public void CreateARObjectAtTransform(string modelId, Transform transform, Vector3 scale)
         {
+            Debug.Log($"WWWWWWWW {modelId}");
+            Debug.Log($"WWWWWWWW {scale}");
             GameObject go = Instantiate(InvManager.GetPrefab(modelId), transform.position, transform.rotation);
+            go.transform.localScale = scale;
             go.SetActive(true);
             go.GetComponent<ARTransformer>().enabled = false;
+            go.GetComponent<XRGrabInteractable>().enabled = false;
         }
 
         private void UpdatePlaneVisibility(bool visible)
